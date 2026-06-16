@@ -1,0 +1,19 @@
+{
+  "name": "poddtipset",
+  "version": "1.0.0",
+  "description": "Dagens Pod – daglig podd-tips-app pa Cloudflare Workers + D1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "migrate:local": "wrangler d1 migrations apply poddtipset --local",
+    "migrate:remote": "wrangler d1 migrations apply poddtipset --remote",
+    "tail": "wrangler tail"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240605.0",
+    "typescript": "^5.5.0",
+    "wrangler": "^4.0.0"
+  }
+}

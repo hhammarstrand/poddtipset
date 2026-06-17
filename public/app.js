@@ -55,10 +55,25 @@ function fmtDate(d) {
 }
 
 // ── Komponenter ───────────────────────────────────────────────────────────────
+// Tvinga svensk storefront pa Apple Podcasts-lankar (annars kan de oppnas pa
+// fel sprak beroende pa landskoden i URL:en).
+function appleSe(url) {
+  return String(url).replace(/^(https?:\/\/podcasts\.apple\.com\/)[a-z]{2}(\/)/i, "$1se$2");
+}
+
+// Kort datum, t.ex. "17 juni".
+function fmtDayMonth(d) {
+  try {
+    return new Date(d + "T12:00:00").toLocaleDateString("sv-SE", { day: "numeric", month: "long" });
+  } catch {
+    return d;
+  }
+}
+
 function listenButtons(links) {
   const out = [];
   if (links?.apple)
-    out.push(`<a class="btn" href="${esc(links.apple)}" target="_blank" rel="noopener"><span class="btn-icon"></span>Apple Podcasts</a>`);
+    out.push(`<a class="btn" href="${esc(appleSe(links.apple))}" target="_blank" rel="noopener"><span class="btn-icon"></span>Apple Podcasts</a>`);
   if (links?.spotify)
     out.push(`<a class="btn primary" href="${esc(links.spotify)}" target="_blank" rel="noopener"><span class="btn-icon">▶</span>Spotify</a>`);
   if (links?.web)
@@ -94,7 +109,11 @@ function heroCard(rec, stale, today) {
     ? `<p class="stale-note">Dagens tips (${esc(today)}) är på väg – under tiden visas det senaste.</p>`
     : "";
   const dayConnection = rec.day_connection
-    ? `<p class="day-connection"><span class="day-connection-label">Knyter an till idag</span>${esc(rec.day_connection)}</p>`
+    ? `<div class="day-connection">
+        <span class="day-connection-label">Knyter an till ${esc(fmtDayMonth(rec.date))}</span>
+        ${rec.day_occasion ? `<span class="day-occasion">${esc(rec.day_occasion)}</span>` : ""}
+        <span class="day-text">${esc(rec.day_connection)}</span>
+      </div>`
     : "";
   return `
     <div class="today-banner"><span class="dot"></span>${stale ? "Senaste tipset" : "Dagens tips"} · ${esc(fmtDate(rec.date))}</div>
@@ -215,28 +234,11 @@ async function viewDetail(date) {
 }
 
 // ── Statistik (harleds klient-sidan) ─────────────────────────────────────────
-function addDays(isoDate, delta) {
-  const [y, m, d] = isoDate.split("-").map(Number);
-  const dt = new Date(Date.UTC(y, m - 1, d));
-  dt.setUTCDate(dt.getUTCDate() + delta);
-  return dt.toISOString().slice(0, 10);
-}
-
-function computeStreak(datesDesc, today) {
-  if (!datesDesc.length) return 0;
-  const set = new Set(datesDesc);
-  let cursor = set.has(today) ? today : addDays(today, -1);
-  let streak = 0;
-  while (set.has(cursor)) { streak++; cursor = addDays(cursor, -1); }
-  return streak;
-}
-
 function computeStats(data) {
   const total = data.length;
   const showMap = new Map();
   const genreMap = new Map();
   const langMap = new Map();
-  const monthMap = new Map();
 
   for (const r of data) {
     const sShow = showMap.get(r.show_slug) || { show_slug: r.show_slug, show_name: r.show_name, count: 0 };
@@ -244,17 +246,13 @@ function computeStats(data) {
     showMap.set(r.show_slug, sShow);
     if (r.genre) genreMap.set(r.genre, (genreMap.get(r.genre) || 0) + 1);
     if (r.language) langMap.set(r.language, (langMap.get(r.language) || 0) + 1);
-    const period = String(r.date).slice(0, 7);
-    monthMap.set(period, (monthMap.get(period) || 0) + 1);
   }
 
   const topShows = [...showMap.values()].sort((a, b) => b.count - a.count || a.show_name.localeCompare(b.show_name));
   const byGenre = [...genreMap.entries()].map(([genre, count]) => ({ genre, count })).sort((a, b) => b.count - a.count);
   const byLanguage = [...langMap.entries()].map(([language, count]) => ({ language, count })).sort((a, b) => b.count - a.count);
-  const timeline = [...monthMap.entries()].map(([period, count]) => ({ period, count })).sort((a, b) => (a.period < b.period ? -1 : 1));
-  const streak = computeStreak(data.map((r) => r.date), todayStockholm());
 
-  return { total, topShows, byGenre, byLanguage, timeline, streak };
+  return { total, topShows, byGenre, byLanguage };
 }
 
 function bars(items, nameKey, max) {
@@ -284,30 +282,17 @@ async function viewStats() {
     const maxShow = s.topShows[0]?.count || 1;
     const maxGenre = s.byGenre[0]?.count || 1;
     const maxLang = s.byLanguage[0]?.count || 1;
-    const maxTl = s.timeline.reduce((m, t) => Math.max(m, t.count), 1);
-
-    const timeline = s.timeline.length
-      ? `<div class="panel">
-          <h3>Tidslinje (tips per månad)</h3>
-          <div class="timeline">
-            ${s.timeline.map((t) => `<div class="tl-bar" style="height:${Math.max(6, Math.round((t.count / maxTl) * 100))}%" title="${esc(t.period)}: ${t.count}"></div>`).join("")}
-          </div>
-          <div class="tl-axis"><span>${esc(s.timeline[0].period)}</span><span>${esc(s.timeline[s.timeline.length - 1].period)}</span></div>
-        </div>`
-      : "";
 
     app.innerHTML = `
       <div class="section-head"><h1>Statistik</h1></div>
       <div class="stat-grid">
         <div class="stat"><div class="num">${s.total}</div><div class="lbl">Tips totalt</div></div>
-        <div class="stat"><div class="num">${s.streak}</div><div class="lbl">Dagars streak</div></div>
         <div class="stat"><div class="num">${s.topShows.length}</div><div class="lbl">Unika poddar</div></div>
         <div class="stat"><div class="num">${s.byGenre.length}</div><div class="lbl">Genrer</div></div>
       </div>
       <div class="panel"><h3>Mest rekommenderade poddar</h3>${bars(s.topShows.slice(0, 10), "show_name", maxShow)}</div>
-      <div class="panel"><h3>Fördelning per genre</h3>${bars(s.byGenre, "genre", maxGenre)}</div>
-      <div class="panel"><h3>Fördelning per språk</h3>${bars(s.byLanguage, "language", maxLang)}</div>
-      ${timeline}`;
+      <div class="panel"><h3>Fördelning per genre</h3>${bars(s.byGenre.slice(0, 10), "genre", maxGenre)}</div>
+      <div class="panel"><h3>Fördelning per språk</h3>${bars(s.byLanguage, "language", maxLang)}</div>`;
   } catch (e) {
     app.innerHTML = `<div class="error-box">Kunde inte ladda statistiken (${esc(e.message)}).</div>`;
   }

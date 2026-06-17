@@ -119,6 +119,11 @@ function collapse(s) {
     .trim();
 }
 
+// Tvinga svensk storefront pa Apple Podcasts-lankar (annars fel sprak/landskod).
+function appleSe(url) {
+  return String(url).replace(/^(https?:\/\/podcasts\.apple\.com\/)[a-z]{2}(\/)/i, "$1se$2");
+}
+
 async function searxngSearch(query) {
   const url = new URL("/search", SEARXNG_URL);
   url.searchParams.set("q", query);
@@ -378,8 +383,8 @@ FRISTAENDE AVSNITT (viktigt):
 
 KOPPLING TILL DAGENS DATUM (stark preferens, inte tvang):
 - Du far en lista pa vad som hande / vem som foddes denna dag i historien. Forsok GARNA hitta ett dokumenterat hyllat, fristaende avsnitt som genuint knyter an till nagot av detta (ett tema, en handelse, en person, en arsdag).
-- Hittar du ett sant avsnitt: fyll i "day_connection" med EN kort mening (svenska) om hur avsnittet hanger ihop med dagen.
-- Hittar du INGET genuint hyllat avsnitt som passar: valj anda det basta hyllade avsnittet utan koppling, och lamna "day_connection" som tom strang "". Hitta ALDRIG pa en koppling och tvinga inte fram en krystad sadan – kvaliteten gar fore temat.
+- Hittar du ett sant avsnitt: fyll i "day_occasion" med en kort FAKTA-mening om vad som hande/vem som foddes denna dag (hamtad ur listan ovan), t.ex. "1972 inleddes Watergateinbrottet" eller "Sigvard Bernadotte foddes denna dag 1907". Fyll ocksa i "day_connection" med EN mening om hur avsnittet hanger ihop med det.
+- Hittar du INGET genuint hyllat avsnitt som passar: valj anda det basta hyllade avsnittet utan koppling, och lamna BADE "day_occasion" och "day_connection" som tom strang "". Hitta ALDRIG pa en koppling och tvinga inte fram en krystad sadan – kvaliteten gar fore temat.
 
 KALLOR (viktigt):
 - Du MASTE ange minst en kall-URL i "sources", och varje sadan URL MASTE vara en URL som ORDAGRANT forekom i de medskickade sokresultaten. Hitta ALDRIG pa en URL och andra den inte. Valj en kalla som verkligen belagger hyllningen (lista, artikel, prismotivering, Podchaser-sida, upproostad Reddit-trad).
@@ -403,7 +408,8 @@ Nar du ar klar, avsluta med ETT rent JSON-objekt (och inget efter det) med exakt
   "year": number | null,
   "duration_minutes": number | null,
   "standalone": boolean,           // true endast om avsnittet ar fristaende (inte serie/uppfoljare)
-  "day_connection": string,        // kort mening om kopplingen till dagens datum, annars ""
+  "day_occasion": string,          // vad som hande/foddes denna dag (ur listan), annars ""
+  "day_connection": string,        // kort mening om hur avsnittet knyter an till det, annars ""
   "why_great": string,
   "listen_links": { "apple": string?, "spotify": string?, "web": string? },
   "sources": [ { "title": string, "url": string } ]
@@ -473,6 +479,14 @@ function validateTip(raw, recentKeys, seen, hardShowSlugs = new Set()) {
   }
   if (day_connection.length > 240) day_connection = day_connection.slice(0, 240).trim();
 
+  // Vad som hande denna dag (visas ovanfor kopplingen). Tom om ingen koppling.
+  let day_occasion = str(raw.day_occasion);
+  if (day_occasion && QUOTE_RE.test(day_occasion)) {
+    return { ok: false, error: "day_occasion far inte innehalla citat eller citationstecken." };
+  }
+  if (day_occasion.length > 160) day_occasion = day_occasion.slice(0, 160).trim();
+  if (!day_connection) day_occasion = "";
+
   // Guardrail: fanga serie-/sasongsavsnitt som titeln inte rojer men texten erkanner
   // (t.ex. "den forsta delen i ...", "season opener"). Skyddar fristaende-kravet.
   if (SERIES_ADMISSION_RE.test(`${episode_title} ${why_great} ${day_connection}`)) {
@@ -512,7 +526,7 @@ function validateTip(raw, recentKeys, seen, hardShowSlugs = new Set()) {
   const links = {};
   if (raw.listen_links && typeof raw.listen_links === "object") {
     for (const [k, v] of Object.entries(raw.listen_links)) {
-      if (typeof v === "string" && /^https?:\/\//i.test(v)) links[k] = v;
+      if (typeof v === "string" && /^https?:\/\//i.test(v)) links[k] = k === "apple" ? appleSe(v) : v;
     }
   }
 
@@ -527,6 +541,7 @@ function validateTip(raw, recentKeys, seen, hardShowSlugs = new Set()) {
       language,
       year: typeof raw.year === "number" ? raw.year : null,
       duration_minutes: typeof raw.duration_minutes === "number" ? raw.duration_minutes : null,
+      day_occasion,
       day_connection,
       why_great,
       listen_links: links,

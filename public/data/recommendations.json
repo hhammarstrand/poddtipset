@@ -73,6 +73,30 @@
     "created_at": "2026-06-17T10:47:51.098Z"
   },
   {
+    "date": "2026-06-10",
+    "episode_title": "The Model City",
+    "show_name": "Blindspot",
+    "show_slug": "blindspot",
+    "hosts": "WNYC and The History Channel",
+    "genre": "History / True Crime",
+    "language": "en",
+    "year": 2021,
+    "duration_minutes": null,
+    "day_occasion": "1944 Tyska Waffen-SS-styrkor mördar 642 män, kvinnor och barn i den franska byn Oradour-sur-Glane.",
+    "day_connection": "Avsnittet undersöker den franska staden Nanterre, som under andra världskriget var en plats för nazistiska förtryck och massavrättningar, vilket ger en djup historisk kontext till krigets grymheter i Frankrike.",
+    "why_great": "Detta avsnitt nominerades till ett Peabody Award och har hyllats för sin förmåga att gräva ner sig i den dolda historien bakom en typisk förort. Det kombinerar arkivmaterial med intervjuer för att avslöja hur en plats som var centrum för nazistisk administration och förföljelse idag ser ut, och visar hur man bearbetar mörka kapitel i det kollektiva minnet.",
+    "listen_links": {
+      "web": "https://peabodyawards.com/stories/the-best-podcasts-to-listen-to-right-now/"
+    },
+    "sources": [
+      {
+        "title": "The Best Podcasts to Listen to Right Now - The Peabody Awards",
+        "url": "https://peabodyawards.com/stories/the-best-podcasts-to-listen-to-right-now/"
+      }
+    ],
+    "created_at": "2026-06-17T10:55:55.882Z"
+  },
+  {
     "date": "2026-06-09",
     "episode_title": "Mordet på Elin Krantz",
     "show_name": "P3 Dokumentär",

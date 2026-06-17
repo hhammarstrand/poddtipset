@@ -4,23 +4,152 @@
     "episode_title": "The Case of the Missing Hit",
     "show_name": "Reply All",
     "show_slug": "reply-all",
-    "hosts": "PJ Vogt, Alex Goldman",
-    "genre": "Narrativ podcast om internetkultur och mysterier",
+    "hosts": "P.J. Vogt, Alex Goldman",
+    "genre": "True Crime / Mystery",
     "language": "en",
     "year": 2020,
-    "duration_minutes": 50,
-    "why_great": "I detta avsnitt går värdarna i spåren på en man som är besatt av minnet av en poplåt från sin barndom, fast han inte kan komma på vare sig titel eller artist. Det är en hjärtlig och humoristisk jaktsaga där lyssnaren blir en del av communityt som försöker lösa mysteriet tillsammans med värdarna, och berättelsen är så välkonstruerad att den ofta lyfts fram som ett av de bästa exemplen på vad en enskild poddavsnitt kan prestera.",
+    "duration_minutes": 53,
+    "day_connection": "",
+    "why_great": "Detta avsnitt betraktas av många som ett av tidernas bästa poddavsnitt överhuvudtaget och tilldelades ett Peabody Award. Historien följer redaktionen när de hjälper en lyssnare att spåra upp en glömd poplåt från 1990-talet, vilket leder dem in i en virvel av internetmysterier, missförstånd och en oväntad kärlekshistoria. Avsnittet lyckas balansera humor, spänning och mänsklig ömhet på ett sätt som få andra lyckats med, och det avslutas med en fullständig och tillfredsställande lösning på mysteriet utan behov av uppföljning.",
     "listen_links": {
       "apple": "https://podcasts.apple.com/us/podcast/158-the-case-of-the-missing-hit/id941907967?i=1000467513208",
-      "spotify": "https://open.spotify.com/episode/0CaOGo6xSN51B2aLAQa1kU",
-      "web": "https://gimletmedia.com/shows/reply-all/5c9c0575-9504-4135-9655-673613052607/7d327636-55f5-4e1d-b43d-307070697095"
+      "spotify": "https://open.spotify.com/episode/0CaOGo6xSN51B2aLAQa1kU"
     },
     "sources": [
       {
-        "title": "Reply All's The Case of the Missing Hit: could this be the best podcast episode ever?",
-        "url": "https://www.theguardian.com/tv-and-radio/2020/mar/10/reply-alls-the-case-of-the-missing-hit-could-this-be-the-best-podcast-episode-ever"
+        "title": "7 Signal Award-Winning Podcasts You Should Be Listening To",
+        "url": "https://peabodyawards.com/stories/7-signal-award-winning-podcasts/"
+      },
+      {
+        "title": "The Best Podcasts Ever Recorded",
+        "url": "https://timduggan.substack.com/p/the-best-podcasts-ever-recorded"
       }
     ],
-    "created_at": "2026-06-17T09:02:53.039Z"
+    "created_at": "2026-06-17T09:30:23.762Z"
+  },
+  {
+    "date": "2026-06-05",
+    "episode_title": "The Profumo Affair",
+    "show_name": "Dan Snow's History Hit",
+    "show_slug": "dan-snow-s-history-hit",
+    "hosts": "Dan Snow",
+    "genre": "Historia",
+    "language": "en",
+    "year": 2021,
+    "duration_minutes": 36,
+    "day_connection": "Avsnittet behandlar Profumoaffären, som kulminerade med försvarsministern John Profumos avgång denna dag i juni 1963 efter att han tvingats erkänna sitt förhållande till Christine Keeler.",
+    "why_great": "Dan Snow får med sig den anrika historikern Richard Davenport-Hines för att granska den skandal som skakade om det brittiska samhället på 60-talet. Avsnittet är en fristående och välskriven berättelse om hur ett hemligt förhållande, spioneri och lögnaktighet mot parlamentet ledde till att en kabinettminister tvingades avgå, med djupa konsekvenser för Storbritannien under kalla kriget.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/nz/podcast/the-profumo-affair/id1042631089?i=1000524306376",
+      "spotify": "https://open.spotify.com/episode/2NK8ST09GGhNj0sppuZrPw",
+      "web": "https://shows.acast.com/dansnowshistoryhit/episodes/theprofumoaffair"
+    },
+    "sources": [
+      {
+        "title": "The Profumo Affair - Dan Snow's History Hit",
+        "url": "https://shows.acast.com/dansnowshistoryhit/episodes/theprofumoaffair"
+      }
+    ],
+    "created_at": "2026-06-17T09:53:40.232Z"
+  },
+  {
+    "date": "2026-06-04",
+    "episode_title": "The Glow Below",
+    "show_name": "Radiolab",
+    "show_slug": "radiolab",
+    "hosts": "Jody Avirgan, Molly Webster",
+    "genre": "Science/Nature",
+    "language": "en",
+    "year": 2025,
+    "duration_minutes": null,
+    "day_connection": "",
+    "why_great": "Avsnittet inleds med ett samtal med havsforskaren Edie Widder som snabbt förvandlas till en djupdykning i havsdjupets hemligheter. Det utforskar hur ljus används och skapas i den mörka djuphavsmiljön, och presenterar fiskar med udda immunförsvar. Det är ett fristående avsnitt som fungerar som en komplett berättelse om det okända havsdjupet.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/pt/podcast/the-glow-below/id152249110?i=1000734443196",
+      "spotify": "https://open.spotify.com/episode/2veWrXv3aUkCiUoPfOold2",
+      "web": "https://radiolab.org/podcast/the-glow-below"
+    },
+    "sources": [
+      {
+        "title": "The Glow Below - Radiolab",
+        "url": "https://radiolab.org/podcast/the-glow-below"
+      },
+      {
+        "title": "Episode Discussion: The Glow Below - Reddit",
+        "url": "https://www.reddit.com/r/Radiolab/comments/1okwpke/episode_discussion_the_glow_below/"
+      }
+    ],
+    "created_at": "2026-06-17T09:53:23.075Z"
+  },
+  {
+    "date": "2026-06-03",
+    "episode_title": "What Are You Most Afraid Of?",
+    "show_name": "Radiolab",
+    "show_slug": "radiolab",
+    "hosts": "Jad Abumrad, Robert Krulwich",
+    "genre": "Science",
+    "language": "en",
+    "year": 2014,
+    "duration_minutes": 62,
+    "day_connection": "",
+    "why_great": "I detta avsnitt undersöker Radiolab varför vi är rädda för det vi är – från spindlar och djupa hål till det okända. Det är ett av poddens mest omtalade avsnitt som ofta lyfts fram i listor över dess bästa genom tiderna, där värdarna Jad Abumrad och Robert Krulwich väver samman neurovetenskap, evolutionsbiologi och personliga berättelser om rädslor. Avsnittet är komplett och fristående, även om det krävs förståelse av att vi har en djuprotad, biologisk anlagd rädsla för att överleva.",
+    "listen_links": {},
+    "sources": [
+      {
+        "title": "Error | Radiolab | WNYC Studios",
+        "url": "https://radiolab.org/popular"
+      }
+    ],
+    "created_at": "2026-06-17T09:52:51.673Z"
+  },
+  {
+    "date": "2026-06-02",
+    "episode_title": "Colors",
+    "show_name": "Radiolab",
+    "show_slug": "radiolab",
+    "hosts": "Jad Abumrad, Robert Krulwich",
+    "genre": "Science / Storytelling",
+    "language": "en",
+    "year": 2012,
+    "duration_minutes": 66,
+    "day_connection": "Episoden utforskar hur vi uppfattar färg – en tematisk koppling till datumet då Italien 1946 blev en republik, en omvandling av ett lands identitet på samma sätt som färgen förändrar vår verklighetsuppfattning.",
+    "why_great": "I detta klassiska avsnitt dyker Radiolab ner i färgernas vetenskap och poesi. De följer bland annat en man som kan se ultraviolett ljus och en fisk som ser en regnbåge utöver det vi människor kan uppfatta, medan de ställer den eviga frågan om vi ser samma färger. Det är en sensorisk och filosofisk upplevelse som förändrar hur man ser på den vanliga världen.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/us/podcast/colors/id152249110?i=1000562600649",
+      "spotify": "https://open.spotify.com/episode/7ugEsqx79eit9kFVw5xN7a",
+      "web": "https://radiolab.org/podcast/211119-colors"
+    },
+    "sources": [
+      {
+        "title": "The 14 Best Radiolab Podcasts - Discover Pods",
+        "url": "https://discoverpods.com/best-radiolab-episodes/"
+      }
+    ],
+    "created_at": "2026-06-17T09:52:23.064Z"
+  },
+  {
+    "date": "2026-06-01",
+    "episode_title": "60 Words",
+    "show_name": "Radiolab",
+    "show_slug": "radiolab",
+    "hosts": "Jad Abumrad, Robert Krulwich",
+    "genre": "Samhällsfrågor, Historia, Vetenskap",
+    "language": "en",
+    "year": 2014,
+    "duration_minutes": 56,
+    "day_connection": "Avsnittet handlar om den korta mening som skrevs i kölvattnet av 11 september-attackerna, vilket direkt kopplar till den historiska dagens händelser kring terrorism och geopolitik.",
+    "why_great": "Radiolab plockar isär en enda mening på 60 ord från auktorisationslagen (AUMF) som antogs direkt efter 11 september. Genom att analysera varje ord visar de hur denna lilla textlagda mening blev den juridiska grunden för decennier av krigföring och övervakning. Det är en briljant och skrämmande påminnelse om hur byråkratiska formuleringar kan få enorma konsekvenser.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/us/podcast/60-words/id152249110?i=1000304877109",
+      "spotify": "https://open.spotify.com/episode/7lg9W4aK6aaZOEazhbZGdr",
+      "web": "https://radiolab.org/podcast/60-words"
+    },
+    "sources": [
+      {
+        "title": "60 Words - The Peabody Awards",
+        "url": "https://peabodyawards.com/award-profile/60-words/"
+      }
+    ],
+    "created_at": "2026-06-17T09:51:12.232Z"
   }
 ]

@@ -50,6 +50,11 @@ Anthropic-nyckel och inget betalt sök-API krävs – bara en Staik-nyckel.
 
   Underkänt → regenereras (max 4 försök), annars lämnas dagen tom (frontend visar gårdagens tips).
   Modellen körs med låg temperatur för att minska konfabulering.
+- **Koppling till dagens datum:** generatorn hämtar Wikipedias "On this day"-flöde (sv + en,
+  nyckellöst) för dagens datum och matar in händelser/födslar som dagens tema. Modellen försöker
+  gärna välja ett hyllat avsnitt som knyter an till något av detta och fyller då fältet
+  `day_connection` (visas i kortet) – men det är en **stark preferens, inte ett krav**: hittas inget
+  genuint hyllat avsnitt som passar väljs ett bra utan koppling (aldrig en påhittad koppling).
 - **Persistens:** det godkända tipset läggs till i `public/data/recommendations.json` och committas
   tillbaka av workflowen. Idempotent: finns dagens datum redan görs ingenting.
 - **Frontend:** `public/` (vanilla HTML/CSS/JS, inget byggsteg) läser JSON-filen och gör

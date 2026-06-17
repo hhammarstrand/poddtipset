@@ -28,6 +28,9 @@ const WHY_LANG = "sv";
 const SOURCE_FETCH_TIMEOUT_MS = 8000;
 const SEARXNG_TIMEOUT_MS = 12000;
 const STAIK_TIMEOUT_MS = 120000;
+const WIKI_TIMEOUT_MS = 12000;
+// Sprak for "On this day"-flodet (Wikipedia), i prioritetsordning. Forsta som svarar anvands/merges.
+const ONTHISDAY_WIKIS = ["sv", "en"];
 
 // Guardrails (validering)
 // Titel-monster som indikerar att avsnittet INTE ar fristaende (uppfoljare/serie/del/finale).
@@ -179,6 +182,63 @@ function formatSearchResults(searches) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// "On this day" – dagens historiska krokar fran Wikipedia (gratis, nyckellost)
+// ─────────────────────────────────────────────────────────────────────────────
+async function fetchOnThisDayForWiki(wiki, mm, dd) {
+  const url = `https://${wiki}.wikipedia.org/api/rest_v1/feed/onthisday/all/${mm}/${dd}`;
+  const res = await fetch(url, {
+    headers: { accept: "application/json", "user-agent": "DagensPod/1.0 (+https://github.com/hhammarstrand/poddtipset)" },
+    signal: AbortSignal.timeout(WIKI_TIMEOUT_MS),
+  });
+  if (!res.ok) throw new Error(`onthisday ${wiki} ${res.status}`);
+  const data = await res.json();
+  const hooks = [];
+  const take = (arr, kind, n) => {
+    for (const it of (Array.isArray(arr) ? arr : []).slice(0, n)) {
+      const text = typeof it.text === "string" ? it.text.replace(/\s+/g, " ").trim() : "";
+      if (!text) continue;
+      hooks.push({ kind, year: typeof it.year === "number" ? it.year : null, text });
+    }
+  };
+  take(data.selected, "handelse", 12);
+  take(data.events, "handelse", 10);
+  take(data.births, "fodd", 8);
+  return hooks;
+}
+
+// Hamtar dagens krokar fran konfigurerade wikis och slar ihop dem (dedup pa text).
+async function fetchOnThisDay(date) {
+  const [, mm, dd] = String(date).split("-");
+  if (!mm || !dd) return [];
+  const all = [];
+  for (const wiki of ONTHISDAY_WIKIS) {
+    try {
+      const hooks = await fetchOnThisDayForWiki(wiki, mm, dd);
+      all.push(...hooks);
+    } catch (err) {
+      console.log(`On this day (${wiki}) misslyckades: ${err instanceof Error ? err.message : err}`);
+    }
+  }
+  const seen = new Set();
+  const uniq = [];
+  for (const h of all) {
+    const k = collapse(h.text).slice(0, 80);
+    if (k && !seen.has(k)) { seen.add(k); uniq.push(h); }
+  }
+  return uniq.slice(0, 24);
+}
+
+function formatThemeBlock(hooks, mm, dd) {
+  if (!hooks.length) return "";
+  const lines = hooks.map((h) => {
+    const y = h.year != null ? `${h.year}` : "okant ar";
+    const label = h.kind === "fodd" ? "Fodd" : "Handelse";
+    return `- [${label}, ${y}] ${h.text}`;
+  });
+  return `DAGENS DATUM (${dd}/${mm}) – sa har knyter dagen an i historien (Wikipedia "On this day"):\n${lines.join("\n")}`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Staik chat/completions (OpenAI-kompatibelt) med klient-sidigt web_search-verktyg
 // ─────────────────────────────────────────────────────────────────────────────
 const WEB_SEARCH_TOOL = {
@@ -326,6 +386,11 @@ FRISTAENDE AVSNITT (viktigt):
 - Valj ALDRIG ett uppfoljnings- eller serie-avsnitt: inget "Part 2", "Del 3", "Chapter/Kapitel N", numrerat avsnitt, "Update:", finale, "fortsattning" eller nagot som bygger vidare pa en tidigare del. Om titeln eller innehallet forutsatter ett tidigare avsnitt – valj nagot annat.
 - Satt faltet "standalone" till true bara om detta verkligen galler.
 
+KOPPLING TILL DAGENS DATUM (stark preferens, inte tvang):
+- Du far en lista pa vad som hande / vem som foddes denna dag i historien. Forsok GARNA hitta ett dokumenterat hyllat, fristaende avsnitt som genuint knyter an till nagot av detta (ett tema, en handelse, en person, en arsdag).
+- Hittar du ett sant avsnitt: fyll i "day_connection" med EN kort mening (svenska) om hur avsnittet hanger ihop med dagen.
+- Hittar du INGET genuint hyllat avsnitt som passar: valj anda det basta hyllade avsnittet utan koppling, och lamna "day_connection" som tom strang "". Hitta ALDRIG pa en koppling och tvinga inte fram en krystad sadan – kvaliteten gar fore temat.
+
 KALLOR (viktigt):
 - Du MASTE ange minst en kall-URL i "sources", och varje sadan URL MASTE vara en URL som ORDAGRANT forekom i dina web_search-resultat. Hitta ALDRIG pa en URL och andra den inte. Valj en kalla som verkligen belagger hyllningen (lista, artikel, prismotivering, Podchaser-sida, upproostad Reddit-trad).
 
@@ -345,13 +410,14 @@ Nar du ar klar, avsluta med ETT rent JSON-objekt (och inget efter det) med exakt
   "year": number | null,
   "duration_minutes": number | null,
   "standalone": boolean,           // true endast om avsnittet ar fristaende (inte serie/uppfoljare)
+  "day_connection": string,        // kort mening om kopplingen till dagens datum, annars ""
   "why_great": string,
   "listen_links": { "apple": string?, "spotify": string?, "web": string? },
   "sources": [ { "title": string, "url": string } ]
 }`;
 }
 
-function userPrompt(dedupList, searchBlock, lastError) {
+function userPrompt(dedupList, searchBlock, themeBlock, lastError) {
   const dedup = dedupList.length ? dedupList.map((d) => `- ${d}`).join("\n") : "(historiken ar tom)";
   const retry = lastError
     ? `\n\nFOREGAENDE FORSOK UNDERKANDES: ${lastError}\nValj ett ANNAT avsnitt som uppfyller alla krav.\n`
@@ -360,6 +426,8 @@ function userPrompt(dedupList, searchBlock, lastError) {
 
 Det far INTE vara nagot av dessa redan rekommenderade avsnitt:
 ${dedup}
+
+${themeBlock || "(ingen dagskoppling tillganglig – valj fritt bland hyllade avsnitt)"}
 
 SOKRESULTAT ATT UTGA FRAN (du kan soka mer med web_search):
 ${searchBlock || "(inga sokresultat annu – anvand web_search)"}${retry}`;
@@ -400,6 +468,13 @@ function validateTip(raw, recentKeys, seen) {
   if (QUOTE_RE.test(why_great)) {
     return { ok: false, error: "why_great far inte innehalla citat eller citationstecken." };
   }
+
+  // Dagskoppling ar valfri (stark preferens, inte tvang). Inga citat; kort.
+  let day_connection = str(raw.day_connection);
+  if (day_connection && QUOTE_RE.test(day_connection)) {
+    return { ok: false, error: "day_connection far inte innehalla citat eller citationstecken." };
+  }
+  if (day_connection.length > 240) day_connection = day_connection.slice(0, 240).trim();
 
   // Guardrail: kallor maste komma ur sokresultat vi faktiskt sett (inga pahittade URL:er).
   const seenList = Array.isArray(seen) ? seen : [];
@@ -444,6 +519,7 @@ function validateTip(raw, recentKeys, seen) {
       language,
       year: typeof raw.year === "number" ? raw.year : null,
       duration_minutes: typeof raw.duration_minutes === "number" ? raw.duration_minutes : null,
+      day_connection,
       why_great,
       listen_links: links,
       sources,
@@ -500,13 +576,19 @@ async function main() {
   const dedupList = recent.map((r) => `${r.date} | ${r.show_name} | ${r.episode_title}`);
   const recentKeys = new Set(recent.map((r) => `${slugify(r.show_name)}::${normalizeTitle(r.episode_title)}`));
 
+  // Dagens tema-krokar fran Wikipedia "On this day" (stark preferens, inte tvang).
+  const [, mm, dd] = date.split("-");
+  const hooks = await fetchOnThisDay(date);
+  const themeBlock = formatThemeBlock(hooks, mm, dd);
+  console.log(`On this day ${dd}/${mm}: ${hooks.length} krokar hamtade.`);
+
   let lastError = "";
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
     try {
       SEEN.length = 0; // nollstall sedda sokresultat per forsok
       const searches = await gatherSeedResults(attempt);
       const searchBlock = formatSearchResults(searches);
-      const text = await runAgent(apiKey, systemPrompt(), userPrompt(dedupList, searchBlock, lastError));
+      const text = await runAgent(apiKey, systemPrompt(), userPrompt(dedupList, searchBlock, themeBlock, lastError));
       const v = validateTip(extractJsonObject(text), recentKeys, SEEN);
       if (!v.ok) { lastError = v.error; console.log(`Forsok ${attempt} underkant: ${v.error}`); continue; }
 
@@ -541,4 +623,4 @@ if (isDirectRun) {
   });
 }
 
-export { validateTip, NON_STANDALONE_RE, QUOTE_RE, normUrl, collapse, SEEN };
+export { validateTip, NON_STANDALONE_RE, QUOTE_RE, normUrl, collapse, SEEN, fetchOnThisDay, formatThemeBlock };

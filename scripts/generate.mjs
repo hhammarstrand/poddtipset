@@ -33,6 +33,12 @@ const SOURCE_FETCH_TIMEOUT_MS = 8000;
 const SEARXNG_TIMEOUT_MS = 12000;
 const STAIK_TIMEOUT_MS = 120000;
 const WIKI_TIMEOUT_MS = 12000;
+// Vid backfill (manga dagar i samma korning) kan SearXNG:s uppstroms-motorer borja
+// strypa/blockera korningens IP efter tat sokvolym – traffarna gar da mot 0 over tid.
+// Pausa innan nasta forsok sa motorerna hinner aterhamta sig, istallet for att bara
+// brann fler forsok pa modellen utan ny sokdata.
+const SEARXNG_LOW_HIT_THRESHOLD = 5;   // under detta antal traffar racker det inte for ett robust forsok
+const SEARXNG_RECOVERY_DELAY_MS = 8000; // fast paus innan nasta forsok efter en svag/tom sokning
 // Sprak for "On this day"-flodet (Wikipedia), i prioritetsordning. Forsta som svarar anvands/merges.
 const ONTHISDAY_WIKIS = ["sv", "en"];
 
@@ -221,6 +227,8 @@ function buildQueries(date, attempt, hooks) {
 async function gatherResults(queries) {
   return Promise.all(queries.map((q) => searxngSearch(q)));
 }
+
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function formatSearchResults(searches) {
   const blocks = [];
@@ -653,6 +661,15 @@ async function main() {
       const hitCount = searches.reduce((n, s) => n + (s.results?.length || 0), 0);
       const searchErrors = searches.filter((s) => s.error).map((s) => `"${s.query}": ${s.error}`);
       console.log(`Forsok ${attempt}: ${hitCount} sokresultat${searchErrors.length ? ` (fel: ${searchErrors.join("; ")})` : ""}`);
+      if (hitCount < SEARXNG_LOW_HIT_THRESHOLD) {
+        // For fa traffar for att lita pa – sokmotorerna kan vara tillfalligt strypta
+        // efter tat sokvolym i samma korning. Vantar in en aterhamtningspaus istallet
+        // for att branna ett modellanrop pa svag/obefintlig sokdata.
+        lastError = "For fa sokresultat for att garantera en kallbelagd, icke-pahittad rekommendation.";
+        console.log(`Forsok ${attempt} hoppar over modellanrop: bara ${hitCount} sokresultat. Vantar ${SEARXNG_RECOVERY_DELAY_MS}ms.`);
+        await sleep(SEARXNG_RECOVERY_DELAY_MS);
+        continue;
+      }
       const text = await askModel(apiKey, systemPrompt(), userPrompt(dedupList, avoidShows, searchBlock, themeBlock, lastError));
       const v = validateTip(extractJsonObject(text), recentKeys, SEEN, hardShowSlugs);
       if (!v.ok) { lastError = v.error; console.log(`Forsok ${attempt} underkant: ${v.error}`); continue; }

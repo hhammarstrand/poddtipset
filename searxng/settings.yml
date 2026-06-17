@@ -17,3 +17,14 @@ search:
     - html
     - json
   safe_search: 0
+
+# GitHub Actions-runners kor pa Azure-IP:er som Google/Bing ofta blockerar/CAPTCHA:ar
+# efter en stund av automatiserad sokvolym i samma korning – traffarna gick mot 0
+# under langre backfills. Stanger av dem och litar pa motorer som tolererar
+# datacenter-IP:er battre (DuckDuckGo, Brave, Startpage, Mojeek, Qwant m.fl. fran
+# standardkonfigurationen).
+engines:
+  - name: google
+    disabled: true
+  - name: bing
+    disabled: true

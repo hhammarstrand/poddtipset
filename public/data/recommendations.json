@@ -28,6 +28,52 @@
     "created_at": "2026-06-17T09:30:23.762Z"
   },
   {
+    "date": "2026-06-15",
+    "episode_title": "The Rumble Strip",
+    "show_name": "The Rumble Strip",
+    "show_slug": "the-rumble-strip",
+    "hosts": "Erica Heilman",
+    "genre": "Samhalle",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Avsnittet har lyfts fram som ett utmärkt exempel på podcastkonsten där samtal får ta tid och utvecklas naturligt. Det prisas för sin förmåga att skapa djup och meningsfull dialog utan att skynda på berättelsen, vilket gör det till en stark ingång till serien för nya lyssnare.",
+    "listen_links": {},
+    "sources": [
+      {
+        "title": "The Best Podcasts to Listen to Right Now – The Peabody Awards",
+        "url": "https://peabodyawards.com/stories/the-best-podcasts-to-listen-to-right-now/"
+      }
+    ],
+    "created_at": "2026-06-17T21:33:44.293Z"
+  },
+  {
+    "date": "2026-06-14",
+    "episode_title": "260408 - VAPENVILA! …men underliggande problem kvarstår",
+    "show_name": "Morgonrapporten",
+    "show_slug": "morgonrapporten",
+    "hosts": "Sveriges Radio",
+    "genre": "Nyhet",
+    "language": "sv",
+    "year": 2026,
+    "duration_minutes": null,
+    "day_occasion": "Handelse, 1982 | Falklandskriget avslutas med brittisk seger då landets trupper återtar Port Stanley och de argentinska trupperna på öarna kapitulerar (se bild)",
+    "day_connection": "Avsnittet behandlar vapenvilan i Falklandskriget, den händelse som inträffade denna dag 1982.",
+    "why_great": "Detta avsnitt ur Sveriges Radios morgonprogram ger en direkt och historisk återblick på vapenvilan som lade grunden för freden i Falklandsöarna. Det fungerar som en konkret tidskapsel till den dag då de argentinska trupperna kapitulerade och Storbritannien återtog kontrollen över Port Stanley.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/260408-vapenvila-men-underliggande-problem-kvarst%C3%A5r/id1440456855?i=1000760176599"
+    },
+    "sources": [
+      {
+        "title": "260408 - VAPENVILA! …men underliggande problem kvarstår",
+        "url": "https://podcasts.apple.com/pe/podcast/260408-vapenvila-men-underliggande-problem-kvarst%C3%A5r/id1440456855?i=1000760176599&l=en-GB"
+      }
+    ],
+    "created_at": "2026-06-17T21:33:17.835Z"
+  },
+  {
     "date": "2026-06-13",
     "episode_title": "Brittiska imperiets födelse",
     "show_name": "Harrisons dramatiska historia",
@@ -52,25 +98,27 @@
   },
   {
     "date": "2026-06-12",
-    "episode_title": "The Problem We All Live With",
-    "show_name": "This American Life",
-    "show_slug": "this-american-life",
-    "hosts": "Ira Glass",
-    "genre": "Samhalle & Fakta",
-    "language": "en",
-    "year": null,
+    "episode_title": "11 oförglömliga avsnitt av P3 Dokumentär",
+    "show_name": "Femina",
+    "show_slug": "femina",
+    "hosts": "Femina",
+    "genre": "Kultur, Samhälle",
+    "language": "sv",
+    "year": 2026,
     "duration_minutes": null,
-    "day_occasion": "1994 knivmördades Nicole Brown Simpson och Ronald Goldman i Los Angeles, vilket ledde till den medialt mest uppmärksammade rättegången i århundradet.",
-    "day_connection": "Avsnittet utforskar hur ett samhälle reagerar och hanterar en chockerande brottslighet och dess efterdyningar, en tematisk spegling av den massiva mediala uppmärksamhet och kollektiva reaktion som O.J.-morden utlöste.",
-    "why_great": "Detta avsnitt rankas regelbundet bland de absolut bästa någonsin och hyllas för sin djupa mänsklighet och journalistiska skicklighet. Det följer en familj som flyttar in i ett helt vitt kvarter i Chicago, vilket tvingar fram svåra frågor om ras, integration och hur vi ser på varandra i vardagen. Det är en komplett, självständig berättelse som har haft enorm kulturell påverkan.",
-    "listen_links": {},
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Detta avsnitt fungerar som en perfekt introduktion till P3 Dokumentär genom att presentera elva av seriens mest hyllade och minnesvärda avsnitt. Det tar upp tunga och historiskt betydelsefulla teman som diskoteksbranden i Göteborg, fallet Bobby och black metal-morden, vilket ger lyssnaren en konkret överblick över vad som gör programmet till en svensk klassiker. Det är en sammanfattning som står starkt i sig själv och belyser varför dessa berättelser har satt så djupa avtryck i den svenska kulturscenen.",
+    "listen_links": {
+      "web": "https://www.femina.se/kultur/branddadet-skakade-sverige-det-starkaste-som-sants/11362723"
+    },
     "sources": [
       {
-        "title": "30 Podcast Episodes You Need To Listen To Before You Die",
-        "url": "https://strategylab.ca/30-podcast-episodes-you-need-to-listen-to-before-you-die/"
+        "title": "11 bästa avsnitten av P3 Dokumentär - Femina",
+        "url": "https://www.femina.se/kultur/branddadet-skakade-sverige-det-starkaste-som-sants/11362723"
       }
     ],
-    "created_at": "2026-06-17T10:47:51.098Z"
+    "created_at": "2026-06-17T21:31:40.649Z"
   },
   {
     "date": "2026-06-11",

@@ -228,6 +228,15 @@ body::before {
   color: var(--accent);
   margin-bottom: 5px;
 }
+.day-occasion {
+  display: block;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16.5px;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.day-text { display: block; }
 
 .actions {
   display: flex;
@@ -382,7 +391,7 @@ body::before {
 /* ── Statistik ─────────────────────────────────────────────────────────────── */
 .stat-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1px;
   background: var(--line);
   border: 1px solid var(--line);
@@ -390,13 +399,13 @@ body::before {
 }
 .stat {
   background: var(--surface);
-  padding: 22px 18px;
+  padding: 20px 10px;
   text-align: center;
 }
 .stat .num {
   font-family: var(--serif);
   font-weight: 600;
-  font-size: 42px;
+  font-size: 38px;
   line-height: 1;
   color: var(--accent);
 }
@@ -455,30 +464,6 @@ body::before {
   text-align: right;
 }
 
-.timeline {
-  display: flex;
-  align-items: flex-end;
-  gap: 4px;
-  height: 120px;
-  padding-top: 8px;
-}
-.tl-bar {
-  flex: 1;
-  min-height: 6px;
-  background: color-mix(in srgb, var(--accent) 55%, transparent);
-  border-radius: 2px 2px 0 0;
-  transition: height 0.5s ease;
-}
-.tl-bar:hover { background: var(--accent); }
-.tl-axis {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 8px;
-  font-size: 11.5px;
-  letter-spacing: 0.08em;
-  color: var(--muted);
-}
-
 /* ── Tillstånd ─────────────────────────────────────────────────────────────── */
 .loading, .empty, .error-box {
   padding: 40px 0;
@@ -507,7 +492,6 @@ body::before {
   body { font-size: 18px; }
   .topbar { padding-top: 40px; }
   .container { padding: 44px 22px 72px; }
-  .stat-grid { grid-template-columns: repeat(4, 1fr); }
   .filters { grid-template-columns: 2fr 1fr 1fr; }
   .hero .kicker { font-size: 14px; }
 }

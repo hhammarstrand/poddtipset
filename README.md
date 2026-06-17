@@ -39,10 +39,22 @@ Anthropic-nyckel och inget betalt sök-API krävs – bara en Staik-nyckel.
   pre-seedar ett par bredsökningar så modellen alltid har riktiga träffar att utgå från, och ber den
   välja ETT avsnitt som är dokumenterat hyllat (bästa-listor, högt på Podchaser/Reddit,
   prisbelönt, mycket delat), på svenska eller engelska, som **inte** redan finns i historiken
-  (senaste ~60 skickas med för dedup). Svaret valideras: alla fält ifyllda, rätt språk, ingen
-  dubblett, och **minst en käll-URL som faktiskt går att nå** (`fetch` < 400). Källans URL måste
-  komma ur ett verkligt sökresultat – modellen får inte hitta på den. Underkänt → regenereras
-  (max 3 försök), annars lämnas dagen tom (frontend visar gårdagens tips).
+  (senaste ~60 skickas med för dedup). Svaret valideras hårt (guardrails mot påhitt):
+  - alla fält ifyllda, rätt språk, ingen dubblett;
+  - **minst en käll-URL som faktiskt sågs i sökresultaten** *och* går att nå (`fetch` < 400) –
+    modellen får inte hitta på eller ändra en URL;
+  - **poddens namn måste förekomma i sökresultaten** (inga påhittade poddar);
+  - **inga citat** i "varför den är bra"-texten (kan inte garanteras stämma, så de förbjuds helt);
+  - **fristående avsnitt** – uppföljare/serie-delar/"Update:"/finale m.m. underkänns (regex + modellen
+    måste sätta `standalone: true`).
+
+  Underkänt → regenereras (max 4 försök), annars lämnas dagen tom (frontend visar gårdagens tips).
+  Modellen körs med låg temperatur för att minska konfabulering.
+- **Koppling till dagens datum:** generatorn hämtar Wikipedias "On this day"-flöde (sv + en,
+  nyckellöst) för dagens datum och matar in händelser/födslar som dagens tema. Modellen försöker
+  gärna välja ett hyllat avsnitt som knyter an till något av detta och fyller då fältet
+  `day_connection` (visas i kortet) – men det är en **stark preferens, inte ett krav**: hittas inget
+  genuint hyllat avsnitt som passar väljs ett bra utan koppling (aldrig en påhittad koppling).
 - **Persistens:** det godkända tipset läggs till i `public/data/recommendations.json` och committas
   tillbaka av workflowen. Idempotent: finns dagens datum redan görs ingenting.
 - **Frontend:** `public/` (vanilla HTML/CSS/JS, inget byggsteg) läser JSON-filen och gör
@@ -88,7 +100,8 @@ Det mesta är redan klart i repot. Tre saker behöver göras i GitHub-inställni
 Vänta inte på cron – kör workflowen manuellt:
 *Actions → "Bygg och deploya (GitHub Pages)" → Run workflow.*
 Den genererar dagens tips, committar det och deployar sidan. Kör igen samma dygn → fortfarande
-bara ett tips (idempotent).
+bara ett tips (idempotent). Vid manuell körning kan du ange ett **datum** och kryssa i **force**
+för att tvinga om-generering av just det datumet (t.ex. för att byta ut ett redan publicerat tips).
 
 Sidan blir nåbar på `https://<användarnamn>.github.io/poddtipset/`.
 

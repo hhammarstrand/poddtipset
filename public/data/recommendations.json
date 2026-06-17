@@ -1,30 +1,26 @@
 [
   {
     "date": "2026-06-17",
-    "episode_title": "Update: The Middle Child",
-    "show_name": "Bear Brook",
-    "show_slug": "bear-brook",
-    "hosts": "Jason Moon",
-    "genre": "True Crime",
+    "episode_title": "The Case of the Missing Hit",
+    "show_name": "Reply All",
+    "show_slug": "reply-all",
+    "hosts": "PJ Vogt, Alex Goldman",
+    "genre": "Narrativ podcast om internetkultur och mysterier",
     "language": "en",
-    "year": 2025,
-    "duration_minutes": 45,
-    "why_great": "Detta avsnitt markerar den avgörande vändpunkten i fallet med Bear Brook-morden, där en ny upptäckt slutligen löser gåtan efter 40 år. Podden, som Stephen King hyllat som 'de bästa true crime-poddar jag hört', lyckas här med att väva samman den tekniska utredningen med en djupt mänsklig berättelse om offren, vilket ger en både intellektuellt tillfredsställande och känslomässigt tung avslutning på den första säsongen. Det är ett masterstycke i hur man avslutar en långvarig mysterieutredning utan att tappa tyngden.",
+    "year": 2020,
+    "duration_minutes": 50,
+    "why_great": "I detta avsnitt går värdarna i spåren på en man som är besatt av minnet av en poplåt från sin barndom, fast han inte kan komma på vare sig titel eller artist. Det är en hjärtlig och humoristisk jaktsaga där lyssnaren blir en del av communityt som försöker lösa mysteriet tillsammans med värdarna, och berättelsen är så välkonstruerad att den ofta lyfts fram som ett av de bästa exemplen på vad en enskild poddavsnitt kan prestera.",
     "listen_links": {
-      "apple": "https://podcasts.apple.com/us/podcast/bear-brook/id1423306695?i=1000743918158",
-      "spotify": "https://open.spotify.com/show/7DmP8qi4QK5vLGZVFPfyZO",
-      "web": "https://www.npr.org/podcasts/655841151/bear-brook"
+      "apple": "https://podcasts.apple.com/us/podcast/158-the-case-of-the-missing-hit/id941907967?i=1000467513208",
+      "spotify": "https://open.spotify.com/episode/0CaOGo6xSN51B2aLAQa1kU",
+      "web": "https://gimletmedia.com/shows/reply-all/5c9c0575-9504-4135-9655-673613052607/7d327636-55f5-4e1d-b43d-307070697095"
     },
     "sources": [
       {
-        "title": "Bear Brook - NPR",
-        "url": "https://www.npr.org/podcasts/655841151/bear-brook"
-      },
-      {
-        "title": "The Best True Crime Podcasts To Satiate Your Morbid Curiosity",
-        "url": "https://www.yahoo.com/entertainment/best-true-crime-podcasts-satiate-193438255.html"
+        "title": "Reply All's The Case of the Missing Hit: could this be the best podcast episode ever?",
+        "url": "https://www.theguardian.com/tv-and-radio/2020/mar/10/reply-alls-the-case-of-the-missing-hit-could-this-be-the-best-podcast-episode-ever"
       }
     ],
-    "created_at": "2026-06-17T08:09:55.311Z"
+    "created_at": "2026-06-17T09:02:53.039Z"
   }
 ]

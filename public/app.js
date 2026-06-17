@@ -107,6 +107,9 @@ function heroCard(rec, stale, today) {
   const staleNote = stale
     ? `<p class="stale-note">Dagens tips (${esc(today)}) ar pa vag – under tiden visas det senaste.</p>`
     : "";
+  const dayConnection = rec.day_connection
+    ? `<p class="day-connection"><span class="day-connection-label">Knyter an till idag</span>${esc(rec.day_connection)}</p>`
+    : "";
   return `
     <div class="today-banner"><span class="dot"></span>${stale ? "Senaste tipset" : "Dagens tips"} · ${esc(fmtDate(rec.date))}</div>
     <article class="hero">
@@ -114,6 +117,7 @@ function heroCard(rec, stale, today) {
       <h2>${esc(rec.episode_title)}</h2>
       <div class="show">${rec.hosts ? "Med " + esc(rec.hosts) : ""}</div>
       <div class="meta">${chips(rec)}</div>
+      ${dayConnection}
       <p class="why">${esc(rec.why_great)}</p>
       <div class="actions">${listenButtons(rec.listen_links) || '<span class="muted">Lyssna-lankar saknas</span>'}</div>
       ${sourcesBlock(rec)}

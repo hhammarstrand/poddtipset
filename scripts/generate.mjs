@@ -10,7 +10,7 @@
 // (default http://localhost:8080, satts av workflowen).
 
 import { readFile, writeFile, mkdir } from "node:fs/promises";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { dirname, join } from "node:path";
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -20,13 +20,27 @@ const LANGUAGES = ["sv", "en"];
 const GENRES = "all"; // "all" eller t.ex. ["history", "true crime"]
 const MODEL = "qwen3.6:35b-a3b"; // Staik-modell. Alternativ: "qwen3.5:9b", "gemma4:31b".
 const DEDUP_COUNT = 60;
-const MAX_ATTEMPTS = 3;
+const MAX_ATTEMPTS = 4; // fler forsok eftersom guardrails underkanner mer
 const MAX_TOOL_ROUNDS = 5; // hur manga ganger modellen far anropa web_search per forsok
 const SEED_RESULTS_PER_QUERY = 6; // antal traffar som skickas tillbaka per sokning
+const TEMPERATURE = 0.4; // lagt for att minska pahitt/konfabulering i fakta
 const WHY_LANG = "sv";
 const SOURCE_FETCH_TIMEOUT_MS = 8000;
 const SEARXNG_TIMEOUT_MS = 12000;
 const STAIK_TIMEOUT_MS = 120000;
+const WIKI_TIMEOUT_MS = 12000;
+// Sprak for "On this day"-flodet (Wikipedia), i prioritetsordning. Forsta som svarar anvands/merges.
+const ONTHISDAY_WIKIS = ["sv", "en"];
+
+// Guardrails (validering)
+// Titel-monster som indikerar att avsnittet INTE ar fristaende (uppfoljare/serie/del/finale).
+const NON_STANDALONE_RE =
+  /\bupdate\b|update:|\buppdatering\b|\bpart\s+(one|two|three|four|five|1|2|3|4|5)\b|\bpt\.?\s*\d+\b|\bdel\s+(en|tva|två|tre|fyra|fem|\d+)\b|\bkapitel\s*\d+\b|\bchapter\s*\d+\b|\bepisode\s*\d+\b|\bavsnitt\s*\d+\b|\b\d+\s*\/\s*\d+\b|\bfinale\b|\bconclusion\b|\bcontinued\b|\bforts\.?\b|\bfortsättning\b|\bprolog|\bepilog/i;
+// Citat far inte forekomma i why_great – vi kan inte garantera att de stammer, sa de forbjuds helt.
+const QUOTE_RE = /["“”«»]|'[^']*\s[^']*'/;
+// Erkannanden i texten om att avsnittet ar del av en serie/sasong (titeln rojer det inte alltid).
+const SERIES_ADMISSION_RE =
+  /\b(den\s+)?första\s+(delen|avsnittet|episoden)\b|\bförsta\s+delen\s+i\b|\bdel\s*(1|ett)\b|\bfirst\s+(part|episode|installment)\b|\bpart\s+one\b|\bseason\s+(opener|premiere)\b|\bseries\s+opener\b|\bpremiär(avsnitt|avsnittet)\b|\bopening\s+episode\b|\b(två|tre|fyra|fem|sex|sju|åtta|fler)delad\b|\b(multi-?part|two-?part|three-?part)\b|\bdel\s+av\s+en\s+(serie|flerdelad\s+serie)\b|\bfirst\s+in\s+a\s+(series|season)\b|\bden\s+första\s+i\s+en\b|\bkicks?\s+off\s+(the\s+)?(season|series)\b/i;
 
 const STAIK_URL =
   (process.env.STAIK_BASE_URL || "https://api.staik.se/v1").replace(/\/$/, "") + "/chat/completions";
@@ -79,6 +93,28 @@ async function writeData(list) {
 // ─────────────────────────────────────────────────────────────────────────────
 // SearXNG – gratis, nyckellost web_search (self-hostad i workflowen)
 // ─────────────────────────────────────────────────────────────────────────────
+// Allt vi faktiskt sett i sokresultat denna korning. Anvands for att garantera att
+// modellen bara far kallbelagga med URL:er/poddar som verkligen dök upp – inte pahitt.
+const SEEN = [];
+
+function normUrl(u) {
+  try {
+    const x = new URL(u);
+    return (x.host + x.pathname).replace(/\/+$/, "").toLowerCase();
+  } catch {
+    return String(u).trim().toLowerCase();
+  }
+}
+
+function collapse(s) {
+  return String(s)
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[̀-ͯ]/g, "")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
 async function searxngSearch(query) {
   const url = new URL("/search", SEARXNG_URL);
   url.searchParams.set("q", query);
@@ -103,6 +139,7 @@ async function searxngSearch(query) {
         snippet: typeof r.content === "string" ? r.content.slice(0, 400) : "",
       }))
       .filter((r) => /^https?:\/\//i.test(r.url));
+    for (const r of results) SEEN.push(r);
     return { query, results };
   } catch (err) {
     return { query, error: err instanceof Error ? err.message : String(err), results: [] };
@@ -145,6 +182,63 @@ function formatSearchResults(searches) {
     blocks.push(`Sokning "${s.query}":\n${lines}`);
   }
   return blocks.join("\n\n");
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// "On this day" – dagens historiska krokar fran Wikipedia (gratis, nyckellost)
+// ─────────────────────────────────────────────────────────────────────────────
+async function fetchOnThisDayForWiki(wiki, mm, dd) {
+  const url = `https://${wiki}.wikipedia.org/api/rest_v1/feed/onthisday/all/${mm}/${dd}`;
+  const res = await fetch(url, {
+    headers: { accept: "application/json", "user-agent": "DagensPod/1.0 (+https://github.com/hhammarstrand/poddtipset)" },
+    signal: AbortSignal.timeout(WIKI_TIMEOUT_MS),
+  });
+  if (!res.ok) throw new Error(`onthisday ${wiki} ${res.status}`);
+  const data = await res.json();
+  const hooks = [];
+  const take = (arr, kind, n) => {
+    for (const it of (Array.isArray(arr) ? arr : []).slice(0, n)) {
+      const text = typeof it.text === "string" ? it.text.replace(/\s+/g, " ").trim() : "";
+      if (!text) continue;
+      hooks.push({ kind, year: typeof it.year === "number" ? it.year : null, text });
+    }
+  };
+  take(data.selected, "handelse", 12);
+  take(data.events, "handelse", 10);
+  take(data.births, "fodd", 8);
+  return hooks;
+}
+
+// Hamtar dagens krokar fran konfigurerade wikis och slar ihop dem (dedup pa text).
+async function fetchOnThisDay(date) {
+  const [, mm, dd] = String(date).split("-");
+  if (!mm || !dd) return [];
+  const all = [];
+  for (const wiki of ONTHISDAY_WIKIS) {
+    try {
+      const hooks = await fetchOnThisDayForWiki(wiki, mm, dd);
+      all.push(...hooks);
+    } catch (err) {
+      console.log(`On this day (${wiki}) misslyckades: ${err instanceof Error ? err.message : err}`);
+    }
+  }
+  const seen = new Set();
+  const uniq = [];
+  for (const h of all) {
+    const k = collapse(h.text).slice(0, 80);
+    if (k && !seen.has(k)) { seen.add(k); uniq.push(h); }
+  }
+  return uniq.slice(0, 24);
+}
+
+function formatThemeBlock(hooks, mm, dd) {
+  if (!hooks.length) return "";
+  const lines = hooks.map((h) => {
+    const y = h.year != null ? `${h.year}` : "okant ar";
+    const label = h.kind === "fodd" ? "Fodd" : "Handelse";
+    return `- [${label}, ${y}] ${h.text}`;
+  });
+  return `DAGENS DATUM (${dd}/${mm}) – sa har knyter dagen an i historien (Wikipedia "On this day"):\n${lines.join("\n")}`;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -279,18 +373,38 @@ function systemPrompt() {
 
 Du har verktyget web_search. Anvand det for att hitta och belagga hyllade avsnitt – sok flera ganger med olika fraser om det behovs. Du far redan en uppsattning sokresultat att utga fran.
 
+ABSOLUTA REGLER MOT PAHITT (overordnade allt annat):
+- Pasta ENDAST saker du kan stodja pa de sokresultat du faktiskt sett. Hitta aldrig pa avsnitt, poddar, vardar, artal, langd, priser eller placeringar.
+- INGA CITAT. Skriv aldrig nagot citat och tillskriv aldrig en namngiven person en asikt eller ett yttrande (t.ex. "X kallade den..."). Citat far overhuvudtaget inte forekomma i texten.
+- Ar du osaker pa ett falt (artal/langd) – satt det till null i stallet for att gissa.
+- Poddens namn maste finnas i dina sokresultat. Annars valj en annan podd.
+
 KRAV PA AVSNITTET:
 - Dokumenterat hyllat: aterkommer pa "basta avsnitt"-listor, hogt rankat pa Podchaser/Reddit, prisbelont, eller mycket delat/citerat.
 - Sprak: ${langNames}.
 - ${genreLine}
 
+FRISTAENDE AVSNITT (viktigt):
+- Avsnittet MASTE vara fristaende och fungera som en ingang i sig sjalvt – det ska ga att lyssna pa utan att ha hort nagot annat avsnitt.
+- Valj ALDRIG ett uppfoljnings- eller serie-avsnitt: inget "Part 2", "Del 3", "Chapter/Kapitel N", numrerat avsnitt, "Update:", finale, "fortsattning" eller nagot som bygger vidare pa en tidigare del. Om titeln eller innehallet forutsatter ett tidigare avsnitt – valj nagot annat.
+- OBS: aven det FORSTA avsnittet i en flerdelad serie/sasong (ett "premiar-" eller "season opener"-avsnitt) raknas som serie-avsnitt och ar INTE fristaende, aven om titeln saknar siffra. Valj bara avsnitt som ar en komplett historia i sig sjalva.
+- Satt faltet "standalone" till true bara om detta verkligen galler.
+
+KOPPLING TILL DAGENS DATUM (stark preferens, inte tvang):
+- Du far en lista pa vad som hande / vem som foddes denna dag i historien. Forsok GARNA hitta ett dokumenterat hyllat, fristaende avsnitt som genuint knyter an till nagot av detta (ett tema, en handelse, en person, en arsdag).
+- Hittar du ett sant avsnitt: fyll i "day_connection" med EN kort mening (svenska) om hur avsnittet hanger ihop med dagen.
+- Hittar du INGET genuint hyllat avsnitt som passar: valj anda det basta hyllade avsnittet utan koppling, och lamna "day_connection" som tom strang "". Hitta ALDRIG pa en koppling och tvinga inte fram en krystad sadan – kvaliteten gar fore temat.
+
 KALLOR (viktigt):
-- Du MASTE ange minst en kall-URL i "sources", och varje sadan URL MASTE vara en URL som faktiskt forekom i dina web_search-resultat. Hitta ALDRIG pa en URL. Valj en kalla som verkligen belagger hyllningen (lista, artikel, prismotivering, Podchaser-sida, upproostad Reddit-trad).
+- Du MASTE ange minst en kall-URL i "sources", och varje sadan URL MASTE vara en URL som ORDAGRANT forekom i dina web_search-resultat. Hitta ALDRIG pa en URL och andra den inte. Valj en kalla som verkligen belagger hyllningen (lista, artikel, prismotivering, Podchaser-sida, upproostad Reddit-trad).
+
+LYSSNA-LANKAR:
+- Ange bara listen_links (apple/spotify/web) som du faktiskt sett i sokresultaten. Hitta ALDRIG pa en Spotify-/Apple-URL eller ett avsnitts-ID. Ar du osaker – utelamna lanken (lat den vara borta) i stallet for att gissa.
 
 SKRIV "DARFOR AR DET BRA"-TEXTEN SOM EN MANNISKA:
 - ${WHY_LANG === "sv" ? "Skriv pa svenska." : "Skriv pa engelska."}
-- 2-4 meningar, konkret och specifik om just detta avsnitt (vad hander, vem medverkar, vad gor det minnesvart).
-- Inga floskler, inga AI-klichéer ("dyk ner i", "en fascinerande resa", "vare sig du ar..."). Lat det lata som en kunnig redaktor, inte en generator.
+- 2-4 meningar, konkret och specifik om just detta avsnitt (vad hander, vem medverkar, vad gor det minnesvart) – men bara sant som stods av kallorna.
+- Inga floskler, inga AI-klichéer ("dyk ner i", "en fascinerande resa", "vare sig du ar..."). Inga citat. Lat det lata som en kunnig redaktor, inte en generator.
 
 SVARSFORMAT:
 Nar du ar klar, avsluta med ETT rent JSON-objekt (och inget efter det) med exakt dessa falt:
@@ -302,13 +416,15 @@ Nar du ar klar, avsluta med ETT rent JSON-objekt (och inget efter det) med exakt
   "language": string,              // "${LANGUAGES.join('" eller "')}"
   "year": number | null,
   "duration_minutes": number | null,
+  "standalone": boolean,           // true endast om avsnittet ar fristaende (inte serie/uppfoljare)
+  "day_connection": string,        // kort mening om kopplingen till dagens datum, annars ""
   "why_great": string,
   "listen_links": { "apple": string?, "spotify": string?, "web": string? },
   "sources": [ { "title": string, "url": string } ]
 }`;
 }
 
-function userPrompt(dedupList, searchBlock, lastError) {
+function userPrompt(dedupList, searchBlock, themeBlock, lastError) {
   const dedup = dedupList.length ? dedupList.map((d) => `- ${d}`).join("\n") : "(historiken ar tom)";
   const retry = lastError
     ? `\n\nFOREGAENDE FORSOK UNDERKANDES: ${lastError}\nValj ett ANNAT avsnitt som uppfyller alla krav.\n`
@@ -318,11 +434,13 @@ function userPrompt(dedupList, searchBlock, lastError) {
 Det far INTE vara nagot av dessa redan rekommenderade avsnitt:
 ${dedup}
 
+${themeBlock || "(ingen dagskoppling tillganglig – valj fritt bland hyllade avsnitt)"}
+
 SOKRESULTAT ATT UTGA FRAN (du kan soka mer med web_search):
 ${searchBlock || "(inga sokresultat annu – anvand web_search)"}${retry}`;
 }
 
-function validateTip(raw, recentKeys) {
+function validateTip(raw, recentKeys, seen) {
   if (!raw || typeof raw !== "object") return { ok: false, error: "Kunde inte tolka nagot JSON-objekt ur svaret." };
   const str = (v) => (typeof v === "string" ? v.trim() : "");
 
@@ -345,12 +463,51 @@ function validateTip(raw, recentKeys) {
     return { ok: false, error: `language "${language}" ar inte tillatet (tillatna: ${LANGUAGES.join(", ")}).` };
   }
 
+  // Guardrail: fristaende avsnitt – inga uppfoljare/serie/del/finale.
+  if (raw.standalone !== true) {
+    return { ok: false, error: "Modellen bekraftade inte att avsnittet ar fristaende (standalone=true kravs)." };
+  }
+  if (NON_STANDALONE_RE.test(episode_title)) {
+    return { ok: false, error: `Avsnittet ser ut att vara en uppfoljare/del/serie utifran titeln: "${episode_title}".` };
+  }
+
+  // Guardrail: inga citat i why_great (kan inte garanteras stamma).
+  if (QUOTE_RE.test(why_great)) {
+    return { ok: false, error: "why_great far inte innehalla citat eller citationstecken." };
+  }
+
+  // Dagskoppling ar valfri (stark preferens, inte tvang). Inga citat; kort.
+  let day_connection = str(raw.day_connection);
+  if (day_connection && QUOTE_RE.test(day_connection)) {
+    return { ok: false, error: "day_connection far inte innehalla citat eller citationstecken." };
+  }
+  if (day_connection.length > 240) day_connection = day_connection.slice(0, 240).trim();
+
+  // Guardrail: fanga serie-/sasongsavsnitt som titeln inte rojer men texten erkanner
+  // (t.ex. "den forsta delen i ...", "season opener"). Skyddar fristaende-kravet.
+  if (SERIES_ADMISSION_RE.test(`${episode_title} ${why_great} ${day_connection}`)) {
+    return { ok: false, error: "Texten antyder att avsnittet ar del av en serie/sasong (inte fristaende)." };
+  }
+
+  // Guardrail: kallor maste komma ur sokresultat vi faktiskt sett (inga pahittade URL:er).
+  const seenList = Array.isArray(seen) ? seen : [];
+  const seenUrls = new Set(seenList.map((r) => normUrl(r.url)));
+  const corpus = collapse(seenList.map((r) => `${r.title} ${r.snippet}`).join(" "));
+
   const sources = Array.isArray(raw.sources)
     ? raw.sources
         .map((s) => ({ title: str(s?.title) || "Kalla", url: str(s?.url) }))
-        .filter((s) => /^https?:\/\//i.test(s.url))
+        .filter((s) => /^https?:\/\//i.test(s.url) && seenUrls.has(normUrl(s.url)))
     : [];
-  if (!sources.length) return { ok: false, error: "Minst en giltig http(s)-kall-URL kravs i 'sources'." };
+  if (!sources.length) {
+    return { ok: false, error: "Ingen kall-URL kom fran sokresultaten (modellen maste citera en URL den faktiskt sokte fram)." };
+  }
+
+  // Guardrail: poddens namn maste forekomma i sokresultaten (poddar far inte hittas pa).
+  const showC = collapse(show_name);
+  if (corpus && showC && !corpus.includes(showC)) {
+    return { ok: false, error: `show_name "${show_name}" forekom inte i sokresultaten.` };
+  }
 
   const key = `${slugify(show_name)}::${normalizeTitle(episode_title)}`;
   if (recentKeys.has(key)) {
@@ -375,6 +532,7 @@ function validateTip(raw, recentKeys) {
       language,
       year: typeof raw.year === "number" ? raw.year : null,
       duration_minutes: typeof raw.duration_minutes === "number" ? raw.duration_minutes : null,
+      day_connection,
       why_great,
       listen_links: links,
       sources,
@@ -387,6 +545,16 @@ async function hasReachableSource(sources) {
     if (await isReachable(s.url)) return true;
   }
   return false;
+}
+
+// Behall bara lyssna-lankar som faktiskt gar att na (rensar bort pahittade URL:er).
+async function filterReachableLinks(links) {
+  const out = {};
+  for (const [k, v] of Object.entries(links || {})) {
+    if (await isReachable(v)) out[k] = v;
+    else console.log(`Lyssna-lank (${k}) oatkomlig, tas bort: ${v}`);
+  }
+  return out;
 }
 
 async function isReachable(url) {
@@ -414,24 +582,37 @@ async function main() {
   }
 
   const date = process.env.GENERATE_DATE || todayStockholm();
-  const data = await readData();
+  const force = ["1", "true", "yes"].includes(String(process.env.GENERATE_FORCE || "").toLowerCase());
+  let data = await readData();
 
   if (data.some((r) => r.date === date)) {
-    console.log(`Tips for ${date} finns redan – idempotent no-op.`);
-    return;
+    if (force) {
+      console.log(`Tvingar omgenerering av ${date} (GENERATE_FORCE).`);
+      data = data.filter((r) => r.date !== date);
+    } else {
+      console.log(`Tips for ${date} finns redan – idempotent no-op.`);
+      return;
+    }
   }
 
   const recent = data.slice().sort((a, b) => (a.date < b.date ? 1 : -1)).slice(0, DEDUP_COUNT);
   const dedupList = recent.map((r) => `${r.date} | ${r.show_name} | ${r.episode_title}`);
   const recentKeys = new Set(recent.map((r) => `${slugify(r.show_name)}::${normalizeTitle(r.episode_title)}`));
 
+  // Dagens tema-krokar fran Wikipedia "On this day" (stark preferens, inte tvang).
+  const [, mm, dd] = date.split("-");
+  const hooks = await fetchOnThisDay(date);
+  const themeBlock = formatThemeBlock(hooks, mm, dd);
+  console.log(`On this day ${dd}/${mm}: ${hooks.length} krokar hamtade.`);
+
   let lastError = "";
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
     try {
+      SEEN.length = 0; // nollstall sedda sokresultat per forsok
       const searches = await gatherSeedResults(attempt);
       const searchBlock = formatSearchResults(searches);
-      const text = await runAgent(apiKey, systemPrompt(), userPrompt(dedupList, searchBlock, lastError));
-      const v = validateTip(extractJsonObject(text), recentKeys);
+      const text = await runAgent(apiKey, systemPrompt(), userPrompt(dedupList, searchBlock, themeBlock, lastError));
+      const v = validateTip(extractJsonObject(text), recentKeys, SEEN);
       if (!v.ok) { lastError = v.error; console.log(`Forsok ${attempt} underkant: ${v.error}`); continue; }
 
       if (!(await hasReachableSource(v.tip.sources))) {
@@ -439,6 +620,9 @@ async function main() {
         console.log(`Forsok ${attempt} underkant: ${lastError}`);
         continue;
       }
+
+      // Rensa bort lyssna-lankar som inte gar att na (t.ex. pahittade Spotify-URL:er).
+      v.tip.listen_links = await filterReachableLinks(v.tip.listen_links);
 
       const record = { date, ...v.tip, created_at: new Date().toISOString() };
       const next = [record, ...data].sort((a, b) => (a.date < b.date ? 1 : -1));
@@ -456,7 +640,13 @@ async function main() {
   process.exit(0);
 }
 
-main().catch((err) => {
-  console.error(`::error::Ovantat fel: ${err?.stack || err}`);
-  process.exit(0);
-});
+// Kor bara nar filen startas direkt (node scripts/generate.mjs), inte vid import (tester).
+const isDirectRun = process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href;
+if (isDirectRun) {
+  main().catch((err) => {
+    console.error(`::error::Ovantat fel: ${err?.stack || err}`);
+    process.exit(0);
+  });
+}
+
+export { validateTip, NON_STANDALONE_RE, QUOTE_RE, SERIES_ADMISSION_RE, normUrl, collapse, SEEN, fetchOnThisDay, formatThemeBlock };

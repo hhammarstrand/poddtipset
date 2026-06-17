@@ -7,8 +7,18 @@ on:
   # Deploya nar koden andras.
   push:
     branches: [main, claude/dagens-pod-app-9neig2]
-  # Manuell korning – anvand for att seeda forsta tipset.
+  # Manuell korning – anvand for att seeda forsta tipset eller om-generera ett datum.
   workflow_dispatch:
+    inputs:
+      date:
+        description: "Datum att generera (YYYY-MM-DD). Tomt = idag."
+        required: false
+        type: string
+      force:
+        description: "Tvinga om-generering aven om datumet redan finns."
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: write   # generering committar dagens tips
@@ -28,7 +38,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "24"
 
       - name: Starta SearXNG (gratis, lokal web_search)
         if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
@@ -59,6 +69,8 @@ jobs:
         env:
           STAIK_API_KEY: ${{ secrets.STAIK_API_KEY }}
           SEARXNG_URL: http://localhost:8080
+          GENERATE_DATE: ${{ inputs.date }}
+          GENERATE_FORCE: ${{ inputs.force }}
         run: |
           if [ -z "$STAIK_API_KEY" ]; then
             echo "::warning::STAIK_API_KEY saknas som repo-secret – hoppar over genereringen."

@@ -54,20 +54,6 @@ function fmtDate(d) {
   }
 }
 
-// ── Tema ─────────────────────────────────────────────────────────────────────
-function initTheme() {
-  const saved = localStorage.getItem("theme");
-  if (saved) document.documentElement.setAttribute("data-theme", saved);
-  document.getElementById("theme-toggle").addEventListener("click", () => {
-    const cur =
-      document.documentElement.getAttribute("data-theme") ||
-      (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
-    const next = cur === "light" ? "dark" : "light";
-    document.documentElement.setAttribute("data-theme", next);
-    localStorage.setItem("theme", next);
-  });
-}
-
 // ── Komponenter ───────────────────────────────────────────────────────────────
 function listenButtons(links) {
   const out = [];
@@ -97,15 +83,15 @@ function sourcesBlock(rec) {
     .slice(0, 2)
     .map((s) => `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title || "Kalla")}</a>`)
     .join("");
-  return `<div class="sources"><span class="label">Varfor det racknas som ett av de basta</span>${links}</div>`;
+  return `<div class="sources"><span class="label">Varför det räknas som ett av de bästa</span>${links}</div>`;
 }
 
 function heroCard(rec, stale, today) {
   if (!rec) {
-    return `<div class="empty">Inget tips an. Det forsta tipset dyker upp har snart.</div>`;
+    return `<div class="empty">Inget tips än. Det första tipset dyker upp här snart.</div>`;
   }
   const staleNote = stale
-    ? `<p class="stale-note">Dagens tips (${esc(today)}) ar pa vag – under tiden visas det senaste.</p>`
+    ? `<p class="stale-note">Dagens tips (${esc(today)}) är på väg – under tiden visas det senaste.</p>`
     : "";
   const dayConnection = rec.day_connection
     ? `<p class="day-connection"><span class="day-connection-label">Knyter an till idag</span>${esc(rec.day_connection)}</p>`
@@ -119,7 +105,7 @@ function heroCard(rec, stale, today) {
       <div class="meta">${chips(rec)}</div>
       ${dayConnection}
       <p class="why">${esc(rec.why_great)}</p>
-      <div class="actions">${listenButtons(rec.listen_links) || '<span class="muted">Lyssna-lankar saknas</span>'}</div>
+      <div class="actions">${listenButtons(rec.listen_links) || '<span class="muted">Lyssna-länkar saknas</span>'}</div>
       ${sourcesBlock(rec)}
     </article>
     ${staleNote}`;
@@ -168,13 +154,13 @@ async function viewHistory() {
   app.innerHTML = `
     <div class="section-head"><h1>Historik</h1><span class="muted" id="hist-count"></span></div>
     <div class="filters">
-      <input id="f-search" class="input" type="search" placeholder="Sok titel, podd, vard…" value="${esc(historyState.search)}" />
+      <input id="f-search" class="input" type="search" placeholder="Sök titel, podd, värd…" value="${esc(historyState.search)}" />
       <select id="f-genre" class="select">
         <option value="">Alla genrer</option>
         ${genres.map((g) => `<option value="${esc(g)}"${historyState.genre === g ? " selected" : ""}>${esc(g)}</option>`).join("")}
       </select>
       <select id="f-language" class="select">
-        <option value="">Alla sprak</option>
+        <option value="">Alla språk</option>
         <option value="sv"${historyState.language === "sv" ? " selected" : ""}>Svenska</option>
         <option value="en"${historyState.language === "en" ? " selected" : ""}>Engelska</option>
       </select>
@@ -272,7 +258,7 @@ function computeStats(data) {
 }
 
 function bars(items, nameKey, max) {
-  if (!items.length) return `<div class="muted">Ingen data an.</div>`;
+  if (!items.length) return `<div class="muted">Ingen data än.</div>`;
   return items
     .map((it) => {
       const pct = max ? Math.round((it.count / max) * 100) : 0;
@@ -287,12 +273,12 @@ function bars(items, nameKey, max) {
 }
 
 async function viewStats() {
-  app.innerHTML = `<div class="loading">Raknar statistik…</div>`;
+  app.innerHTML = `<div class="loading">Räknar statistik…</div>`;
   try {
     const data = await loadData();
     const s = computeStats(data);
     if (!s.total) {
-      app.innerHTML = `<div class="section-head"><h1>Statistik</h1></div><div class="empty">Ingen statistik an – statistiken vaxer i takt med att tips genereras.</div>`;
+      app.innerHTML = `<div class="section-head"><h1>Statistik</h1></div><div class="empty">Ingen statistik än – statistiken växer i takt med att tips genereras.</div>`;
       return;
     }
     const maxShow = s.topShows[0]?.count || 1;
@@ -302,7 +288,7 @@ async function viewStats() {
 
     const timeline = s.timeline.length
       ? `<div class="panel">
-          <h3>Tidslinje (tips per manad)</h3>
+          <h3>Tidslinje (tips per månad)</h3>
           <div class="timeline">
             ${s.timeline.map((t) => `<div class="tl-bar" style="height:${Math.max(6, Math.round((t.count / maxTl) * 100))}%" title="${esc(t.period)}: ${t.count}"></div>`).join("")}
           </div>
@@ -319,8 +305,8 @@ async function viewStats() {
         <div class="stat"><div class="num">${s.byGenre.length}</div><div class="lbl">Genrer</div></div>
       </div>
       <div class="panel"><h3>Mest rekommenderade poddar</h3>${bars(s.topShows.slice(0, 10), "show_name", maxShow)}</div>
-      <div class="panel"><h3>Fordelning per genre</h3>${bars(s.byGenre, "genre", maxGenre)}</div>
-      <div class="panel"><h3>Fordelning per sprak</h3>${bars(s.byLanguage, "language", maxLang)}</div>
+      <div class="panel"><h3>Fördelning per genre</h3>${bars(s.byGenre, "genre", maxGenre)}</div>
+      <div class="panel"><h3>Fördelning per språk</h3>${bars(s.byLanguage, "language", maxLang)}</div>
       ${timeline}`;
   } catch (e) {
     app.innerHTML = `<div class="error-box">Kunde inte ladda statistiken (${esc(e.message)}).</div>`;
@@ -353,6 +339,5 @@ function router() {
   }
 }
 
-initTheme();
 window.addEventListener("hashchange", router);
 router();

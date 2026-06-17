@@ -42,34 +42,7 @@
   --sans: "InterVar", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
   --maxw: 720px;
-  color-scheme: light dark;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) {
-    --paper: #15120d;
-    --surface: #1d1812;
-    --ink: #ece3d3;
-    --ink-soft: #c3b8a4;
-    --muted: #948975;
-    --accent: #e08a6f;
-    --accent-soft: #e7a288;
-    --line: rgba(236, 227, 211, 0.15);
-    --line-strong: rgba(236, 227, 211, 0.34);
-    --shadow: none;
-  }
-}
-[data-theme="dark"] {
-  --paper: #15120d;
-  --surface: #1d1812;
-  --ink: #ece3d3;
-  --ink-soft: #c3b8a4;
-  --muted: #948975;
-  --accent: #e08a6f;
-  --accent-soft: #e7a288;
-  --line: rgba(236, 227, 211, 0.15);
-  --line-strong: rgba(236, 227, 211, 0.34);
-  --shadow: none;
+  color-scheme: light;
 }
 
 /* ── Reset / bas ───────────────────────────────────────────────────────────── */
@@ -121,20 +94,15 @@ body::before {
   text-transform: uppercase;
   color: var(--muted);
 }
-.topbar-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-top: 20px;
-  padding-top: 14px;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
 .nav {
   display: flex;
-  gap: 22px;
+  justify-content: center;
+  gap: 26px;
   flex-wrap: wrap;
+  margin-top: 20px;
+  padding: 13px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
 }
 .nav a {
   text-decoration: none;
@@ -154,28 +122,6 @@ body::before {
   background: var(--accent);
 }
 .nav a:hover { color: var(--ink); }
-
-.theme-toggle {
-  flex: none;
-  width: 34px; height: 34px;
-  border: 1px solid var(--line-strong);
-  border-radius: 50%;
-  background: transparent;
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-  color: var(--ink-soft);
-  transition: border-color 0.15s, color 0.15s;
-}
-.theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
-.theme-icon { width: 14px; height: 14px; border-radius: 50%; position: relative; }
-.theme-icon::before {
-  content: "";
-  position: absolute; inset: 0;
-  border-radius: 50%;
-  background: var(--ink-soft);
-  box-shadow: inset -4px -3px 0 0 var(--surface);
-}
 
 /* ── Layout ────────────────────────────────────────────────────────────────── */
 .container {

@@ -650,6 +650,9 @@ async function main() {
       console.log(`Forsok ${attempt}: sokningar [${queries.join(" | ")}]`);
       const searches = await gatherResults(queries);
       const searchBlock = formatSearchResults(searches);
+      const hitCount = searches.reduce((n, s) => n + (s.results?.length || 0), 0);
+      const searchErrors = searches.filter((s) => s.error).map((s) => `"${s.query}": ${s.error}`);
+      console.log(`Forsok ${attempt}: ${hitCount} sokresultat${searchErrors.length ? ` (fel: ${searchErrors.join("; ")})` : ""}`);
       const text = await askModel(apiKey, systemPrompt(), userPrompt(dedupList, avoidShows, searchBlock, themeBlock, lastError));
       const v = validateTip(extractJsonObject(text), recentKeys, SEEN, hardShowSlugs);
       if (!v.ok) { lastError = v.error; console.log(`Forsok ${attempt} underkant: ${v.error}`); continue; }

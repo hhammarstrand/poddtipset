@@ -1,0 +1,76 @@
+name: Bygg och deploya (GitHub Pages)
+
+on:
+  # Daglig generering 05:00 UTC = 06:00 Europe/Stockholm (vinter) / 07:00 (sommar).
+  schedule:
+    - cron: "0 5 * * *"
+  # Deploya nar koden andras.
+  push:
+    branches: [main, claude/dagens-pod-app-9neig2]
+  # Manuell korning – anvand for att seeda forsta tipset.
+  workflow_dispatch:
+
+permissions:
+  contents: write   # generering committar dagens tips
+  pages: write      # deploya till Pages
+  id-token: write   # OIDC for deploy-pages
+
+# Tillat bara en Pages-deploy at gangen; avbryt inte pagaende deploys.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Generera dagens tips
+        if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "::warning::ANTHROPIC_API_KEY saknas som repo-secret – hoppar over genereringen."
+          else
+            node scripts/generate.mjs
+          fi
+
+      - name: Spara nytt tips (commit)
+        if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
+        run: |
+          if [ -n "$(git status --porcelain public/data)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add public/data
+            git commit -m "Dagens tips: $(TZ=Europe/Stockholm date +%Y-%m-%d)"
+            git push
+          else
+            echo "Inget nytt tips att spara."
+          fi
+
+      - name: Konfigurera Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Ladda upp frontend som Pages-artefakt
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploya till GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

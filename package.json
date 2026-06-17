@@ -1,0 +1,11 @@
+{
+  "name": "poddtipset",
+  "version": "1.0.0",
+  "description": "Dagens Pod – daglig podd-tips-app pa GitHub Pages + GitHub Actions",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate": "node scripts/generate.mjs",
+    "serve": "npx --yes http-server public -p 8080 -c-1"
+  }
+}

@@ -1,0 +1,19 @@
+# SearXNG-konfiguration for Dagens Pod.
+# Anvands bara av den tillfalliga instans som startas i GitHub Actions (lokalt,
+# nyckellost) for att ge generatorn web_search. use_default_settings merger detta
+# ovanpa SearXNG:s standardkonfiguration – vi overrider bara det vi maste.
+use_default_settings: true
+
+server:
+  # Tillfallig, lokal-bara instans – nyckeln ar inte hemlig och exponeras aldrig publikt.
+  secret_key: "dagens-pod-searxng-local-ephemeral"
+  # Stang av rate-limiter/bot-detection sa vart automatiska JSON-anrop slipper blockas.
+  limiter: false
+  public_instance: false
+
+search:
+  # JSON kravs for att lasa resultat programmatiskt (avstangt som standard i nyare SearXNG).
+  formats:
+    - html
+    - json
+  safe_search: 0

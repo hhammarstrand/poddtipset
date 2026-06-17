@@ -1,10 +1,13 @@
 // Dagens Pod – dygnsgenerering for GitHub Actions.
-// Kors en gang per dygn: valjer ETT dokumenterat hyllat poddavsnitt via Claude
-// (med web_search), validerar och kallbelagger det, och lagger till det i den
-// statiska datafilen som GitHub Pages serverar.
+// Kors en gang per dygn: valjer ETT dokumenterat hyllat poddavsnitt med hjalp av
+// en LLM (Qwen via Staik, OpenAI-kompatibelt API) som soker pa webben via en
+// sjalv-hostad SearXNG-instans (klient-sidigt web_search-verktyg). Resultatet
+// valideras och kallbelaggs, och laggs till i den statiska datafilen som GitHub
+// Pages serverar.
 //
 // Kraver Node 20+ (global fetch, AbortSignal.timeout). Inga npm-beroenden.
-// Las ANTHROPIC_API_KEY fran miljon (GitHub Actions secret).
+// Las STAIK_API_KEY fran miljon (GitHub Actions secret) och SEARXNG_URL
+// (default http://localhost:8080, satts av workflowen).
 
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
@@ -15,15 +18,19 @@ import { dirname, join } from "node:path";
 // ─────────────────────────────────────────────────────────────────────────────
 const LANGUAGES = ["sv", "en"];
 const GENRES = "all"; // "all" eller t.ex. ["history", "true crime"]
-const MODEL = "claude-opus-4-8";
+const MODEL = "qwen3.6:35b-a3b"; // Staik-modell. Alternativ: "qwen3.5:9b", "gemma4:31b".
 const DEDUP_COUNT = 60;
 const MAX_ATTEMPTS = 3;
-const MAX_TOOL_ROUNDS = 6;
+const MAX_TOOL_ROUNDS = 5; // hur manga ganger modellen far anropa web_search per forsok
+const SEED_RESULTS_PER_QUERY = 6; // antal traffar som skickas tillbaka per sokning
 const WHY_LANG = "sv";
 const SOURCE_FETCH_TIMEOUT_MS = 8000;
+const SEARXNG_TIMEOUT_MS = 12000;
+const STAIK_TIMEOUT_MS = 120000;
 
-const API_URL = (process.env.ANTHROPIC_BASE_URL || "https://api.anthropic.com").replace(/\/$/, "") + "/v1/messages";
-const ANTHROPIC_VERSION = "2023-06-01";
+const STAIK_URL =
+  (process.env.STAIK_BASE_URL || "https://api.staik.se/v1").replace(/\/$/, "") + "/chat/completions";
+const SEARXNG_URL = (process.env.SEARXNG_URL || "http://localhost:8080").replace(/\/$/, "");
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA_FILE = join(__dirname, "..", "public", "data", "recommendations.json");
@@ -70,52 +77,168 @@ async function writeData(list) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Claude Messages API (web_search + pause_turn-loop)
+// SearXNG – gratis, nyckellost web_search (self-hostad i workflowen)
 // ─────────────────────────────────────────────────────────────────────────────
-async function runWebSearchPrompt(apiKey, prompt) {
-  const messages = [{ role: "user", content: prompt }];
-  let lastText = "";
-
-  for (let round = 0; round < MAX_TOOL_ROUNDS; round++) {
-    const res = await fetch(API_URL, {
-      method: "POST",
+async function searxngSearch(query) {
+  const url = new URL("/search", SEARXNG_URL);
+  url.searchParams.set("q", query);
+  url.searchParams.set("format", "json");
+  url.searchParams.set("language", "all");
+  url.searchParams.set("safesearch", "0");
+  try {
+    const res = await fetch(url, {
       headers: {
-        "content-type": "application/json",
-        "x-api-key": apiKey,
-        "anthropic-version": ANTHROPIC_VERSION,
+        accept: "application/json",
+        "user-agent": "DagensPod/1.0 (+https://github.com/hhammarstrand/poddtipset)",
       },
-      body: JSON.stringify({
-        model: MODEL,
-        max_tokens: 4000,
-        tools: [{ type: "web_search_20260209", name: "web_search" }],
-        messages,
-      }),
+      signal: AbortSignal.timeout(SEARXNG_TIMEOUT_MS),
     });
-
-    if (!res.ok) {
-      const body = await res.text();
-      throw new Error(`Claude API ${res.status}: ${body.slice(0, 500)}`);
-    }
-
+    if (!res.ok) return { query, error: `SearXNG svarade ${res.status}`, results: [] };
     const data = await res.json();
-    lastText = (data.content ?? [])
-      .filter((b) => b.type === "text" && typeof b.text === "string")
-      .map((b) => b.text)
-      .join("\n")
-      .trim();
+    const results = (Array.isArray(data.results) ? data.results : [])
+      .slice(0, SEED_RESULTS_PER_QUERY)
+      .map((r) => ({
+        title: typeof r.title === "string" ? r.title : "",
+        url: typeof r.url === "string" ? r.url : "",
+        snippet: typeof r.content === "string" ? r.content.slice(0, 400) : "",
+      }))
+      .filter((r) => /^https?:\/\//i.test(r.url));
+    return { query, results };
+  } catch (err) {
+    return { query, error: err instanceof Error ? err.message : String(err), results: [] };
+  }
+}
 
-    if (data.stop_reason === "pause_turn") {
-      messages.push({ role: "assistant", content: data.content });
+// Kor ett par bredsokningar for att alltid ge modellen riktigt material att utga fran.
+function seedQueries(attempt) {
+  const pool = [
+    "best podcast episodes of all time",
+    "basta poddavsnitt genom tiderna",
+    "award winning podcast episode",
+    "most acclaimed podcast episodes reddit",
+    "arets basta poddavsnitt lista",
+    "podchaser best podcast episodes",
+  ];
+  // Rotera urvalet per forsok sa retries far andra ingangar.
+  const offset = ((attempt - 1) * 2) % pool.length;
+  return [pool[offset], pool[(offset + 1) % pool.length]];
+}
+
+async function gatherSeedResults(attempt) {
+  const queries = seedQueries(attempt);
+  const searches = await Promise.all(queries.map((q) => searxngSearch(q)));
+  return searches;
+}
+
+function formatSearchResults(searches) {
+  const blocks = [];
+  for (const s of searches) {
+    if (s.error) {
+      blocks.push(`Sokning "${s.query}": (fel: ${s.error})`);
       continue;
     }
-    return lastText;
+    if (!s.results.length) {
+      blocks.push(`Sokning "${s.query}": (inga traffar)`);
+      continue;
+    }
+    const lines = s.results.map((r) => `- ${r.title}\n  URL: ${r.url}\n  ${r.snippet}`).join("\n");
+    blocks.push(`Sokning "${s.query}":\n${lines}`);
   }
-  return lastText;
+  return blocks.join("\n\n");
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Staik chat/completions (OpenAI-kompatibelt) med klient-sidigt web_search-verktyg
+// ─────────────────────────────────────────────────────────────────────────────
+const WEB_SEARCH_TOOL = {
+  type: "function",
+  function: {
+    name: "web_search",
+    description:
+      "Sok pa webben for att hitta och belagga hyllade poddavsnitt. Returnerar titlar, URL:er och utdrag.",
+    parameters: {
+      type: "object",
+      properties: {
+        query: { type: "string", description: "Sokfrasen, t.ex. 'best true crime podcast episode award'." },
+      },
+      required: ["query"],
+    },
+  },
+};
+
+async function staikChat(apiKey, messages) {
+  const res = await fetch(STAIK_URL, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      authorization: `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify({
+      model: MODEL,
+      messages,
+      tools: [WEB_SEARCH_TOOL],
+      tool_choice: "auto",
+      temperature: 0.7,
+      max_tokens: 3000,
+    }),
+    signal: AbortSignal.timeout(STAIK_TIMEOUT_MS),
+  });
+  if (!res.ok) {
+    const body = await res.text();
+    throw new Error(`Staik API ${res.status}: ${body.slice(0, 500)}`);
+  }
+  const data = await res.json();
+  const choice = data.choices?.[0];
+  if (!choice) throw new Error("Staik-svaret saknade 'choices'.");
+  return choice;
+}
+
+// Driv modellen: den kan anropa web_search flera ganger, sedan returnerar vi sluttexten.
+async function runAgent(apiKey, systemPrompt, userPrompt) {
+  const messages = [
+    { role: "system", content: systemPrompt },
+    { role: "user", content: userPrompt },
+  ];
+
+  for (let round = 0; round < MAX_TOOL_ROUNDS; round++) {
+    const choice = await staikChat(apiKey, messages);
+    const msg = choice.message || {};
+    messages.push(msg);
+
+    const toolCalls = Array.isArray(msg.tool_calls) ? msg.tool_calls : [];
+    if (choice.finish_reason === "tool_calls" || toolCalls.length) {
+      for (const tc of toolCalls) {
+        let query = "";
+        try {
+          query = JSON.parse(tc.function?.arguments || "{}").query || "";
+        } catch {
+          query = "";
+        }
+        const result = query ? await searxngSearch(query) : { query: "", error: "tom sokfras", results: [] };
+        messages.push({
+          role: "tool",
+          tool_call_id: tc.id,
+          content: JSON.stringify(result),
+        });
+      }
+      continue;
+    }
+
+    return typeof msg.content === "string" ? msg.content : "";
+  }
+
+  // Slut pa tool-rundor: be om ett avslutande svar utan fler verktyg.
+  messages.push({
+    role: "user",
+    content: "Avsluta nu med ENBART JSON-objektet enligt instruktionen. Anropa inga fler verktyg.",
+  });
+  const final = await staikChat(apiKey, messages);
+  return typeof final.message?.content === "string" ? final.message.content : "";
 }
 
 // Plocka ut det sista balanserade JSON-objektet ur en textstrang.
 function extractJsonObject(text) {
-  const trimmed = text.trim();
+  const trimmed = String(text || "").trim();
   const direct = tryParse(trimmed);
   if (direct !== undefined) return direct;
 
@@ -149,25 +272,20 @@ function tryParse(s) {
 // ─────────────────────────────────────────────────────────────────────────────
 // Prompt + validering
 // ─────────────────────────────────────────────────────────────────────────────
-function buildPrompt(dedupList, lastError) {
+function systemPrompt() {
   const langNames = LANGUAGES.map((l) => (l === "sv" ? "svenska" : l === "en" ? "engelska" : l)).join(" eller ");
   const genreLine = GENRES === "all" ? "Alla genrer ar tillatna." : `Prioritera dessa genrer: ${GENRES.join(", ")}.`;
-  const dedup = dedupList.length ? dedupList.map((d) => `- ${d}`).join("\n") : "(historiken ar tom)";
-  const retry = lastError
-    ? `\n\nFOREGAENDE FORSOK UNDERKANDES: ${lastError}\nValj ett ANNAT avsnitt som uppfyller alla krav.\n`
-    : "";
+  return `Du ar en mycket paläst poddredaktor som valjer ut ETT enastaende poddavsnitt som "dagens tips".
 
-  return `Du ar en mycket paläst poddredaktor. Anvand webbsokverktyget for att hitta ETT enastaende poddavsnitt att rekommendera som "dagens tips".
+Du har verktyget web_search. Anvand det for att hitta och belagga hyllade avsnitt – sok flera ganger med olika fraser om det behovs. Du far redan en uppsattning sokresultat att utga fran.
 
 KRAV PA AVSNITTET:
-- Det ska vara dokumenterat hyllat: aterkommer pa "basta avsnitt"-listor, ar hogt rankat pa Podchaser eller Reddit, prisbelont, eller mycket delat/citerat. Sok aktivt efter belagg.
+- Dokumenterat hyllat: aterkommer pa "basta avsnitt"-listor, hogt rankat pa Podchaser/Reddit, prisbelont, eller mycket delat/citerat.
 - Sprak: ${langNames}.
 - ${genreLine}
-- Det far INTE vara nagot av dessa redan rekommenderade avsnitt:
-${dedup}
 
-KALLOR:
-- Bifoga minst en verifierbar, publik URL som faktiskt belagger varfor avsnittet raknas som utomordentligt (en lista, artikel, prismotivering, Podchaser-sida, eller en hogt upproostad Reddit-trad). URL:en ska vara nabar just nu.
+KALLOR (viktigt):
+- Du MASTE ange minst en kall-URL i "sources", och varje sadan URL MASTE vara en URL som faktiskt forekom i dina web_search-resultat. Hitta ALDRIG pa en URL. Valj en kalla som verkligen belagger hyllningen (lista, artikel, prismotivering, Podchaser-sida, upproostad Reddit-trad).
 
 SKRIV "DARFOR AR DET BRA"-TEXTEN SOM EN MANNISKA:
 - ${WHY_LANG === "sv" ? "Skriv pa svenska." : "Skriv pa engelska."}
@@ -175,7 +293,7 @@ SKRIV "DARFOR AR DET BRA"-TEXTEN SOM EN MANNISKA:
 - Inga floskler, inga AI-klichéer ("dyk ner i", "en fascinerande resa", "vare sig du ar..."). Lat det lata som en kunnig redaktor, inte en generator.
 
 SVARSFORMAT:
-Avsluta ditt svar med ETT rent JSON-objekt (och inget efter det) med exakt dessa falt:
+Nar du ar klar, avsluta med ETT rent JSON-objekt (och inget efter det) med exakt dessa falt:
 {
   "episode_title": string,
   "show_name": string,
@@ -187,7 +305,21 @@ Avsluta ditt svar med ETT rent JSON-objekt (och inget efter det) med exakt dessa
   "why_great": string,
   "listen_links": { "apple": string?, "spotify": string?, "web": string? },
   "sources": [ { "title": string, "url": string } ]
-}${retry}`;
+}`;
+}
+
+function userPrompt(dedupList, searchBlock, lastError) {
+  const dedup = dedupList.length ? dedupList.map((d) => `- ${d}`).join("\n") : "(historiken ar tom)";
+  const retry = lastError
+    ? `\n\nFOREGAENDE FORSOK UNDERKANDES: ${lastError}\nValj ett ANNAT avsnitt som uppfyller alla krav.\n`
+    : "";
+  return `Valj ETT poddavsnitt enligt instruktionerna.
+
+Det far INTE vara nagot av dessa redan rekommenderade avsnitt:
+${dedup}
+
+SOKRESULTAT ATT UTGA FRAN (du kan soka mer med web_search):
+${searchBlock || "(inga sokresultat annu – anvand web_search)"}${retry}`;
 }
 
 function validateTip(raw, recentKeys) {
@@ -275,9 +407,9 @@ async function isReachable(url) {
 // Huvudflode
 // ─────────────────────────────────────────────────────────────────────────────
 async function main() {
-  const apiKey = process.env.ANTHROPIC_API_KEY;
+  const apiKey = process.env.STAIK_API_KEY;
   if (!apiKey) {
-    console.error("::error::ANTHROPIC_API_KEY saknas – kan inte generera.");
+    console.error("::error::STAIK_API_KEY saknas – kan inte generera.");
     process.exit(0);
   }
 
@@ -296,7 +428,9 @@ async function main() {
   let lastError = "";
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
     try {
-      const text = await runWebSearchPrompt(apiKey, buildPrompt(dedupList, lastError));
+      const searches = await gatherSeedResults(attempt);
+      const searchBlock = formatSearchResults(searches);
+      const text = await runAgent(apiKey, systemPrompt(), userPrompt(dedupList, searchBlock, lastError));
       const v = validateTip(extractJsonObject(text), recentKeys);
       if (!v.ok) { lastError = v.error; console.log(`Forsok ${attempt} underkant: ${v.error}`); continue; }
 

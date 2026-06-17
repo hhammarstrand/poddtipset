@@ -51,6 +51,28 @@
     "created_at": "2026-06-17T10:24:44.576Z"
   },
   {
+    "date": "2026-06-12",
+    "episode_title": "The Problem We All Live With",
+    "show_name": "This American Life",
+    "show_slug": "this-american-life",
+    "hosts": "Ira Glass",
+    "genre": "Samhalle & Fakta",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "1994 knivmördades Nicole Brown Simpson och Ronald Goldman i Los Angeles, vilket ledde till den medialt mest uppmärksammade rättegången i århundradet.",
+    "day_connection": "Avsnittet utforskar hur ett samhälle reagerar och hanterar en chockerande brottslighet och dess efterdyningar, en tematisk spegling av den massiva mediala uppmärksamhet och kollektiva reaktion som O.J.-morden utlöste.",
+    "why_great": "Detta avsnitt rankas regelbundet bland de absolut bästa någonsin och hyllas för sin djupa mänsklighet och journalistiska skicklighet. Det följer en familj som flyttar in i ett helt vitt kvarter i Chicago, vilket tvingar fram svåra frågor om ras, integration och hur vi ser på varandra i vardagen. Det är en komplett, självständig berättelse som har haft enorm kulturell påverkan.",
+    "listen_links": {},
+    "sources": [
+      {
+        "title": "30 Podcast Episodes You Need To Listen To Before You Die",
+        "url": "https://strategylab.ca/30-podcast-episodes-you-need-to-listen-to-before-you-die/"
+      }
+    ],
+    "created_at": "2026-06-17T10:47:51.098Z"
+  },
+  {
     "date": "2026-06-09",
     "episode_title": "Mordet på Elin Krantz",
     "show_name": "P3 Dokumentär",
@@ -116,6 +138,35 @@
       }
     ],
     "created_at": "2026-06-17T10:22:33.105Z"
+  },
+  {
+    "date": "2026-06-06",
+    "episode_title": "The Big Dig",
+    "show_name": "The Peabody Awards",
+    "show_slug": "the-peabody-awards",
+    "hosts": "Peabody Awards Jury",
+    "genre": "History",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "1944 inleddes Operation Overlord, den allierade invasionen av Normandie, på Dagen D.",
+    "day_connection": "Avsnittet om The Big Dig skildrar en av historiens mest komplexa och riskfyllda infrastrukturprojekt, vilket speglar den logistiska och strategiska skala som karaktäriserade de stora militära operationerna under andra världskriget.",
+    "why_great": "Detta avsnitt har utsetts till en Peabody Award-vinnare och listas explicit som en vinnare i kategorin History-serier av juryn. Det fokuserar på Boston Central Artery/Tunnel Project, ett enormt ingripande i stadens hjärta som krävde oöverträffad samordning och innovation. Det är ett fristående avsnitt som ger en komplett bild av hur ett projekt av denna magnitud hanterades, utan att kräva kunskap om tidigare delar.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/multi-room/1513056736",
+      "web": "https://peabodyawards.com/stories/7-signal-award-winning-podcasts/"
+    },
+    "sources": [
+      {
+        "title": "7 Signal Award-Winning Podcasts You Should Be Listening To",
+        "url": "https://peabodyawards.com/stories/7-signal-award-winning-podcasts/"
+      },
+      {
+        "title": "Award-Winning - Apple Podcasts",
+        "url": "https://podcasts.apple.com/us/multi-room/1513056736"
+      }
+    ],
+    "created_at": "2026-06-17T10:46:23.764Z"
   },
   {
     "date": "2026-06-05",

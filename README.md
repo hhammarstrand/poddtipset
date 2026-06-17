@@ -72,8 +72,9 @@ gruppering) · `hosts` · `genre` · `language` · `year` · `duration_minutes` 
 
 Ändra högst upp i [`scripts/generate.mjs`](scripts/generate.mjs):
 `LANGUAGES` (`["sv","en"]`), `GENRES` (`"all"` eller en lista), `MODEL` (`qwen3.6:35b-a3b`, byt
-till t.ex. `qwen3.5:9b` eller `gemma4:31b`), `DEDUP_COUNT`, `MAX_ATTEMPTS`, `MAX_TOOL_ROUNDS`,
-`WHY_LANG`. Staik-endpoint kan överstyras med miljövariabeln `STAIK_BASE_URL`.
+till t.ex. `qwen3.5:9b` eller `gemma4:31b`), `DEDUP_COUNT`, `MAX_ATTEMPTS`, `MAX_TOKENS`,
+`SHOW_HARD_DAYS`/`SHOW_SOFT_COUNT` (podd-dedup), `THEME_HOOKS`, `WHY_LANG`. Sökvinklarna ändras i
+`QUERY_POOL`. Staik-endpoint kan överstyras med miljövariabeln `STAIK_BASE_URL`.
 Cron-tiden ändras i `.github/workflows/deploy.yml` (`schedule.cron`, UTC).
 
 ---

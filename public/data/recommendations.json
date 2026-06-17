@@ -1,1 +1,30 @@
-[]
+[
+  {
+    "date": "2026-06-17",
+    "episode_title": "Update: The Middle Child",
+    "show_name": "Bear Brook",
+    "show_slug": "bear-brook",
+    "hosts": "Jason Moon",
+    "genre": "True Crime",
+    "language": "en",
+    "year": 2025,
+    "duration_minutes": 45,
+    "why_great": "Detta avsnitt markerar den avgörande vändpunkten i fallet med Bear Brook-morden, där en ny upptäckt slutligen löser gåtan efter 40 år. Podden, som Stephen King hyllat som 'de bästa true crime-poddar jag hört', lyckas här med att väva samman den tekniska utredningen med en djupt mänsklig berättelse om offren, vilket ger en både intellektuellt tillfredsställande och känslomässigt tung avslutning på den första säsongen. Det är ett masterstycke i hur man avslutar en långvarig mysterieutredning utan att tappa tyngden.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/us/podcast/bear-brook/id1423306695?i=1000743918158",
+      "spotify": "https://open.spotify.com/show/7DmP8qi4QK5vLGZVFPfyZO",
+      "web": "https://www.npr.org/podcasts/655841151/bear-brook"
+    },
+    "sources": [
+      {
+        "title": "Bear Brook - NPR",
+        "url": "https://www.npr.org/podcasts/655841151/bear-brook"
+      },
+      {
+        "title": "The Best True Crime Podcasts To Satiate Your Morbid Curiosity",
+        "url": "https://www.yahoo.com/entertainment/best-true-crime-podcasts-satiate-193438255.html"
+      }
+    ],
+    "created_at": "2026-06-17T08:09:55.311Z"
+  }
+]

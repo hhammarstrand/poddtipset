@@ -1,9 +1,9 @@
 name: Bygg och deploya (GitHub Pages)
 
 on:
-  # Daglig generering 05:00 UTC = 06:00 Europe/Stockholm (vinter) / 07:00 (sommar).
+  # Daglig generering 01:00 UTC = 02:00 Europe/Stockholm (vinter) / 03:00 (sommar).
   schedule:
-    - cron: "0 5 * * *"
+    - cron: "0 1 * * *"
   # Deploya nar koden andras.
   push:
     branches: [main, claude/dagens-pod-app-9neig2]

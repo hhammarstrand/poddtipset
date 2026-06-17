@@ -609,12 +609,21 @@ async function main() {
     }
   }
 
-  const recent = data.slice().sort((a, b) => (a.date < b.date ? 1 : -1)).slice(0, DEDUP_COUNT);
-  const dedupList = recent.map((r) => `${r.date} | ${r.show_name} | ${r.episode_title}`);
-  const recentKeys = new Set(recent.map((r) => `${slugify(r.show_name)}::${normalizeTitle(r.episode_title)}`));
-  // Podd-dedup: hard sparr for de senaste SHOW_HARD_DAYS dagarna, mjuk lista darutover.
-  const hardShowSlugs = new Set(recent.slice(0, SHOW_HARD_DAYS).map((r) => slugify(r.show_name)));
-  const avoidShows = [...new Set(recent.slice(0, SHOW_SOFT_COUNT).map((r) => r.show_name))];
+  // Dedup raknas pa DATUMFONSTER runt maldatumet (inte globalt senaste), sa det
+  // funkar aven nar man bakat-genererar gamla datum.
+  const tIdx = dayIndex(date);
+  const near = (r, n) => Math.abs(dayIndex(r.date) - tIdx) <= n;
+  // Episod-dedup: aldrig upprepa samma avsnitt (hela historiken).
+  const recentKeys = new Set(data.map((r) => `${slugify(r.show_name)}::${normalizeTitle(r.episode_title)}`));
+  // Podd-dedup: hard sparr om samma podd anvants inom +/- SHOW_HARD_DAYS dagar.
+  const hardShowSlugs = new Set(data.filter((r) => near(r, SHOW_HARD_DAYS)).map((r) => slugify(r.show_name)));
+  // Mjuk lista: poddar i ett bredare fonster runt datumet.
+  const avoidShows = [...new Set(data.filter((r) => near(r, SHOW_SOFT_COUNT)).map((r) => r.show_name))];
+  const dedupList = data
+    .filter((r) => r.date !== date)
+    .sort((a, b) => (a.date < b.date ? 1 : -1))
+    .slice(0, DEDUP_COUNT)
+    .map((r) => `${r.date} | ${r.show_name} | ${r.episode_title}`);
 
   // Dagens tema-krokar fran Wikipedia "On this day" (stark preferens, inte tvang).
   const [, mm, dd] = date.split("-");

@@ -86,7 +86,7 @@ jobs:
             guard=0
             while :; do
               echo "--- genererar $d ---"
-              GENERATE_DATE="$d" GENERATE_FORCE="" node scripts/generate.mjs || true
+              GENERATE_DATE="$d" node scripts/generate.mjs || true
               [ "$d" = "$end" ] && break
               d=$(date -I -d "$d + 1 day")
               guard=$((guard + 1)); [ "$guard" -gt 60 ] && { echo "guard stop"; break; }

@@ -11,18 +11,22 @@
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="#/" aria-label="Dagens Pod – start">
-      <span class="brand-mark" aria-hidden="true">🎧</span>
-      <span class="brand-text">Dagens&nbsp;Pod</span>
-    </a>
-    <nav class="nav" aria-label="Huvudmeny">
-      <a href="#/" data-route="today">Dagens</a>
-      <a href="#/historik" data-route="history">Historik</a>
-      <a href="#/statistik" data-route="stats">Statistik</a>
-    </nav>
-    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Vaxla mellan ljust och morkt lage">
-      <span class="theme-icon" aria-hidden="true"></span>
-    </button>
+    <div class="masthead">
+      <a class="brand" href="#/" aria-label="Dagens Pod – start">
+        <span class="brand-text">Dagens&nbsp;Pod</span>
+      </a>
+      <p class="dateline">Ett handplockat poddavsnitt om dagen</p>
+    </div>
+    <div class="topbar-row">
+      <nav class="nav" aria-label="Huvudmeny">
+        <a href="#/" data-route="today">Dagens</a>
+        <a href="#/historik" data-route="history">Historik</a>
+        <a href="#/statistik" data-route="stats">Statistik</a>
+      </nav>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Vaxla mellan ljust och morkt lage">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
   </header>
 
   <main id="app" class="container">

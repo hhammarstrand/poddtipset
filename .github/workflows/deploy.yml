@@ -38,7 +38,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "24"
 
       - name: Starta SearXNG (gratis, lokal web_search)
         if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}

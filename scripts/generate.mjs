@@ -38,6 +38,9 @@ const NON_STANDALONE_RE =
   /\bupdate\b|update:|\buppdatering\b|\bpart\s+(one|two|three|four|five|1|2|3|4|5)\b|\bpt\.?\s*\d+\b|\bdel\s+(en|tva|två|tre|fyra|fem|\d+)\b|\bkapitel\s*\d+\b|\bchapter\s*\d+\b|\bepisode\s*\d+\b|\bavsnitt\s*\d+\b|\b\d+\s*\/\s*\d+\b|\bfinale\b|\bconclusion\b|\bcontinued\b|\bforts\.?\b|\bfortsättning\b|\bprolog|\bepilog/i;
 // Citat far inte forekomma i why_great – vi kan inte garantera att de stammer, sa de forbjuds helt.
 const QUOTE_RE = /["“”«»]|'[^']*\s[^']*'/;
+// Erkannanden i texten om att avsnittet ar del av en serie/sasong (titeln rojer det inte alltid).
+const SERIES_ADMISSION_RE =
+  /\b(den\s+)?första\s+(delen|avsnittet|episoden)\b|\bförsta\s+delen\s+i\b|\bdel\s*(1|ett)\b|\bfirst\s+(part|episode|installment)\b|\bpart\s+one\b|\bseason\s+(opener|premiere)\b|\bseries\s+opener\b|\bpremiär(avsnitt|avsnittet)\b|\bopening\s+episode\b|\b(två|tre|fyra|fem|sex|sju|åtta|fler)delad\b|\b(multi-?part|two-?part|three-?part)\b|\bdel\s+av\s+en\s+(serie|flerdelad\s+serie)\b|\bfirst\s+in\s+a\s+(series|season)\b|\bden\s+första\s+i\s+en\b|\bkicks?\s+off\s+(the\s+)?(season|series)\b/i;
 
 const STAIK_URL =
   (process.env.STAIK_BASE_URL || "https://api.staik.se/v1").replace(/\/$/, "") + "/chat/completions";
@@ -384,6 +387,7 @@ KRAV PA AVSNITTET:
 FRISTAENDE AVSNITT (viktigt):
 - Avsnittet MASTE vara fristaende och fungera som en ingang i sig sjalvt – det ska ga att lyssna pa utan att ha hort nagot annat avsnitt.
 - Valj ALDRIG ett uppfoljnings- eller serie-avsnitt: inget "Part 2", "Del 3", "Chapter/Kapitel N", numrerat avsnitt, "Update:", finale, "fortsattning" eller nagot som bygger vidare pa en tidigare del. Om titeln eller innehallet forutsatter ett tidigare avsnitt – valj nagot annat.
+- OBS: aven det FORSTA avsnittet i en flerdelad serie/sasong (ett "premiar-" eller "season opener"-avsnitt) raknas som serie-avsnitt och ar INTE fristaende, aven om titeln saknar siffra. Valj bara avsnitt som ar en komplett historia i sig sjalva.
 - Satt faltet "standalone" till true bara om detta verkligen galler.
 
 KOPPLING TILL DAGENS DATUM (stark preferens, inte tvang):
@@ -393,6 +397,9 @@ KOPPLING TILL DAGENS DATUM (stark preferens, inte tvang):
 
 KALLOR (viktigt):
 - Du MASTE ange minst en kall-URL i "sources", och varje sadan URL MASTE vara en URL som ORDAGRANT forekom i dina web_search-resultat. Hitta ALDRIG pa en URL och andra den inte. Valj en kalla som verkligen belagger hyllningen (lista, artikel, prismotivering, Podchaser-sida, upproostad Reddit-trad).
+
+LYSSNA-LANKAR:
+- Ange bara listen_links (apple/spotify/web) som du faktiskt sett i sokresultaten. Hitta ALDRIG pa en Spotify-/Apple-URL eller ett avsnitts-ID. Ar du osaker – utelamna lanken (lat den vara borta) i stallet for att gissa.
 
 SKRIV "DARFOR AR DET BRA"-TEXTEN SOM EN MANNISKA:
 - ${WHY_LANG === "sv" ? "Skriv pa svenska." : "Skriv pa engelska."}
@@ -476,6 +483,12 @@ function validateTip(raw, recentKeys, seen) {
   }
   if (day_connection.length > 240) day_connection = day_connection.slice(0, 240).trim();
 
+  // Guardrail: fanga serie-/sasongsavsnitt som titeln inte rojer men texten erkanner
+  // (t.ex. "den forsta delen i ...", "season opener"). Skyddar fristaende-kravet.
+  if (SERIES_ADMISSION_RE.test(`${episode_title} ${why_great} ${day_connection}`)) {
+    return { ok: false, error: "Texten antyder att avsnittet ar del av en serie/sasong (inte fristaende)." };
+  }
+
   // Guardrail: kallor maste komma ur sokresultat vi faktiskt sett (inga pahittade URL:er).
   const seenList = Array.isArray(seen) ? seen : [];
   const seenUrls = new Set(seenList.map((r) => normUrl(r.url)));
@@ -532,6 +545,16 @@ async function hasReachableSource(sources) {
     if (await isReachable(s.url)) return true;
   }
   return false;
+}
+
+// Behall bara lyssna-lankar som faktiskt gar att na (rensar bort pahittade URL:er).
+async function filterReachableLinks(links) {
+  const out = {};
+  for (const [k, v] of Object.entries(links || {})) {
+    if (await isReachable(v)) out[k] = v;
+    else console.log(`Lyssna-lank (${k}) oatkomlig, tas bort: ${v}`);
+  }
+  return out;
 }
 
 async function isReachable(url) {
@@ -598,6 +621,9 @@ async function main() {
         continue;
       }
 
+      // Rensa bort lyssna-lankar som inte gar att na (t.ex. pahittade Spotify-URL:er).
+      v.tip.listen_links = await filterReachableLinks(v.tip.listen_links);
+
       const record = { date, ...v.tip, created_at: new Date().toISOString() };
       const next = [record, ...data].sort((a, b) => (a.date < b.date ? 1 : -1));
       await writeData(next);
@@ -623,4 +649,4 @@ if (isDirectRun) {
   });
 }
 
-export { validateTip, NON_STANDALONE_RE, QUOTE_RE, normUrl, collapse, SEEN, fetchOnThisDay, formatThemeBlock };
+export { validateTip, NON_STANDALONE_RE, QUOTE_RE, SERIES_ADMISSION_RE, normUrl, collapse, SEEN, fetchOnThisDay, formatThemeBlock };

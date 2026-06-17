@@ -119,9 +119,18 @@ function collapse(s) {
     .trim();
 }
 
-// Tvinga svensk storefront pa Apple Podcasts-lankar (annars fel sprak/landskod).
+// Tvinga svensk storefront pa Apple Podcasts-lankar OCH ta bort sprakparametern
+// (annars kan sidan oppnas pa fel sprak, t.ex. ?l=ar -> arabiska).
 function appleSe(url) {
-  return String(url).replace(/^(https?:\/\/podcasts\.apple\.com\/)[a-z]{2}(\/)/i, "$1se$2");
+  try {
+    const u = new URL(url);
+    if (!/(^|\.)apple\.com$/i.test(u.hostname)) return url;
+    u.pathname = u.pathname.replace(/^\/[a-z]{2}\//i, "/se/");
+    u.searchParams.delete("l");
+    return u.toString();
+  } catch {
+    return url;
+  }
 }
 
 async function searxngSearch(query) {

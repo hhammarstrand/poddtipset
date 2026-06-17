@@ -55,10 +55,18 @@ function fmtDate(d) {
 }
 
 // ── Komponenter ───────────────────────────────────────────────────────────────
-// Tvinga svensk storefront pa Apple Podcasts-lankar (annars kan de oppnas pa
-// fel sprak beroende pa landskoden i URL:en).
+// Tvinga svensk storefront pa Apple Podcasts-lankar OCH ta bort sprakparametern
+// (annars kan sidan oppnas pa fel sprak, t.ex. ?l=ar -> arabiska).
 function appleSe(url) {
-  return String(url).replace(/^(https?:\/\/podcasts\.apple\.com\/)[a-z]{2}(\/)/i, "$1se$2");
+  try {
+    const u = new URL(url);
+    if (!/(^|\.)apple\.com$/i.test(u.hostname)) return url;
+    u.pathname = u.pathname.replace(/^\/[a-z]{2}\//i, "/se/");
+    u.searchParams.delete("l");
+    return u.toString();
+  } catch {
+    return String(url);
+  }
 }
 
 // Kort datum, t.ex. "17 juni".
@@ -96,7 +104,7 @@ function sourcesBlock(rec) {
   if (!rec.sources || !rec.sources.length) return "";
   const links = rec.sources
     .slice(0, 2)
-    .map((s) => `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title || "Kalla")}</a>`)
+    .map((s) => `<a href="${esc(appleSe(s.url))}" target="_blank" rel="noopener">${esc(s.title || "Kalla")}</a>`)
     .join("");
   return `<div class="sources"><span class="label">Varför det räknas som ett av de bästa</span>${links}</div>`;
 }

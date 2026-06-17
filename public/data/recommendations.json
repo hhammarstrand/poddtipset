@@ -28,6 +28,96 @@
     "created_at": "2026-06-17T09:30:23.762Z"
   },
   {
+    "date": "2026-06-13",
+    "episode_title": "Brittiska imperiets födelse",
+    "show_name": "Harrisons dramatiska historia",
+    "show_slug": "harrisons-dramatiska-historia",
+    "hosts": "Dick Harrison, Katarina Lundberg",
+    "genre": "Historia",
+    "language": "sv",
+    "year": null,
+    "duration_minutes": null,
+    "day_connection": "Avsnittet utforskar imperiets rötter, vilket ger en historisk kontext till dagens datum då den första Harley-Davidson-motorcykeln presenterades (1903) och Ediktet i Milano släpptes (313), händelser som formar samhällen och maktstrukturer på",
+    "why_great": "Dick Harrison, professor i historia vid Lunds universitet, samtalar med fackboksförfattaren Katarina Lundberg om hur det brittiska imperiet uppstod. Avsnittet erbjuder en djup och engagerande analys av historiska processer och maktbalanser, vilket gör det till en utmärkt ingång för den som vill förstå stormakternas framväxt utan att behöva lyssna på tidigare delar.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/us/podcast/brittiska-imperiets-f%C3%B6delse/id1677101142?i=1000696415898&l=ar"
+    },
+    "sources": [
+      {
+        "title": "Brittiska imperiets födelse - Harrisons dramatiska historia",
+        "url": "https://podcasts.apple.com/us/podcast/brittiska-imperiets-f%C3%B6delse/id1677101142?i=1000696415898&l=ar"
+      }
+    ],
+    "created_at": "2026-06-17T10:24:44.576Z"
+  },
+  {
+    "date": "2026-06-09",
+    "episode_title": "Mordet på Elin Krantz",
+    "show_name": "P3 Dokumentär",
+    "show_slug": "p3-dokumentar",
+    "hosts": "Sveriges Radio",
+    "genre": "Dokumentär",
+    "language": "sv",
+    "year": null,
+    "duration_minutes": null,
+    "day_connection": "",
+    "why_great": "Avsnittet toppar Expressens lista över de 10 mest lyssnade avsnitten någonsin i P3 Dokumentär, vilket vittnar om dess stora genomslagskraft och publikt intresse. Det är ett av de mest omtalade och hyllade avsnitten i programmet, ofta nämnt som ett av de bästa i seriens historia.",
+    "listen_links": {},
+    "sources": [
+      {
+        "title": "10 mest lyssnade avsnitten av P3 Dokumentär – här är listan",
+        "url": "https://www.expressen.se/noje/10-mest-lyssnade-avsnitten-av-p3-dokumentar-har-ar-listan/"
+      }
+    ],
+    "created_at": "2026-06-17T10:23:07.752Z"
+  },
+  {
+    "date": "2026-06-08",
+    "episode_title": "The Interview Master: Cal Fussman and the Power of Listening",
+    "show_name": "The Tim Ferriss Show",
+    "show_slug": "the-tim-ferriss-show",
+    "hosts": "Tim Ferriss",
+    "genre": "Interviews",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_connection": "",
+    "why_great": "Detta avsnitt rankas som nummer 145 i en Spotify-lista över tidens bästa poddavsnitt och fokuserar på intervjuaren Cal Fussmans unika förmåga att lyssna. Det erbjuder en djupgående insikt i konsten att göra bra intervjuer, vilket gör det till en klassiker för alla som intresserar sig för kommunikation och mänsklig kontakt.",
+    "listen_links": {
+      "spotify": "https://open.spotify.com/playlist/6zWPJJDGey5kuKV1bskWX4"
+    },
+    "sources": [
+      {
+        "title": "Top 15 Podcast Episodes Of All Time - playlist by Ben Stevenson | Spotify",
+        "url": "https://open.spotify.com/playlist/6zWPJJDGey5kuKV1bskWX4"
+      }
+    ],
+    "created_at": "2026-06-17T10:22:53.190Z"
+  },
+  {
+    "date": "2026-06-07",
+    "episode_title": "Sigvard Bernadotte",
+    "show_name": "DesignPodden",
+    "show_slug": "designpodden",
+    "hosts": "DesignPodden",
+    "genre": "Design, Biografi",
+    "language": "sv",
+    "year": 2017,
+    "duration_minutes": null,
+    "day_connection": "Avsnittet handlar om Sigvard Bernadotte, som föddes denna dag (7 juni 1907), och beskriver hans liv som designprins som förlorade sin titel för kärleken.",
+    "why_great": "Detta avsnitt ger en sammanfattande biografi över den svenska designikonen Sigvard Bernadotte. Det tar upp hans resa från kungligt släkte till att förlora sin titel, samt hans karriär i filmindustrin och hans framgångar inom design. Det fungerar som en fristående introduktion till hans liv och verk.",
+    "listen_links": {
+      "web": "https://designpodden.podbean.com/e/sigvard-bernadotte/"
+    },
+    "sources": [
+      {
+        "title": "Sigvard Bernadotte - DesignPodden",
+        "url": "https://designpodden.podbean.com/e/sigvard-bernadotte/"
+      }
+    ],
+    "created_at": "2026-06-17T10:22:33.105Z"
+  },
+  {
     "date": "2026-06-05",
     "episode_title": "The Profumo Affair",
     "show_name": "Dan Snow's History Hit",

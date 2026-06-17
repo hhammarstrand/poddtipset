@@ -19,6 +19,10 @@ on:
         required: false
         type: boolean
         default: false
+      backfill_start:
+        description: "Fyll i alla datum fran detta (YYYY-MM-DD) t.o.m. 'date'/idag. Tomt = av."
+        required: false
+        type: string
 
 permissions:
   contents: write   # generering committar dagens tips
@@ -71,9 +75,23 @@ jobs:
           SEARXNG_URL: http://localhost:8080
           GENERATE_DATE: ${{ inputs.date }}
           GENERATE_FORCE: ${{ inputs.force }}
+          BACKFILL_START: ${{ inputs.backfill_start }}
         run: |
           if [ -z "$STAIK_API_KEY" ]; then
             echo "::warning::STAIK_API_KEY saknas som repo-secret – hoppar over genereringen."
+          elif [ -n "$BACKFILL_START" ]; then
+            end="${GENERATE_DATE:-$(TZ=Europe/Stockholm date +%F)}"
+            d="$BACKFILL_START"
+            echo "Backfill: $d t.o.m. $end"
+            guard=0
+            while :; do
+              echo "--- genererar $d ---"
+              GENERATE_DATE="$d" GENERATE_FORCE="" node scripts/generate.mjs || true
+              [ "$d" = "$end" ] && break
+              d=$(date -I -d "$d + 1 day")
+              guard=$((guard + 1)); [ "$guard" -gt 60 ] && { echo "guard stop"; break; }
+              sleep 2
+            done
           else
             node scripts/generate.mjs
           fi

@@ -385,10 +385,12 @@ FRISTAENDE AVSNITT (viktigt):
 - OBS: aven det FORSTA avsnittet i en flerdelad serie/sasong (ett "premiar-" eller "season opener"-avsnitt) raknas som serie-avsnitt och ar INTE fristaende, aven om titeln saknar siffra. Valj bara avsnitt som ar en komplett historia i sig sjalva.
 - Satt faltet "standalone" till true bara om detta verkligen galler.
 
-KOPPLING TILL DAGENS DATUM (stark preferens, inte tvang):
-- Du far en lista pa vad som hande / vem som foddes denna dag i historien. Forsok GARNA hitta ett dokumenterat hyllat, fristaende avsnitt som genuint knyter an till nagot av detta (ett tema, en handelse, en person, en arsdag).
-- Hittar du ett sant avsnitt: fyll i "day_occasion" med en kort FAKTA-mening om vad som hande/vem som foddes denna dag (hamtad ur listan ovan), t.ex. "1972 inleddes Watergateinbrottet" eller "Sigvard Bernadotte foddes denna dag 1907". Fyll ocksa i "day_connection" med EN mening om hur avsnittet hanger ihop med det.
-- Hittar du INGET genuint hyllat avsnitt som passar: valj anda det basta hyllade avsnittet utan koppling, och lamna BADE "day_occasion" och "day_connection" som tom strang "". Hitta ALDRIG pa en koppling och tvinga inte fram en krystad sadan – kvaliteten gar fore temat.
+KOPPLING TILL DAGENS DATUM (valfritt – nastan alltid tomt):
+- Lat INTE dagens datum styra vilket avsnitt du valjer. Valj alltid det basta hyllade avsnittet forst. Kopplingen ar bara en bonus i de sallsynta fall den ar uppenbar.
+- Fyll BARA i en koppling om avsnittet DIREKT handlar om exakt samma sak som star i dagens lista: samma namngivna person, samma specifika handelse, samma plats. Avsnittet ska kunna sammanfattas som "ett avsnitt OM [det som hande/foddes denna dag]".
+- En vag tematisk likhet RACKER INTE och ar forbjuden. FORBJUDNA (krystade) exempel: ett avsnitt om farger kopplat till att en konstnar foddes idag; ett avsnitt om ett mord kopplat till att en annan person dog idag; "handlar ocksa om en man" / "ocksa pa 1970-talet". Sant ska lamnas TOMT.
+- OK exempel (direkt): listan sager "Sigvard Bernadotte foddes 1907" OCH avsnittet handlar om Sigvard Bernadotte.
+- I de allra flesta fall finns INGEN sadan direkt koppling. Da lamnar du bade "day_occasion" och "day_connection" som tom strang "". Det ar det normala och helt ratt – en tom koppling ar alltid battre an en krystad.
 
 KALLOR (viktigt):
 - Du MASTE ange minst en kall-URL i "sources", och varje sadan URL MASTE vara en URL som ORDAGRANT forekom i de medskickade sokresultaten. Hitta ALDRIG pa en URL och andra den inte. Valj en kalla som verkligen belagger hyllningen (lista, artikel, prismotivering, Podchaser-sida, upproostad Reddit-trad).

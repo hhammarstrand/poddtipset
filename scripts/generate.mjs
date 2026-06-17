@@ -20,7 +20,7 @@ const LANGUAGES = ["sv", "en"];
 const GENRES = "all"; // "all" eller t.ex. ["history", "true crime"]
 const MODEL = "qwen3.6:35b-a3b"; // Staik-modell. Alternativ: "qwen3.5:9b", "gemma4:31b".
 const DEDUP_COUNT = 60;          // avsnitts-dedup (skickas till modellen)
-const MAX_ATTEMPTS = 4;          // forsok per dag
+const MAX_ATTEMPTS = 6;          // forsok per dag (sveper bredare sa fler dagar blir kompletta)
 const SEED_RESULTS_PER_QUERY = 4; // traffar per sokning som skickas till modellen
 const SNIPPET_LEN = 160;         // max tecken per snippet (token-besparing)
 const THEME_HOOKS = 8;           // antal "on this day"-krokar som skickas med
@@ -197,11 +197,13 @@ function themeQuery(hooks, date, attempt) {
   return subj.length >= 4 ? `podcast episode about ${subj}` : null;
 }
 
-// 3 spridda vinklar ur poolen (roterar per dag + forsok) + ev. en tema-sokning.
+// 4 spridda vinklar ur poolen (roterar per dag + forsok sa attempten sveper hela
+// poolen) + ev. en tema-sokning. Fler vinklar = storre chans till en giltig,
+// icke-nyligen-anvand podd, sa fler dagar blir kompletta.
 function buildQueries(date, attempt, hooks) {
   const n = QUERY_POOL.length;
-  const base = dayIndex(date) + (attempt - 1) * 5;
-  const qs = [0, Math.floor(n / 3), Math.floor((2 * n) / 3)].map((o) => QUERY_POOL[(base + o) % n]);
+  const base = dayIndex(date) + (attempt - 1) * 4;
+  const qs = [0, Math.floor(n / 4), Math.floor(n / 2), Math.floor((3 * n) / 4)].map((o) => QUERY_POOL[(base + o) % n]);
   const tq = themeQuery(hooks, date, attempt);
   if (tq) qs.push(tq);
   return [...new Set(qs)];

@@ -1,27 +1,26 @@
 [
   {
     "date": "2026-06-17",
-    "episode_title": "Lemon",
-    "show_name": "Slow Burn",
-    "show_slug": "slow-burn",
-    "hosts": "Leon Neyfakh",
-    "genre": "History / True Crime",
+    "episode_title": "The Case of the Missing Hit",
+    "show_name": "Reply All",
+    "show_slug": "reply-all",
+    "hosts": "PJ Vogt, Alex Goldman",
+    "genre": "Narrativ podcast om internetkultur och mysterier",
     "language": "en",
-    "year": 2017,
-    "duration_minutes": 48,
-    "day_connection": "Avsnittet behandlar inbrottet i Watergate som skedde denna dag 1972 och är den första delen i en prisbelönt undersökning av skandalen.",
-    "why_great": "Leon Neyfakh bryter ner det komplexa inbrottet i Watergate med hjälp av originalklipp från tidningen och nyheter från 1972, vilket ger en unik tidskapselkänsla. Det är ett mästerverk inom narrativ podd-journalistik som visar hur en liten brottsling kan riva ner en hel administration.",
+    "year": 2020,
+    "duration_minutes": 50,
+    "why_great": "I detta avsnitt går värdarna i spåren på en man som är besatt av minnet av en poplåt från sin barndom, fast han inte kan komma på vare sig titel eller artist. Det är en hjärtlig och humoristisk jaktsaga där lyssnaren blir en del av communityt som försöker lösa mysteriet tillsammans med värdarna, och berättelsen är så välkonstruerad att den ofta lyfts fram som ett av de bästa exemplen på vad en enskild poddavsnitt kan prestera.",
     "listen_links": {
-      "apple": "https://podcasts.apple.com/us/podcast/lemon/id1315040130?i=1373061618",
-      "spotify": "https://open.spotify.com/episode/1J0q32qX0qJ0qJ0qJ0qJ0q",
-      "web": "https://slate.com/podcasts/slow-burn/2017/04/slow-burn-season-1-episode-1-lemon.html"
+      "apple": "https://podcasts.apple.com/us/podcast/158-the-case-of-the-missing-hit/id941907967?i=1000467513208",
+      "spotify": "https://open.spotify.com/episode/0CaOGo6xSN51B2aLAQa1kU",
+      "web": "https://gimletmedia.com/shows/reply-all/5c9c0575-9504-4135-9655-673613052607/7d327636-55f5-4e1d-b43d-307070697095"
     },
     "sources": [
       {
-        "title": "TIME's 100 Best Podcasts - Slow Burn",
-        "url": "https://time.com/collections/100-best-podcasts/7303120/slow-burn/"
+        "title": "Reply All's The Case of the Missing Hit: could this be the best podcast episode ever?",
+        "url": "https://www.theguardian.com/tv-and-radio/2020/mar/10/reply-alls-the-case-of-the-missing-hit-could-this-be-the-best-podcast-episode-ever"
       }
     ],
-    "created_at": "2026-06-17T09:18:58.287Z"
+    "created_at": "2026-06-17T09:02:53.039Z"
   }
 ]

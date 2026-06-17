@@ -1,144 +1,104 @@
 # Dagens Pod 🎧
 
-En deployad webbapp som varje dygn automatiskt väljer ut **ETT** dokumenterat hyllat
-poddavsnitt och presenterar det som "dagens tips". Användaren ser dagens avsnitt, bläddrar
-i historik över tidigare tips och ser statistik över vilka poddar som rekommenderats oftast.
+En webbapp som varje dygn automatiskt väljer ut **ETT** dokumenterat hyllat poddavsnitt och
+presenterar det som "dagens tips". Användaren ser dagens avsnitt, bläddrar i historik och ser
+statistik över vilka poddar som rekommenderats oftast.
 
-Ingen inloggning, ingen tracking. Mobil först, mörkt/ljust läge.
+Hostas helt på **GitHub Pages** (statisk frontend) + **GitHub Actions** (schemalagt jobb). Ingen
+server, ingen databas, ingen inloggning, ingen tracking. Mobil först, mörkt/ljust läge.
 
-## Hur kurateringen fungerar
+## Så fungerar det
 
-Det finns inget rent API för "bästa poddavsnitten". Lösningen:
-
-- Ett **schemalagt jobb** (Cloudflare Cron) körs en gång per dygn.
-- Det anropar **Claude-API:t** (`claude-opus-4-8`) **med web_search-verktyget aktiverat**.
-- Prompten ber modellen välja ETT avsnitt som är dokumenterat hyllat (återkommer på
-  "bästa avsnitt"-listor, högt på Podchaser/Reddit, prisbelönt, mycket delat), matchar
-  inställd språk-/genrepreferens och **inte** redan finns i historiken (de senaste ~60 tipsen
-  skickas med för dedup).
-- Svaret valideras: alla fält ifyllda, rätt språk, ingen dubblett och **minst en käll-URL som
-  faktiskt går att nå** (`fetch` < 400). Tips som inte uppfyller kraven förkastas och regenereras
-  (max 3 försök). Annars lämnas dagen tom och frontend visar gårdagens tips + "nytt tips snart".
-
-## Arkitektur
+Brief'ens separation – **schemalagt jobb → persistens → läs-API → frontend** – behålls, men med
+en ren GitHub-stack:
 
 ```
-Cron (06:00 Europe/Stockholm)
+GitHub Actions (cron, dagligen 06:00 Europe/Stockholm)
+        │  node scripts/generate.mjs
+        ▼
+Claude API (claude-opus-4-8 + web_search)  ──►  validering & källkontroll
         │
         ▼
-Cloudflare Worker  ── scheduled() ──►  Claude API (web_search)  ──►  validering  ──►  D1
-        │                                                                              │
-        └── fetch() ── /api/* (JSON-API)  ◄───────────────────────────────────────────┘
-                    └── allt annat → statisk frontend (Workers Static Assets)
+public/data/recommendations.json   ← committas tillbaka i repot (persistensen)
+        │
+        ▼
+GitHub Pages serverar public/  ──►  frontend laser JSON och visar
+                                     dagens tips / historik / statistik (allt klient-sidan)
 ```
 
-Allt ligger i **ett** deploybart Worker-projekt. Frontend (vanilla HTML/CSS/JS, inget byggsteg)
-serveras som statiska assets från samma Worker som exponerar JSON-API:t.
+- **Schemalagt jobb:** [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) kör en gång per
+  dygn (samt manuellt via "Run workflow").
+- **Kurering:** [`scripts/generate.mjs`](scripts/generate.mjs) anropar Claude med **web_search**,
+  ber modellen välja ETT avsnitt som är dokumenterat hyllat (bästa-listor, högt på Podchaser/Reddit,
+  prisbelönt, mycket delat), på svenska eller engelska, som **inte** redan finns i historiken
+  (senaste ~60 skickas med för dedup). Svaret valideras: alla fält ifyllda, rätt språk, ingen
+  dubblett, och **minst en käll-URL som faktiskt går att nå** (`fetch` < 400). Underkänt → regenereras
+  (max 3 försök), annars lämnas dagen tom (frontend visar gårdagens tips).
+- **Persistens:** det godkända tipset läggs till i `public/data/recommendations.json` och committas
+  tillbaka av workflowen. Idempotent: finns dagens datum redan görs ingenting.
+- **Frontend:** `public/` (vanilla HTML/CSS/JS, inget byggsteg) läser JSON-filen och gör
+  historik-sök/filter och all statistik (topplista, fördelningar, streak, tidslinje) i webbläsaren.
 
-| Fil | Ansvar |
-|-----|--------|
-| `wrangler.jsonc` | Worker-config: cron, D1-binding, assets-binding |
-| `migrations/0001_init.sql` | Tabellen `recommendations` + index |
-| `src/index.ts` | Router (`fetch`) + schemalagt jobb (`scheduled`) |
-| `src/config.ts` | **Konfiguration överst** – språk, genrer, modell m.m. |
-| `src/generate.ts` | Dygnsflödet: dedup, Claude-anrop, validering, retry, spara |
-| `src/claude.ts` | Claude Messages API via `fetch` (web_search + pause_turn + JSON-parse) |
-| `src/db.ts` | D1-queries (idempotent insert, historik, dedup) |
-| `src/stats.ts` | Härledd statistik (topplista, fördelningar, streak, tidslinje) |
-| `public/` | Frontend: `index.html`, `styles.css`, `app.js` |
+## Datamodell (`public/data/recommendations.json`)
+
+En array, nyast först. Varje post:
+
+`date` (YYYY-MM-DD, unik) · `episode_title` · `show_name` · `show_slug` (normaliserad för
+gruppering) · `hosts` · `genre` · `language` · `year` · `duration_minutes` · `why_great` ·
+`listen_links` ({apple,spotify,web}) · `sources` ([{title,url}]) · `created_at`.
 
 ## Konfiguration
 
-Allt ändras högst upp i [`src/config.ts`](src/config.ts):
-
-- `LANGUAGES` – tillåtna språk, just nu `["sv", "en"]`.
-- `GENRES` – `"all"` eller en whitelist, t.ex. `["history", "true crime"]`.
-- `MODEL` – `"claude-opus-4-8"` (byt till `"claude-sonnet-4-6"` för lägre kostnad).
-- `DEDUP_COUNT`, `MAX_ATTEMPTS`, `MAX_TOOL_ROUNDS`, `WHY_LANG` m.m.
-
-Cron-tiden ändras i `wrangler.jsonc` under `triggers.crons`.
-
-## Datamodell (D1, tabell `recommendations`)
-
-`id` · `date` (UNIQUE, YYYY-MM-DD) · `episode_title` · `show_name` · `show_slug` (normaliserad
-för gruppering) · `hosts` · `genre` · `language` · `year` · `duration_minutes` · `why_great` ·
-`listen_links` (JSON) · `sources` (JSON: `[{title,url}]`) · `created_at`. Statistik härleds med
-`GROUP BY` på `show_slug` / `genre` / `language`.
+Ändra högst upp i [`scripts/generate.mjs`](scripts/generate.mjs):
+`LANGUAGES` (`["sv","en"]`), `GENRES` (`"all"` eller en lista), `MODEL` (`claude-opus-4-8`, byt
+till `claude-sonnet-4-6` för lägre kostnad), `DEDUP_COUNT`, `MAX_ATTEMPTS`, `WHY_LANG`.
+Cron-tiden ändras i `.github/workflows/deploy.yml` (`schedule.cron`, UTC).
 
 ---
 
-## Deploy
+## Aktivera (engångssteg)
 
-> **Status i detta repo:** D1-databasen är redan skapad och migrerad i Cloudflare-kontot
-> (via Cloudflare-integrationen). `wrangler.jsonc` pekar redan på rätt `database_id`
-> (`6e7c4f7d-18c8-4f48-ba69-59162418c2c4`). Det som återstår är att **sätta secrets** och
-> **deploya Worker-koden** – de stegen kräver en autentiserad `wrangler` (en Cloudflare-token
-> eller `wrangler login`), vilket inte kunde göras automatiskt i byggmiljön.
+Det mesta är redan klart i repot. Tre saker behöver göras i GitHub-inställningarna:
 
-### Förutsättningar
-- Node 20+ och npm.
-- Ett Cloudflare-konto.
-- En Claude API-nyckel (https://platform.claude.com).
+1. **Lägg till Claude API-nyckel som secret** (krävs för genereringen):
+   *Settings → Secrets and variables → Actions → New repository secret*
+   - Namn: `ANTHROPIC_API_KEY`
+   - Värde: din nyckel från https://platform.claude.com
 
-### Steg
+2. **Slå på GitHub Pages med Actions som källa:**
+   *Settings → Pages → Build and deployment → Source = **GitHub Actions***
+   (Workflowen försöker även slå på detta automatiskt via `configure-pages`.)
 
-```bash
-# 1. Installera beroenden
-npm install
+3. **Aktivera den dagliga körningen:** schemalagda workflows kör bara från
+   **standardbranchen**. Mergea den här branchen till `main` (eller sätt den som standardbranch).
+   Vid push och vid `main` deployar Pages automatiskt.
 
-# 2. Logga in mot Cloudflare (öppnar webbläsare)
-npx wrangler login
-#    – eller, i CI/headless: exportera CLOUDFLARE_API_TOKEN och CLOUDFLARE_ACCOUNT_ID
+### Seeda första tipset direkt
 
-# 3. Secrets (sparas krypterat hos Cloudflare, hamnar ALDRIG i koden)
-npx wrangler secret put ANTHROPIC_API_KEY      # klistra in din Claude API-nyckel
-npx wrangler secret put GENERATE_TOKEN         # valfri lång slumpsträng som skyddar /api/generate
+Vänta inte på cron – kör workflowen manuellt:
+*Actions → "Bygg och deploya (GitHub Pages)" → Run workflow.*
+Den genererar dagens tips, committar det och deployar sidan. Kör igen samma dygn → fortfarande
+bara ett tips (idempotent).
 
-# 4. Deploya Workern (frontend + API + cron i ett)
-npx wrangler deploy
-```
-
-> **D1 från scratch?** Om du deployar i ett annat konto: kör
-> `npx wrangler d1 create poddtipset`, klistra in det nya `database_id` i `wrangler.jsonc`,
-> och kör `npx wrangler d1 migrations apply poddtipset --remote`. (Migrationen använder
-> `IF NOT EXISTS` och är säker att köra om mot en redan migrerad databas.)
-
-### Seeda det första tipset
-
-Cron kör 06:00 Europe/Stockholm. För att inte vänta – trigga en generering direkt mot den
-deployade Workern (`$GENERATE_TOKEN` = värdet du satte ovan, `$URL` = din workers.dev-URL):
-
-```bash
-curl -X POST "$URL/api/generate" -H "x-generate-token: $GENERATE_TOKEN"
-```
-
-Svaret blir `{"status":"created", ...}` vid lyckad generering, `{"status":"exists"}` om dagens
-tips redan finns (idempotent), eller `{"status":"failed", "error": "..."}` om alla 3 försök
-underkändes. Kör samma kommando två gånger samma dygn → fortfarande bara ett tips.
+Sidan blir nåbar på `https://<användarnamn>.github.io/poddtipset/`.
 
 ## Lokal utveckling
 
 ```bash
-cp .dev.vars.example .dev.vars      # fyll i ANTHROPIC_API_KEY + GENERATE_TOKEN
-npx wrangler d1 migrations apply poddtipset --local
-npm run dev                         # http://127.0.0.1:8787
+# Generera ett tips lokalt (skriver till public/data/recommendations.json)
+ANTHROPIC_API_KEY=sk-ant-... npm run generate
+
+# Servera frontend lokalt
+npm run serve   # http://localhost:8080
 ```
 
-`.dev.vars` är gitignorerad – lägg aldrig riktiga nycklar i versionshantering.
-
-## API
-
-| Metod & väg | Beskrivning |
-|-------------|-------------|
-| `GET /api/today` | Dagens tips. Saknas det returneras senaste tipset med `stale: true`. |
-| `GET /api/history?search=&genre=&language=&show=` | Alla tips, nyast först, sökbart/filtrerbart. |
-| `GET /api/recommendation/:id` | Detalj per `id` eller `:date` (YYYY-MM-DD). |
-| `GET /api/stats` | Topplista, fördelning per genre/språk, totalt, streak, tidslinje. |
-| `POST /api/generate` | Manuell körning/seed. Kräver header `x-generate-token`. |
+`GENERATE_DATE=YYYY-MM-DD` kan sättas för att seeda ett specifikt datum.
 
 ## Noter
 
-- **Tidszon:** Cloudflare-cron körs i UTC. `"0 5 * * *"` = 06:00 på vintern (CET) och 07:00 på
-  sommaren (CEST) i Europe/Stockholm. Justera i `wrangler.jsonc` om du vill ha exakt 06:00 året runt.
+- **Tidszon:** GitHub-cron körs i UTC. `"0 5 * * *"` = 06:00 på vintern (CET) / 07:00 på sommaren
+  (CEST) i Europe/Stockholm. Justera i workflowen om du vill ha exakt 06:00 året runt.
+- **Inga hemligheter i koden:** `ANTHROPIC_API_KEY` finns bara som GitHub Actions-secret.
 - **Kostnad:** ett Claude-anrop per dygn (web_search) – försumbart.
-- **Inga hemligheter i koden:** `ANTHROPIC_API_KEY` och `GENERATE_TOKEN` sätts som Worker-secrets.
+- **Subväg:** frontend använder relativa sökvägar och fungerar därför både på
+  `<user>.github.io/poddtipset/` och under egen domän.

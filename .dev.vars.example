@@ -1,5 +1,0 @@
-# Kopiera till .dev.vars for lokal utveckling (wrangler dev laser denna fil).
-# .dev.vars ar gitignorerad – lagg ALDRIG riktiga nycklar i versionshantering.
-
-ANTHROPIC_API_KEY=sk-ant-...
-GENERATE_TOKEN=valj-en-lang-slumpmassig-strang

@@ -11,10 +11,25 @@ const esc = (s) =>
 const LANG_NAMES = { sv: "Svenska", en: "Engelska" };
 const langName = (l) => LANG_NAMES[l] || (l || "").toUpperCase();
 
-async function api(path) {
-  const res = await fetch(path, { headers: { accept: "application/json" } });
+function todayStockholm() {
+  return new Intl.DateTimeFormat("sv-SE", {
+    timeZone: "Europe/Stockholm",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(new Date());
+}
+
+// ── Datakalla: statisk JSON (genererad av GitHub Actions) ─────────────────────
+let _data = null;
+async function loadData() {
+  if (_data) return _data;
+  const res = await fetch("./data/recommendations.json", { cache: "no-cache" });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  return res.json();
+  const arr = await res.json();
+  // Nyast forst.
+  _data = (Array.isArray(arr) ? arr : []).slice().sort((a, b) => (a.date < b.date ? 1 : -1));
+  return _data;
 }
 
 function fmtDuration(min) {
@@ -57,17 +72,11 @@ function initTheme() {
 function listenButtons(links) {
   const out = [];
   if (links?.apple)
-    out.push(
-      `<a class="btn" href="${esc(links.apple)}" target="_blank" rel="noopener"><span class="btn-icon"></span>Apple Podcasts</a>`
-    );
+    out.push(`<a class="btn" href="${esc(links.apple)}" target="_blank" rel="noopener"><span class="btn-icon"></span>Apple Podcasts</a>`);
   if (links?.spotify)
-    out.push(
-      `<a class="btn primary" href="${esc(links.spotify)}" target="_blank" rel="noopener"><span class="btn-icon">▶</span>Spotify</a>`
-    );
+    out.push(`<a class="btn primary" href="${esc(links.spotify)}" target="_blank" rel="noopener"><span class="btn-icon">▶</span>Spotify</a>`);
   if (links?.web)
-    out.push(
-      `<a class="btn" href="${esc(links.web)}" target="_blank" rel="noopener"><span class="btn-icon">🔗</span>Webbspelare</a>`
-    );
+    out.push(`<a class="btn" href="${esc(links.web)}" target="_blank" rel="noopener"><span class="btn-icon">🔗</span>Webbspelare</a>`);
   return out.join("");
 }
 
@@ -86,10 +95,7 @@ function sourcesBlock(rec) {
   if (!rec.sources || !rec.sources.length) return "";
   const links = rec.sources
     .slice(0, 2)
-    .map(
-      (s) =>
-        `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title || "Kalla")}</a>`
-    )
+    .map((s) => `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title || "Kalla")}</a>`)
     .join("");
   return `<div class="sources"><span class="label">Varfor det racknas som ett av de basta</span>${links}</div>`;
 }
@@ -117,7 +123,7 @@ function heroCard(rec, stale, today) {
 
 function historyCard(rec) {
   return `
-    <a class="card" href="#/avsnitt/${esc(rec.id)}">
+    <a class="card" href="#/avsnitt/${esc(rec.date)}">
       <div class="date">${esc(fmtDate(rec.date))}</div>
       <h3>${esc(rec.episode_title)}</h3>
       <div class="show">${esc(rec.show_name)}</div>
@@ -129,101 +135,136 @@ function historyCard(rec) {
 async function viewToday() {
   app.innerHTML = `<div class="loading">Laddar dagens tips…</div>`;
   try {
-    const data = await api("/api/today");
-    app.innerHTML = heroCard(data.recommendation, data.stale, data.today);
+    const data = await loadData();
+    const today = todayStockholm();
+    const todayRec = data.find((r) => r.date === today);
+    if (todayRec) {
+      app.innerHTML = heroCard(todayRec, false, today);
+    } else {
+      app.innerHTML = heroCard(data[0] || null, data.length > 0, today);
+    }
   } catch (e) {
     app.innerHTML = `<div class="error-box">Kunde inte ladda dagens tips (${esc(e.message)}).</div>`;
   }
 }
 
-let historyState = { search: "", genre: "", language: "", show: "" };
+let historyState = { search: "", genre: "", language: "" };
 
 async function viewHistory() {
+  let data;
+  try {
+    data = await loadData();
+  } catch (e) {
+    app.innerHTML = `<div class="error-box">Kunde inte ladda historiken (${esc(e.message)}).</div>`;
+    return;
+  }
+
+  const genres = [...new Set(data.map((r) => r.genre).filter(Boolean))].sort();
+
   app.innerHTML = `
     <div class="section-head"><h1>Historik</h1><span class="muted" id="hist-count"></span></div>
     <div class="filters">
       <input id="f-search" class="input" type="search" placeholder="Sok titel, podd, vard…" value="${esc(historyState.search)}" />
-      <select id="f-genre" class="select"><option value="">Alla genrer</option></select>
+      <select id="f-genre" class="select">
+        <option value="">Alla genrer</option>
+        ${genres.map((g) => `<option value="${esc(g)}"${historyState.genre === g ? " selected" : ""}>${esc(g)}</option>`).join("")}
+      </select>
       <select id="f-language" class="select">
         <option value="">Alla sprak</option>
         <option value="sv"${historyState.language === "sv" ? " selected" : ""}>Svenska</option>
         <option value="en"${historyState.language === "en" ? " selected" : ""}>Engelska</option>
       </select>
     </div>
-    <div id="hist-list" class="card-list"><div class="loading">Laddar…</div></div>`;
-
-  // Fyll genre-filter fran statistiken (sa det speglar faktisk data).
-  try {
-    const stats = await api("/api/stats");
-    const sel = document.getElementById("f-genre");
-    for (const g of stats.byGenre) {
-      const opt = document.createElement("option");
-      opt.value = g.genre;
-      opt.textContent = `${g.genre} (${g.count})`;
-      if (historyState.genre === g.genre) opt.selected = true;
-      sel.appendChild(opt);
-    }
-  } catch {
-    /* genre-filter ar valfritt */
-  }
+    <div id="hist-list" class="card-list"></div>`;
 
   const debounce = (fn, ms) => {
     let t;
-    return (...a) => {
-      clearTimeout(t);
-      t = setTimeout(() => fn(...a), ms);
-    };
+    return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); };
   };
-  const run = debounce(loadHistory, 250);
-  document.getElementById("f-search").addEventListener("input", (e) => {
-    historyState.search = e.target.value.trim();
-    run();
-  });
-  document.getElementById("f-genre").addEventListener("change", (e) => {
-    historyState.genre = e.target.value;
-    loadHistory();
-  });
-  document.getElementById("f-language").addEventListener("change", (e) => {
-    historyState.language = e.target.value;
-    loadHistory();
-  });
+  const run = debounce(renderHistory, 200);
+  document.getElementById("f-search").addEventListener("input", (e) => { historyState.search = e.target.value.trim(); run(); });
+  document.getElementById("f-genre").addEventListener("change", (e) => { historyState.genre = e.target.value; renderHistory(); });
+  document.getElementById("f-language").addEventListener("change", (e) => { historyState.language = e.target.value; renderHistory(); });
 
-  loadHistory();
+  renderHistory();
 }
 
-async function loadHistory() {
+function renderHistory() {
   const list = document.getElementById("hist-list");
   const countEl = document.getElementById("hist-count");
-  if (!list) return;
-  const qs = new URLSearchParams();
-  if (historyState.search) qs.set("search", historyState.search);
-  if (historyState.genre) qs.set("genre", historyState.genre);
-  if (historyState.language) qs.set("language", historyState.language);
-  if (historyState.show) qs.set("show", historyState.show);
-  try {
-    const data = await api(`/api/history?${qs.toString()}`);
-    if (countEl) countEl.textContent = `${data.count} tips`;
-    list.innerHTML = data.items.length
-      ? data.items.map(historyCard).join("")
-      : `<div class="empty">Inga tips matchar filtret.</div>`;
-  } catch (e) {
-    list.innerHTML = `<div class="error-box">Kunde inte ladda historiken (${esc(e.message)}).</div>`;
-  }
+  if (!list || !_data) return;
+  const q = historyState.search.toLowerCase();
+  const items = _data.filter((r) => {
+    if (historyState.genre && r.genre !== historyState.genre) return false;
+    if (historyState.language && r.language !== historyState.language) return false;
+    if (q) {
+      const hay = `${r.episode_title} ${r.show_name} ${r.hosts} ${r.why_great}`.toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  });
+  if (countEl) countEl.textContent = `${items.length} tips`;
+  list.innerHTML = items.length
+    ? items.map(historyCard).join("")
+    : `<div class="empty">Inga tips matchar filtret.</div>`;
 }
 
-async function viewDetail(id) {
+async function viewDetail(date) {
   app.innerHTML = `<div class="loading">Laddar…</div>`;
   try {
-    const data = await api(`/api/recommendation/${encodeURIComponent(id)}`);
-    const rec = data.recommendation;
+    const data = await loadData();
+    const rec = data.find((r) => r.date === date);
     app.innerHTML = `
       <a class="back" href="#/historik">← Tillbaka till historiken</a>
-      ${heroCard(rec, false, rec.date)}`;
+      ${rec ? heroCard(rec, false, rec.date) : '<div class="error-box">Avsnittet hittades inte.</div>'}`;
   } catch (e) {
     app.innerHTML = `
       <a class="back" href="#/historik">← Tillbaka</a>
-      <div class="error-box">Avsnittet hittades inte.</div>`;
+      <div class="error-box">Kunde inte ladda (${esc(e.message)}).</div>`;
   }
+}
+
+// ── Statistik (harleds klient-sidan) ─────────────────────────────────────────
+function addDays(isoDate, delta) {
+  const [y, m, d] = isoDate.split("-").map(Number);
+  const dt = new Date(Date.UTC(y, m - 1, d));
+  dt.setUTCDate(dt.getUTCDate() + delta);
+  return dt.toISOString().slice(0, 10);
+}
+
+function computeStreak(datesDesc, today) {
+  if (!datesDesc.length) return 0;
+  const set = new Set(datesDesc);
+  let cursor = set.has(today) ? today : addDays(today, -1);
+  let streak = 0;
+  while (set.has(cursor)) { streak++; cursor = addDays(cursor, -1); }
+  return streak;
+}
+
+function computeStats(data) {
+  const total = data.length;
+  const showMap = new Map();
+  const genreMap = new Map();
+  const langMap = new Map();
+  const monthMap = new Map();
+
+  for (const r of data) {
+    const sShow = showMap.get(r.show_slug) || { show_slug: r.show_slug, show_name: r.show_name, count: 0 };
+    sShow.count++;
+    showMap.set(r.show_slug, sShow);
+    if (r.genre) genreMap.set(r.genre, (genreMap.get(r.genre) || 0) + 1);
+    if (r.language) langMap.set(r.language, (langMap.get(r.language) || 0) + 1);
+    const period = String(r.date).slice(0, 7);
+    monthMap.set(period, (monthMap.get(period) || 0) + 1);
+  }
+
+  const topShows = [...showMap.values()].sort((a, b) => b.count - a.count || a.show_name.localeCompare(b.show_name));
+  const byGenre = [...genreMap.entries()].map(([genre, count]) => ({ genre, count })).sort((a, b) => b.count - a.count);
+  const byLanguage = [...langMap.entries()].map(([language, count]) => ({ language, count })).sort((a, b) => b.count - a.count);
+  const timeline = [...monthMap.entries()].map(([period, count]) => ({ period, count })).sort((a, b) => (a.period < b.period ? -1 : 1));
+  const streak = computeStreak(data.map((r) => r.date), todayStockholm());
+
+  return { total, topShows, byGenre, byLanguage, timeline, streak };
 }
 
 function bars(items, nameKey, max) {
@@ -244,7 +285,12 @@ function bars(items, nameKey, max) {
 async function viewStats() {
   app.innerHTML = `<div class="loading">Raknar statistik…</div>`;
   try {
-    const s = await api("/api/stats");
+    const data = await loadData();
+    const s = computeStats(data);
+    if (!s.total) {
+      app.innerHTML = `<div class="section-head"><h1>Statistik</h1></div><div class="empty">Ingen statistik an – statistiken vaxer i takt med att tips genereras.</div>`;
+      return;
+    }
     const maxShow = s.topShows[0]?.count || 1;
     const maxGenre = s.byGenre[0]?.count || 1;
     const maxLang = s.byLanguage[0]?.count || 1;
@@ -254,12 +300,7 @@ async function viewStats() {
       ? `<div class="panel">
           <h3>Tidslinje (tips per manad)</h3>
           <div class="timeline">
-            ${s.timeline
-              .map(
-                (t) =>
-                  `<div class="tl-bar" style="height:${Math.max(6, Math.round((t.count / maxTl) * 100))}%" title="${esc(t.period)}: ${t.count}"></div>`
-              )
-              .join("")}
+            ${s.timeline.map((t) => `<div class="tl-bar" style="height:${Math.max(6, Math.round((t.count / maxTl) * 100))}%" title="${esc(t.period)}: ${t.count}"></div>`).join("")}
           </div>
           <div class="tl-axis"><span>${esc(s.timeline[0].period)}</span><span>${esc(s.timeline[s.timeline.length - 1].period)}</span></div>
         </div>`
@@ -295,7 +336,7 @@ function router() {
   const detail = hash.match(/^\/avsnitt\/(.+)$/);
   if (detail) {
     setActiveNav("history");
-    viewDetail(detail[1]);
+    viewDetail(decodeURIComponent(detail[1]));
   } else if (hash.startsWith("/historik")) {
     setActiveNav("history");
     viewHistory();

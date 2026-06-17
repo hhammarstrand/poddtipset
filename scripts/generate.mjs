@@ -20,11 +20,11 @@ const LANGUAGES = ["sv", "en"];
 const GENRES = "all"; // "all" eller t.ex. ["history", "true crime"]
 const MODEL = "qwen3.6:35b-a3b"; // Staik-modell. Alternativ: "qwen3.5:9b", "gemma4:31b".
 const DEDUP_COUNT = 60;          // avsnitts-dedup (skickas till modellen)
-const MAX_ATTEMPTS = 3;          // forsok per dag
+const MAX_ATTEMPTS = 4;          // forsok per dag
 const SEED_RESULTS_PER_QUERY = 4; // traffar per sokning som skickas till modellen
 const SNIPPET_LEN = 160;         // max tecken per snippet (token-besparing)
 const THEME_HOOKS = 8;           // antal "on this day"-krokar som skickas med
-const MAX_TOKENS = 2000;         // tak for modellens svar (rymligt sa JSON inte klipps)
+const MAX_TOKENS = 4000;         // tak for modellens svar (rymligt sa Qwens resonemang + JSON ryms)
 const TEMPERATURE = 0.4;         // lagt for att minska pahitt/konfabulering i fakta
 const SHOW_HARD_DAYS = 7;        // samma podd far INTE aterkomma inom sa har manga dagar
 const SHOW_SOFT_COUNT = 30;      // poddar att be modellen undvika (mjukt)
@@ -320,14 +320,16 @@ async function askModel(apiKey, systemMsg, userMsg) {
 
 // Plocka ut det sista balanserade JSON-objektet ur en textstrang.
 function extractJsonObject(text) {
-  const trimmed = String(text || "").trim();
+  // Ta bort Qwens resonemang sa det inte stor JSON-extraktionen.
+  const t = String(text || "").replace(/<think>[\s\S]*?<\/think>/gi, " ");
+  const trimmed = t.trim();
   const direct = tryParse(trimmed);
   if (direct !== undefined) return direct;
 
   let depth = 0, start = -1, inString = false, escape = false;
   const candidates = [];
-  for (let i = 0; i < text.length; i++) {
-    const ch = text[i];
+  for (let i = 0; i < t.length; i++) {
+    const ch = t[i];
     if (escape) { escape = false; continue; }
     if (ch === "\\") { if (inString) escape = true; continue; }
     if (ch === '"') { inString = !inString; continue; }
@@ -336,7 +338,7 @@ function extractJsonObject(text) {
     else if (ch === "}") {
       if (depth > 0) {
         depth--;
-        if (depth === 0 && start !== -1) { candidates.push(text.slice(start, i + 1)); start = -1; }
+        if (depth === 0 && start !== -1) { candidates.push(t.slice(start, i + 1)); start = -1; }
       }
     }
   }
@@ -363,7 +365,7 @@ Du far en uppsattning sokresultat (titlar, URL:er, utdrag). Du kan INTE soka sja
 
 ABSOLUTA REGLER MOT PAHITT (overordnade allt annat):
 - Pasta ENDAST saker du kan stodja pa de medskickade sokresultaten. Hitta aldrig pa avsnitt, poddar, vardar, artal, langd, priser eller placeringar.
-- INGA CITAT. Skriv aldrig nagot citat och tillskriv aldrig en namngiven person en asikt eller ett yttrande (t.ex. "X kallade den..."). Citat far overhuvudtaget inte forekomma i texten.
+- INGA CITAT nagonstans i texten. Anvand aldrig citationstecken och tillskriv aldrig en namngiven person ett yttrande. Skriv om i stallet: i stallet for: hon kallade det "ett mastervaerk" -> skriv: det har hyllats som ett mastervaerk. Inga " ' « » far forekomma i why_great eller day_connection.
 - Ar du osaker pa ett falt (artal/langd) – satt det till null i stallet for att gissa.
 - Poddens namn maste finnas i dina sokresultat. Annars valj en annan podd.
 
@@ -398,7 +400,7 @@ SKRIV "DARFOR AR DET BRA"-TEXTEN SOM EN MANNISKA:
 - Inga floskler, inga AI-klichéer ("dyk ner i", "en fascinerande resa", "vare sig du ar..."). Inga citat. Lat det lata som en kunnig redaktor, inte en generator.
 
 SVARSFORMAT:
-Nar du ar klar, avsluta med ETT rent JSON-objekt (och inget efter det) med exakt dessa falt:
+Svara med ENBART JSON-objektet – inget resonemang, ingen forklarande text, inga <think>-taggar, inga markdown-staket. ETT rent JSON-objekt med exakt dessa falt:
 {
   "episode_title": string,
   "show_name": string,
@@ -664,4 +666,4 @@ if (isDirectRun) {
   });
 }
 
-export { validateTip, NON_STANDALONE_RE, QUOTE_RE, SERIES_ADMISSION_RE, normUrl, collapse, SEEN, fetchOnThisDay, formatThemeBlock };
+export { validateTip, extractJsonObject, NON_STANDALONE_RE, QUOTE_RE, SERIES_ADMISSION_RE, normUrl, collapse, SEEN, fetchOnThisDay, formatThemeBlock };

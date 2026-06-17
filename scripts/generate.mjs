@@ -1,9 +1,9 @@
 // Dagens Pod – dygnsgenerering for GitHub Actions.
-// Kors en gang per dygn: valjer ETT dokumenterat hyllat poddavsnitt med hjalp av
-// en LLM (Qwen via Staik, OpenAI-kompatibelt API) som soker pa webben via en
-// sjalv-hostad SearXNG-instans (klient-sidigt web_search-verktyg). Resultatet
-// valideras och kallbelaggs, och laggs till i den statiska datafilen som GitHub
-// Pages serverar.
+// Kors en gang per dygn: gor varierade webbsokningar mot en self-hostad SearXNG,
+// matar in traffarna i ETT anrop till en LLM (Qwen via Staik) som valjer ETT
+// dokumenterat hyllat avsnitt. Resultatet valideras/kallbelaggs och laggs till i
+// den statiska datafilen som GitHub Pages serverar. Inget agentiskt verktygs-loop
+// (token-snalt); sokningarna gors deterministiskt i koden.
 //
 // Kraver Node 20+ (global fetch, AbortSignal.timeout). Inga npm-beroenden.
 // Las STAIK_API_KEY fran miljon (GitHub Actions secret) och SEARXNG_URL
@@ -19,11 +19,15 @@ import { dirname, join } from "node:path";
 const LANGUAGES = ["sv", "en"];
 const GENRES = "all"; // "all" eller t.ex. ["history", "true crime"]
 const MODEL = "qwen3.6:35b-a3b"; // Staik-modell. Alternativ: "qwen3.5:9b", "gemma4:31b".
-const DEDUP_COUNT = 60;
-const MAX_ATTEMPTS = 4; // fler forsok eftersom guardrails underkanner mer
-const MAX_TOOL_ROUNDS = 5; // hur manga ganger modellen far anropa web_search per forsok
-const SEED_RESULTS_PER_QUERY = 6; // antal traffar som skickas tillbaka per sokning
-const TEMPERATURE = 0.4; // lagt for att minska pahitt/konfabulering i fakta
+const DEDUP_COUNT = 60;          // avsnitts-dedup (skickas till modellen)
+const MAX_ATTEMPTS = 3;          // forsok per dag
+const SEED_RESULTS_PER_QUERY = 4; // traffar per sokning som skickas till modellen
+const SNIPPET_LEN = 160;         // max tecken per snippet (token-besparing)
+const THEME_HOOKS = 8;           // antal "on this day"-krokar som skickas med
+const MAX_TOKENS = 2000;         // tak for modellens svar (rymligt sa JSON inte klipps)
+const TEMPERATURE = 0.4;         // lagt for att minska pahitt/konfabulering i fakta
+const SHOW_HARD_DAYS = 7;        // samma podd far INTE aterkomma inom sa har manga dagar
+const SHOW_SOFT_COUNT = 30;      // poddar att be modellen undvika (mjukt)
 const WHY_LANG = "sv";
 const SOURCE_FETCH_TIMEOUT_MS = 8000;
 const SEARXNG_TIMEOUT_MS = 12000;
@@ -134,9 +138,9 @@ async function searxngSearch(query) {
     const results = (Array.isArray(data.results) ? data.results : [])
       .slice(0, SEED_RESULTS_PER_QUERY)
       .map((r) => ({
-        title: typeof r.title === "string" ? r.title : "",
+        title: typeof r.title === "string" ? r.title.slice(0, 140) : "",
         url: typeof r.url === "string" ? r.url : "",
-        snippet: typeof r.content === "string" ? r.content.slice(0, 400) : "",
+        snippet: typeof r.content === "string" ? r.content.slice(0, SNIPPET_LEN) : "",
       }))
       .filter((r) => /^https?:\/\//i.test(r.url));
     for (const r of results) SEEN.push(r);
@@ -146,25 +150,60 @@ async function searxngSearch(query) {
   }
 }
 
-// Kor ett par bredsokningar for att alltid ge modellen riktigt material att utga fran.
-function seedQueries(attempt) {
-  const pool = [
-    "best podcast episodes of all time",
-    "basta poddavsnitt genom tiderna",
-    "award winning podcast episode",
-    "most acclaimed podcast episodes reddit",
-    "arets basta poddavsnitt lista",
-    "podchaser best podcast episodes",
-  ];
-  // Rotera urvalet per forsok sa retries far andra ingangar.
-  const offset = ((attempt - 1) * 2) % pool.length;
-  return [pool[offset], pool[(offset + 1) % pool.length]];
+// Bred, varierad pool av sokvinklar (genre/sprak/kalla). Vi roterar urvalet per DAG
+// sa att olika poddar dyker upp olika dagar – inte samma "basta genom tiderna" varje dag.
+const QUERY_POOL = [
+  "best true crime podcast episode of all time",
+  "basta svenska poddavsnitt genom tiderna",
+  "best comedy podcast episode acclaimed",
+  "p3 dokumentar basta avsnitt",
+  "best history podcast episode award winning",
+  "hyllat svenskt poddavsnitt reddit",
+  "best science podcast episode reddit",
+  "basta svenska podcast avsnitt lista",
+  "best storytelling podcast episode ever",
+  "p1 dokumentar basta avsnitt",
+  "best investigative journalism podcast episode",
+  "basta poddavsnitt samhalle svenska",
+  "best interview podcast episode of all time",
+  "best sports podcast episode acclaimed",
+  "best music podcast episode reddit",
+  "peabody award winning podcast episode",
+  "podchaser highest rated podcast episodes",
+  "most moving podcast episode of all time",
+];
+
+function dayIndex(date) {
+  const [y, m, d] = String(date).split("-").map(Number);
+  return Math.floor(Date.UTC(y, (m || 1) - 1, d || 1) / 86400000);
 }
 
-async function gatherSeedResults(attempt) {
-  const queries = seedQueries(attempt);
-  const searches = await Promise.all(queries.map((q) => searxngSearch(q)));
-  return searches;
+// En sokfras byggd ur dagens "on this day"-krok, sa urvalet styrs mot dagens amne.
+function themeQuery(hooks, date, attempt) {
+  if (!hooks.length) return null;
+  const h = hooks[(dayIndex(date) + attempt - 1) % hooks.length];
+  const subj = h.text
+    .replace(/\(.*?\)/g, " ")
+    .split(/[.,;:–-]/)[0]
+    .split(/\s+/)
+    .slice(0, 6)
+    .join(" ")
+    .trim();
+  return subj.length >= 4 ? `podcast episode about ${subj}` : null;
+}
+
+// 3 spridda vinklar ur poolen (roterar per dag + forsok) + ev. en tema-sokning.
+function buildQueries(date, attempt, hooks) {
+  const n = QUERY_POOL.length;
+  const base = dayIndex(date) + (attempt - 1) * 5;
+  const qs = [0, Math.floor(n / 3), Math.floor((2 * n) / 3)].map((o) => QUERY_POOL[(base + o) % n]);
+  const tq = themeQuery(hooks, date, attempt);
+  if (tq) qs.push(tq);
+  return [...new Set(qs)];
+}
+
+async function gatherResults(queries) {
+  return Promise.all(queries.map((q) => searxngSearch(q)));
 }
 
 function formatSearchResults(searches) {
@@ -203,9 +242,9 @@ async function fetchOnThisDayForWiki(wiki, mm, dd) {
       hooks.push({ kind, year: typeof it.year === "number" ? it.year : null, text });
     }
   };
-  take(data.selected, "handelse", 12);
-  take(data.events, "handelse", 10);
-  take(data.births, "fodd", 8);
+  take(data.selected, "handelse", 8);
+  take(data.events, "handelse", 5);
+  take(data.births, "fodd", 3);
   return hooks;
 }
 
@@ -228,12 +267,12 @@ async function fetchOnThisDay(date) {
     const k = collapse(h.text).slice(0, 80);
     if (k && !seen.has(k)) { seen.add(k); uniq.push(h); }
   }
-  return uniq.slice(0, 24);
+  return uniq.slice(0, 16);
 }
 
 function formatThemeBlock(hooks, mm, dd) {
   if (!hooks.length) return "";
-  const lines = hooks.map((h) => {
+  const lines = hooks.slice(0, THEME_HOOKS).map((h) => {
     const y = h.year != null ? `${h.year}` : "okant ar";
     const label = h.kind === "fodd" ? "Fodd" : "Handelse";
     return `- [${label}, ${y}] ${h.text}`;
@@ -242,25 +281,11 @@ function formatThemeBlock(hooks, mm, dd) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Staik chat/completions (OpenAI-kompatibelt) med klient-sidigt web_search-verktyg
+// Staik chat/completions (OpenAI-kompatibelt) – ETT anrop per forsok (ingen
+// agentisk tool-loop). Sokningarna gors deterministiskt i koden och matas in en
+// gang, vilket kapar token-forbrukningen drastiskt.
 // ─────────────────────────────────────────────────────────────────────────────
-const WEB_SEARCH_TOOL = {
-  type: "function",
-  function: {
-    name: "web_search",
-    description:
-      "Sok pa webben for att hitta och belagga hyllade poddavsnitt. Returnerar titlar, URL:er och utdrag.",
-    parameters: {
-      type: "object",
-      properties: {
-        query: { type: "string", description: "Sokfrasen, t.ex. 'best true crime podcast episode award'." },
-      },
-      required: ["query"],
-    },
-  },
-};
-
-async function staikChat(apiKey, messages) {
+async function askModel(apiKey, systemMsg, userMsg) {
   const res = await fetch(STAIK_URL, {
     method: "POST",
     headers: {
@@ -269,11 +294,12 @@ async function staikChat(apiKey, messages) {
     },
     body: JSON.stringify({
       model: MODEL,
-      messages,
-      tools: [WEB_SEARCH_TOOL],
-      tool_choice: "auto",
-      temperature: 0.7,
-      max_tokens: 3000,
+      messages: [
+        { role: "system", content: systemMsg },
+        { role: "user", content: userMsg },
+      ],
+      temperature: TEMPERATURE,
+      max_tokens: MAX_TOKENS,
     }),
     signal: AbortSignal.timeout(STAIK_TIMEOUT_MS),
   });
@@ -282,52 +308,9 @@ async function staikChat(apiKey, messages) {
     throw new Error(`Staik API ${res.status}: ${body.slice(0, 500)}`);
   }
   const data = await res.json();
-  const choice = data.choices?.[0];
-  if (!choice) throw new Error("Staik-svaret saknade 'choices'.");
-  return choice;
-}
-
-// Driv modellen: den kan anropa web_search flera ganger, sedan returnerar vi sluttexten.
-async function runAgent(apiKey, systemPrompt, userPrompt) {
-  const messages = [
-    { role: "system", content: systemPrompt },
-    { role: "user", content: userPrompt },
-  ];
-
-  for (let round = 0; round < MAX_TOOL_ROUNDS; round++) {
-    const choice = await staikChat(apiKey, messages);
-    const msg = choice.message || {};
-    messages.push(msg);
-
-    const toolCalls = Array.isArray(msg.tool_calls) ? msg.tool_calls : [];
-    if (choice.finish_reason === "tool_calls" || toolCalls.length) {
-      for (const tc of toolCalls) {
-        let query = "";
-        try {
-          query = JSON.parse(tc.function?.arguments || "{}").query || "";
-        } catch {
-          query = "";
-        }
-        const result = query ? await searxngSearch(query) : { query: "", error: "tom sokfras", results: [] };
-        messages.push({
-          role: "tool",
-          tool_call_id: tc.id,
-          content: JSON.stringify(result),
-        });
-      }
-      continue;
-    }
-
-    return typeof msg.content === "string" ? msg.content : "";
-  }
-
-  // Slut pa tool-rundor: be om ett avslutande svar utan fler verktyg.
-  messages.push({
-    role: "user",
-    content: "Avsluta nu med ENBART JSON-objektet enligt instruktionen. Anropa inga fler verktyg.",
-  });
-  const final = await staikChat(apiKey, messages);
-  return typeof final.message?.content === "string" ? final.message.content : "";
+  const content = data.choices?.[0]?.message?.content;
+  if (typeof content !== "string") throw new Error("Staik-svaret saknade text-innehall.");
+  return content;
 }
 
 // Plocka ut det sista balanserade JSON-objektet ur en textstrang.
@@ -371,18 +354,21 @@ function systemPrompt() {
   const genreLine = GENRES === "all" ? "Alla genrer ar tillatna." : `Prioritera dessa genrer: ${GENRES.join(", ")}.`;
   return `Du ar en mycket paläst poddredaktor som valjer ut ETT enastaende poddavsnitt som "dagens tips".
 
-Du har verktyget web_search. Anvand det for att hitta och belagga hyllade avsnitt – sok flera ganger med olika fraser om det behovs. Du far redan en uppsattning sokresultat att utga fran.
+Du far en uppsattning sokresultat (titlar, URL:er, utdrag). Du kan INTE soka sjalv – valj ENBART utifran det som star i sokresultaten.
 
 ABSOLUTA REGLER MOT PAHITT (overordnade allt annat):
-- Pasta ENDAST saker du kan stodja pa de sokresultat du faktiskt sett. Hitta aldrig pa avsnitt, poddar, vardar, artal, langd, priser eller placeringar.
+- Pasta ENDAST saker du kan stodja pa de medskickade sokresultaten. Hitta aldrig pa avsnitt, poddar, vardar, artal, langd, priser eller placeringar.
 - INGA CITAT. Skriv aldrig nagot citat och tillskriv aldrig en namngiven person en asikt eller ett yttrande (t.ex. "X kallade den..."). Citat far overhuvudtaget inte forekomma i texten.
 - Ar du osaker pa ett falt (artal/langd) – satt det till null i stallet for att gissa.
 - Poddens namn maste finnas i dina sokresultat. Annars valj en annan podd.
 
 KRAV PA AVSNITTET:
 - Dokumenterat hyllat: aterkommer pa "basta avsnitt"-listor, hogt rankat pa Podchaser/Reddit, prisbelont, eller mycket delat/citerat.
-- Sprak: ${langNames}.
+- Sprak: ${langNames}. Vaxla garna sprak och genre fran dag till dag for variation.
 - ${genreLine}
+
+VARIERA POODARNA:
+- Du far en lista pa nyligen anvanda poddar. Valj helst en podd som INTE star pa listan – undvik att samma podd aterkommer ofta.
 
 FRISTAENDE AVSNITT (viktigt):
 - Avsnittet MASTE vara fristaende och fungera som en ingang i sig sjalvt – det ska ga att lyssna pa utan att ha hort nagot annat avsnitt.
@@ -396,7 +382,7 @@ KOPPLING TILL DAGENS DATUM (stark preferens, inte tvang):
 - Hittar du INGET genuint hyllat avsnitt som passar: valj anda det basta hyllade avsnittet utan koppling, och lamna "day_connection" som tom strang "". Hitta ALDRIG pa en koppling och tvinga inte fram en krystad sadan – kvaliteten gar fore temat.
 
 KALLOR (viktigt):
-- Du MASTE ange minst en kall-URL i "sources", och varje sadan URL MASTE vara en URL som ORDAGRANT forekom i dina web_search-resultat. Hitta ALDRIG pa en URL och andra den inte. Valj en kalla som verkligen belagger hyllningen (lista, artikel, prismotivering, Podchaser-sida, upproostad Reddit-trad).
+- Du MASTE ange minst en kall-URL i "sources", och varje sadan URL MASTE vara en URL som ORDAGRANT forekom i de medskickade sokresultaten. Hitta ALDRIG pa en URL och andra den inte. Valj en kalla som verkligen belagger hyllningen (lista, artikel, prismotivering, Podchaser-sida, upproostad Reddit-trad).
 
 LYSSNA-LANKAR:
 - Ange bara listen_links (apple/spotify/web) som du faktiskt sett i sokresultaten. Hitta ALDRIG pa en Spotify-/Apple-URL eller ett avsnitts-ID. Ar du osaker – utelamna lanken (lat den vara borta) i stallet for att gissa.
@@ -424,23 +410,27 @@ Nar du ar klar, avsluta med ETT rent JSON-objekt (och inget efter det) med exakt
 }`;
 }
 
-function userPrompt(dedupList, searchBlock, themeBlock, lastError) {
+function userPrompt(dedupList, avoidShows, searchBlock, themeBlock, lastError) {
   const dedup = dedupList.length ? dedupList.map((d) => `- ${d}`).join("\n") : "(historiken ar tom)";
+  const avoid = avoidShows.length ? avoidShows.map((s) => `- ${s}`).join("\n") : "(inga an)";
   const retry = lastError
-    ? `\n\nFOREGAENDE FORSOK UNDERKANDES: ${lastError}\nValj ett ANNAT avsnitt som uppfyller alla krav.\n`
+    ? `\n\nFOREGAENDE FORSOK UNDERKANDES: ${lastError}\nValj ett ANNAT avsnitt (garna en annan podd) som uppfyller alla krav.\n`
     : "";
-  return `Valj ETT poddavsnitt enligt instruktionerna.
+  return `Valj ETT poddavsnitt enligt instruktionerna, enbart utifran sokresultaten nedan.
 
 Det far INTE vara nagot av dessa redan rekommenderade avsnitt:
 ${dedup}
 
+UNDVIK HELST dessa nyligen anvanda poddar (valj en annan podd om mojligt):
+${avoid}
+
 ${themeBlock || "(ingen dagskoppling tillganglig – valj fritt bland hyllade avsnitt)"}
 
-SOKRESULTAT ATT UTGA FRAN (du kan soka mer med web_search):
-${searchBlock || "(inga sokresultat annu – anvand web_search)"}${retry}`;
+SOKRESULTAT ATT UTGA FRAN (detta ar allt du har – du kan inte soka mer):
+${searchBlock || "(inga sokresultat – avsta hellre an att hitta pa)"}${retry}`;
 }
 
-function validateTip(raw, recentKeys, seen) {
+function validateTip(raw, recentKeys, seen, hardShowSlugs = new Set()) {
   if (!raw || typeof raw !== "object") return { ok: false, error: "Kunde inte tolka nagot JSON-objekt ur svaret." };
   const str = (v) => (typeof v === "string" ? v.trim() : "");
 
@@ -509,7 +499,12 @@ function validateTip(raw, recentKeys, seen) {
     return { ok: false, error: `show_name "${show_name}" forekom inte i sokresultaten.` };
   }
 
-  const key = `${slugify(show_name)}::${normalizeTitle(episode_title)}`;
+  const show_slug = slugify(show_name);
+  if (hardShowSlugs.has(show_slug)) {
+    return { ok: false, error: `Podden "${show_name}" anvandes for nyligen – valj en annan podd.` };
+  }
+
+  const key = `${show_slug}::${normalizeTitle(episode_title)}`;
   if (recentKeys.has(key)) {
     return { ok: false, error: `Avsnittet finns redan i historiken: "${show_name} – ${episode_title}".` };
   }
@@ -598,6 +593,9 @@ async function main() {
   const recent = data.slice().sort((a, b) => (a.date < b.date ? 1 : -1)).slice(0, DEDUP_COUNT);
   const dedupList = recent.map((r) => `${r.date} | ${r.show_name} | ${r.episode_title}`);
   const recentKeys = new Set(recent.map((r) => `${slugify(r.show_name)}::${normalizeTitle(r.episode_title)}`));
+  // Podd-dedup: hard sparr for de senaste SHOW_HARD_DAYS dagarna, mjuk lista darutover.
+  const hardShowSlugs = new Set(recent.slice(0, SHOW_HARD_DAYS).map((r) => slugify(r.show_name)));
+  const avoidShows = [...new Set(recent.slice(0, SHOW_SOFT_COUNT).map((r) => r.show_name))];
 
   // Dagens tema-krokar fran Wikipedia "On this day" (stark preferens, inte tvang).
   const [, mm, dd] = date.split("-");
@@ -609,10 +607,12 @@ async function main() {
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
     try {
       SEEN.length = 0; // nollstall sedda sokresultat per forsok
-      const searches = await gatherSeedResults(attempt);
+      const queries = buildQueries(date, attempt, hooks);
+      console.log(`Forsok ${attempt}: sokningar [${queries.join(" | ")}]`);
+      const searches = await gatherResults(queries);
       const searchBlock = formatSearchResults(searches);
-      const text = await runAgent(apiKey, systemPrompt(), userPrompt(dedupList, searchBlock, themeBlock, lastError));
-      const v = validateTip(extractJsonObject(text), recentKeys, SEEN);
+      const text = await askModel(apiKey, systemPrompt(), userPrompt(dedupList, avoidShows, searchBlock, themeBlock, lastError));
+      const v = validateTip(extractJsonObject(text), recentKeys, SEEN, hardShowSlugs);
       if (!v.ok) { lastError = v.error; console.log(`Forsok ${attempt} underkant: ${v.error}`); continue; }
 
       if (!(await hasReachableSource(v.tip.sources))) {

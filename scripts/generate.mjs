@@ -673,7 +673,8 @@ async function itunesAppleUrl(showName, episodeTitle) {
 
 // Garanterar att tipset alltid har minst en Apple- och en Spotify-lank.
 // Behaller redan nabara modell-lankar; fyller bara i det som saknas.
-async function ensureListenLinks(links, showName, episodeTitle) {
+// Exporteras sa att enrich-links.mjs kan efter-fylla aldre poster med samma logik.
+export async function ensureListenLinks(links, showName, episodeTitle) {
   const out = { ...(links || {}) };
   const term = `${showName} ${episodeTitle}`.trim();
   if (!out.apple) {

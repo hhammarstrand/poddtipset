@@ -605,6 +605,87 @@ async function isReachable(url) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Lyssna-lankar: garantera ALLTID minst Apple + Spotify (utan att hitta pa URL:er)
+// ─────────────────────────────────────────────────────────────────────────────
+// Honest fallback: en sok-deeplänk ar ingen pahittad avsnitts-URL utan en riktig
+// sokning som tar lyssnaren ratt. Anvands bara nar vi inte kan sla upp en exakt URL.
+function appleSearchLink(term) {
+  return `https://podcasts.apple.com/se/search?term=${encodeURIComponent(term)}`;
+}
+function spotifySearchLink(term) {
+  return `https://open.spotify.com/search/${encodeURIComponent(term)}`;
+}
+
+// Luddig matchning sa vi inte rakar lanka fel podd/avsnitt fran iTunes-traffar.
+function looseMatch(a, b) {
+  const na = normalizeTitle(a);
+  const nb = normalizeTitle(b);
+  if (!na || !nb) return false;
+  if (na.includes(nb) || nb.includes(na)) return true;
+  const ta = new Set(na.split(" ").filter(Boolean));
+  const tb = new Set(nb.split(" ").filter(Boolean));
+  const [small, big] = ta.size <= tb.size ? [ta, tb] : [tb, ta];
+  let hit = 0;
+  for (const w of small) if (big.has(w)) hit++;
+  return small.size > 0 && hit / small.size >= 0.6;
+}
+
+// Slar upp en VERKLIG Apple Podcasts-URL via iTunes Search API (gratis, nyckellost).
+// Forst pa avsnittsniva, annars poddniva. null om inget sakert traffar.
+async function itunesAppleUrl(showName, episodeTitle) {
+  const query = (entity, term) => {
+    const u = new URL("https://itunes.apple.com/search");
+    u.searchParams.set("media", "podcast");
+    u.searchParams.set("entity", entity);
+    u.searchParams.set("limit", "8");
+    u.searchParams.set("country", "SE");
+    u.searchParams.set("term", term);
+    return u;
+  };
+  const get = async (u) => {
+    const res = await fetch(u, {
+      signal: AbortSignal.timeout(SOURCE_FETCH_TIMEOUT_MS),
+      headers: { "user-agent": "DagensPod/1.0 (+https://github.com/hhammarstrand/poddtipset)" },
+    });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return Array.isArray(data.results) ? data.results : [];
+  };
+  try {
+    // 1) Exakt avsnitt: bade podd- och avsnittsnamn maste matcha.
+    for (const r of await get(query("podcastEpisode", `${showName} ${episodeTitle}`))) {
+      if (looseMatch(r.collectionName || "", showName) && looseMatch(r.trackName || "", episodeTitle)) {
+        const url = r.trackViewUrl || r.episodeUrl || r.collectionViewUrl;
+        if (url) return appleSe(url);
+      }
+    }
+    // 2) Faller tillbaka pa poddens sida.
+    for (const r of await get(query("podcast", showName))) {
+      if (looseMatch(r.collectionName || "", showName) && r.collectionViewUrl) {
+        return appleSe(r.collectionViewUrl);
+      }
+    }
+  } catch {
+    /* nat-/parsfel – faller igenom till null sa sok-deeplänk anvands */
+  }
+  return null;
+}
+
+// Garanterar att tipset alltid har minst en Apple- och en Spotify-lank.
+// Behaller redan nabara modell-lankar; fyller bara i det som saknas.
+async function ensureListenLinks(links, showName, episodeTitle) {
+  const out = { ...(links || {}) };
+  const term = `${showName} ${episodeTitle}`.trim();
+  if (!out.apple) {
+    out.apple = (await itunesAppleUrl(showName, episodeTitle)) || appleSearchLink(term);
+  }
+  if (!out.spotify) {
+    out.spotify = spotifySearchLink(term);
+  }
+  return out;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Huvudflode
 // ─────────────────────────────────────────────────────────────────────────────
 async function main() {
@@ -680,8 +761,10 @@ async function main() {
         continue;
       }
 
-      // Rensa bort lyssna-lankar som inte gar att na (t.ex. pahittade Spotify-URL:er).
+      // Rensa bort lyssna-lankar som inte gar att na (t.ex. pahittade Spotify-URL:er),
+      // och garantera sedan att Apple + Spotify alltid finns (iTunes-API + sok-deeplänk).
       v.tip.listen_links = await filterReachableLinks(v.tip.listen_links);
+      v.tip.listen_links = await ensureListenLinks(v.tip.listen_links, v.tip.show_name, v.tip.episode_title);
 
       const record = { date, ...v.tip, created_at: new Date().toISOString() };
       const next = [record, ...data].sort((a, b) => (a.date < b.date ? 1 : -1));

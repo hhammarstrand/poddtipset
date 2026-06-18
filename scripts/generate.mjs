@@ -1,12 +1,12 @@
 // Dagens Pod – dygnsgenerering for GitHub Actions.
 // Kors en gang per dygn: gor varierade webbsokningar mot en self-hostad SearXNG,
-// matar in traffarna i ETT anrop till en LLM (Qwen via Staik) som valjer ETT
+// matar in traffarna i ETT anrop till en LLM (MiniMax) som valjer ETT
 // dokumenterat hyllat avsnitt. Resultatet valideras/kallbelaggs och laggs till i
 // den statiska datafilen som GitHub Pages serverar. Inget agentiskt verktygs-loop
 // (token-snalt); sokningarna gors deterministiskt i koden.
 //
 // Kraver Node 20+ (global fetch, AbortSignal.timeout). Inga npm-beroenden.
-// Las STAIK_API_KEY fran miljon (GitHub Actions secret) och SEARXNG_URL
+// Las MINIMAX_API_KEY fran miljon (GitHub Actions secret) och SEARXNG_URL
 // (default http://localhost:8080, satts av workflowen).
 
 import { readFile, writeFile, mkdir } from "node:fs/promises";
@@ -18,20 +18,20 @@ import { dirname, join } from "node:path";
 // ─────────────────────────────────────────────────────────────────────────────
 const LANGUAGES = ["sv", "en"];
 const GENRES = "all"; // "all" eller t.ex. ["history", "true crime"]
-const MODEL = "qwen3.6:35b-a3b"; // Staik-modell. Alternativ: "qwen3.5:9b", "gemma4:31b".
+const MODEL = "MiniMax-M2.7"; // MiniMax-modell. Alternativ: "MiniMax-M3", "MiniMax-M2.7-highspeed".
 const DEDUP_COUNT = 60;          // avsnitts-dedup (skickas till modellen)
 const MAX_ATTEMPTS = 10;         // forsok per dag (sveper bredare sa fler dagar blir kompletta)
 const SEED_RESULTS_PER_QUERY = 4; // traffar per sokning som skickas till modellen
 const SNIPPET_LEN = 160;         // max tecken per snippet (token-besparing)
 const THEME_HOOKS = 8;           // antal "on this day"-krokar som skickas med
-const MAX_TOKENS = 4000;         // tak for modellens svar (rymligt sa Qwens resonemang + JSON ryms)
+const MAX_TOKENS = 8000;         // tak for modellens svar (rymligt sa MiniMax interleaved thinking + JSON ryms)
 const TEMPERATURE = 0.4;         // lagt for att minska pahitt/konfabulering i fakta
 const SHOW_HARD_DAYS = 7;        // samma podd far INTE aterkomma inom sa har manga dagar
 const SHOW_SOFT_COUNT = 30;      // poddar att be modellen undvika (mjukt)
 const WHY_LANG = "sv";
 const SOURCE_FETCH_TIMEOUT_MS = 8000;
 const SEARXNG_TIMEOUT_MS = 12000;
-const STAIK_TIMEOUT_MS = 120000;
+const MINIMAX_TIMEOUT_MS = 120000;
 const WIKI_TIMEOUT_MS = 12000;
 // Vid backfill (manga dagar i samma korning) kan SearXNG:s uppstroms-motorer borja
 // strypa/blockera korningens IP efter tat sokvolym – traffarna gar da mot 0 over tid.
@@ -52,8 +52,10 @@ const QUOTE_RE = /["“”«»]|'[^']*\s[^']*'/;
 const SERIES_ADMISSION_RE =
   /\b(den\s+)?första\s+(delen|avsnittet|episoden)\b|\bförsta\s+delen\s+i\b|\bdel\s*(1|ett)\b|\bfirst\s+(part|episode|installment)\b|\bpart\s+one\b|\bseason\s+(opener|premiere)\b|\bseries\s+opener\b|\bpremiär(avsnitt|avsnittet)\b|\bopening\s+episode\b|\b(två|tre|fyra|fem|sex|sju|åtta|fler)delad\b|\b(multi-?part|two-?part|three-?part)\b|\bdel\s+av\s+en\s+(serie|flerdelad\s+serie)\b|\bfirst\s+in\s+a\s+(series|season)\b|\bden\s+första\s+i\s+en\b|\bkicks?\s+off\s+(the\s+)?(season|series)\b/i;
 
-const STAIK_URL =
-  (process.env.STAIK_BASE_URL || "https://api.staik.se/v1").replace(/\/$/, "") + "/chat/completions";
+// MiniMax OpenAI-kompatibel endpoint. Byt MINIMAX_BASE_URL till t.ex.
+// https://api.minimaxi.com/v1 om nyckeln tillhor en annan region.
+const MINIMAX_URL =
+  (process.env.MINIMAX_BASE_URL || "https://api.minimax.io/v1").replace(/\/$/, "") + "/chat/completions";
 const SEARXNG_URL = (process.env.SEARXNG_URL || "http://localhost:8080").replace(/\/$/, "");
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -305,12 +307,12 @@ function formatThemeBlock(hooks, mm, dd) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Staik chat/completions (OpenAI-kompatibelt) – ETT anrop per forsok (ingen
+// MiniMax chat/completions (OpenAI-kompatibelt) – ETT anrop per forsok (ingen
 // agentisk tool-loop). Sokningarna gors deterministiskt i koden och matas in en
 // gang, vilket kapar token-forbrukningen drastiskt.
 // ─────────────────────────────────────────────────────────────────────────────
 async function askModel(apiKey, systemMsg, userMsg) {
-  const res = await fetch(STAIK_URL, {
+  const res = await fetch(MINIMAX_URL, {
     method: "POST",
     headers: {
       "content-type": "application/json",
@@ -325,21 +327,21 @@ async function askModel(apiKey, systemMsg, userMsg) {
       temperature: TEMPERATURE,
       max_tokens: MAX_TOKENS,
     }),
-    signal: AbortSignal.timeout(STAIK_TIMEOUT_MS),
+    signal: AbortSignal.timeout(MINIMAX_TIMEOUT_MS),
   });
   if (!res.ok) {
     const body = await res.text();
-    throw new Error(`Staik API ${res.status}: ${body.slice(0, 500)}`);
+    throw new Error(`MiniMax API ${res.status}: ${body.slice(0, 500)}`);
   }
   const data = await res.json();
   const content = data.choices?.[0]?.message?.content;
-  if (typeof content !== "string") throw new Error("Staik-svaret saknade text-innehall.");
+  if (typeof content !== "string") throw new Error("MiniMax-svaret saknade text-innehall.");
   return content;
 }
 
 // Plocka ut det sista balanserade JSON-objektet ur en textstrang.
 function extractJsonObject(text) {
-  // Ta bort Qwens resonemang sa det inte stor JSON-extraktionen.
+  // Ta bort modellens resonemang (<think>-block) sa det inte stor JSON-extraktionen.
   const t = String(text || "").replace(/<think>[\s\S]*?<\/think>/gi, " ");
   const trimmed = t.trim();
   const direct = tryParse(trimmed);
@@ -690,9 +692,9 @@ export async function ensureListenLinks(links, showName, episodeTitle) {
 // Huvudflode
 // ─────────────────────────────────────────────────────────────────────────────
 async function main() {
-  const apiKey = process.env.STAIK_API_KEY;
+  const apiKey = process.env.MINIMAX_API_KEY;
   if (!apiKey) {
-    console.error("::error::STAIK_API_KEY saknas – kan inte generera.");
+    console.error("::error::MINIMAX_API_KEY saknas – kan inte generera.");
     process.exit(0);
   }
 

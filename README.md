@@ -17,7 +17,7 @@ GitHub Actions (cron, dagligen 06:00 Europe/Stockholm)
         │  startar tillfällig SearXNG-container (gratis, nyckellös web_search)
         │  node scripts/generate.mjs
         ▼
-Qwen via Staik (api.staik.se, OpenAI-kompatibelt)  ──►  söker via SearXNG, validering & källkontroll
+MiniMax (api.minimax.io, OpenAI-kompatibelt)  ──►  söker via SearXNG, validering & källkontroll
         │
         ▼
 public/data/recommendations.json   ← committas tillbaka i repot (persistensen)
@@ -28,13 +28,13 @@ GitHub Pages serverar public/  ──►  frontend laser JSON och visar
 ```
 
 Sökningen är **gratis och nyckellös**: en tillfällig SearXNG-instans startas i workflowen på
-`localhost:8080` och rivs ner när jobbet är klart. Modellen (Qwen) körs via Staik. Ingen
-Anthropic-nyckel och inget betalt sök-API krävs – bara en Staik-nyckel.
+`localhost:8080` och rivs ner när jobbet är klart. Modellen körs via MiniMax. Ingen
+Anthropic-nyckel och inget betalt sök-API krävs – bara en MiniMax-nyckel.
 
 - **Schemalagt jobb:** [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) kör en gång per
   dygn (samt manuellt via "Run workflow"). Det startar SearXNG som en Docker-container innan
   genereringen.
-- **Kurering:** [`scripts/generate.mjs`](scripts/generate.mjs) anropar Qwen via Staik med ett
+- **Kurering:** [`scripts/generate.mjs`](scripts/generate.mjs) anropar MiniMax med ett
   klient-sidigt **web_search**-verktyg som söker mot den lokala SearXNG-instansen. Generatorn
   pre-seedar ett par bredsökningar så modellen alltid har riktiga träffar att utgå från, och ber den
   välja ETT avsnitt som är dokumenterat hyllat (bästa-listor, högt på Podchaser/Reddit,
@@ -71,10 +71,11 @@ gruppering) · `hosts` · `genre` · `language` · `year` · `duration_minutes` 
 ## Konfiguration
 
 Ändra högst upp i [`scripts/generate.mjs`](scripts/generate.mjs):
-`LANGUAGES` (`["sv","en"]`), `GENRES` (`"all"` eller en lista), `MODEL` (`qwen3.6:35b-a3b`, byt
-till t.ex. `qwen3.5:9b` eller `gemma4:31b`), `DEDUP_COUNT`, `MAX_ATTEMPTS`, `MAX_TOKENS`,
+`LANGUAGES` (`["sv","en"]`), `GENRES` (`"all"` eller en lista), `MODEL` (`MiniMax-M2.7`, byt
+till t.ex. `MiniMax-M3` eller `MiniMax-M2.7-highspeed`), `DEDUP_COUNT`, `MAX_ATTEMPTS`, `MAX_TOKENS`,
 `SHOW_HARD_DAYS`/`SHOW_SOFT_COUNT` (podd-dedup), `THEME_HOOKS`, `WHY_LANG`. Sökvinklarna ändras i
-`QUERY_POOL`. Staik-endpoint kan överstyras med miljövariabeln `STAIK_BASE_URL`.
+`QUERY_POOL`. MiniMax-endpoint kan överstyras med miljövariabeln `MINIMAX_BASE_URL`
+(t.ex. `https://api.minimaxi.com/v1` om nyckeln tillhör en annan region).
 Cron-tiden ändras i `.github/workflows/deploy.yml` (`schedule.cron`, UTC).
 
 ---
@@ -83,10 +84,10 @@ Cron-tiden ändras i `.github/workflows/deploy.yml` (`schedule.cron`, UTC).
 
 Det mesta är redan klart i repot. Tre saker behöver göras i GitHub-inställningarna:
 
-1. **Lägg till Staik API-nyckel som secret** (krävs för genereringen):
+1. **Lägg till MiniMax API-nyckel som secret** (krävs för genereringen):
    *Settings → Secrets and variables → Actions → New repository secret*
-   - Namn: `STAIK_API_KEY`
-   - Värde: din nyckel från Staik (`sk-st-…`)
+   - Namn: `MINIMAX_API_KEY`
+   - Värde: din nyckel från MiniMax
 
 2. **Slå på GitHub Pages med Actions som källa:**
    *Settings → Pages → Build and deployment → Source = **GitHub Actions***
@@ -114,22 +115,22 @@ docker run -d --name searxng -p 8080:8080 \
   -v "$PWD/searxng:/etc/searxng:ro" searxng/searxng:latest
 
 # Generera ett tips lokalt (skriver till public/data/recommendations.json)
-STAIK_API_KEY=sk-st-... SEARXNG_URL=http://localhost:8080 npm run generate
+MINIMAX_API_KEY=... SEARXNG_URL=http://localhost:8080 npm run generate
 
 # Servera frontend lokalt (välj en annan port än SearXNG:s 8080)
 npx --yes http-server public -p 8090 -c-1
 ```
 
 `GENERATE_DATE=YYYY-MM-DD` kan sättas för att seeda ett specifikt datum.
-`STAIK_BASE_URL` kan sättas för att peka på en annan Staik-kompatibel endpoint.
+`MINIMAX_BASE_URL` kan sättas för att peka på en annan MiniMax-kompatibel endpoint.
 
 ## Noter
 
 - **Tidszon:** GitHub-cron körs i UTC. `"0 5 * * *"` = 06:00 på vintern (CET) / 07:00 på sommaren
   (CEST) i Europe/Stockholm. Justera i workflowen om du vill ha exakt 06:00 året runt.
-- **Inga hemligheter i koden:** `STAIK_API_KEY` finns bara som GitHub Actions-secret.
+- **Inga hemligheter i koden:** `MINIMAX_API_KEY` finns bara som GitHub Actions-secret.
 - **Kostnad:** sökningen är gratis (self-hostad SearXNG). Den enda eventuella kostnaden är
-  Staik-anropen – ett fåtal per dygn (modellen kan söka i flera rundor).
+  MiniMax-anropen – ett fåtal per dygn.
 - **Sökkvalitet:** SearXNG hämtar från publika sökmotorer som ibland blockar datacenter-IP:n, så
   enstaka körningar kan ge tunna träffar. Generatorn gör då nya försök; misslyckas allt lämnas dagen
   tom och frontend visar gårdagens tips.

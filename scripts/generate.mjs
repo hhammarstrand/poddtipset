@@ -25,7 +25,7 @@ const GENRES = "all"; // "all" eller t.ex. ["history", "true crime"]
 // MiniMax-chattmodell. Alternativ: "MiniMax-M3", "MiniMax-M2.5", "MiniMax-M2.1".
 const MODEL = process.env.MINIMAX_MODEL || "MiniMax-M2.7";
 const DEDUP_COUNT = 60;          // avsnitts-dedup (skickas till modellen)
-const MAX_ATTEMPTS = 8;          // forsok per dag (sveper bredare sa fler dagar blir kompletta)
+const MAX_ATTEMPTS = 12;         // forsok per dag (sveper bredare sa fler dagar blir kompletta)
 const SEED_RESULTS_PER_QUERY = 8; // traffar per sokning som skickas till modellen
 const SNIPPET_LEN = 320;         // max tecken per snippet (langre = fler poddnamn overlever i korpus -> farre falska "podd saknas i resultaten"-underkanningar)
 const THEME_HOOKS = 8;           // antal "on this day"-krokar som skickas med
@@ -397,6 +397,7 @@ ABSOLUTA REGLER MOT PAHITT (overordnade allt annat):
 - INGA CITAT nagonstans i texten. Anvand aldrig citationstecken och tillskriv aldrig en namngiven person ett yttrande. Skriv om i stallet: i stallet for: hon kallade det "ett mastervaerk" -> skriv: det har hyllats som ett mastervaerk. Inga " ' « » far forekomma i why_great eller day_connection.
 - Ar du osaker pa ett falt (artal/langd) – satt det till null i stallet for att gissa.
 - Poddens namn maste finnas i dina sokresultat. Annars valj en annan podd.
+- SPRAK/TECKEN: skriv HELA svaret (alla falt) enbart med latinska bokstaver pa svenska eller engelska. Anvand ALDRIG japanska, kinesiska, koreanska eller andra icke-latinska tecken nagonstans – inte ens i enstaka ord.
 - GISSA ALDRIG vad avsnittet handlar om utifran titeln. Skriv bara om avsnittets innehall om sokresultaten FAKTISKT beskriver just det avsnittet (vad det handlar om, vem som medverkar, varfor det hyllas). Anvand aldrig ord som "kanske", "antyder", "titeln antyder", "troligen", "verkar" – sant avslojar att du gissar. Om sokresultaten bara namnger podden men inte beskriver det enskilda avsnittet: valj ett ANNAT avsnitt som verkligen beskrivs i resultaten.
 - Anvand poddens namn EXAKT som det skrivs i sokresultaten (t.ex. inte "An Infinite Monkey Cage" om resultaten sager "The Infinite Monkey Cage").
 

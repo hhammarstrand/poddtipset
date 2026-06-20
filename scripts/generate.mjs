@@ -26,8 +26,8 @@ const GENRES = "all"; // "all" eller t.ex. ["history", "true crime"]
 const MODEL = process.env.MINIMAX_MODEL || "MiniMax-M2.7";
 const DEDUP_COUNT = 60;          // avsnitts-dedup (skickas till modellen)
 const MAX_ATTEMPTS = 8;          // forsok per dag (sveper bredare sa fler dagar blir kompletta)
-const SEED_RESULTS_PER_QUERY = 6; // traffar per sokning som skickas till modellen
-const SNIPPET_LEN = 180;         // max tecken per snippet (token-besparing)
+const SEED_RESULTS_PER_QUERY = 8; // traffar per sokning som skickas till modellen
+const SNIPPET_LEN = 320;         // max tecken per snippet (langre = fler poddnamn overlever i korpus -> farre falska "podd saknas i resultaten"-underkanningar)
 const THEME_HOOKS = 8;           // antal "on this day"-krokar som skickas med
 const MAX_TOKENS = 8000;         // tak for modellens svar (rymligt sa MiniMax interleaved thinking + JSON ryms)
 const TEMPERATURE = 0.4;         // lagt for att minska pahitt/konfabulering i fakta
@@ -586,11 +586,14 @@ function validateTip(raw, recentKeys, seen, hardShowSlugs = new Set()) {
   };
 }
 
-async function hasReachableSource(sources) {
-  for (const s of sources) {
-    if (await isReachable(s.url)) return true;
-  }
-  return false;
+// Sorterar kallor sa att de som svarar (< 400) hamnar forst – utan att underkanna
+// nagot. Kallorna ar redan akta (kom ur sokresultaten); detta ar bara kosmetik sa
+// att den mest direkt klickbara lanken visas overst i kortet.
+async function sourcesReachableFirst(sources) {
+  const checked = await Promise.all(
+    sources.map(async (s) => ({ s, ok: await isReachable(s.url) }))
+  );
+  return [...checked.filter((c) => c.ok), ...checked.filter((c) => !c.ok)].map((c) => c.s);
 }
 
 // Behall bara lyssna-lankar som faktiskt gar att na (rensar bort pahittade URL:er).
@@ -765,11 +768,12 @@ async function main() {
       const v = validateTip(extractJsonObject(text), recentKeys, SEEN, hardShowSlugs);
       if (!v.ok) { lastError = v.error; console.log(`Forsok ${attempt} underkant: ${v.error}`); continue; }
 
-      if (!(await hasReachableSource(v.tip.sources))) {
-        lastError = "Ingen av kall-URL:erna gick att na (status >= 400 eller timeout).";
-        console.log(`Forsok ${attempt} underkant: ${lastError}`);
-        continue;
-      }
+      // Ingen separat reachability-koll pa kallor: de ar redan garanterat akta (de
+      // MASTE ordagrant ha kommit ur MiniMax sokresultat, se validateTip). En extra
+      // live-fetch foll bara pa bot-skyddade sajter (Reddit/nyhetssajter blockar
+      // datacenter-IP) och underkande korrekta tips. Sorterar reachable forst sa den
+      // mest klickbara kallan visas overst, men underkanner inte langre pa det.
+      v.tip.sources = await sourcesReachableFirst(v.tip.sources);
 
       // Rensa bort lyssna-lankar som inte gar att na (t.ex. pahittade Spotify-URL:er),
       // och garantera sedan att Apple + Spotify alltid finns (iTunes-API + sok-deeplänk).

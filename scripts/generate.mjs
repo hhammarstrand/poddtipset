@@ -22,8 +22,9 @@ import { dirname, join } from "node:path";
 // ─────────────────────────────────────────────────────────────────────────────
 const LANGUAGES = ["sv", "en"];
 const GENRES = "all"; // "all" eller t.ex. ["history", "true crime"]
-// MiniMax-chattmodell. Alternativ: "MiniMax-M3", "MiniMax-M2.5", "MiniMax-M2.1".
-const MODEL = process.env.MINIMAX_MODEL || "MiniMax-M2.7";
+// MiniMax-chattmodell. M3 ger klart renare svensk prosa och stabilare JSON an M2.7
+// (som ibland bytte sprak mitt i). Alternativ: "MiniMax-M2.7", "MiniMax-M2.5".
+const MODEL = process.env.MINIMAX_MODEL || "MiniMax-M3";
 const DEDUP_COUNT = 60;          // avsnitts-dedup (skickas till modellen)
 const MAX_ATTEMPTS = 12;         // forsok per dag (sveper bredare sa fler dagar blir kompletta)
 const SEED_RESULTS_PER_QUERY = 8; // traffar per sokning som skickas till modellen
@@ -409,6 +410,7 @@ KRAV PA AVSNITTET:
 EPISODE_TITLE MASTE VARA ETT SPECIFIKT AVSNITT:
 - "episode_title" ar titeln pa det enskilda avsnittet, INTE namnet pa podden. Det ska sakta vad just detta avsnitt handlar om (t.ex. gasten, fallet, amnet).
 - Skriv ALDRIG samma sak i "episode_title" som i "show_name", och anvand inte poddens slogan/undertitel som avsnittstitel. Om sokresultaten bara ger poddens namn men inget specifikt avsnitt – valj ett annat avsnitt dar avsnittstiteln framgar.
+- Para ALDRIG ihop en avsnittstitel med fel podd. En beromd avsnittstitel hor till EN viss podd (t.ex. "The Case of the Missing Hit" hor till Reply All) – tillskriv den aldrig en annan podd. Avsnittstiteln och poddnamnet du anger maste hora ihop enligt sokresultaten.
 
 VARIERA POODARNA:
 - Du far en lista pa nyligen anvanda poddar. Valj helst en podd som INTE star pa listan – undvik att samma podd aterkommer ofta.

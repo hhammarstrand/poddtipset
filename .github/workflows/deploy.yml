@@ -1,12 +1,10 @@
 name: Bygg och deploya (GitHub Pages)
 
 on:
-  # PAUSAD: den dagliga genereringen ar avstangd for att inte dra OpenAI-kostnader.
-  # Avkommentera schedule-blocket nedan for att sla pa den igen (01:00 UTC =
-  # 02:00 Europe/Stockholm vinter / 03:00 sommar). Manuell korning via
-  # "Run workflow" (workflow_dispatch) fungerar fortfarande.
-  # schedule:
-  #   - cron: "0 1 * * *"
+  # Daglig generering 01:00 UTC = 02:00 Europe/Stockholm (vinter) / 03:00 (sommar).
+  # Drivs av MiniMax (server-side sok + LLM) – billig token-plan, ingen OpenAI-kostnad.
+  schedule:
+    - cron: "0 1 * * *"
   # Deploya nar koden andras.
   push:
     branches: [main, claude/dagens-pod-app-9neig2]
@@ -50,13 +48,13 @@ jobs:
       - name: Generera dagens tips
         if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          MINIMAX_API_KEY: ${{ secrets.MINIMAX_API_KEY }}
           GENERATE_DATE: ${{ inputs.date }}
           GENERATE_FORCE: ${{ inputs.force }}
           BACKFILL_START: ${{ inputs.backfill_start }}
         run: |
-          if [ -z "$OPENAI_API_KEY" ]; then
-            echo "::warning::OPENAI_API_KEY saknas som repo-secret – hoppar over genereringen."
+          if [ -z "$MINIMAX_API_KEY" ]; then
+            echo "::warning::MINIMAX_API_KEY saknas som repo-secret – hoppar over genereringen."
           elif [ -n "$BACKFILL_START" ]; then
             end="${GENERATE_DATE:-$(TZ=Europe/Stockholm date +%F)}"
             d="$BACKFILL_START"

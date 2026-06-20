@@ -1,9 +1,12 @@
 name: Bygg och deploya (GitHub Pages)
 
 on:
-  # Daglig generering 01:00 UTC = 02:00 Europe/Stockholm (vinter) / 03:00 (sommar).
-  schedule:
-    - cron: "0 1 * * *"
+  # PAUSAD: den dagliga genereringen ar avstangd for att inte dra OpenAI-kostnader.
+  # Avkommentera schedule-blocket nedan for att sla pa den igen (01:00 UTC =
+  # 02:00 Europe/Stockholm vinter / 03:00 sommar). Manuell korning via
+  # "Run workflow" (workflow_dispatch) fungerar fortfarande.
+  # schedule:
+  #   - cron: "0 1 * * *"
   # Deploya nar koden andras.
   push:
     branches: [main, claude/dagens-pod-app-9neig2]

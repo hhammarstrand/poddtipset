@@ -33,8 +33,10 @@ vars IP ofta blockades av uppströms-sökmotorer, vilket fick genereringen att t
 (och sidan slutade uppdateras fast workflowen lyste grönt). Nu krävs bara en **OpenAI API-nyckel**;
 ingen container, inget separat sök-API.
 
-- **Schemalagt jobb:** [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) kör en gång per
-  dygn (samt manuellt via "Run workflow").
+- **Schemalagt jobb:** [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) kan köra en gång
+  per dygn (samt manuellt via "Run workflow"). **OBS: den dagliga körningen är just nu pausad** för
+  att inte dra OpenAI-kostnader – `schedule`-blocket i workflowen är utkommenterat. Avkommentera det
+  för att slå på den automatiska genereringen igen. Manuell körning fungerar oavsett.
 - **Kurering:** [`scripts/generate.mjs`](scripts/generate.mjs) anropar OpenAIs Responses API med det
   inbyggda **web_search**-verktyget. Modellen söker själv (flera vinklar) och ombeds välja ETT avsnitt
   som är dokumenterat hyllat (bästa-listor, högt på Podchaser/Reddit, prisbelönt, mycket delat), på

@@ -48,6 +48,10 @@ const NON_STANDALONE_RE =
   /\bupdate\b|update:|\buppdatering\b|\bpart\s+(one|two|three|four|five|1|2|3|4|5)\b|\bpt\.?\s*\d+\b|\bdel\s+(en|tva|två|tre|fyra|fem|\d+)\b|\bkapitel\s*\d+\b|\bchapter\s*\d+\b|\bepisode\s*\d+\b|\bavsnitt\s*\d+\b|\b\d+\s*\/\s*\d+\b|\bfinale\b|\bconclusion\b|\bcontinued\b|\bforts\.?\b|\bfortsättning\b|\bprolog|\bepilog/i;
 // Citat far inte forekomma i why_great – vi kan inte garantera att de stammer, sa de forbjuds helt.
 const QUOTE_RE = /["“”«»]|'[^']*\s[^']*'/;
+// Spekulation/gissning – why_great far INTE gissa om avsnittets innehall (t.ex. utifran
+// titeln). Sant later osakert och ar inte tidnings-/nyhetsbrevskvalitet.
+const SPECULATION_RE =
+  /\bkanske\b|\bantyder\b|\bantagligen\b|\bförmodligen\b|\btroligen\b|\bsannolikt\b|\bgissningsvis\b|\blär\s+vara\b|\bverkar\s+(vara|handla)\b|\btycks\b|titeln\s+(antyder|avslöjar|skvallrar|tyder)|man\s+kan\s+anta|\bpresumably\b|\bprobably\b|\blikely\b|\bmight\s+be\b|\bmay\s+be\b|\bcould\s+be\b|seems?\s+to\b|appears?\s+to\b|the\s+title\s+suggests/i;
 // Erkannanden i texten om att avsnittet ar del av en serie/sasong (titeln rojer det inte alltid).
 const SERIES_ADMISSION_RE =
   /\b(den\s+)?första\s+(delen|avsnittet|episoden)\b|\bförsta\s+delen\s+i\b|\bdel\s*(1|ett)\b|\bfirst\s+(part|episode|installment)\b|\bpart\s+one\b|\bseason\s+(opener|premiere)\b|\bseries\s+opener\b|\bpremiär(avsnitt|avsnittet)\b|\bopening\s+episode\b|\b(två|tre|fyra|fem|sex|sju|åtta|fler)delad\b|\b(multi-?part|two-?part|three-?part)\b|\bdel\s+av\s+en\s+(serie|flerdelad\s+serie)\b|\bfirst\s+in\s+a\s+(series|season)\b|\bden\s+första\s+i\s+en\b|\bkicks?\s+off\s+(the\s+)?(season|series)\b/i;
@@ -388,6 +392,8 @@ ABSOLUTA REGLER MOT PAHITT (overordnade allt annat):
 - INGA CITAT nagonstans i texten. Anvand aldrig citationstecken och tillskriv aldrig en namngiven person ett yttrande. Skriv om i stallet: i stallet for: hon kallade det "ett mastervaerk" -> skriv: det har hyllats som ett mastervaerk. Inga " ' « » far forekomma i why_great eller day_connection.
 - Ar du osaker pa ett falt (artal/langd) – satt det till null i stallet for att gissa.
 - Poddens namn maste finnas i dina sokresultat. Annars valj en annan podd.
+- GISSA ALDRIG vad avsnittet handlar om utifran titeln. Skriv bara om avsnittets innehall om sokresultaten FAKTISKT beskriver just det avsnittet (vad det handlar om, vem som medverkar, varfor det hyllas). Anvand aldrig ord som "kanske", "antyder", "titeln antyder", "troligen", "verkar" – sant avslojar att du gissar. Om sokresultaten bara namnger podden men inte beskriver det enskilda avsnittet: valj ett ANNAT avsnitt som verkligen beskrivs i resultaten.
+- Anvand poddens namn EXAKT som det skrivs i sokresultaten (t.ex. inte "An Infinite Monkey Cage" om resultaten sager "The Infinite Monkey Cage").
 
 KRAV PA AVSNITTET:
 - Dokumenterat hyllat: aterkommer pa "basta avsnitt"-listor, hogt rankat pa Podchaser/Reddit, prisbelont, eller mycket delat/citerat. Valj det avsnitt i sokresultaten som har STARKAST belagg for att vara hyllat – inte bara nagot som rakar namnas.
@@ -508,12 +514,21 @@ function validateTip(raw, recentKeys, seen, hardShowSlugs = new Set()) {
     return { ok: false, error: "why_great far inte innehalla citat eller citationstecken." };
   }
 
+  // Guardrail: ingen spekulation/gissning i why_great. Om modellen gissar avsnittets
+  // innehall (t.ex. "titeln antyder", "kanske") sa har den inte riktig info om avsnittet.
+  if (SPECULATION_RE.test(why_great)) {
+    return { ok: false, error: "why_great spekulerar/gissar om avsnittet (t.ex. 'kanske'/'titeln antyder') – valj ett avsnitt vars innehall faktiskt beskrivs i sokresultaten." };
+  }
+
   // Dagskoppling ar valfri (stark preferens, inte tvang). Inga citat; kort.
   let day_connection = str(raw.day_connection);
   if (day_connection && QUOTE_RE.test(day_connection)) {
     return { ok: false, error: "day_connection far inte innehalla citat eller citationstecken." };
   }
-  if (day_connection.length > 240) day_connection = day_connection.slice(0, 240).trim();
+  if (day_connection.length > 240) {
+    // Trimma vid ordgrans (inte mitt i ett ord) och avsluta snyggt.
+    day_connection = day_connection.slice(0, 240).replace(/\s+\S*$/, "").trim() + "…";
+  }
 
   // Vad som hande denna dag (visas ovanfor kopplingen). Tom om ingen koppling.
   let day_occasion = str(raw.day_occasion);

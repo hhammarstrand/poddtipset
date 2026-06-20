@@ -394,6 +394,10 @@ KRAV PA AVSNITTET:
 - Sprak: ${langNames}. Vaxla garna sprak och genre fran dag till dag for variation.
 - ${genreLine}
 
+EPISODE_TITLE MASTE VARA ETT SPECIFIKT AVSNITT:
+- "episode_title" ar titeln pa det enskilda avsnittet, INTE namnet pa podden. Det ska sakta vad just detta avsnitt handlar om (t.ex. gasten, fallet, amnet).
+- Skriv ALDRIG samma sak i "episode_title" som i "show_name", och anvand inte poddens slogan/undertitel som avsnittstitel. Om sokresultaten bara ger poddens namn men inget specifikt avsnitt – valj ett annat avsnitt dar avsnittstiteln framgar.
+
 VARIERA POODARNA:
 - Du far en lista pa nyligen anvanda poddar. Valj helst en podd som INTE star pa listan – undvik att samma podd aterkommer ofta.
 
@@ -490,6 +494,13 @@ function validateTip(raw, recentKeys, seen, hardShowSlugs = new Set()) {
   }
   if (NON_STANDALONE_RE.test(episode_title)) {
     return { ok: false, error: `Avsnittet ser ut att vara en uppfoljare/del/serie utifran titeln: "${episode_title}".` };
+  }
+
+  // Guardrail: episode_title maste vara ett specifikt avsnitt – inte poddens namn/slogan.
+  const epC = collapse(episode_title);
+  const showCheck = collapse(show_name);
+  if (epC && showCheck && (epC === showCheck || epC.startsWith(showCheck + " with ") || epC.startsWith(showCheck + " med "))) {
+    return { ok: false, error: `episode_title "${episode_title}" ar poddens namn, inte ett specifikt avsnitt.` };
   }
 
   // Guardrail: inga citat i why_great (kan inte garanteras stamma).

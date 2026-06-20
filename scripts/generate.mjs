@@ -29,7 +29,7 @@ const MAX_ATTEMPTS = 12;         // forsok per dag (sveper bredare sa fler dagar
 const SEED_RESULTS_PER_QUERY = 8; // traffar per sokning som skickas till modellen
 const SNIPPET_LEN = 320;         // max tecken per snippet (langre = fler poddnamn overlever i korpus -> farre falska "podd saknas i resultaten"-underkanningar)
 const THEME_HOOKS = 8;           // antal "on this day"-krokar som skickas med
-const MAX_TOKENS = 8000;         // tak for modellens svar (rymligt sa MiniMax interleaved thinking + JSON ryms)
+const MAX_TOKENS = 16000;        // tak for modellens svar (rymligt sa MiniMax interleaved thinking + JSON ryms utan att JSON trunkeras)
 const TEMPERATURE = 0.4;         // lagt for att minska pahitt/konfabulering i fakta
 const SHOW_HARD_DAYS = 7;        // samma podd far INTE aterkomma inom sa har manga dagar
 const SHOW_SOFT_COUNT = 30;      // poddar att be modellen undvika (mjukt)
@@ -582,6 +582,25 @@ function validateTip(raw, recentKeys, seen, hardShowSlugs = new Set()) {
   const showC = collapse(show_name);
   if (corpus && showC && !corpus.includes(showC)) {
     return { ok: false, error: `show_name "${show_name}" forekom inte i sokresultaten.` };
+  }
+
+  // Guardrail: minst en av de angivna kallorna maste vara ett sokresultat som FAKTISKT
+  // namner podden – annars belagger kallan fel podd (t.ex. en artikel om ett annat,
+  // topiskt narliggande avsnitt). Skyddar mot obskyra val "kallbelagda" med fel lank.
+  const seenByUrl = new Map(seenList.map((r) => [normUrl(r.url), collapse(`${r.title} ${r.snippet}`)]));
+  const sourceMentionsShow = sources.some((s) => (seenByUrl.get(normUrl(s.url)) || "").includes(showC));
+  if (showC && !sourceMentionsShow) {
+    return { ok: false, error: `Ingen kalla namner podden "${show_name}" – kallan belagger inte ratt podd.` };
+  }
+
+  // Guardrail: nar why_great ska vara pa svenska, kontrollera att den faktiskt ar det
+  // (modellen skrev ibland engelska/tyska istallet). Kraver nagra svenska funktionsord.
+  if (WHY_LANG === "sv") {
+    const w = ` ${collapse(why_great)} `;
+    const svHits = [" och ", " att ", " som ", " ar ", " den ", " det ", " inte ", " har ", " med ", " en ", " ett "].filter((t) => w.includes(t)).length;
+    if (svHits < 2) {
+      return { ok: false, error: "why_great verkar inte vara skriven pa svenska (WHY_LANG=sv)." };
+    }
   }
 
   const show_slug = slugify(show_name);

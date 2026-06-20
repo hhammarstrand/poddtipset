@@ -9,16 +9,15 @@ server, ingen databas, ingen inloggning, ingen tracking. Mobil först, mörkt/lj
 
 ## Så fungerar det
 
-Brief'ens separation – **schemalagt jobb → persistens → läs-API → frontend** – behålls, men med
+Brief'ens separation – **schemalagt jobb → persistens → läs-API → frontend** – behålls, med
 en ren GitHub-stack:
 
 ```
-GitHub Actions (cron, dagligen 06:00 Europe/Stockholm)
-        │  startar tillfällig SearXNG-container (gratis, nyckellös web_search)
+GitHub Actions (cron, dagligen 03:00 Europe/Stockholm)
         │  node scripts/generate.mjs
         ▼
-MiniMax (api.minimax.io, OpenAI-kompatibelt)  ──►  söker via SearXNG, validering & källkontroll
-        │
+Claude (Anthropic Messages API)  ──►  söker själv på webben via det server-sidiga
+        │                              web_search-verktyget, validering & källkontroll
         ▼
 public/data/recommendations.json   ← committas tillbaka i repot (persistensen)
         │
@@ -27,19 +26,21 @@ GitHub Pages serverar public/  ──►  frontend laser JSON och visar
                                      dagens tips / historik / statistik (allt klient-sidan)
 ```
 
-Sökningen är **gratis och nyckellös**: en tillfällig SearXNG-instans startas i workflowen på
-`localhost:8080` och rivs ner när jobbet är klart. Modellen körs via MiniMax. Ingen
-Anthropic-nyckel och inget betalt sök-API krävs – bara en MiniMax-nyckel.
+Sökningen körs på **Anthropics infrastruktur**, inte på GitHub-runnern: Claudes inbyggda
+`web_search`-verktyg gör de faktiska webbsökningarna server-side. Det betyder att runnerns
+datacenter-IP aldrig är i sökloopen – tidigare löste vi sökningen med en self-hostad SearXNG vars
+IP ofta blockades av uppströms-sökmotorer, vilket fick genereringen att tyst ge noll träffar (och
+sidan slutade uppdateras fast workflowen lyste grönt). Nu krävs bara en **Anthropic API-nyckel**;
+ingen container, inget separat sök-API.
 
 - **Schemalagt jobb:** [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) kör en gång per
-  dygn (samt manuellt via "Run workflow"). Det startar SearXNG som en Docker-container innan
-  genereringen.
-- **Kurering:** [`scripts/generate.mjs`](scripts/generate.mjs) anropar MiniMax med ett
-  klient-sidigt **web_search**-verktyg som söker mot den lokala SearXNG-instansen. Generatorn
-  pre-seedar ett par bredsökningar så modellen alltid har riktiga träffar att utgå från, och ber den
-  välja ETT avsnitt som är dokumenterat hyllat (bästa-listor, högt på Podchaser/Reddit,
-  prisbelönt, mycket delat), på svenska eller engelska, som **inte** redan finns i historiken
-  (senaste ~60 skickas med för dedup). Svaret valideras hårt (guardrails mot påhitt):
+  dygn (samt manuellt via "Run workflow").
+- **Kurering:** [`scripts/generate.mjs`](scripts/generate.mjs) anropar Claude med det server-sidiga
+  **web_search**-verktyget. Modellen söker själv (flera vinklar) och ombeds välja ETT avsnitt som är
+  dokumenterat hyllat (bästa-listor, högt på Podchaser/Reddit, prisbelönt, mycket delat), på svenska
+  eller engelska, som **inte** redan finns i historiken (senaste ~60 skickas med för dedup).
+  Generatorn fångar de sökresultat modellen faktiskt såg och validerar svaret hårt mot dem
+  (guardrails mot påhitt):
   - alla fält ifyllda, rätt språk, ingen dubblett;
   - **minst en käll-URL som faktiskt sågs i sökresultaten** *och* går att nå (`fetch` < 400) –
     modellen får inte hitta på eller ändra en URL;
@@ -49,7 +50,6 @@ Anthropic-nyckel och inget betalt sök-API krävs – bara en MiniMax-nyckel.
     måste sätta `standalone: true`).
 
   Underkänt → regenereras (max 4 försök), annars lämnas dagen tom (frontend visar gårdagens tips).
-  Modellen körs med låg temperatur för att minska konfabulering.
 - **Koppling till dagens datum:** generatorn hämtar Wikipedias "On this day"-flöde (sv + en,
   nyckellöst) för dagens datum och matar in händelser/födslar som dagens tema. Modellen försöker
   gärna välja ett hyllat avsnitt som knyter an till något av detta och fyller då fältet
@@ -71,11 +71,16 @@ gruppering) · `hosts` · `genre` · `language` · `year` · `duration_minutes` 
 ## Konfiguration
 
 Ändra högst upp i [`scripts/generate.mjs`](scripts/generate.mjs):
-`LANGUAGES` (`["sv","en"]`), `GENRES` (`"all"` eller en lista), `MODEL` (`MiniMax-M2.7`, byt
-till t.ex. `MiniMax-M3` eller `MiniMax-M2.7-highspeed`), `DEDUP_COUNT`, `MAX_ATTEMPTS`, `MAX_TOKENS`,
-`SHOW_HARD_DAYS`/`SHOW_SOFT_COUNT` (podd-dedup), `THEME_HOOKS`, `WHY_LANG`. Sökvinklarna ändras i
-`QUERY_POOL`. MiniMax-endpoint kan överstyras med miljövariabeln `MINIMAX_BASE_URL`
-(t.ex. `https://api.minimaxi.com/v1` om nyckeln tillhör en annan region).
+`LANGUAGES` (`["sv","en"]`), `GENRES` (`"all"` eller en lista), `MODEL` (`claude-sonnet-4-6`),
+`WEB_SEARCH_TOOL`, `WEB_SEARCH_MAX_USES`, `DEDUP_COUNT`, `MAX_ATTEMPTS`, `MAX_TOOL_ROUNDS`,
+`MAX_TOKENS`, `SHOW_HARD_DAYS`/`SHOW_SOFT_COUNT` (podd-dedup), `THEME_HOOKS`, `WHY_LANG`.
+
+**Modellval:** `MODEL` är satt till `claude-sonnet-4-6` – stark redaktionell omdömesförmåga
+till låg kostnad, och stöder det moderna `web_search_20260209` (dynamisk filtrering). Vill du ha
+absolut bästa omdöme, byt till `claude-opus-4-8`. Vill du ha billigast möjliga, byt till
+`claude-haiku-4-5` **och** sätt samtidigt `WEB_SEARCH_TOOL = "web_search_20250305"` (Haiku stöder
+bara den enklare sök-varianten). Vid ~1 anrop/dygn är kostnadsskillnaden försumbar, så Sonnet är en
+bra standard. Endpoint kan överstyras med miljövariabeln `ANTHROPIC_BASE_URL`.
 Cron-tiden ändras i `.github/workflows/deploy.yml` (`schedule.cron`, UTC).
 
 ---
@@ -84,10 +89,11 @@ Cron-tiden ändras i `.github/workflows/deploy.yml` (`schedule.cron`, UTC).
 
 Det mesta är redan klart i repot. Tre saker behöver göras i GitHub-inställningarna:
 
-1. **Lägg till MiniMax API-nyckel som secret** (krävs för genereringen):
+1. **Lägg till Anthropic API-nyckel som secret** (krävs för genereringen):
    *Settings → Secrets and variables → Actions → New repository secret*
-   - Namn: `MINIMAX_API_KEY`
-   - Värde: din nyckel från MiniMax
+   - Namn: `ANTHROPIC_API_KEY`
+   - Värde: din nyckel från Anthropic (Console → Settings → API keys). Webbsök måste vara
+     aktiverat för organisationen: *Console → Settings → Privacy → Enable web search*.
 
 2. **Slå på GitHub Pages med Actions som källa:**
    *Settings → Pages → Build and deployment → Source = **GitHub Actions***
@@ -110,29 +116,26 @@ Sidan blir nåbar på `https://<användarnamn>.github.io/poddtipset/`.
 ## Lokal utveckling
 
 ```bash
-# Starta en lokal SearXNG (gratis web_search) – behövs av generatorn
-docker run -d --name searxng -p 8080:8080 \
-  -v "$PWD/searxng:/etc/searxng:ro" searxng/searxng:latest
-
 # Generera ett tips lokalt (skriver till public/data/recommendations.json)
-MINIMAX_API_KEY=... SEARXNG_URL=http://localhost:8080 npm run generate
+ANTHROPIC_API_KEY=... npm run generate
 
-# Servera frontend lokalt (välj en annan port än SearXNG:s 8080)
+# Servera frontend lokalt
 npx --yes http-server public -p 8090 -c-1
 ```
 
 `GENERATE_DATE=YYYY-MM-DD` kan sättas för att seeda ett specifikt datum.
-`MINIMAX_BASE_URL` kan sättas för att peka på en annan MiniMax-kompatibel endpoint.
+`ANTHROPIC_BASE_URL` kan sättas för att peka på en annan Messages API-kompatibel endpoint.
 
 ## Noter
 
-- **Tidszon:** GitHub-cron körs i UTC. `"0 5 * * *"` = 06:00 på vintern (CET) / 07:00 på sommaren
-  (CEST) i Europe/Stockholm. Justera i workflowen om du vill ha exakt 06:00 året runt.
-- **Inga hemligheter i koden:** `MINIMAX_API_KEY` finns bara som GitHub Actions-secret.
-- **Kostnad:** sökningen är gratis (self-hostad SearXNG). Den enda eventuella kostnaden är
-  MiniMax-anropen – ett fåtal per dygn.
-- **Sökkvalitet:** SearXNG hämtar från publika sökmotorer som ibland blockar datacenter-IP:n, så
-  enstaka körningar kan ge tunna träffar. Generatorn gör då nya försök; misslyckas allt lämnas dagen
-  tom och frontend visar gårdagens tips.
+- **Tidszon:** GitHub-cron körs i UTC. `"0 1 * * *"` = 02:00 på vintern (CET) / 03:00 på sommaren
+  (CEST) i Europe/Stockholm. Justera i workflowen om du vill ha en annan tid.
+- **Inga hemligheter i koden:** `ANTHROPIC_API_KEY` finns bara som GitHub Actions-secret.
+- **Kostnad:** Claudes webbsök kostar ca $10 per 1 000 sökningar plus vanliga token-kostnader. Vid
+  ett fåtal sökningar per dygn handlar det om någon krona i månaden.
+- **Sökkvalitet:** sökningen körs på Anthropics infrastruktur, så runnerns IP blockas inte av
+  sökmotorerna (vilket var det som fick den gamla SearXNG-lösningen att ge tomma dagar). Skulle ett
+  försök ändå underkännas görs nya försök; misslyckas allt lämnas dagen tom och frontend visar
+  gårdagens tips.
 - **Subväg:** frontend använder relativa sökvägar och fungerar därför både på
   `<user>.github.io/poddtipset/` och under egen domän.

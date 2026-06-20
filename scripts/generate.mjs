@@ -1,13 +1,13 @@
 // Dagens Pod – dygnsgenerering for GitHub Actions.
-// Kors en gang per dygn: gor varierade webbsokningar mot en self-hostad SearXNG,
-// matar in traffarna i ETT anrop till en LLM (MiniMax) som valjer ETT
-// dokumenterat hyllat avsnitt. Resultatet valideras/kallbelaggs och laggs till i
-// den statiska datafilen som GitHub Pages serverar. Inget agentiskt verktygs-loop
-// (token-snalt); sokningarna gors deterministiskt i koden.
+// Kors en gang per dygn: ber Claude (Anthropic) valja ETT dokumenterat hyllat
+// poddavsnitt. Claude soker sjalv pa webben via det server-sidiga web_search-
+// verktyget (kors pa Anthropics infrastruktur – ingen self-hostad sokmotor och
+// ingen datacenter-IP som blockas av sokmotorerna). Resultatet valideras/
+// kallbelaggs mot de sokresultat modellen FAKTISKT sag, och laggs till i den
+// statiska datafilen som GitHub Pages serverar.
 //
 // Kraver Node 20+ (global fetch, AbortSignal.timeout). Inga npm-beroenden.
-// Las MINIMAX_API_KEY fran miljon (GitHub Actions secret) och SEARXNG_URL
-// (default http://localhost:8080, satts av workflowen).
+// Las ANTHROPIC_API_KEY fran miljon (GitHub Actions secret).
 
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { fileURLToPath, pathToFileURL } from "node:url";
@@ -18,27 +18,27 @@ import { dirname, join } from "node:path";
 // ─────────────────────────────────────────────────────────────────────────────
 const LANGUAGES = ["sv", "en"];
 const GENRES = "all"; // "all" eller t.ex. ["history", "true crime"]
-const MODEL = "MiniMax-M2.7"; // MiniMax-modell. Alternativ: "MiniMax-M3", "MiniMax-M2.7-highspeed".
+// Claude-modell. Sonnet 4.6 ger stark redaktionell omdomesformaga till lag kostnad
+// och stoder det moderna web_search_20260209 (dynamisk filtrering). Alternativ:
+// "claude-opus-4-8" (basta omdome, dyrare) eller "claude-haiku-4-5" (billigast –
+// kraver da WEB_SEARCH_TOOL = "web_search_20250305", se nedan).
+const MODEL = "claude-sonnet-4-6";
+// Web_search-verktygets version. _20260209 (dynamisk filtrering) kraver
+// Opus 4.8/4.7/4.6 eller Sonnet 4.6. Aldre modeller (t.ex. Haiku 4.5) anvander
+// den enklare varianten "web_search_20250305".
+const WEB_SEARCH_TOOL = "web_search_20260209";
+const WEB_SEARCH_MAX_USES = 8;   // tak for antal sokningar per forsok (kostnadsbroms)
 const DEDUP_COUNT = 60;          // avsnitts-dedup (skickas till modellen)
-const MAX_ATTEMPTS = 10;         // forsok per dag (sveper bredare sa fler dagar blir kompletta)
-const SEED_RESULTS_PER_QUERY = 4; // traffar per sokning som skickas till modellen
-const SNIPPET_LEN = 160;         // max tecken per snippet (token-besparing)
+const MAX_ATTEMPTS = 4;          // forsok per dag (varje forsok ar ett komplett Claude-anrop med sokningar)
+const MAX_TOOL_ROUNDS = 6;       // pause_turn-fortsattningar i ett enskilt forsok
 const THEME_HOOKS = 8;           // antal "on this day"-krokar som skickas med
-const MAX_TOKENS = 8000;         // tak for modellens svar (rymligt sa MiniMax interleaved thinking + JSON ryms)
-const TEMPERATURE = 0.4;         // lagt for att minska pahitt/konfabulering i fakta
+const MAX_TOKENS = 8000;         // tak for modellens svar
 const SHOW_HARD_DAYS = 7;        // samma podd far INTE aterkomma inom sa har manga dagar
 const SHOW_SOFT_COUNT = 30;      // poddar att be modellen undvika (mjukt)
 const WHY_LANG = "sv";
 const SOURCE_FETCH_TIMEOUT_MS = 8000;
-const SEARXNG_TIMEOUT_MS = 12000;
-const MINIMAX_TIMEOUT_MS = 120000;
+const ANTHROPIC_TIMEOUT_MS = 300000; // 5 min – web_search-loopen kan ta tid
 const WIKI_TIMEOUT_MS = 12000;
-// Vid backfill (manga dagar i samma korning) kan SearXNG:s uppstroms-motorer borja
-// strypa/blockera korningens IP efter tat sokvolym – traffarna gar da mot 0 over tid.
-// Pausa innan nasta forsok sa motorerna hinner aterhamta sig, istallet for att bara
-// brann fler forsok pa modellen utan ny sokdata.
-const SEARXNG_LOW_HIT_THRESHOLD = 5;   // under detta antal traffar racker det inte for ett robust forsok
-const SEARXNG_RECOVERY_DELAY_MS = 8000; // fast paus innan nasta forsok efter en svag/tom sokning
 // Sprak for "On this day"-flodet (Wikipedia), i prioritetsordning. Forsta som svarar anvands/merges.
 const ONTHISDAY_WIKIS = ["sv", "en"];
 
@@ -52,11 +52,9 @@ const QUOTE_RE = /["“”«»]|'[^']*\s[^']*'/;
 const SERIES_ADMISSION_RE =
   /\b(den\s+)?första\s+(delen|avsnittet|episoden)\b|\bförsta\s+delen\s+i\b|\bdel\s*(1|ett)\b|\bfirst\s+(part|episode|installment)\b|\bpart\s+one\b|\bseason\s+(opener|premiere)\b|\bseries\s+opener\b|\bpremiär(avsnitt|avsnittet)\b|\bopening\s+episode\b|\b(två|tre|fyra|fem|sex|sju|åtta|fler)delad\b|\b(multi-?part|two-?part|three-?part)\b|\bdel\s+av\s+en\s+(serie|flerdelad\s+serie)\b|\bfirst\s+in\s+a\s+(series|season)\b|\bden\s+första\s+i\s+en\b|\bkicks?\s+off\s+(the\s+)?(season|series)\b/i;
 
-// MiniMax OpenAI-kompatibel endpoint. Byt MINIMAX_BASE_URL till t.ex.
-// https://api.minimaxi.com/v1 om nyckeln tillhor en annan region.
-const MINIMAX_URL =
-  (process.env.MINIMAX_BASE_URL || "https://api.minimax.io/v1").replace(/\/$/, "") + "/chat/completions";
-const SEARXNG_URL = (process.env.SEARXNG_URL || "http://localhost:8080").replace(/\/$/, "");
+// Anthropic Messages API. Byt ANTHROPIC_BASE_URL om nyckeln tillhor en annan endpoint.
+const ANTHROPIC_URL =
+  (process.env.ANTHROPIC_BASE_URL || "https://api.anthropic.com").replace(/\/$/, "") + "/v1/messages";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA_FILE = join(__dirname, "..", "public", "data", "recommendations.json");
@@ -102,13 +100,6 @@ async function writeData(list) {
   await writeFile(DATA_FILE, JSON.stringify(list, null, 2) + "\n", "utf8");
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// SearXNG – gratis, nyckellost web_search (self-hostad i workflowen)
-// ─────────────────────────────────────────────────────────────────────────────
-// Allt vi faktiskt sett i sokresultat denna korning. Anvands for att garantera att
-// modellen bara far kallbelagga med URL:er/poddar som verkligen dök upp – inte pahitt.
-const SEEN = [];
-
 function normUrl(u) {
   try {
     const x = new URL(u);
@@ -141,112 +132,9 @@ function appleSe(url) {
   }
 }
 
-async function searxngSearch(query) {
-  const url = new URL("/search", SEARXNG_URL);
-  url.searchParams.set("q", query);
-  url.searchParams.set("format", "json");
-  url.searchParams.set("language", "all");
-  url.searchParams.set("safesearch", "0");
-  try {
-    const res = await fetch(url, {
-      headers: {
-        accept: "application/json",
-        "user-agent": "DagensPod/1.0 (+https://github.com/hhammarstrand/poddtipset)",
-      },
-      signal: AbortSignal.timeout(SEARXNG_TIMEOUT_MS),
-    });
-    if (!res.ok) return { query, error: `SearXNG svarade ${res.status}`, results: [] };
-    const data = await res.json();
-    const results = (Array.isArray(data.results) ? data.results : [])
-      .slice(0, SEED_RESULTS_PER_QUERY)
-      .map((r) => ({
-        title: typeof r.title === "string" ? r.title.slice(0, 140) : "",
-        url: typeof r.url === "string" ? r.url : "",
-        snippet: typeof r.content === "string" ? r.content.slice(0, SNIPPET_LEN) : "",
-      }))
-      .filter((r) => /^https?:\/\//i.test(r.url));
-    for (const r of results) SEEN.push(r);
-    return { query, results };
-  } catch (err) {
-    return { query, error: err instanceof Error ? err.message : String(err), results: [] };
-  }
-}
-
-// Bred, varierad pool av sokvinklar (genre/sprak/kalla). Vi roterar urvalet per DAG
-// sa att olika poddar dyker upp olika dagar – inte samma "basta genom tiderna" varje dag.
-const QUERY_POOL = [
-  "best true crime podcast episode of all time",
-  "basta svenska poddavsnitt genom tiderna",
-  "best comedy podcast episode acclaimed",
-  "p3 dokumentar basta avsnitt",
-  "best history podcast episode award winning",
-  "hyllat svenskt poddavsnitt reddit",
-  "best science podcast episode reddit",
-  "basta svenska podcast avsnitt lista",
-  "best storytelling podcast episode ever",
-  "p1 dokumentar basta avsnitt",
-  "best investigative journalism podcast episode",
-  "basta poddavsnitt samhalle svenska",
-  "best interview podcast episode of all time",
-  "best sports podcast episode acclaimed",
-  "best music podcast episode reddit",
-  "peabody award winning podcast episode",
-  "podchaser highest rated podcast episodes",
-  "most moving podcast episode of all time",
-];
-
 function dayIndex(date) {
   const [y, m, d] = String(date).split("-").map(Number);
   return Math.floor(Date.UTC(y, (m || 1) - 1, d || 1) / 86400000);
-}
-
-// En sokfras byggd ur dagens "on this day"-krok, sa urvalet styrs mot dagens amne.
-function themeQuery(hooks, date, attempt) {
-  if (!hooks.length) return null;
-  const h = hooks[(dayIndex(date) + attempt - 1) % hooks.length];
-  const subj = h.text
-    .replace(/\(.*?\)/g, " ")
-    .split(/[.,;:–-]/)[0]
-    .split(/\s+/)
-    .slice(0, 6)
-    .join(" ")
-    .trim();
-  return subj.length >= 4 ? `podcast episode about ${subj}` : null;
-}
-
-// 4 spridda vinklar ur poolen (roterar per dag + forsok sa attempten sveper hela
-// poolen) + ev. en tema-sokning. Fler vinklar = storre chans till en giltig,
-// icke-nyligen-anvand podd, sa fler dagar blir kompletta.
-function buildQueries(date, attempt, hooks) {
-  const n = QUERY_POOL.length;
-  const base = dayIndex(date) + (attempt - 1) * 4;
-  const qs = [0, Math.floor(n / 4), Math.floor(n / 2), Math.floor((3 * n) / 4)].map((o) => QUERY_POOL[(base + o) % n]);
-  const tq = themeQuery(hooks, date, attempt);
-  if (tq) qs.push(tq);
-  return [...new Set(qs)];
-}
-
-async function gatherResults(queries) {
-  return Promise.all(queries.map((q) => searxngSearch(q)));
-}
-
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-function formatSearchResults(searches) {
-  const blocks = [];
-  for (const s of searches) {
-    if (s.error) {
-      blocks.push(`Sokning "${s.query}": (fel: ${s.error})`);
-      continue;
-    }
-    if (!s.results.length) {
-      blocks.push(`Sokning "${s.query}": (inga traffar)`);
-      continue;
-    }
-    const lines = s.results.map((r) => `- ${r.title}\n  URL: ${r.url}\n  ${r.snippet}`).join("\n");
-    blocks.push(`Sokning "${s.query}":\n${lines}`);
-  }
-  return blocks.join("\n\n");
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -307,41 +195,80 @@ function formatThemeBlock(hooks, mm, dd) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// MiniMax chat/completions (OpenAI-kompatibelt) – ETT anrop per forsok (ingen
-// agentisk tool-loop). Sokningarna gors deterministiskt i koden och matas in en
-// gang, vilket kapar token-forbrukningen drastiskt.
+// Claude Messages API med server-sidigt web_search-verktyg.
+// Modellen soker sjalv; vi hanterar pause_turn-loopen (server-side tool-loop kan
+// pausa) och samlar in bade sokresultaten den sag och dess slutliga text.
 // ─────────────────────────────────────────────────────────────────────────────
-async function askModel(apiKey, systemMsg, userMsg) {
-  const res = await fetch(MINIMAX_URL, {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-      authorization: `Bearer ${apiKey}`,
-    },
-    body: JSON.stringify({
-      model: MODEL,
-      messages: [
-        { role: "system", content: systemMsg },
-        { role: "user", content: userMsg },
-      ],
-      temperature: TEMPERATURE,
-      max_tokens: MAX_TOKENS,
-    }),
-    signal: AbortSignal.timeout(MINIMAX_TIMEOUT_MS),
-  });
-  if (!res.ok) {
-    const body = await res.text();
-    throw new Error(`MiniMax API ${res.status}: ${body.slice(0, 500)}`);
+async function askClaude(apiKey, systemMsg, userMsg) {
+  const messages = [{ role: "user", content: userMsg }];
+  const allContent = [];
+  for (let round = 0; round < MAX_TOOL_ROUNDS; round++) {
+    const res = await fetch(ANTHROPIC_URL, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "x-api-key": apiKey,
+        "anthropic-version": "2023-06-01",
+      },
+      body: JSON.stringify({
+        model: MODEL,
+        max_tokens: MAX_TOKENS,
+        system: systemMsg,
+        messages,
+        tools: [{ type: WEB_SEARCH_TOOL, name: "web_search", max_uses: WEB_SEARCH_MAX_USES }],
+      }),
+      signal: AbortSignal.timeout(ANTHROPIC_TIMEOUT_MS),
+    });
+    if (!res.ok) {
+      const body = await res.text();
+      throw new Error(`Anthropic API ${res.status}: ${body.slice(0, 500)}`);
+    }
+    const data = await res.json();
+    const content = Array.isArray(data.content) ? data.content : [];
+    allContent.push(...content);
+    // Server-side tool-loopen kan returnera pause_turn nar den nar sin iterationsgrans.
+    // Skicka tillbaka assistant-innehallet ofarandrat sa servern fortsatter dar den slutade.
+    if (data.stop_reason === "pause_turn") {
+      messages.push({ role: "assistant", content });
+      continue;
+    }
+    break;
   }
-  const data = await res.json();
-  const content = data.choices?.[0]?.message?.content;
-  if (typeof content !== "string") throw new Error("MiniMax-svaret saknade text-innehall.");
-  return content;
+  return allContent;
+}
+
+// Plocka ut alla sokresultat (url + titel) som modellen FAKTISKT sag i sina
+// web_search-anrop. Anvands for att garantera att kallorna inte ar pahittade.
+function extractSearchResults(content) {
+  const seen = [];
+  for (const block of content) {
+    if (block?.type !== "web_search_tool_result") continue;
+    // .content ar en lista av web_search_result vid traff, men ett fel-objekt vid fel.
+    const results = Array.isArray(block.content) ? block.content : [];
+    for (const r of results) {
+      if (r?.type === "web_search_result" && typeof r.url === "string") {
+        seen.push({
+          url: r.url,
+          title: typeof r.title === "string" ? r.title : "",
+          snippet: "",
+        });
+      }
+    }
+  }
+  return seen;
+}
+
+// Slar ihop alla text-block till modellens slutliga svar (dar JSON finns).
+function extractText(content) {
+  return content
+    .filter((b) => b?.type === "text" && typeof b.text === "string")
+    .map((b) => b.text)
+    .join("\n");
 }
 
 // Plocka ut det sista balanserade JSON-objektet ur en textstrang.
 function extractJsonObject(text) {
-  // Ta bort modellens resonemang (<think>-block) sa det inte stor JSON-extraktionen.
+  // Ta bort ev. resonemang (<think>-block) sa det inte stor JSON-extraktionen.
   const t = String(text || "").replace(/<think>[\s\S]*?<\/think>/gi, " ");
   const trimmed = t.trim();
   const direct = tryParse(trimmed);
@@ -382,13 +309,13 @@ function systemPrompt() {
   const genreLine = GENRES === "all" ? "Alla genrer ar tillatna." : `Prioritera dessa genrer: ${GENRES.join(", ")}.`;
   return `Du ar en mycket paläst poddredaktor som valjer ut ETT enastaende poddavsnitt som "dagens tips".
 
-Du far en uppsattning sokresultat (titlar, URL:er, utdrag). Du kan INTE soka sjalv – valj ENBART utifran det som star i sokresultaten.
+Du har ett web_search-verktyg. ANVAND DET aktivt: sok efter "basta avsnitt"-listor, prisbelonta avsnitt, hogt upproostade Reddit-tradar, Podchaser-toppar och liknande, och verifiera att avsnittet du valjer verkligen ar dokumenterat hyllat innan du svarar. Gor flera sokningar med olika vinklar (genre/sprak/kalla) sa du far ett brett underlag.
 
 ABSOLUTA REGLER MOT PAHITT (overordnade allt annat):
-- Pasta ENDAST saker du kan stodja pa de medskickade sokresultaten. Hitta aldrig pa avsnitt, poddar, vardar, artal, langd, priser eller placeringar.
-- INGA CITAT nagonstans i texten. Anvand aldrig citationstecken och tillskriv aldrig en namngiven person ett yttrande. Skriv om i stallet: i stallet for: hon kallade det "ett mastervaerk" -> skriv: det har hyllats som ett mastervaerk. Inga " ' « » far forekomma i why_great eller day_connection.
+- Pasta ENDAST saker du kan stodja pa dina sokresultat. Hitta aldrig pa avsnitt, poddar, vardar, artal, langd, priser eller placeringar.
+- INGA CITAT nagonstans i texten. Anvand aldrig citationstecken och tillskriv aldrig en namngiven person ett yttrande. Skriv om i stallet: i stallet for "hon kallade det ett mastervaerk" -> skriv "det har hyllats som ett mastervaerk". Inga " ' « » far forekomma i why_great eller day_connection.
 - Ar du osaker pa ett falt (artal/langd) – satt det till null i stallet for att gissa.
-- Poddens namn maste finnas i dina sokresultat. Annars valj en annan podd.
+- Poddens namn maste forekomma i dina sokresultat. Annars valj en annan podd.
 
 KRAV PA AVSNITTET:
 - Dokumenterat hyllat: aterkommer pa "basta avsnitt"-listor, hogt rankat pa Podchaser/Reddit, prisbelont, eller mycket delat/citerat.
@@ -412,10 +339,10 @@ KOPPLING TILL DAGENS DATUM (valfritt – nastan alltid tomt):
 - I de allra flesta fall finns INGEN sadan direkt koppling. Da lamnar du bade "day_occasion" och "day_connection" som tom strang "". Det ar det normala och helt ratt – en tom koppling ar alltid battre an en krystad.
 
 KALLOR (viktigt):
-- Du MASTE ange minst en kall-URL i "sources", och varje sadan URL MASTE vara en URL som ORDAGRANT forekom i de medskickade sokresultaten. Hitta ALDRIG pa en URL och andra den inte. Valj en kalla som verkligen belagger hyllningen (lista, artikel, prismotivering, Podchaser-sida, upproostad Reddit-trad).
+- Du MASTE ange minst en kall-URL i "sources", och varje sadan URL MASTE vara en URL som ORDAGRANT forekom i dina web_search-resultat. Hitta ALDRIG pa en URL och andra den inte. Valj en kalla som verkligen belagger hyllningen (lista, artikel, prismotivering, Podchaser-sida, upproostad Reddit-trad).
 
 LYSSNA-LANKAR:
-- Ange bara listen_links (apple/spotify/web) som du faktiskt sett i sokresultaten. Hitta ALDRIG pa en Spotify-/Apple-URL eller ett avsnitts-ID. Ar du osaker – utelamna lanken (lat den vara borta) i stallet for att gissa.
+- Ange bara listen_links (apple/spotify/web) som du faktiskt sett i dina sokresultat. Hitta ALDRIG pa en Spotify-/Apple-URL eller ett avsnitts-ID. Ar du osaker – utelamna lanken (lat den vara borta) i stallet for att gissa.
 
 SKRIV "DARFOR AR DET BRA"-TEXTEN SOM EN MANNISKA:
 - ${WHY_LANG === "sv" ? "Skriv pa svenska." : "Skriv pa engelska."}
@@ -423,7 +350,7 @@ SKRIV "DARFOR AR DET BRA"-TEXTEN SOM EN MANNISKA:
 - Inga floskler, inga AI-klichéer ("dyk ner i", "en fascinerande resa", "vare sig du ar..."). Inga citat. Lat det lata som en kunnig redaktor, inte en generator.
 
 SVARSFORMAT:
-Svara med ENBART JSON-objektet – inget resonemang, ingen forklarande text, inga <think>-taggar, inga markdown-staket. ETT rent JSON-objekt med exakt dessa falt:
+Nar du ar klar med dina sokningar: avsluta ditt svar med ENBART JSON-objektet – ingen forklarande text efter det, inga markdown-staket. ETT rent JSON-objekt med exakt dessa falt:
 {
   "episode_title": string,
   "show_name": string,
@@ -441,13 +368,13 @@ Svara med ENBART JSON-objektet – inget resonemang, ingen forklarande text, ing
 }`;
 }
 
-function userPrompt(dedupList, avoidShows, searchBlock, themeBlock, lastError) {
+function userPrompt(dedupList, avoidShows, themeBlock, lastError) {
   const dedup = dedupList.length ? dedupList.map((d) => `- ${d}`).join("\n") : "(historiken ar tom)";
   const avoid = avoidShows.length ? avoidShows.map((s) => `- ${s}`).join("\n") : "(inga an)";
   const retry = lastError
-    ? `\n\nFOREGAENDE FORSOK UNDERKANDES: ${lastError}\nValj ett ANNAT avsnitt (garna en annan podd) som uppfyller alla krav.\n`
+    ? `\n\nFOREGAENDE FORSOK UNDERKANDES: ${lastError}\nSok pa nytt och valj ett ANNAT avsnitt (garna en annan podd) som uppfyller alla krav.\n`
     : "";
-  return `Valj ETT poddavsnitt enligt instruktionerna, enbart utifran sokresultaten nedan.
+  return `Sok pa webben och valj ETT poddavsnitt enligt instruktionerna.
 
 Det far INTE vara nagot av dessa redan rekommenderade avsnitt:
 ${dedup}
@@ -455,10 +382,7 @@ ${dedup}
 UNDVIK HELST dessa nyligen anvanda poddar (valj en annan podd om mojligt):
 ${avoid}
 
-${themeBlock || "(ingen dagskoppling tillganglig – valj fritt bland hyllade avsnitt)"}
-
-SOKRESULTAT ATT UTGA FRAN (detta ar allt du har – du kan inte soka mer):
-${searchBlock || "(inga sokresultat – avsta hellre an att hitta pa)"}${retry}`;
+${themeBlock || "(ingen dagskoppling tillganglig – valj fritt bland hyllade avsnitt)"}${retry}`;
 }
 
 function validateTip(raw, recentKeys, seen, hardShowSlugs = new Set()) {
@@ -518,7 +442,7 @@ function validateTip(raw, recentKeys, seen, hardShowSlugs = new Set()) {
     return { ok: false, error: "Texten antyder att avsnittet ar del av en serie/sasong (inte fristaende)." };
   }
 
-  // Guardrail: kallor maste komma ur sokresultat vi faktiskt sett (inga pahittade URL:er).
+  // Guardrail: kallor maste komma ur sokresultat modellen faktiskt sag (inga pahittade URL:er).
   const seenList = Array.isArray(seen) ? seen : [];
   const seenUrls = new Set(seenList.map((r) => normUrl(r.url)));
   const corpus = collapse(seenList.map((r) => `${r.title} ${r.snippet}`).join(" "));
@@ -692,9 +616,9 @@ export async function ensureListenLinks(links, showName, episodeTitle) {
 // Huvudflode
 // ─────────────────────────────────────────────────────────────────────────────
 async function main() {
-  const apiKey = process.env.MINIMAX_API_KEY;
+  const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
-    console.error("::error::MINIMAX_API_KEY saknas – kan inte generera.");
+    console.error("::error::ANTHROPIC_API_KEY saknas – kan inte generera.");
     process.exit(0);
   }
 
@@ -737,25 +661,18 @@ async function main() {
   let lastError = "";
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
     try {
-      SEEN.length = 0; // nollstall sedda sokresultat per forsok
-      const queries = buildQueries(date, attempt, hooks);
-      console.log(`Forsok ${attempt}: sokningar [${queries.join(" | ")}]`);
-      const searches = await gatherResults(queries);
-      const searchBlock = formatSearchResults(searches);
-      const hitCount = searches.reduce((n, s) => n + (s.results?.length || 0), 0);
-      const searchErrors = searches.filter((s) => s.error).map((s) => `"${s.query}": ${s.error}`);
-      console.log(`Forsok ${attempt}: ${hitCount} sokresultat${searchErrors.length ? ` (fel: ${searchErrors.join("; ")})` : ""}`);
-      if (hitCount < SEARXNG_LOW_HIT_THRESHOLD) {
-        // For fa traffar for att lita pa – sokmotorerna kan vara tillfalligt strypta
-        // efter tat sokvolym i samma korning. Vantar in en aterhamtningspaus istallet
-        // for att branna ett modellanrop pa svag/obefintlig sokdata.
-        lastError = "For fa sokresultat for att garantera en kallbelagd, icke-pahittad rekommendation.";
-        console.log(`Forsok ${attempt} hoppar over modellanrop: bara ${hitCount} sokresultat. Vantar ${SEARXNG_RECOVERY_DELAY_MS}ms.`);
-        await sleep(SEARXNG_RECOVERY_DELAY_MS);
+      console.log(`Forsok ${attempt}: ber ${MODEL} soka och valja ett avsnitt…`);
+      const content = await askClaude(apiKey, systemPrompt(), userPrompt(dedupList, avoidShows, themeBlock, lastError));
+      const seen = extractSearchResults(content);
+      const text = extractText(content);
+      console.log(`Forsok ${attempt}: ${seen.length} sokresultat sedda.`);
+      if (!seen.length) {
+        lastError = "Modellen gjorde inga sokningar – du MASTE soka pa webben innan du valjer.";
+        console.log(`Forsok ${attempt} underkant: inga sokresultat.`);
         continue;
       }
-      const text = await askModel(apiKey, systemPrompt(), userPrompt(dedupList, avoidShows, searchBlock, themeBlock, lastError));
-      const v = validateTip(extractJsonObject(text), recentKeys, SEEN, hardShowSlugs);
+
+      const v = validateTip(extractJsonObject(text), recentKeys, seen, hardShowSlugs);
       if (!v.ok) { lastError = v.error; console.log(`Forsok ${attempt} underkant: ${v.error}`); continue; }
 
       if (!(await hasReachableSource(v.tip.sources))) {
@@ -794,4 +711,4 @@ if (isDirectRun) {
   });
 }
 
-export { validateTip, extractJsonObject, NON_STANDALONE_RE, QUOTE_RE, SERIES_ADMISSION_RE, normUrl, collapse, SEEN, fetchOnThisDay, formatThemeBlock };
+export { validateTip, extractJsonObject, extractSearchResults, NON_STANDALONE_RE, QUOTE_RE, SERIES_ADMISSION_RE, normUrl, collapse, fetchOnThisDay, formatThemeBlock };

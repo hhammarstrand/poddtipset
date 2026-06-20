@@ -45,7 +45,12 @@ const ONTHISDAY_WIKIS = ["sv", "en"];
 // Guardrails (validering)
 // Titel-monster som indikerar att avsnittet INTE ar fristaende (uppfoljare/serie/del/finale).
 const NON_STANDALONE_RE =
-  /\bupdate\b|update:|\buppdatering\b|\bpart\s+(one|two|three|four|five|1|2|3|4|5)\b|\bpt\.?\s*\d+\b|\bdel\s+(en|tva|två|tre|fyra|fem|\d+)\b|\bkapitel\s*\d+\b|\bchapter\s*\d+\b|\bepisode\s*\d+\b|\bavsnitt\s*\d+\b|\b\d+\s*\/\s*\d+\b|\bfinale\b|\bconclusion\b|\bcontinued\b|\bforts\.?\b|\bfortsättning\b|\bprolog|\bepilog/i;
+  /\bupdate\b|update:|\buppdatering\b|\bpart\s+(one|two|three|four|five|1|2|3|4|5)\b|\bpt\.?\s*\d+\b|\bdel\s+(en|tva|två|tre|fyra|fem|\d+)\b|\bkapitel\s*\d+\b|\bchapter\s*\d+\b|\bepisode\s*\d+\b|\bavsnitt\s*\d+\b|\bseason\s+(one|two|three|four|five|\d+)\b|\bsäsong\s+(ett|två|tre|fyra|fem|\d+)\b|\b\d+\s*\/\s*\d+\b|\bfinale\b|\bconclusion\b|\bcontinued\b|\bforts\.?\b|\bfortsättning\b|\bprolog|\bepilog/i;
+// Icke-latinska tecken (CJK/japanska/koreanska) i textfalt = modellen har bytt sprak
+// mitt i (MiniMax-quirk). Sant ar aldrig korrekt for svensk/engelsk text och underkanns.
+const NON_LATIN_RE = /[぀-ヿ㐀-䶿一-鿿豈-﫿가-힯]/;
+// Sociala/video-lankar belagger INTE att ett avsnitt ar hyllat – kraver minst en riktig kalla.
+const SOCIAL_HOST_RE = /(^|\.)(youtube\.com|youtu\.be|instagram\.com|tiktok\.com|facebook\.com|fb\.com|twitter\.com|x\.com|threads\.net|pinterest\.com)$/i;
 // Citat far inte forekomma i why_great – vi kan inte garantera att de stammer, sa de forbjuds helt.
 const QUOTE_RE = /["“”«»]|'[^']*\s[^']*'/;
 // Spekulation/gissning – why_great far INTE gissa om avsnittets innehall (t.ex. utifran
@@ -494,6 +499,11 @@ function validateTip(raw, recentKeys, seen, hardShowSlugs = new Set()) {
     return { ok: false, error: `language "${language}" ar inte tillatet (tillatna: ${LANGUAGES.join(", ")}).` };
   }
 
+  // Guardrail: inga icke-latinska tecken nagonstans (modellen far inte byta sprak mitt i).
+  if (NON_LATIN_RE.test(`${episode_title} ${show_name} ${hosts} ${genre} ${why_great} ${str(raw.day_connection)} ${str(raw.day_occasion)}`)) {
+    return { ok: false, error: "Svaret innehaller icke-latinska tecken (modellen bytte sprak) – skriv om pa svenska/engelska." };
+  }
+
   // Guardrail: fristaende avsnitt – inga uppfoljare/serie/del/finale.
   if (raw.standalone !== true) {
     return { ok: false, error: "Modellen bekraftade inte att avsnittet ar fristaende (standalone=true kravs)." };
@@ -556,6 +566,15 @@ function validateTip(raw, recentKeys, seen, hardShowSlugs = new Set()) {
     : [];
   if (!sources.length) {
     return { ok: false, error: "Ingen kall-URL kom fran sokresultaten (modellen maste citera en URL den faktiskt sokte fram)." };
+  }
+
+  // Guardrail: minst en kalla maste vara en riktig sida (inte bara YouTube/Instagram/TikTok).
+  // En social/video-lank belagger inte att avsnittet ar dokumenterat hyllat.
+  const hasRealSource = sources.some((s) => {
+    try { return !SOCIAL_HOST_RE.test(new URL(s.url).hostname); } catch { return false; }
+  });
+  if (!hasRealSource) {
+    return { ok: false, error: "Endast sociala/video-lankar som kalla – kraver minst en riktig kalla (lista/artikel/pris/Podchaser) som belagger hyllningen." };
   }
 
   // Guardrail: poddens namn maste forekomma i sokresultaten (poddar far inte hittas pa).

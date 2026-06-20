@@ -1,13 +1,14 @@
 // Dagens Pod – dygnsgenerering for GitHub Actions.
-// Kors en gang per dygn: ber Claude (Anthropic) valja ETT dokumenterat hyllat
-// poddavsnitt. Claude soker sjalv pa webben via det server-sidiga web_search-
-// verktyget (kors pa Anthropics infrastruktur – ingen self-hostad sokmotor och
-// ingen datacenter-IP som blockas av sokmotorerna). Resultatet valideras/
-// kallbelaggs mot de sokresultat modellen FAKTISKT sag, och laggs till i den
-// statiska datafilen som GitHub Pages serverar.
+// Kors en gang per dygn: ber en OpenAI-modell valja ETT dokumenterat hyllat
+// poddavsnitt. Modellen soker sjalv pa webben via det server-sidiga web_search-
+// verktyget i Responses API (kors pa OpenAIs infrastruktur – ingen self-hostad
+// sokmotor och ingen datacenter-IP som blockas av sokmotorerna). Resultatet
+// valideras/kallbelaggs mot de kall-citat (url_citation) modellen FAKTISKT
+// la in i sitt svar, och laggs till i den statiska datafilen som GitHub
+// Pages serverar.
 //
 // Kraver Node 20+ (global fetch, AbortSignal.timeout). Inga npm-beroenden.
-// Las ANTHROPIC_API_KEY fran miljon (GitHub Actions secret).
+// Las OPENAI_API_KEY fran miljon (GitHub Actions secret).
 
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { fileURLToPath, pathToFileURL } from "node:url";
@@ -18,26 +19,22 @@ import { dirname, join } from "node:path";
 // ─────────────────────────────────────────────────────────────────────────────
 const LANGUAGES = ["sv", "en"];
 const GENRES = "all"; // "all" eller t.ex. ["history", "true crime"]
-// Claude-modell. Sonnet 4.6 ger stark redaktionell omdomesformaga till lag kostnad
-// och stoder det moderna web_search_20260209 (dynamisk filtrering). Alternativ:
-// "claude-opus-4-8" (basta omdome, dyrare) eller "claude-haiku-4-5" (billigast –
-// kraver da WEB_SEARCH_TOOL = "web_search_20250305", se nedan).
-const MODEL = "claude-sonnet-4-6";
-// Web_search-verktygets version. _20260209 (dynamisk filtrering) kraver
-// Opus 4.8/4.7/4.6 eller Sonnet 4.6. Aldre modeller (t.ex. Haiku 4.5) anvander
-// den enklare varianten "web_search_20250305".
-const WEB_SEARCH_TOOL = "web_search_20260209";
-const WEB_SEARCH_MAX_USES = 8;   // tak for antal sokningar per forsok (kostnadsbroms)
+// OpenAI-modell. gpt-5.5 ger stark redaktionell omdomesformaga och stoder det
+// inbyggda web_search-verktyget i Responses API.
+const MODEL = "gpt-5.5";
+// Web_search-verktygets typ i Responses API. "web_search" ar den moderna
+// varianten (rekommenderad for nya integrationer). "web_search_preview" ar
+// aldre men fungerar fortfarande pa modeller som inte stoder "web_search".
+const WEB_SEARCH_TOOL = "web_search";
 const DEDUP_COUNT = 60;          // avsnitts-dedup (skickas till modellen)
-const MAX_ATTEMPTS = 4;          // forsok per dag (varje forsok ar ett komplett Claude-anrop med sokningar)
-const MAX_TOOL_ROUNDS = 6;       // pause_turn-fortsattningar i ett enskilt forsok
+const MAX_ATTEMPTS = 4;          // forsok per dag (varje forsok ar ett komplett Responses-anrop med sokningar)
 const THEME_HOOKS = 8;           // antal "on this day"-krokar som skickas med
-const MAX_TOKENS = 8000;         // tak for modellens svar
+const MAX_OUTPUT_TOKENS = 8000;  // tak for modellens svar
 const SHOW_HARD_DAYS = 7;        // samma podd far INTE aterkomma inom sa har manga dagar
 const SHOW_SOFT_COUNT = 30;      // poddar att be modellen undvika (mjukt)
 const WHY_LANG = "sv";
 const SOURCE_FETCH_TIMEOUT_MS = 8000;
-const ANTHROPIC_TIMEOUT_MS = 300000; // 5 min – web_search-loopen kan ta tid
+const OPENAI_TIMEOUT_MS = 300000; // 5 min – web_search-verktyget kan ta tid
 const WIKI_TIMEOUT_MS = 12000;
 // Sprak for "On this day"-flodet (Wikipedia), i prioritetsordning. Forsta som svarar anvands/merges.
 const ONTHISDAY_WIKIS = ["sv", "en"];
@@ -52,9 +49,9 @@ const QUOTE_RE = /["“”«»]|'[^']*\s[^']*'/;
 const SERIES_ADMISSION_RE =
   /\b(den\s+)?första\s+(delen|avsnittet|episoden)\b|\bförsta\s+delen\s+i\b|\bdel\s*(1|ett)\b|\bfirst\s+(part|episode|installment)\b|\bpart\s+one\b|\bseason\s+(opener|premiere)\b|\bseries\s+opener\b|\bpremiär(avsnitt|avsnittet)\b|\bopening\s+episode\b|\b(två|tre|fyra|fem|sex|sju|åtta|fler)delad\b|\b(multi-?part|two-?part|three-?part)\b|\bdel\s+av\s+en\s+(serie|flerdelad\s+serie)\b|\bfirst\s+in\s+a\s+(series|season)\b|\bden\s+första\s+i\s+en\b|\bkicks?\s+off\s+(the\s+)?(season|series)\b/i;
 
-// Anthropic Messages API. Byt ANTHROPIC_BASE_URL om nyckeln tillhor en annan endpoint.
-const ANTHROPIC_URL =
-  (process.env.ANTHROPIC_BASE_URL || "https://api.anthropic.com").replace(/\/$/, "") + "/v1/messages";
+// OpenAI Responses API. Byt OPENAI_BASE_URL om nyckeln tillhor en annan endpoint.
+const OPENAI_URL =
+  (process.env.OPENAI_BASE_URL || "https://api.openai.com").replace(/\/$/, "") + "/v1/responses";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA_FILE = join(__dirname, "..", "public", "data", "recommendations.json");
@@ -195,75 +192,75 @@ function formatThemeBlock(hooks, mm, dd) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Claude Messages API med server-sidigt web_search-verktyg.
-// Modellen soker sjalv; vi hanterar pause_turn-loopen (server-side tool-loop kan
-// pausa) och samlar in bade sokresultaten den sag och dess slutliga text.
+// OpenAI Responses API med inbyggt web_search-verktyg.
+// Modellen soker sjalv server-sidigt; verktygsloopen sköts av OpenAI internt
+// och vi far tillbaka ETT komplett svar (inget eget pause/resume-hantering
+// behovs, till skillnad fran Anthropics pause_turn).
 // ─────────────────────────────────────────────────────────────────────────────
-async function askClaude(apiKey, systemMsg, userMsg) {
-  const messages = [{ role: "user", content: userMsg }];
-  const allContent = [];
-  for (let round = 0; round < MAX_TOOL_ROUNDS; round++) {
-    const res = await fetch(ANTHROPIC_URL, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        "x-api-key": apiKey,
-        "anthropic-version": "2023-06-01",
-      },
-      body: JSON.stringify({
-        model: MODEL,
-        max_tokens: MAX_TOKENS,
-        system: systemMsg,
-        messages,
-        tools: [{ type: WEB_SEARCH_TOOL, name: "web_search", max_uses: WEB_SEARCH_MAX_USES }],
-      }),
-      signal: AbortSignal.timeout(ANTHROPIC_TIMEOUT_MS),
-    });
-    if (!res.ok) {
-      const body = await res.text();
-      throw new Error(`Anthropic API ${res.status}: ${body.slice(0, 500)}`);
-    }
-    const data = await res.json();
-    const content = Array.isArray(data.content) ? data.content : [];
-    allContent.push(...content);
-    // Server-side tool-loopen kan returnera pause_turn nar den nar sin iterationsgrans.
-    // Skicka tillbaka assistant-innehallet ofarandrat sa servern fortsatter dar den slutade.
-    if (data.stop_reason === "pause_turn") {
-      messages.push({ role: "assistant", content });
-      continue;
-    }
-    break;
+async function askOpenAI(apiKey, instructions, input) {
+  const res = await fetch(OPENAI_URL, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      authorization: `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify({
+      model: MODEL,
+      instructions,
+      input,
+      max_output_tokens: MAX_OUTPUT_TOKENS,
+      tools: [{ type: WEB_SEARCH_TOOL }],
+    }),
+    signal: AbortSignal.timeout(OPENAI_TIMEOUT_MS),
+  });
+  if (!res.ok) {
+    const body = await res.text();
+    throw new Error(`OpenAI API ${res.status}: ${body.slice(0, 500)}`);
   }
-  return allContent;
+  return res.json();
 }
 
-// Plocka ut alla sokresultat (url + titel) som modellen FAKTISKT sag i sina
-// web_search-anrop. Anvands for att garantera att kallorna inte ar pahittade.
-function extractSearchResults(content) {
-  const seen = [];
-  for (const block of content) {
-    if (block?.type !== "web_search_tool_result") continue;
-    // .content ar en lista av web_search_result vid traff, men ett fel-objekt vid fel.
-    const results = Array.isArray(block.content) ? block.content : [];
-    for (const r of results) {
-      if (r?.type === "web_search_result" && typeof r.url === "string") {
-        seen.push({
-          url: r.url,
-          title: typeof r.title === "string" ? r.title : "",
-          snippet: "",
-        });
-      }
-    }
+// Ga rekursivt igenom Responses API-svaret (formen pa nastlade output-block
+// kan variera nagot mellan modeller/versioner) och plocka ut:
+// - sawSearch: gjorde modellen nagon web_search-anrop overhuvudtaget?
+// - citations: alla url_citation-annoteringar modellen FAKTISKT la in i texten.
+// Anvands for att garantera att kallorna inte ar pahittade.
+function walkResponse(node, out) {
+  if (!node || typeof node !== "object") return;
+  if (Array.isArray(node)) {
+    for (const item of node) walkResponse(item, out);
+    return;
   }
-  return seen;
+  if (node.type === "web_search_call") out.sawSearch = true;
+  if (node.type === "url_citation" && typeof node.url === "string") {
+    out.citations.push({ url: node.url, title: typeof node.title === "string" ? node.title : "", snippet: "" });
+  }
+  for (const v of Object.values(node)) {
+    if (v && typeof v === "object") walkResponse(v, out);
+  }
 }
 
-// Slar ihop alla text-block till modellens slutliga svar (dar JSON finns).
-function extractText(content) {
-  return content
-    .filter((b) => b?.type === "text" && typeof b.text === "string")
-    .map((b) => b.text)
-    .join("\n");
+function extractSearchResults(data) {
+  const out = { sawSearch: false, citations: [] };
+  walkResponse(data?.output, out);
+  return out;
+}
+
+// Modellens slutliga textsvar (dar JSON finns). output_text ar Responses
+// API:s konvenience-falt; faller tillbaka pa att valka traedet om det saknas.
+function extractText(data) {
+  if (typeof data?.output_text === "string" && data.output_text) return data.output_text;
+  const texts = [];
+  const collect = (node) => {
+    if (!node || typeof node !== "object") return;
+    if (Array.isArray(node)) { for (const item of node) collect(item); return; }
+    if (node.type === "output_text" && typeof node.text === "string") texts.push(node.text);
+    for (const v of Object.values(node)) {
+      if (v && typeof v === "object") collect(v);
+    }
+  };
+  collect(data?.output);
+  return texts.join("\n");
 }
 
 // Plocka ut det sista balanserade JSON-objektet ur en textstrang.
@@ -339,7 +336,8 @@ KOPPLING TILL DAGENS DATUM (valfritt – nastan alltid tomt):
 - I de allra flesta fall finns INGEN sadan direkt koppling. Da lamnar du bade "day_occasion" och "day_connection" som tom strang "". Det ar det normala och helt ratt – en tom koppling ar alltid battre an en krystad.
 
 KALLOR (viktigt):
-- Du MASTE ange minst en kall-URL i "sources", och varje sadan URL MASTE vara en URL som ORDAGRANT forekom i dina web_search-resultat. Hitta ALDRIG pa en URL och andra den inte. Valj en kalla som verkligen belagger hyllningen (lista, artikel, prismotivering, Podchaser-sida, upproostad Reddit-trad).
+- Du MASTE ange minst en kall-URL i "sources", och den URL:en MASTE vara en URL du faktiskt hittade och hanvisade till nar du sokte. Hitta ALDRIG pa en URL och andra den inte. Valj en kalla som verkligen belagger hyllningen (lista, artikel, prismotivering, Podchaser-sida, upproostad Reddit-trad).
+- Innan du skriver JSON-objektet: skriv FORST en kort mening (1 sats) dar du refererar till den kallan i lopande text (sa att en riktig kall-hanvisning skapas i ditt svar). Skriv sedan JSON-objektet pa en ny rad. Den URL du anger i "sources" maste matcha en kalla du verkligen hanvisade till pa detta satt.
 
 LYSSNA-LANKAR:
 - Ange bara listen_links (apple/spotify/web) som du faktiskt sett i dina sokresultat. Hitta ALDRIG pa en Spotify-/Apple-URL eller ett avsnitts-ID. Ar du osaker – utelamna lanken (lat den vara borta) i stallet for att gissa.
@@ -350,7 +348,7 @@ SKRIV "DARFOR AR DET BRA"-TEXTEN SOM EN MANNISKA:
 - Inga floskler, inga AI-klichéer ("dyk ner i", "en fascinerande resa", "vare sig du ar..."). Inga citat. Lat det lata som en kunnig redaktor, inte en generator.
 
 SVARSFORMAT:
-Nar du ar klar med dina sokningar: avsluta ditt svar med ENBART JSON-objektet – ingen forklarande text efter det, inga markdown-staket. ETT rent JSON-objekt med exakt dessa falt:
+Nar du ar klar med dina sokningar: skriv forst den korta kall-hanvisande meningen fran KALLOR-avsnittet ovan, och avsluta sedan ditt svar med ENBART JSON-objektet – ingen forklarande text efter det, inga markdown-staket. ETT rent JSON-objekt med exakt dessa falt:
 {
   "episode_title": string,
   "show_name": string,
@@ -616,9 +614,9 @@ export async function ensureListenLinks(links, showName, episodeTitle) {
 // Huvudflode
 // ─────────────────────────────────────────────────────────────────────────────
 async function main() {
-  const apiKey = process.env.ANTHROPIC_API_KEY;
+  const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) {
-    console.error("::error::ANTHROPIC_API_KEY saknas – kan inte generera.");
+    console.error("::error::OPENAI_API_KEY saknas – kan inte generera.");
     process.exit(0);
   }
 
@@ -662,13 +660,15 @@ async function main() {
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
     try {
       console.log(`Forsok ${attempt}: ber ${MODEL} soka och valja ett avsnitt…`);
-      const content = await askClaude(apiKey, systemPrompt(), userPrompt(dedupList, avoidShows, themeBlock, lastError));
-      const seen = extractSearchResults(content);
-      const text = extractText(content);
-      console.log(`Forsok ${attempt}: ${seen.length} sokresultat sedda.`);
+      const data = await askOpenAI(apiKey, systemPrompt(), userPrompt(dedupList, avoidShows, themeBlock, lastError));
+      const { sawSearch, citations: seen } = extractSearchResults(data);
+      const text = extractText(data);
+      console.log(`Forsok ${attempt}: ${seen.length} kall-citat, sawSearch=${sawSearch}.`);
       if (!seen.length) {
-        lastError = "Modellen gjorde inga sokningar – du MASTE soka pa webben innan du valjer.";
-        console.log(`Forsok ${attempt} underkant: inga sokresultat.`);
+        lastError = sawSearch
+          ? "Modellen sokte men la inte in nagra kall-citat (url_citation) i svaret – du MASTE citera kallor du faktiskt hittade."
+          : "Modellen gjorde inga sokningar – du MASTE soka pa webben innan du valjer.";
+        console.log(`Forsok ${attempt} underkant: inga kall-citat.`);
         continue;
       }
 

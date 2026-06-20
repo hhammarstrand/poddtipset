@@ -47,13 +47,13 @@ jobs:
       - name: Generera dagens tips
         if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           GENERATE_DATE: ${{ inputs.date }}
           GENERATE_FORCE: ${{ inputs.force }}
           BACKFILL_START: ${{ inputs.backfill_start }}
         run: |
-          if [ -z "$ANTHROPIC_API_KEY" ]; then
-            echo "::warning::ANTHROPIC_API_KEY saknas som repo-secret – hoppar over genereringen."
+          if [ -z "$OPENAI_API_KEY" ]; then
+            echo "::warning::OPENAI_API_KEY saknas som repo-secret – hoppar over genereringen."
           elif [ -n "$BACKFILL_START" ]; then
             end="${GENERATE_DATE:-$(TZ=Europe/Stockholm date +%F)}"
             d="$BACKFILL_START"

@@ -660,9 +660,9 @@ async function main() {
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
     try {
       console.log(`Forsok ${attempt}: ber ${MODEL} soka och valja ett avsnitt…`);
-      const data = await askOpenAI(apiKey, systemPrompt(), userPrompt(dedupList, avoidShows, themeBlock, lastError));
-      const { sawSearch, citations: seen } = extractSearchResults(data);
-      const text = extractText(data);
+      const response = await askOpenAI(apiKey, systemPrompt(), userPrompt(dedupList, avoidShows, themeBlock, lastError));
+      const { sawSearch, citations: seen } = extractSearchResults(response);
+      const text = extractText(response);
       console.log(`Forsok ${attempt}: ${seen.length} kall-citat, sawSearch=${sawSearch}.`);
       if (!seen.length) {
         lastError = sawSearch

@@ -1,0 +1,30 @@
+name: Test - MiniMax coding_plan/search (engangstest)
+
+on:
+  workflow_dispatch:
+
+# Engangsdiagnostik: anropar MiniMax officiella /v1/coding_plan/search-endpoint
+# direkt med curl (samma endpoint som anvands av det officiella, MIT-licensierade
+# paketet minimax-coding-plan-mcp - kallkoden inspekterades lokalt, ingen
+# tredjeparts-CLI installeras och inga andra secret-namn provas). Nyckeln
+# skickas bara i Authorization-headern till api.minimax.io och loggas aldrig.
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Anropa /v1/coding_plan/search
+        env:
+          MINIMAX_API_KEY: ${{ secrets.MINIMAX_API_KEY }}
+        run: |
+          if [ -z "$MINIMAX_API_KEY" ]; then
+            echo "::warning::MINIMAX_API_KEY saknas som repo-secret."
+            exit 0
+          fi
+          status=$(curl -sS -o response.json -w "%{http_code}" \
+            -X POST "https://api.minimax.io/v1/coding_plan/search" \
+            -H "Authorization: Bearer $MINIMAX_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d '{"q":"dagens podd 20 juni 2026"}')
+          echo "HTTP status: $status"
+          echo "--- Svar (ingen nyckel i utdata) ---"
+          cat response.json

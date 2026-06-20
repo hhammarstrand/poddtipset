@@ -30,7 +30,7 @@ const MAX_ATTEMPTS = 12;         // forsok per dag (sveper bredare sa fler dagar
 const SEED_RESULTS_PER_QUERY = 8; // traffar per sokning som skickas till modellen
 const SNIPPET_LEN = 320;         // max tecken per snippet (langre = fler poddnamn overlever i korpus -> farre falska "podd saknas i resultaten"-underkanningar)
 const THEME_HOOKS = 8;           // antal "on this day"-krokar som skickas med
-const MAX_TOKENS = 16000;        // tak for modellens svar (rymligt sa MiniMax interleaved thinking + JSON ryms utan att JSON trunkeras)
+const MAX_TOKENS = 24000;        // tak for modellens svar (rymligt sa MiniMax interleaved thinking + JSON ryms utan att JSON trunkeras)
 const TEMPERATURE = 0.4;         // lagt for att minska pahitt/konfabulering i fakta
 const SHOW_HARD_DAYS = 7;        // samma podd far INTE aterkomma inom sa har manga dagar
 const SHOW_SOFT_COUNT = 30;      // poddar att be modellen undvika (mjukt)
@@ -343,15 +343,20 @@ async function askModel(apiKey, systemMsg, userMsg) {
     throw new Error(`MiniMax API ${res.status}: ${body.slice(0, 500)}`);
   }
   const data = await res.json();
-  const content = data.choices?.[0]?.message?.content;
+  const choice = data.choices?.[0];
+  const content = choice?.message?.content;
   if (typeof content !== "string") throw new Error("MiniMax-svaret saknade text-innehall.");
-  return content;
+  return { content, finish: choice?.finish_reason || "" };
 }
 
 // Plocka ut det sista balanserade JSON-objektet ur en textstrang.
 function extractJsonObject(text) {
   // Ta bort modellens resonemang (<think>-block) sa det inte stor JSON-extraktionen.
-  const t = String(text || "").replace(/<think>[\s\S]*?<\/think>/gi, " ");
+  // Hanterar aven ett oavslutat <think> (svar trunkerat) och ev. markdown-staket.
+  const t = String(text || "")
+    .replace(/<think>[\s\S]*?<\/think>/gi, " ")
+    .replace(/<think>[\s\S]*$/i, " ")
+    .replace(/```(?:json)?/gi, " ");
   const trimmed = t.trim();
   const direct = tryParse(trimmed);
   if (direct !== undefined) return direct;
@@ -439,6 +444,9 @@ SKRIV "DARFOR AR DET BRA"-TEXTEN SOM EN MANNISKA:
 - 2-4 meningar, konkret och specifik om just detta avsnitt (vad hander, vem medverkar, vad gor det minnesvart) – men bara sant som stods av kallorna.
 - Skriv som en redaktor som faktiskt lyssnat: borja inte alla meningar likadant, vaxla meningslangd, var konkret om innehallet i stallet for svepande.
 - Inga floskler, inga AI-klichéer ("dyk ner i", "en fascinerande resa", "vare sig du ar...", "maste-lyssning"). Inga citat. Lat det lata som en kunnig redaktor, inte en generator.
+
+EFFEKTIVITET:
+- Hall ev. resonemang KORT. Valj snabbt det starkaste avsnittet ur sokresultaten och skriv sedan svaret. Lagg inte manga stycken pa att vaga olika kandidater mot varandra – det riskerar att svaret trunkeras innan JSON-objektet hinner skrivas.
 
 SVARSFORMAT:
 Svara med ENBART JSON-objektet – inget resonemang, ingen forklarande text, inga <think>-taggar, inga markdown-staket. ETT rent JSON-objekt med exakt dessa falt:
@@ -820,8 +828,12 @@ async function main() {
         console.log(`Forsok ${attempt} hoppar over modellanrop: bara ${hitCount} sokresultat.`);
         continue;
       }
-      const text = await askModel(apiKey, systemPrompt(), userPrompt(dedupList, avoidShows, searchBlock, themeBlock, lastError));
-      const v = validateTip(extractJsonObject(text), recentKeys, SEEN, hardShowSlugs);
+      const { content: text, finish } = await askModel(apiKey, systemPrompt(), userPrompt(dedupList, avoidShows, searchBlock, themeBlock, lastError));
+      const parsed = extractJsonObject(text);
+      if (parsed == null && finish === "length") {
+        console.log(`Forsok ${attempt}: svaret trunkerades (finish=length, ${text.length} tecken) – JSON ofullstandig.`);
+      }
+      const v = validateTip(parsed, recentKeys, SEEN, hardShowSlugs);
       if (!v.ok) { lastError = v.error; console.log(`Forsok ${attempt} underkant: ${v.error}`); continue; }
 
       // Ingen separat reachability-koll pa kallor: de ar redan garanterat akta (de

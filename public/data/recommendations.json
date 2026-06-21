@@ -1,28 +1,28 @@
 [
   {
     "date": "2026-06-21",
-    "episode_title": "The Problem We All Live With",
-    "show_name": "This American Life",
-    "show_slug": "this-american-life",
-    "hosts": "Ira Glass",
-    "genre": "Storytelling",
+    "episode_title": "Watching the Dallas Cowboys on Death Row",
+    "show_name": "Pablo Torre Finds Out",
+    "show_slug": "pablo-torre-finds-out",
+    "hosts": "Pablo Torre",
+    "genre": "Investigative journalism",
     "language": "en",
-    "year": 2014,
-    "duration_minutes": 54,
+    "year": null,
+    "duration_minutes": null,
     "day_occasion": "",
     "day_connection": "",
-    "why_great": "Detta avsnitt har blivit ett klassiskt exempel på berättande journalistik och listas ofta bland de bästa någonsin, bland annat i sammanställningar av de mest betydelsefulla episoderna. Det följer fotografen Norman Rockwells process att måla sin ikoniska tavla som skildrar den svarta eleven Ruby Bridges som eskorteras av federala marshals till en skola i New Orleans under desegregeringen. Avsnittet är starkt eftersom det kombinerar historisk kontext med en personlig resa genom hur konstnären och reportern arbetade med att fånga en av Amerikas mest symboliska scener för medborgerliga rättigheter.",
+    "why_great": "Detta avsnitt av Pablo Torre Finds Out belönades med en Peabody Award och har hyllats för sin originella vinkling. Pablo Torre tar avstamp i hur dödsdömda fångar följer Dallas Cowboys och bygger därifrån ett avsnitt som blivit ett av poddens mest uppmärksammade. Reportaget visar styrkan i att hitta starka berättelser i oväntade krockar mellan sport och det amerikanska rättssystemet.",
     "listen_links": {
-      "apple": "https://podcasts.apple.com/se/podcast/this-american-life/id201671138?uo=4",
-      "spotify": "https://open.spotify.com/search/This%20American%20Life%20The%20Problem%20We%20All%20Live%20With"
+      "apple": "https://podcasts.apple.com/se/podcast/watching-the-dallas-cowboys-on-death-row-ptfo-peabody/id1685093486?i=1000724661303&uo=4",
+      "spotify": "https://open.spotify.com/search/Pablo%20Torre%20Finds%20Out%20Watching%20the%20Dallas%20Cowboys%20on%20Death%20Row"
     },
     "sources": [
       {
-        "title": "30 Podcast Episodes You Need To Listen To Before You Die",
-        "url": "https://strategylab.ca/30-podcast-episodes-you-need-to-listen-to-before-you-die/"
+        "title": "Podcast & Radio - The Peabody Awards",
+        "url": "https://peabodyawards.com/categories/podcast-radio/"
       }
     ],
-    "created_at": "2026-06-21T05:51:12.059Z"
+    "created_at": "2026-06-21T11:30:45.096Z"
   },
   {
     "date": "2026-06-20",

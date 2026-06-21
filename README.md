@@ -23,6 +23,9 @@ MiniMax  ──►  webbsökningar server-side (/v1/coding_plan/search) +
 public/data/recommendations.json   ← committas tillbaka i repot (persistensen)
         │
         ▼
+node scripts/build-seo.mjs   ← forrenderar dagens tips i index.html + bygger
+        │                        sitemap.xml / robots.txt / feed.xml / manifest
+        ▼
 GitHub Pages serverar public/  ──►  frontend laser JSON och visar
                                      dagens tips / historik / statistik (allt klient-sidan)
 ```
@@ -64,6 +67,33 @@ sök-API, och samma nyckel används för både sök och LLM.
   tillbaka av workflowen. Idempotent: finns dagens datum redan görs ingenting.
 - **Frontend:** `public/` (vanilla HTML/CSS/JS, inget byggsteg) läser JSON-filen och gör
   historik-sök/filter och all statistik (topplista, fördelningar, streak, tidslinje) i webbläsaren.
+  Redaktionell tidskrifts-design (Fraunces + Inter, självhostade), **mörkt/ljust läge** (följer
+  systemet + manuell knapp, sparas i `localStorage`, ingen FOUC), premium "dagens-kort", mobil först
+  och tillgänglighet (skip-länk, fokusmarkeringar, `prefers-reduced-motion`).
+
+### SEO & delning (`scripts/build-seo.mjs`)
+
+Sidan är en hash-router-SPA, så för att sökmotorer och sociala medier ska se **riktigt innehåll**
+(inte bara ett tomt skal) bygger [`scripts/build-seo.mjs`](scripts/build-seo.mjs) om följande varje
+gång ett nytt tips genereras (och vid varje deploy – deterministiskt, så det skapar inget commit-brus):
+
+- **Förrenderar dagens tips** direkt i `index.html` (mellan `<!--SEO-HERO-->`-markörer) plus en
+  "Fler tips"-lista – crawlers och no-JS-besökare får hela innehållet i HTML:en.
+- **`<title>` + meta-description**, **Open Graph** och **Twitter Card** (`summary_large_image`) satta
+  till dagens avsnitt, samt **canonical** och `og:image` → `og.png`.
+- **JSON-LD** (`schema.org`): `WebSite` + dagens `PodcastEpisode` + en `ItemList` över de senaste
+  tipsen (rik-resultat-kandidat i Google).
+- **`sitemap.xml`**, **`robots.txt`** (pekar på sitemap), **`feed.xml`** (RSS över alla tips – egen
+  prenumerations-/trafikkanal) och **`manifest.webmanifest`** (installbar PWA).
+- **`404.html`** = kopia av `index.html` (SPA-fallback för djuplänkar).
+- Per vy uppdaterar frontend `document.title` + meta-description (Dagens/Historik/Statistik/avsnitt).
+
+Delningsbilden **`og.png`** (1200×630, varumärkesbärande) byggs separat och statiskt med
+[`scripts/build-og.mjs`](scripts/build-og.mjs) (Playwright/Chromium) och committas – den körs alltså
+*inte* i CI. Vill du ändra den: `npm run build:og`.
+
+Den publika adressen styrs av `SITE_URL` (default `https://hhammarstrand.github.io/poddtipset`); sätt
+miljövariabeln om du flyttar till egen domän så uppdateras canonical/OG/sitemap/RSS automatiskt.
 
 ## Datamodell (`public/data/recommendations.json`)
 
@@ -123,6 +153,16 @@ Sidan blir nåbar på `https://<användarnamn>.github.io/poddtipset/`.
 ```bash
 # Generera ett tips lokalt (skriver till public/data/recommendations.json)
 MINIMAX_API_KEY=... npm run generate
+
+# Bygg om SEO-/delningsartefakter (index.html-meta, sitemap, robots, RSS, manifest)
+npm run build:seo
+
+# Bygg om delningsbilden og.png (kräver Playwright + Chromium)
+npm run build:og
+
+# End-to-end-verifiera den byggda sidan i en riktig webbläsare (rendering, vyer,
+# mörkt läge, alla SEO-artefakter) – tar även skärmbilder i verify-shots/
+npm run verify
 
 # Servera frontend lokalt
 npx --yes http-server public -p 8090 -c-1

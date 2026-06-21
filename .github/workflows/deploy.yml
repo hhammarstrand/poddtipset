@@ -72,13 +72,19 @@ jobs:
             node scripts/generate.mjs
           fi
 
+      - name: Bygg SEO-/delningsartefakter
+        # Forrendera dagens tips i index.html + uppdatera sitemap/robots/RSS/manifest
+        # sa crawlers och sociala medier ser riktigt innehall. Deterministiskt:
+        # andras bara nar datan andrats, sa det skapar ingen commit-brus pa deploy-push.
+        run: node scripts/build-seo.mjs
+
       - name: Spara nytt tips (commit)
         if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
         run: |
-          if [ -n "$(git status --porcelain public/data)" ]; then
+          if [ -n "$(git status --porcelain public)" ]; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add public/data
+            git add public
             git commit -m "Dagens tips: $(TZ=Europe/Stockholm date +%Y-%m-%d)"
             git push
           else

@@ -42,7 +42,40 @@
   --sans: "InterVar", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
   --maxw: 720px;
+  --card-shadow: 0 1px 2px rgba(28, 24, 21, 0.05), 0 12px 30px -18px rgba(28, 24, 21, 0.22);
   color-scheme: light;
+}
+
+/* ── Morkt lage ─────────────────────────────────────────────────────────────
+   Varm, "tidningstryck i mork sal"-palett. Galler nar anvandaren valt morkt
+   (data-theme="dark") ELLER nar systemet ar morkt och inget eget val gjorts. */
+:root[data-theme="dark"] {
+  --paper: #14110f;
+  --surface: #1e1a16;
+  --ink: #ece4d8;
+  --ink-soft: #c6bcac;
+  --muted: #9a8f7d;
+  --accent: #e07a63;
+  --accent-soft: #ec9580;
+  --line: rgba(236, 228, 216, 0.14);
+  --line-strong: rgba(236, 228, 216, 0.30);
+  --card-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 18px 40px -22px rgba(0, 0, 0, 0.8);
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #14110f;
+    --surface: #1e1a16;
+    --ink: #ece4d8;
+    --ink-soft: #c6bcac;
+    --muted: #9a8f7d;
+    --accent: #e07a63;
+    --accent-soft: #ec9580;
+    --line: rgba(236, 228, 216, 0.14);
+    --line-strong: rgba(236, 228, 216, 0.30);
+    --card-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 18px 40px -22px rgba(0, 0, 0, 0.8);
+    color-scheme: dark;
+  }
 }
 
 /* ── Reset / bas ───────────────────────────────────────────────────────────── */
@@ -61,7 +94,33 @@ body {
 }
 a { color: inherit; }
 img { max-width: 100%; }
-::selection { background: var(--accent); color: var(--surface); }
+::selection { background: var(--accent); color: #fff; }
+
+/* Mjuk overgang nar temat byts (men aldrig for rorelsekansliga anvandare). */
+body, .chip, .btn, .input, .select, .stat, .card,
+.hero, .day-connection, .more-tips { transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease; }
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* Hoppa-till-innehallet (a11y, syns vid tangentbordsfokus). */
+.skip-link {
+  position: absolute;
+  left: 50%;
+  top: -60px;
+  transform: translateX(-50%);
+  z-index: 50;
+  background: var(--accent);
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 0 0 6px 6px;
+  font-size: 14px;
+  text-decoration: none;
+  transition: top 0.15s ease;
+}
+.skip-link:focus { top: 0; outline: 2px solid var(--surface); outline-offset: -4px; }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
 
 /* Subtil pappersådra via accentlinje upptill */
 body::before {
@@ -77,8 +136,48 @@ body::before {
   margin: 0 auto;
   padding: 28px 22px 0;
 }
-.masthead { text-align: center; }
+.masthead { text-align: center; position: relative; }
 .brand { text-decoration: none; display: inline-block; }
+
+/* Tema-knapp uppe till hoger i mastheaden. */
+.theme-toggle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line-strong);
+  border-radius: 100px;
+  background: var(--surface);
+  color: var(--ink-soft);
+  cursor: pointer;
+  padding: 0;
+  transition: border-color 0.15s, color 0.15s, transform 0.05s;
+}
+.theme-toggle:hover { border-color: var(--ink); color: var(--ink); }
+.theme-toggle:active { transform: translateY(1px); }
+.theme-icon { width: 18px; height: 18px; display: block; }
+/* Solglyf i ljust lage … */
+.theme-icon::before {
+  content: "";
+  display: block;
+  width: 18px; height: 18px;
+  background: currentColor;
+  -webkit-mask: var(--sun) center / contain no-repeat;
+  mask: var(--sun) center / contain no-repeat;
+}
+/* … manglyf i morkt lage. */
+:root[data-theme="dark"] .theme-icon::before { -webkit-mask: var(--moon) center / contain no-repeat; mask: var(--moon) center / contain no-repeat; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-icon::before { -webkit-mask: var(--moon) center / contain no-repeat; mask: var(--moon) center / contain no-repeat; }
+}
+:root {
+  --sun: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19'/%3E%3C/svg%3E");
+  --moon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z'/%3E%3C/svg%3E");
+}
 .brand-text {
   font-family: var(--serif);
   font-weight: 600;
@@ -148,7 +247,24 @@ body::before {
   box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent);
 }
 
-.hero { animation: rise 0.5s ease both; }
+.hero {
+  animation: rise 0.5s ease both;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: var(--card-shadow);
+  padding: clamp(22px, 5vw, 38px);
+  position: relative;
+  overflow: hidden;
+}
+/* Tunn accentkant upptill ger kortet redaktionell tyngd. */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--accent);
+}
 @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 
 .hero .kicker {
@@ -300,6 +416,49 @@ body::before {
   color: var(--muted);
   font-style: italic;
 }
+
+/* ── Fler tips (forrenderad lista under hero) ──────────────────────────────── */
+.more-tips { margin-top: 38px; }
+.more-head {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 6px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.more-tips ul { list-style: none; margin: 0; padding: 0; }
+.more-tips li { border-bottom: 1px solid var(--line); }
+.more-tips a {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 3px 14px;
+  align-items: baseline;
+  text-decoration: none;
+  color: inherit;
+  padding: 14px 0;
+  transition: padding-left 0.15s;
+}
+.more-tips a:hover { padding-left: 6px; }
+.more-date {
+  grid-row: 1 / span 2;
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.more-title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.2;
+  color: var(--ink);
+}
+.more-show { font-style: italic; font-family: var(--serif); font-size: 14.5px; color: var(--ink-soft); }
 
 /* ── Sektionsrubriker ──────────────────────────────────────────────────────── */
 .section-head {
@@ -486,6 +645,13 @@ body::before {
   letter-spacing: 0.04em;
   color: var(--muted);
 }
+.footer-links { margin-top: 10px; }
+.footer-links a {
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.06em;
+}
+.footer-links a:hover { color: var(--accent); }
 
 /* ── Större skärmar ────────────────────────────────────────────────────────── */
 @media (min-width: 720px) {

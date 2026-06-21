@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hhammarstrand.github.io/poddtipset/sitemap.xml

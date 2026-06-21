@@ -1,5 +1,30 @@
 [
   {
+    "date": "2026-06-21",
+    "episode_title": "The Problem We All Live With",
+    "show_name": "This American Life",
+    "show_slug": "this-american-life",
+    "hosts": "Ira Glass",
+    "genre": "Storytelling",
+    "language": "en",
+    "year": 2014,
+    "duration_minutes": 54,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Detta avsnitt har blivit ett klassiskt exempel på berättande journalistik och listas ofta bland de bästa någonsin, bland annat i sammanställningar av de mest betydelsefulla episoderna. Det följer fotografen Norman Rockwells process att måla sin ikoniska tavla som skildrar den svarta eleven Ruby Bridges som eskorteras av federala marshals till en skola i New Orleans under desegregeringen. Avsnittet är starkt eftersom det kombinerar historisk kontext med en personlig resa genom hur konstnären och reportern arbetade med att fånga en av Amerikas mest symboliska scener för medborgerliga rättigheter.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/this-american-life/id201671138?uo=4",
+      "spotify": "https://open.spotify.com/search/This%20American%20Life%20The%20Problem%20We%20All%20Live%20With"
+    },
+    "sources": [
+      {
+        "title": "30 Podcast Episodes You Need To Listen To Before You Die",
+        "url": "https://strategylab.ca/30-podcast-episodes-you-need-to-listen-to-before-you-die/"
+      }
+    ],
+    "created_at": "2026-06-21T05:51:12.059Z"
+  },
+  {
     "date": "2026-06-20",
     "episode_title": "Case 76: Silk Road",
     "show_name": "Casefile True Crime",

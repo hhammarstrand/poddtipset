@@ -3,6 +3,53 @@
 // ── Hjalpare ────────────────────────────────────────────────────────────────
 const app = document.getElementById("app");
 
+const SITE_NAME = "Dagens Pod";
+
+// ── Tema (morkt/ljust) ───────────────────────────────────────────────────────
+// Inget val sparat = folj systemet (CSS prefers-color-scheme). Knappen overstyr
+// och sparas i localStorage. <meta name="theme-color"> uppdateras till aktivt tema.
+const THEME_COLORS = { light: "#8c2f23", dark: "#0f0d0c" };
+
+function resolvedTheme() {
+  const saved = document.documentElement.dataset.theme;
+  if (saved === "dark" || saved === "light") return saved;
+  return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
+function applyThemeColor() {
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.setAttribute("content", THEME_COLORS[resolvedTheme()]);
+}
+
+function initTheme() {
+  applyThemeColor();
+  const btn = document.getElementById("theme-toggle");
+  if (btn) {
+    btn.addEventListener("click", () => {
+      const next = resolvedTheme() === "dark" ? "light" : "dark";
+      document.documentElement.dataset.theme = next;
+      try { localStorage.setItem("theme", next); } catch (e) {}
+      applyThemeColor();
+    });
+  }
+  // Folj systembyte sa lange anvandaren inte gjort ett eget val.
+  if (window.matchMedia) {
+    const mq = window.matchMedia("(prefers-color-scheme: dark)");
+    const onChange = () => { if (!document.documentElement.dataset.theme) applyThemeColor(); };
+    if (mq.addEventListener) mq.addEventListener("change", onChange);
+    else if (mq.addListener) mq.addListener(onChange);
+  }
+}
+
+// Per-vy: uppdatera <title> + meta-description sa varje vy har ratt SEO/delning.
+function setMeta(title, description) {
+  document.title = title;
+  if (description) {
+    const m = document.querySelector('meta[name="description"]');
+    if (m) m.setAttribute("content", description);
+  }
+}
+
 const esc = (s) =>
   String(s ?? "").replace(/[&<>"']/g, (c) =>
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])
@@ -138,6 +185,17 @@ function heroCard(rec, stale, today) {
     ${staleNote}`;
 }
 
+// Forrenderad/klient-delad "Fler tips"-lista under dagens hero (rikare startsida).
+function moreTipsHtml(data, excludeDate) {
+  const items = data
+    .filter((r) => r.date !== excludeDate)
+    .slice(0, 8)
+    .map((r) => `<li><a href="#/avsnitt/${esc(r.date)}"><span class="more-date">${esc(fmtDayMonth(r.date))}</span> <span class="more-title">${esc(r.episode_title)}</span> <span class="more-show">${esc(r.show_name)}</span></a></li>`)
+    .join("");
+  if (!items) return "";
+  return `<nav class="more-tips" aria-label="Fler tips"><h2 class="more-head">Fler tips</h2><ul>${items}</ul></nav>`;
+}
+
 function historyCard(rec) {
   return `
     <a class="card" href="#/avsnitt/${esc(rec.date)}">
@@ -150,15 +208,22 @@ function historyCard(rec) {
 
 // ── Vyer ──────────────────────────────────────────────────────────────────────
 async function viewToday() {
-  app.innerHTML = `<div class="loading">Laddar dagens tips…</div>`;
+  // Behall den forrenderade hero:n (riktigt innehall fran build-steget) under
+  // tiden datan laddas – ingen "Laddar"-blink. Visa bara spinner om inget finns.
+  if (!app.querySelector(".hero.prerendered")) {
+    app.innerHTML = `<div class="loading">Laddar dagens tips…</div>`;
+  }
   try {
     const data = await loadData();
     const today = todayStockholm();
     const todayRec = data.find((r) => r.date === today);
-    if (todayRec) {
-      app.innerHTML = heroCard(todayRec, false, today);
+    const rec = todayRec || data[0] || null;
+    app.innerHTML = heroCard(rec, !todayRec && data.length > 0, today) + (rec ? moreTipsHtml(data, rec.date) : "");
+    if (rec) {
+      setMeta(`${SITE_NAME} · ${rec.episode_title} – ${rec.show_name}`,
+        String(rec.why_great || "").replace(/\s+/g, " ").trim().slice(0, 160));
     } else {
-      app.innerHTML = heroCard(data[0] || null, data.length > 0, today);
+      setMeta(`${SITE_NAME} – Ett handplockat poddavsnitt om dagen`);
     }
   } catch (e) {
     app.innerHTML = `<div class="error-box">Kunde inte ladda dagens tips (${esc(e.message)}).</div>`;
@@ -177,6 +242,7 @@ async function viewHistory() {
   }
 
   const genres = [...new Set(data.map((r) => r.genre).filter(Boolean))].sort();
+  setMeta(`Historik · ${SITE_NAME}`, `Alla tidigare poddtips från ${SITE_NAME} – ${data.length} dokumenterat hyllade avsnitt att bläddra och söka bland.`);
 
   app.innerHTML = `
     <div class="section-head"><h1>Historik</h1><span class="muted" id="hist-count"></span></div>
@@ -231,6 +297,10 @@ async function viewDetail(date) {
   try {
     const data = await loadData();
     const rec = data.find((r) => r.date === date);
+    if (rec) {
+      setMeta(`${rec.episode_title} – ${rec.show_name} · ${SITE_NAME}`,
+        String(rec.why_great || "").replace(/\s+/g, " ").trim().slice(0, 160));
+    }
     app.innerHTML = `
       <a class="back" href="#/historik">← Tillbaka till historiken</a>
       ${rec ? heroCard(rec, false, rec.date) : '<div class="error-box">Avsnittet hittades inte.</div>'}`;
@@ -280,6 +350,7 @@ function bars(items, nameKey, max) {
 
 async function viewStats() {
   app.innerHTML = `<div class="loading">Räknar statistik…</div>`;
+  setMeta(`Statistik · ${SITE_NAME}`, `Statistik över ${SITE_NAME}: mest rekommenderade poddar, fördelning per genre och språk.`);
   try {
     const data = await loadData();
     const s = computeStats(data);
@@ -333,4 +404,5 @@ function router() {
 }
 
 window.addEventListener("hashchange", router);
+initTheme();
 router();

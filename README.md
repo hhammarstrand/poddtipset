@@ -9,16 +9,16 @@ server, ingen databas, ingen inloggning, ingen tracking. Mobil först, mörkt/lj
 
 ## Så fungerar det
 
-Brief'ens separation – **schemalagt jobb → persistens → läs-API → frontend** – behålls, men med
+Brief'ens separation – **schemalagt jobb → persistens → läs-API → frontend** – behålls, med
 en ren GitHub-stack:
 
 ```
-GitHub Actions (cron, dagligen 06:00 Europe/Stockholm)
-        │  startar tillfällig SearXNG-container (gratis, nyckellös web_search)
+GitHub Actions (cron, dagligen 03:00 Europe/Stockholm)
         │  node scripts/generate.mjs
         ▼
-Qwen via Staik (api.staik.se, OpenAI-kompatibelt)  ──►  söker via SearXNG, validering & källkontroll
-        │
+MiniMax  ──►  webbsökningar server-side (/v1/coding_plan/search) +
+        │      en MiniMax-modell väljer ETT avsnitt (chat/completions),
+        │      validering & källkontroll
         ▼
 public/data/recommendations.json   ← committas tillbaka i repot (persistensen)
         │
@@ -27,29 +27,34 @@ GitHub Pages serverar public/  ──►  frontend laser JSON och visar
                                      dagens tips / historik / statistik (allt klient-sidan)
 ```
 
-Sökningen är **gratis och nyckellös**: en tillfällig SearXNG-instans startas i workflowen på
-`localhost:8080` och rivs ner när jobbet är klart. Modellen (Qwen) körs via Staik. Ingen
-Anthropic-nyckel och inget betalt sök-API krävs – bara en Staik-nyckel.
+Både sökningen och modellen körs på **MiniMax infrastruktur**, inte på GitHub-runnern. Generatorn gör
+först några varierade webbsökningar mot MiniMax server-sidiga sök-endpoint
+(`/v1/coding_plan/search`) och matar in träffarna i **ett** anrop till en MiniMax-chattmodell som
+väljer avsnittet. Eftersom sökningen sker server-side är runnerns datacenter-IP aldrig i sökloopen –
+tidigare löste vi sökningen med en self-hostad SearXNG vars IP ofta blockades av uppströms-sökmotorer,
+vilket fick genereringen att tyst ge noll träffar (och sidan slutade uppdateras fast workflowen lyste
+grönt). Nu krävs bara en **MiniMax API-nyckel** (token/coding plan); ingen container, inget separat
+sök-API, och samma nyckel används för både sök och LLM.
 
 - **Schemalagt jobb:** [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) kör en gång per
-  dygn (samt manuellt via "Run workflow"). Det startar SearXNG som en Docker-container innan
-  genereringen.
-- **Kurering:** [`scripts/generate.mjs`](scripts/generate.mjs) anropar Qwen via Staik med ett
-  klient-sidigt **web_search**-verktyg som söker mot den lokala SearXNG-instansen. Generatorn
-  pre-seedar ett par bredsökningar så modellen alltid har riktiga träffar att utgå från, och ber den
-  välja ETT avsnitt som är dokumenterat hyllat (bästa-listor, högt på Podchaser/Reddit,
-  prisbelönt, mycket delat), på svenska eller engelska, som **inte** redan finns i historiken
-  (senaste ~60 skickas med för dedup). Svaret valideras hårt (guardrails mot påhitt):
+  dygn (samt manuellt via "Run workflow").
+- **Kurering:** [`scripts/generate.mjs`](scripts/generate.mjs) gör flera varierade webbsökningar (olika
+  vinklar: genre/språk/källa) mot MiniMax sök-endpoint och ber sedan en MiniMax-modell välja ETT avsnitt
+  som är dokumenterat hyllat (bästa-listor, högt på Podchaser/Reddit, prisbelönt, mycket delat), på
+  svenska eller engelska, som **inte** redan finns i historiken (senaste ~60 skickas med för dedup).
+  Modellen får bara välja utifrån de medskickade sökträffarna, och svaret valideras hårt mot dem
+  (guardrails mot påhitt):
   - alla fält ifyllda, rätt språk, ingen dubblett;
-  - **minst en käll-URL som faktiskt sågs i sökresultaten** *och* går att nå (`fetch` < 400) –
-    modellen får inte hitta på eller ändra en URL;
+  - **minst en käll-URL som ordagrant kom ur sökträffarna** – och **minst en källa måste namnge
+    podden** (modellen får inte hitta på eller para ihop en URL med fel podd);
   - **poddens namn måste förekomma i sökresultaten** (inga påhittade poddar);
-  - **inga citat** i "varför den är bra"-texten (kan inte garanteras stämma, så de förbjuds helt);
-  - **fristående avsnitt** – uppföljare/serie-delar/"Update:"/finale m.m. underkänns (regex + modellen
-    måste sätta `standalone: true`).
+  - **inga citat** och **ingen spekulation** ("kanske"/"titeln antyder") i "varför den är bra"-texten,
+    och **inga icke-latinska tecken** (modellen får inte byta språk mitt i);
+  - **bara riktiga källor** – enbart sociala/video-länkar (YouTube/Instagram m.fl.) underkänns;
+  - **fristående avsnitt** – uppföljare/serie-delar/säsonger/"Update:"/finale m.m. underkänns (regex +
+    modellen måste sätta `standalone: true`).
 
-  Underkänt → regenereras (max 4 försök), annars lämnas dagen tom (frontend visar gårdagens tips).
-  Modellen körs med låg temperatur för att minska konfabulering.
+  Underkänt → regenereras (max 12 försök), annars lämnas dagen tom (frontend visar gårdagens tips).
 - **Koppling till dagens datum:** generatorn hämtar Wikipedias "On this day"-flöde (sv + en,
   nyckellöst) för dagens datum och matar in händelser/födslar som dagens tema. Modellen försöker
   gärna välja ett hyllat avsnitt som knyter an till något av detta och fyller då fältet
@@ -71,11 +76,14 @@ gruppering) · `hosts` · `genre` · `language` · `year` · `duration_minutes` 
 ## Konfiguration
 
 Ändra högst upp i [`scripts/generate.mjs`](scripts/generate.mjs):
-`LANGUAGES` (`["sv","en"]`), `GENRES` (`"all"` eller en lista), `MODEL` (`qwen3.6:35b-a3b`, byt
-till t.ex. `qwen3.5:9b` eller `gemma4:31b`), `DEDUP_COUNT`, `MAX_ATTEMPTS`, `MAX_TOKENS`,
-`SHOW_HARD_DAYS`/`SHOW_SOFT_COUNT` (podd-dedup), `THEME_HOOKS`, `WHY_LANG`. Sökvinklarna ändras i
-`QUERY_POOL`. Staik-endpoint kan överstyras med miljövariabeln `STAIK_BASE_URL`.
-Cron-tiden ändras i `.github/workflows/deploy.yml` (`schedule.cron`, UTC).
+`LANGUAGES` (`["sv","en"]`), `GENRES` (`"all"` eller en lista), `MODEL` (`MiniMax-M3`),
+`DEDUP_COUNT`, `MAX_ATTEMPTS`, `MAX_TOKENS`, `SEED_RESULTS_PER_QUERY`,
+`SHOW_HARD_DAYS`/`SHOW_SOFT_COUNT` (podd-dedup), `THEME_HOOKS`, `WHY_LANG`.
+
+**Modellval:** `MODEL` är satt till `MiniMax-M3`, som ger renare svensk prosa och stabilare JSON än
+`MiniMax-M2.7` (som ibland bytte språk mitt i svaret). Modellen kan överstyras med miljövariabeln
+`MINIMAX_MODEL`, och endpoint-basen med `MINIMAX_BASE_URL` (t.ex. `https://api.minimaxi.com` för en
+annan region). Cron-tiden ändras i `.github/workflows/deploy.yml` (`schedule.cron`, UTC).
 
 ---
 
@@ -83,10 +91,14 @@ Cron-tiden ändras i `.github/workflows/deploy.yml` (`schedule.cron`, UTC).
 
 Det mesta är redan klart i repot. Tre saker behöver göras i GitHub-inställningarna:
 
-1. **Lägg till Staik API-nyckel som secret** (krävs för genereringen):
+1. **Lägg till MiniMax API-nyckel som secret** (krävs för genereringen):
    *Settings → Secrets and variables → Actions → New repository secret*
-   - Namn: `STAIK_API_KEY`
-   - Värde: din nyckel från Staik (`sk-st-…`)
+   - Namn: `MINIMAX_API_KEY`
+   - Värde: din nyckel från MiniMax (platform.minimax.io). En token-/coding-plan-nyckel räcker –
+     samma nyckel används för både sök-endpointen och chat-modellen.
+   - **Lägg ALDRIG en nyckel direkt i chatt, kod eller commits** – bara via secret-rutan ovan.
+     Om en nyckel av misstag exponerats någonstans: rotera/återkalla den omedelbart på
+     platform.minimax.io innan du lägger in den nya.
 
 2. **Slå på GitHub Pages med Actions som källa:**
    *Settings → Pages → Build and deployment → Source = **GitHub Actions***
@@ -109,29 +121,26 @@ Sidan blir nåbar på `https://<användarnamn>.github.io/poddtipset/`.
 ## Lokal utveckling
 
 ```bash
-# Starta en lokal SearXNG (gratis web_search) – behövs av generatorn
-docker run -d --name searxng -p 8080:8080 \
-  -v "$PWD/searxng:/etc/searxng:ro" searxng/searxng:latest
-
 # Generera ett tips lokalt (skriver till public/data/recommendations.json)
-STAIK_API_KEY=sk-st-... SEARXNG_URL=http://localhost:8080 npm run generate
+MINIMAX_API_KEY=... npm run generate
 
-# Servera frontend lokalt (välj en annan port än SearXNG:s 8080)
+# Servera frontend lokalt
 npx --yes http-server public -p 8090 -c-1
 ```
 
 `GENERATE_DATE=YYYY-MM-DD` kan sättas för att seeda ett specifikt datum.
-`STAIK_BASE_URL` kan sättas för att peka på en annan Staik-kompatibel endpoint.
+`MINIMAX_MODEL` kan sättas för att testa en annan MiniMax-modell, `MINIMAX_BASE_URL` för en annan region.
 
 ## Noter
 
-- **Tidszon:** GitHub-cron körs i UTC. `"0 5 * * *"` = 06:00 på vintern (CET) / 07:00 på sommaren
-  (CEST) i Europe/Stockholm. Justera i workflowen om du vill ha exakt 06:00 året runt.
-- **Inga hemligheter i koden:** `STAIK_API_KEY` finns bara som GitHub Actions-secret.
-- **Kostnad:** sökningen är gratis (self-hostad SearXNG). Den enda eventuella kostnaden är
-  Staik-anropen – ett fåtal per dygn (modellen kan söka i flera rundor).
-- **Sökkvalitet:** SearXNG hämtar från publika sökmotorer som ibland blockar datacenter-IP:n, så
-  enstaka körningar kan ge tunna träffar. Generatorn gör då nya försök; misslyckas allt lämnas dagen
-  tom och frontend visar gårdagens tips.
+- **Tidszon:** GitHub-cron körs i UTC. `"0 1 * * *"` = 02:00 på vintern (CET) / 03:00 på sommaren
+  (CEST) i Europe/Stockholm. Justera i workflowen om du vill ha en annan tid.
+- **Inga hemligheter i koden:** `MINIMAX_API_KEY` finns bara som GitHub Actions-secret.
+- **Kostnad:** både sök och LLM ingår i MiniMax token-/coding-plan, så ett fåtal körningar per dygn
+  kostar marginellt. (Varje dag gör som mest ~12 försök à 4–5 sökningar + ett modellanrop.)
+- **Sökkvalitet:** sökningen körs på MiniMax infrastruktur, så runnerns IP blockas inte av
+  sökmotorerna (vilket var det som fick den gamla SearXNG-lösningen att ge tomma dagar). Skulle ett
+  försök ändå underkännas görs nya försök; misslyckas allt lämnas dagen tom och frontend visar
+  gårdagens tips.
 - **Subväg:** frontend använder relativa sökvägar och fungerar därför både på
   `<user>.github.io/poddtipset/` och under egen domän.

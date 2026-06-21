@@ -2,6 +2,7 @@ name: Bygg och deploya (GitHub Pages)
 
 on:
   # Daglig generering 01:00 UTC = 02:00 Europe/Stockholm (vinter) / 03:00 (sommar).
+  # Drivs av MiniMax (server-side sok + LLM) – billig token-plan, ingen OpenAI-kostnad.
   schedule:
     - cron: "0 1 * * *"
   # Deploya nar koden andras.
@@ -44,41 +45,16 @@ jobs:
         with:
           node-version: "24"
 
-      - name: Starta SearXNG (gratis, lokal web_search)
-        if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
-        env:
-          STAIK_API_KEY: ${{ secrets.STAIK_API_KEY }}
-        run: |
-          if [ -z "$STAIK_API_KEY" ]; then
-            echo "::warning::STAIK_API_KEY saknas – hoppar over SearXNG och generering."
-            exit 0
-          fi
-          docker run -d --name searxng -p 8080:8080 \
-            -v "$GITHUB_WORKSPACE/searxng:/etc/searxng:ro" \
-            -e "SEARXNG_BASE_URL=http://localhost:8080/" \
-            searxng/searxng:latest
-          echo "Vantar pa att SearXNG ska svara med JSON…"
-          for i in $(seq 1 40); do
-            if curl -sf "http://localhost:8080/search?q=test&format=json" >/dev/null 2>&1; then
-              echo "SearXNG redo."
-              exit 0
-            fi
-            sleep 2
-          done
-          echo "::warning::SearXNG blev inte redo i tid – generering kan misslyckas."
-          docker logs searxng 2>&1 | tail -30 || true
-
       - name: Generera dagens tips
         if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
         env:
-          STAIK_API_KEY: ${{ secrets.STAIK_API_KEY }}
-          SEARXNG_URL: http://localhost:8080
+          MINIMAX_API_KEY: ${{ secrets.MINIMAX_API_KEY }}
           GENERATE_DATE: ${{ inputs.date }}
           GENERATE_FORCE: ${{ inputs.force }}
           BACKFILL_START: ${{ inputs.backfill_start }}
         run: |
-          if [ -z "$STAIK_API_KEY" ]; then
-            echo "::warning::STAIK_API_KEY saknas som repo-secret – hoppar over genereringen."
+          if [ -z "$MINIMAX_API_KEY" ]; then
+            echo "::warning::MINIMAX_API_KEY saknas som repo-secret – hoppar over genereringen."
           elif [ -n "$BACKFILL_START" ]; then
             end="${GENERATE_DATE:-$(TZ=Europe/Stockholm date +%F)}"
             d="$BACKFILL_START"

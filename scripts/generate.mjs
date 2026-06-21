@@ -1,13 +1,17 @@
 // Dagens Pod – dygnsgenerering for GitHub Actions.
-// Kors en gang per dygn: gor varierade webbsokningar mot en self-hostad SearXNG,
-// matar in traffarna i ETT anrop till en LLM (Qwen via Staik) som valjer ETT
-// dokumenterat hyllat avsnitt. Resultatet valideras/kallbelaggs och laggs till i
-// den statiska datafilen som GitHub Pages serverar. Inget agentiskt verktygs-loop
-// (token-snalt); sokningarna gors deterministiskt i koden.
+// Kors en gang per dygn: gor varierade webbsokningar mot MiniMax server-sidiga
+// sok-endpoint (/v1/coding_plan/search) och matar in traffarna i ETT anrop till
+// en MiniMax-chattmodell som valjer ETT dokumenterat hyllat avsnitt. Resultatet
+// valideras/kallbelaggs och laggs till i den statiska datafilen som GitHub Pages
+// serverar. Inget agentiskt verktygs-loop (token-snalt); sokningarna gors
+// deterministiskt i koden.
+//
+// Bade sokningen och modellen kors pa MiniMax infrastruktur – ingen self-hostad
+// sokmotor och ingen datacenter-IP som blockas av sokmotorerna (det var det som
+// fick den gamla SearXNG-losningen att ge tomma dagar).
 //
 // Kraver Node 20+ (global fetch, AbortSignal.timeout). Inga npm-beroenden.
-// Las STAIK_API_KEY fran miljon (GitHub Actions secret) och SEARXNG_URL
-// (default http://localhost:8080, satts av workflowen).
+// Las MINIMAX_API_KEY fran miljon (GitHub Actions secret).
 
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { fileURLToPath, pathToFileURL } from "node:url";
@@ -18,43 +22,51 @@ import { dirname, join } from "node:path";
 // ─────────────────────────────────────────────────────────────────────────────
 const LANGUAGES = ["sv", "en"];
 const GENRES = "all"; // "all" eller t.ex. ["history", "true crime"]
-const MODEL = "qwen3.6:35b-a3b"; // Staik-modell. Alternativ: "qwen3.5:9b", "gemma4:31b".
+// MiniMax-chattmodell. M3 ger klart renare svensk prosa och stabilare JSON an M2.7
+// (som ibland bytte sprak mitt i). Alternativ: "MiniMax-M2.7", "MiniMax-M2.5".
+const MODEL = process.env.MINIMAX_MODEL || "MiniMax-M3";
 const DEDUP_COUNT = 60;          // avsnitts-dedup (skickas till modellen)
-const MAX_ATTEMPTS = 10;         // forsok per dag (sveper bredare sa fler dagar blir kompletta)
-const SEED_RESULTS_PER_QUERY = 4; // traffar per sokning som skickas till modellen
-const SNIPPET_LEN = 160;         // max tecken per snippet (token-besparing)
+const MAX_ATTEMPTS = 12;         // forsok per dag (sveper bredare sa fler dagar blir kompletta)
+const SEED_RESULTS_PER_QUERY = 8; // traffar per sokning som skickas till modellen
+const SNIPPET_LEN = 320;         // max tecken per snippet (langre = fler poddnamn overlever i korpus -> farre falska "podd saknas i resultaten"-underkanningar)
 const THEME_HOOKS = 8;           // antal "on this day"-krokar som skickas med
-const MAX_TOKENS = 4000;         // tak for modellens svar (rymligt sa Qwens resonemang + JSON ryms)
+const MAX_TOKENS = 24000;        // tak for modellens svar (rymligt sa MiniMax interleaved thinking + JSON ryms utan att JSON trunkeras)
 const TEMPERATURE = 0.4;         // lagt for att minska pahitt/konfabulering i fakta
 const SHOW_HARD_DAYS = 7;        // samma podd far INTE aterkomma inom sa har manga dagar
 const SHOW_SOFT_COUNT = 30;      // poddar att be modellen undvika (mjukt)
 const WHY_LANG = "sv";
 const SOURCE_FETCH_TIMEOUT_MS = 8000;
-const SEARXNG_TIMEOUT_MS = 12000;
-const STAIK_TIMEOUT_MS = 120000;
+const SEARCH_TIMEOUT_MS = 20000;
+const MINIMAX_TIMEOUT_MS = 180000;
 const WIKI_TIMEOUT_MS = 12000;
-// Vid backfill (manga dagar i samma korning) kan SearXNG:s uppstroms-motorer borja
-// strypa/blockera korningens IP efter tat sokvolym – traffarna gar da mot 0 over tid.
-// Pausa innan nasta forsok sa motorerna hinner aterhamta sig, istallet for att bara
-// brann fler forsok pa modellen utan ny sokdata.
-const SEARXNG_LOW_HIT_THRESHOLD = 5;   // under detta antal traffar racker det inte for ett robust forsok
-const SEARXNG_RECOVERY_DELAY_MS = 8000; // fast paus innan nasta forsok efter en svag/tom sokning
+const LOW_HIT_THRESHOLD = 5;     // under detta antal traffar racker det inte for ett robust forsok
 // Sprak for "On this day"-flodet (Wikipedia), i prioritetsordning. Forsta som svarar anvands/merges.
 const ONTHISDAY_WIKIS = ["sv", "en"];
 
 // Guardrails (validering)
 // Titel-monster som indikerar att avsnittet INTE ar fristaende (uppfoljare/serie/del/finale).
 const NON_STANDALONE_RE =
-  /\bupdate\b|update:|\buppdatering\b|\bpart\s+(one|two|three|four|five|1|2|3|4|5)\b|\bpt\.?\s*\d+\b|\bdel\s+(en|tva|två|tre|fyra|fem|\d+)\b|\bkapitel\s*\d+\b|\bchapter\s*\d+\b|\bepisode\s*\d+\b|\bavsnitt\s*\d+\b|\b\d+\s*\/\s*\d+\b|\bfinale\b|\bconclusion\b|\bcontinued\b|\bforts\.?\b|\bfortsättning\b|\bprolog|\bepilog/i;
+  /\bupdate\b|update:|\buppdatering\b|\bpart\s+(one|two|three|four|five|1|2|3|4|5)\b|\bpt\.?\s*\d+\b|\bdel\s+(en|tva|två|tre|fyra|fem|\d+)\b|\bkapitel\s*\d+\b|\bchapter\s*\d+\b|\bepisode\s*\d+\b|\bavsnitt\s*\d+\b|\bseason\s+(one|two|three|four|five|\d+)\b|\bsäsong\s+(ett|två|tre|fyra|fem|\d+)\b|\b\d+\s*\/\s*\d+\b|\bfinale\b|\bconclusion\b|\bcontinued\b|\bforts\.?\b|\bfortsättning\b|\bprolog|\bepilog/i;
+// Icke-latinska tecken (CJK/japanska/koreanska) i textfalt = modellen har bytt sprak
+// mitt i (MiniMax-quirk). Sant ar aldrig korrekt for svensk/engelsk text och underkanns.
+const NON_LATIN_RE = /[぀-ヿ㐀-䶿一-鿿豈-﫿가-힯]/;
+// Sociala/video-lankar belagger INTE att ett avsnitt ar hyllat – kraver minst en riktig kalla.
+const SOCIAL_HOST_RE = /(^|\.)(youtube\.com|youtu\.be|instagram\.com|tiktok\.com|facebook\.com|fb\.com|twitter\.com|x\.com|threads\.net|pinterest\.com)$/i;
 // Citat far inte forekomma i why_great – vi kan inte garantera att de stammer, sa de forbjuds helt.
 const QUOTE_RE = /["“”«»]|'[^']*\s[^']*'/;
+// Spekulation/gissning – why_great far INTE gissa om avsnittets innehall (t.ex. utifran
+// titeln). Sant later osakert och ar inte tidnings-/nyhetsbrevskvalitet.
+const SPECULATION_RE =
+  /\bkanske\b|\bantyder\b|\bantagligen\b|\bförmodligen\b|\btroligen\b|\bsannolikt\b|\bgissningsvis\b|\blär\s+vara\b|\bverkar\s+(vara|handla)\b|\btycks\b|titeln\s+(antyder|avslöjar|skvallrar|tyder)|man\s+kan\s+anta|\bpresumably\b|\bprobably\b|\blikely\b|\bmight\s+be\b|\bmay\s+be\b|\bcould\s+be\b|seems?\s+to\b|appears?\s+to\b|the\s+title\s+suggests/i;
 // Erkannanden i texten om att avsnittet ar del av en serie/sasong (titeln rojer det inte alltid).
 const SERIES_ADMISSION_RE =
   /\b(den\s+)?första\s+(delen|avsnittet|episoden)\b|\bförsta\s+delen\s+i\b|\bdel\s*(1|ett)\b|\bfirst\s+(part|episode|installment)\b|\bpart\s+one\b|\bseason\s+(opener|premiere)\b|\bseries\s+opener\b|\bpremiär(avsnitt|avsnittet)\b|\bopening\s+episode\b|\b(två|tre|fyra|fem|sex|sju|åtta|fler)delad\b|\b(multi-?part|two-?part|three-?part)\b|\bdel\s+av\s+en\s+(serie|flerdelad\s+serie)\b|\bfirst\s+in\s+a\s+(series|season)\b|\bden\s+första\s+i\s+en\b|\bkicks?\s+off\s+(the\s+)?(season|series)\b/i;
 
-const STAIK_URL =
-  (process.env.STAIK_BASE_URL || "https://api.staik.se/v1").replace(/\/$/, "") + "/chat/completions";
-const SEARXNG_URL = (process.env.SEARXNG_URL || "http://localhost:8080").replace(/\/$/, "");
+// MiniMax-endpoints (server-side sok + OpenAI-kompatibel chat). Byt MINIMAX_BASE_URL
+// till t.ex. https://api.minimaxi.com om nyckeln tillhor en annan region.
+const MINIMAX_BASE = (process.env.MINIMAX_BASE_URL || "https://api.minimax.io").replace(/\/$/, "");
+const MINIMAX_CHAT_URL = MINIMAX_BASE + "/v1/chat/completions";
+const MINIMAX_SEARCH_URL = MINIMAX_BASE + "/v1/coding_plan/search";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA_FILE = join(__dirname, "..", "public", "data", "recommendations.json");
@@ -101,7 +113,7 @@ async function writeData(list) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// SearXNG – gratis, nyckellost web_search (self-hostad i workflowen)
+// MiniMax server-side web_search (/v1/coding_plan/search)
 // ─────────────────────────────────────────────────────────────────────────────
 // Allt vi faktiskt sett i sokresultat denna korning. Anvands for att garantera att
 // modellen bara far kallbelagga med URL:er/poddar som verkligen dök upp – inte pahitt.
@@ -139,28 +151,27 @@ function appleSe(url) {
   }
 }
 
-async function searxngSearch(query) {
-  const url = new URL("/search", SEARXNG_URL);
-  url.searchParams.set("q", query);
-  url.searchParams.set("format", "json");
-  url.searchParams.set("language", "all");
-  url.searchParams.set("safesearch", "0");
+// En sokning mot MiniMax /v1/coding_plan/search. Svaret har formen
+// { organic: [{title, link, snippet, date}], related_searches: [...], base_resp: {...} }.
+async function minimaxSearch(apiKey, query) {
   try {
-    const res = await fetch(url, {
-      headers: {
-        accept: "application/json",
-        "user-agent": "DagensPod/1.0 (+https://github.com/hhammarstrand/poddtipset)",
-      },
-      signal: AbortSignal.timeout(SEARXNG_TIMEOUT_MS),
+    const res = await fetch(MINIMAX_SEARCH_URL, {
+      method: "POST",
+      headers: { "content-type": "application/json", authorization: `Bearer ${apiKey}` },
+      body: JSON.stringify({ q: query }),
+      signal: AbortSignal.timeout(SEARCH_TIMEOUT_MS),
     });
-    if (!res.ok) return { query, error: `SearXNG svarade ${res.status}`, results: [] };
+    if (!res.ok) return { query, error: `MiniMax search ${res.status}`, results: [] };
     const data = await res.json();
-    const results = (Array.isArray(data.results) ? data.results : [])
+    if (data?.base_resp && data.base_resp.status_code !== 0) {
+      return { query, error: `MiniMax search ${data.base_resp.status_code}: ${data.base_resp.status_msg}`, results: [] };
+    }
+    const results = (Array.isArray(data.organic) ? data.organic : [])
       .slice(0, SEED_RESULTS_PER_QUERY)
       .map((r) => ({
         title: typeof r.title === "string" ? r.title.slice(0, 140) : "",
-        url: typeof r.url === "string" ? r.url : "",
-        snippet: typeof r.content === "string" ? r.content.slice(0, SNIPPET_LEN) : "",
+        url: typeof r.link === "string" ? r.link : "",
+        snippet: typeof r.snippet === "string" ? r.snippet.slice(0, SNIPPET_LEN) : "",
       }))
       .filter((r) => /^https?:\/\//i.test(r.url));
     for (const r of results) SEEN.push(r);
@@ -224,8 +235,8 @@ function buildQueries(date, attempt, hooks) {
   return [...new Set(qs)];
 }
 
-async function gatherResults(queries) {
-  return Promise.all(queries.map((q) => searxngSearch(q)));
+async function gatherResults(apiKey, queries) {
+  return Promise.all(queries.map((q) => minimaxSearch(apiKey, q)));
 }
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -305,12 +316,12 @@ function formatThemeBlock(hooks, mm, dd) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Staik chat/completions (OpenAI-kompatibelt) – ETT anrop per forsok (ingen
+// MiniMax chat/completions (OpenAI-kompatibelt) – ETT anrop per forsok (ingen
 // agentisk tool-loop). Sokningarna gors deterministiskt i koden och matas in en
 // gang, vilket kapar token-forbrukningen drastiskt.
 // ─────────────────────────────────────────────────────────────────────────────
 async function askModel(apiKey, systemMsg, userMsg) {
-  const res = await fetch(STAIK_URL, {
+  const res = await fetch(MINIMAX_CHAT_URL, {
     method: "POST",
     headers: {
       "content-type": "application/json",
@@ -325,22 +336,27 @@ async function askModel(apiKey, systemMsg, userMsg) {
       temperature: TEMPERATURE,
       max_tokens: MAX_TOKENS,
     }),
-    signal: AbortSignal.timeout(STAIK_TIMEOUT_MS),
+    signal: AbortSignal.timeout(MINIMAX_TIMEOUT_MS),
   });
   if (!res.ok) {
     const body = await res.text();
-    throw new Error(`Staik API ${res.status}: ${body.slice(0, 500)}`);
+    throw new Error(`MiniMax API ${res.status}: ${body.slice(0, 500)}`);
   }
   const data = await res.json();
-  const content = data.choices?.[0]?.message?.content;
-  if (typeof content !== "string") throw new Error("Staik-svaret saknade text-innehall.");
-  return content;
+  const choice = data.choices?.[0];
+  const content = choice?.message?.content;
+  if (typeof content !== "string") throw new Error("MiniMax-svaret saknade text-innehall.");
+  return { content, finish: choice?.finish_reason || "" };
 }
 
 // Plocka ut det sista balanserade JSON-objektet ur en textstrang.
 function extractJsonObject(text) {
-  // Ta bort Qwens resonemang sa det inte stor JSON-extraktionen.
-  const t = String(text || "").replace(/<think>[\s\S]*?<\/think>/gi, " ");
+  // Ta bort modellens resonemang (<think>-block) sa det inte stor JSON-extraktionen.
+  // Hanterar aven ett oavslutat <think> (svar trunkerat) och ev. markdown-staket.
+  const t = String(text || "")
+    .replace(/<think>[\s\S]*?<\/think>/gi, " ")
+    .replace(/<think>[\s\S]*$/i, " ")
+    .replace(/```(?:json)?/gi, " ");
   const trimmed = t.trim();
   const direct = tryParse(trimmed);
   if (direct !== undefined) return direct;
@@ -378,7 +394,7 @@ function tryParse(s) {
 function systemPrompt() {
   const langNames = LANGUAGES.map((l) => (l === "sv" ? "svenska" : l === "en" ? "engelska" : l)).join(" eller ");
   const genreLine = GENRES === "all" ? "Alla genrer ar tillatna." : `Prioritera dessa genrer: ${GENRES.join(", ")}.`;
-  return `Du ar en mycket paläst poddredaktor som valjer ut ETT enastaende poddavsnitt som "dagens tips".
+  return `Du ar en mycket paläst poddredaktor som valjer ut ETT enastaende poddavsnitt som "dagens tips". Tonen och omdomet ska halla samma niva som en redaktionell rekommendation i en kvalitetstidning eller ett valkurerat nyhetsbrev.
 
 Du far en uppsattning sokresultat (titlar, URL:er, utdrag). Du kan INTE soka sjalv – valj ENBART utifran det som star i sokresultaten.
 
@@ -387,11 +403,19 @@ ABSOLUTA REGLER MOT PAHITT (overordnade allt annat):
 - INGA CITAT nagonstans i texten. Anvand aldrig citationstecken och tillskriv aldrig en namngiven person ett yttrande. Skriv om i stallet: i stallet for: hon kallade det "ett mastervaerk" -> skriv: det har hyllats som ett mastervaerk. Inga " ' « » far forekomma i why_great eller day_connection.
 - Ar du osaker pa ett falt (artal/langd) – satt det till null i stallet for att gissa.
 - Poddens namn maste finnas i dina sokresultat. Annars valj en annan podd.
+- SPRAK/TECKEN: skriv HELA svaret (alla falt) enbart med latinska bokstaver pa svenska eller engelska. Anvand ALDRIG japanska, kinesiska, koreanska eller andra icke-latinska tecken nagonstans – inte ens i enstaka ord.
+- GISSA ALDRIG vad avsnittet handlar om utifran titeln. Skriv bara om avsnittets innehall om sokresultaten FAKTISKT beskriver just det avsnittet (vad det handlar om, vem som medverkar, varfor det hyllas). Anvand aldrig ord som "kanske", "antyder", "titeln antyder", "troligen", "verkar" – sant avslojar att du gissar. Om sokresultaten bara namnger podden men inte beskriver det enskilda avsnittet: valj ett ANNAT avsnitt som verkligen beskrivs i resultaten.
+- Anvand poddens namn EXAKT som det skrivs i sokresultaten (t.ex. inte "An Infinite Monkey Cage" om resultaten sager "The Infinite Monkey Cage").
 
 KRAV PA AVSNITTET:
-- Dokumenterat hyllat: aterkommer pa "basta avsnitt"-listor, hogt rankat pa Podchaser/Reddit, prisbelont, eller mycket delat/citerat.
+- Dokumenterat hyllat: aterkommer pa "basta avsnitt"-listor, hogt rankat pa Podchaser/Reddit, prisbelont, eller mycket delat/citerat. Valj det avsnitt i sokresultaten som har STARKAST belagg for att vara hyllat – inte bara nagot som rakar namnas.
 - Sprak: ${langNames}. Vaxla garna sprak och genre fran dag till dag for variation.
 - ${genreLine}
+
+EPISODE_TITLE MASTE VARA ETT SPECIFIKT AVSNITT:
+- "episode_title" ar titeln pa det enskilda avsnittet, INTE namnet pa podden. Det ska sakta vad just detta avsnitt handlar om (t.ex. gasten, fallet, amnet).
+- Skriv ALDRIG samma sak i "episode_title" som i "show_name", och anvand inte poddens slogan/undertitel som avsnittstitel. Om sokresultaten bara ger poddens namn men inget specifikt avsnitt – valj ett annat avsnitt dar avsnittstiteln framgar.
+- Para ALDRIG ihop en avsnittstitel med fel podd. En beromd avsnittstitel hor till EN viss podd (t.ex. "The Case of the Missing Hit" hor till Reply All) – tillskriv den aldrig en annan podd. Avsnittstiteln och poddnamnet du anger maste hora ihop enligt sokresultaten.
 
 VARIERA POODARNA:
 - Du far en lista pa nyligen anvanda poddar. Valj helst en podd som INTE star pa listan – undvik att samma podd aterkommer ofta.
@@ -418,7 +442,11 @@ LYSSNA-LANKAR:
 SKRIV "DARFOR AR DET BRA"-TEXTEN SOM EN MANNISKA:
 - ${WHY_LANG === "sv" ? "Skriv pa svenska." : "Skriv pa engelska."}
 - 2-4 meningar, konkret och specifik om just detta avsnitt (vad hander, vem medverkar, vad gor det minnesvart) – men bara sant som stods av kallorna.
-- Inga floskler, inga AI-klichéer ("dyk ner i", "en fascinerande resa", "vare sig du ar..."). Inga citat. Lat det lata som en kunnig redaktor, inte en generator.
+- Skriv som en redaktor som faktiskt lyssnat: borja inte alla meningar likadant, vaxla meningslangd, var konkret om innehallet i stallet for svepande.
+- Inga floskler, inga AI-klichéer ("dyk ner i", "en fascinerande resa", "vare sig du ar...", "maste-lyssning"). Inga citat. Lat det lata som en kunnig redaktor, inte en generator.
+
+EFFEKTIVITET:
+- Hall ev. resonemang KORT. Valj snabbt det starkaste avsnittet ur sokresultaten och skriv sedan svaret. Lagg inte manga stycken pa att vaga olika kandidater mot varandra – det riskerar att svaret trunkeras innan JSON-objektet hinner skrivas.
 
 SVARSFORMAT:
 Svara med ENBART JSON-objektet – inget resonemang, ingen forklarande text, inga <think>-taggar, inga markdown-staket. ETT rent JSON-objekt med exakt dessa falt:
@@ -482,6 +510,11 @@ function validateTip(raw, recentKeys, seen, hardShowSlugs = new Set()) {
     return { ok: false, error: `language "${language}" ar inte tillatet (tillatna: ${LANGUAGES.join(", ")}).` };
   }
 
+  // Guardrail: inga icke-latinska tecken nagonstans (modellen far inte byta sprak mitt i).
+  if (NON_LATIN_RE.test(`${episode_title} ${show_name} ${hosts} ${genre} ${why_great} ${str(raw.day_connection)} ${str(raw.day_occasion)}`)) {
+    return { ok: false, error: "Svaret innehaller icke-latinska tecken (modellen bytte sprak) – skriv om pa svenska/engelska." };
+  }
+
   // Guardrail: fristaende avsnitt – inga uppfoljare/serie/del/finale.
   if (raw.standalone !== true) {
     return { ok: false, error: "Modellen bekraftade inte att avsnittet ar fristaende (standalone=true kravs)." };
@@ -490,9 +523,22 @@ function validateTip(raw, recentKeys, seen, hardShowSlugs = new Set()) {
     return { ok: false, error: `Avsnittet ser ut att vara en uppfoljare/del/serie utifran titeln: "${episode_title}".` };
   }
 
+  // Guardrail: episode_title maste vara ett specifikt avsnitt – inte poddens namn/slogan.
+  const epC = collapse(episode_title);
+  const showCheck = collapse(show_name);
+  if (epC && showCheck && (epC === showCheck || epC.startsWith(showCheck + " with ") || epC.startsWith(showCheck + " med "))) {
+    return { ok: false, error: `episode_title "${episode_title}" ar poddens namn, inte ett specifikt avsnitt.` };
+  }
+
   // Guardrail: inga citat i why_great (kan inte garanteras stamma).
   if (QUOTE_RE.test(why_great)) {
     return { ok: false, error: "why_great far inte innehalla citat eller citationstecken." };
+  }
+
+  // Guardrail: ingen spekulation/gissning i why_great. Om modellen gissar avsnittets
+  // innehall (t.ex. "titeln antyder", "kanske") sa har den inte riktig info om avsnittet.
+  if (SPECULATION_RE.test(why_great)) {
+    return { ok: false, error: "why_great spekulerar/gissar om avsnittet (t.ex. 'kanske'/'titeln antyder') – valj ett avsnitt vars innehall faktiskt beskrivs i sokresultaten." };
   }
 
   // Dagskoppling ar valfri (stark preferens, inte tvang). Inga citat; kort.
@@ -500,7 +546,10 @@ function validateTip(raw, recentKeys, seen, hardShowSlugs = new Set()) {
   if (day_connection && QUOTE_RE.test(day_connection)) {
     return { ok: false, error: "day_connection far inte innehalla citat eller citationstecken." };
   }
-  if (day_connection.length > 240) day_connection = day_connection.slice(0, 240).trim();
+  if (day_connection.length > 240) {
+    // Trimma vid ordgrans (inte mitt i ett ord) och avsluta snyggt.
+    day_connection = day_connection.slice(0, 240).replace(/\s+\S*$/, "").trim() + "…";
+  }
 
   // Vad som hande denna dag (visas ovanfor kopplingen). Tom om ingen koppling.
   let day_occasion = str(raw.day_occasion);
@@ -530,10 +579,38 @@ function validateTip(raw, recentKeys, seen, hardShowSlugs = new Set()) {
     return { ok: false, error: "Ingen kall-URL kom fran sokresultaten (modellen maste citera en URL den faktiskt sokte fram)." };
   }
 
+  // Guardrail: minst en kalla maste vara en riktig sida (inte bara YouTube/Instagram/TikTok).
+  // En social/video-lank belagger inte att avsnittet ar dokumenterat hyllat.
+  const hasRealSource = sources.some((s) => {
+    try { return !SOCIAL_HOST_RE.test(new URL(s.url).hostname); } catch { return false; }
+  });
+  if (!hasRealSource) {
+    return { ok: false, error: "Endast sociala/video-lankar som kalla – kraver minst en riktig kalla (lista/artikel/pris/Podchaser) som belagger hyllningen." };
+  }
+
   // Guardrail: poddens namn maste forekomma i sokresultaten (poddar far inte hittas pa).
   const showC = collapse(show_name);
   if (corpus && showC && !corpus.includes(showC)) {
     return { ok: false, error: `show_name "${show_name}" forekom inte i sokresultaten.` };
+  }
+
+  // Guardrail: minst en av de angivna kallorna maste vara ett sokresultat som FAKTISKT
+  // namner podden – annars belagger kallan fel podd (t.ex. en artikel om ett annat,
+  // topiskt narliggande avsnitt). Skyddar mot obskyra val "kallbelagda" med fel lank.
+  const seenByUrl = new Map(seenList.map((r) => [normUrl(r.url), collapse(`${r.title} ${r.snippet}`)]));
+  const sourceMentionsShow = sources.some((s) => (seenByUrl.get(normUrl(s.url)) || "").includes(showC));
+  if (showC && !sourceMentionsShow) {
+    return { ok: false, error: `Ingen kalla namner podden "${show_name}" – kallan belagger inte ratt podd.` };
+  }
+
+  // Guardrail: nar why_great ska vara pa svenska, kontrollera att den faktiskt ar det
+  // (modellen skrev ibland engelska/tyska istallet). Kraver nagra svenska funktionsord.
+  if (WHY_LANG === "sv") {
+    const w = ` ${collapse(why_great)} `;
+    const svHits = [" och ", " att ", " som ", " ar ", " den ", " det ", " inte ", " har ", " med ", " en ", " ett "].filter((t) => w.includes(t)).length;
+    if (svHits < 2) {
+      return { ok: false, error: "why_great verkar inte vara skriven pa svenska (WHY_LANG=sv)." };
+    }
   }
 
   const show_slug = slugify(show_name);
@@ -573,11 +650,14 @@ function validateTip(raw, recentKeys, seen, hardShowSlugs = new Set()) {
   };
 }
 
-async function hasReachableSource(sources) {
-  for (const s of sources) {
-    if (await isReachable(s.url)) return true;
-  }
-  return false;
+// Sorterar kallor sa att de som svarar (< 400) hamnar forst – utan att underkanna
+// nagot. Kallorna ar redan akta (kom ur sokresultaten); detta ar bara kosmetik sa
+// att den mest direkt klickbara lanken visas overst i kortet.
+async function sourcesReachableFirst(sources) {
+  const checked = await Promise.all(
+    sources.map(async (s) => ({ s, ok: await isReachable(s.url) }))
+  );
+  return [...checked.filter((c) => c.ok), ...checked.filter((c) => !c.ok)].map((c) => c.s);
 }
 
 // Behall bara lyssna-lankar som faktiskt gar att na (rensar bort pahittade URL:er).
@@ -690,9 +770,9 @@ export async function ensureListenLinks(links, showName, episodeTitle) {
 // Huvudflode
 // ─────────────────────────────────────────────────────────────────────────────
 async function main() {
-  const apiKey = process.env.STAIK_API_KEY;
+  const apiKey = process.env.MINIMAX_API_KEY;
   if (!apiKey) {
-    console.error("::error::STAIK_API_KEY saknas – kan inte generera.");
+    console.error("::error::MINIMAX_API_KEY saknas – kan inte generera.");
     process.exit(0);
   }
 
@@ -738,29 +818,30 @@ async function main() {
       SEEN.length = 0; // nollstall sedda sokresultat per forsok
       const queries = buildQueries(date, attempt, hooks);
       console.log(`Forsok ${attempt}: sokningar [${queries.join(" | ")}]`);
-      const searches = await gatherResults(queries);
+      const searches = await gatherResults(apiKey, queries);
       const searchBlock = formatSearchResults(searches);
       const hitCount = searches.reduce((n, s) => n + (s.results?.length || 0), 0);
       const searchErrors = searches.filter((s) => s.error).map((s) => `"${s.query}": ${s.error}`);
       console.log(`Forsok ${attempt}: ${hitCount} sokresultat${searchErrors.length ? ` (fel: ${searchErrors.join("; ")})` : ""}`);
-      if (hitCount < SEARXNG_LOW_HIT_THRESHOLD) {
-        // For fa traffar for att lita pa – sokmotorerna kan vara tillfalligt strypta
-        // efter tat sokvolym i samma korning. Vantar in en aterhamtningspaus istallet
-        // for att branna ett modellanrop pa svag/obefintlig sokdata.
+      if (hitCount < LOW_HIT_THRESHOLD) {
         lastError = "For fa sokresultat for att garantera en kallbelagd, icke-pahittad rekommendation.";
-        console.log(`Forsok ${attempt} hoppar over modellanrop: bara ${hitCount} sokresultat. Vantar ${SEARXNG_RECOVERY_DELAY_MS}ms.`);
-        await sleep(SEARXNG_RECOVERY_DELAY_MS);
+        console.log(`Forsok ${attempt} hoppar over modellanrop: bara ${hitCount} sokresultat.`);
         continue;
       }
-      const text = await askModel(apiKey, systemPrompt(), userPrompt(dedupList, avoidShows, searchBlock, themeBlock, lastError));
-      const v = validateTip(extractJsonObject(text), recentKeys, SEEN, hardShowSlugs);
+      const { content: text, finish } = await askModel(apiKey, systemPrompt(), userPrompt(dedupList, avoidShows, searchBlock, themeBlock, lastError));
+      const parsed = extractJsonObject(text);
+      if (parsed == null && finish === "length") {
+        console.log(`Forsok ${attempt}: svaret trunkerades (finish=length, ${text.length} tecken) – JSON ofullstandig.`);
+      }
+      const v = validateTip(parsed, recentKeys, SEEN, hardShowSlugs);
       if (!v.ok) { lastError = v.error; console.log(`Forsok ${attempt} underkant: ${v.error}`); continue; }
 
-      if (!(await hasReachableSource(v.tip.sources))) {
-        lastError = "Ingen av kall-URL:erna gick att na (status >= 400 eller timeout).";
-        console.log(`Forsok ${attempt} underkant: ${lastError}`);
-        continue;
-      }
+      // Ingen separat reachability-koll pa kallor: de ar redan garanterat akta (de
+      // MASTE ordagrant ha kommit ur MiniMax sokresultat, se validateTip). En extra
+      // live-fetch foll bara pa bot-skyddade sajter (Reddit/nyhetssajter blockar
+      // datacenter-IP) och underkande korrekta tips. Sorterar reachable forst sa den
+      // mest klickbara kallan visas overst, men underkanner inte langre pa det.
+      v.tip.sources = await sourcesReachableFirst(v.tip.sources);
 
       // Rensa bort lyssna-lankar som inte gar att na (t.ex. pahittade Spotify-URL:er),
       // och garantera sedan att Apple + Spotify alltid finns (iTunes-API + sok-deeplänk).
@@ -792,4 +873,4 @@ if (isDirectRun) {
   });
 }
 
-export { validateTip, extractJsonObject, NON_STANDALONE_RE, QUOTE_RE, SERIES_ADMISSION_RE, normUrl, collapse, SEEN, fetchOnThisDay, formatThemeBlock };
+export { validateTip, extractJsonObject, NON_STANDALONE_RE, QUOTE_RE, SERIES_ADMISSION_RE, normUrl, collapse, SEEN, fetchOnThisDay, formatThemeBlock, minimaxSearch };

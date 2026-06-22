@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Sun, 21 Jun 2026 12:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 22 Jun 2026 12:00:00 GMT</lastBuildDate>
+    <item>
+      <title>WW2 Podcast – Operation Barbarossa</title>
+      <link>https://hhammarstrand.github.io/poddtipset/#/avsnitt/2026-06-22</link>
+      <guid isPermaLink="false">dagens-pod-2026-06-22</guid>
+      <pubDate>Mon, 22 Jun 2026 12:00:00 GMT</pubDate>
+      <category>History</category>
+      <description>Avsnittet skildrar hur Tyskland, upprymda av segarna över Polen och Frankrike, den 22 juni 1941 satte igång Operation Barbarossa med över tre miljoner man mot Sovjetunionen. Det är en av de mest avgörande och blodigaste operationerna under andra världskriget, och avsnittet ger en dedikerad genomgång av hur invasionen inleddes.</description>
+    </item>
     <item>
       <title>Pablo Torre Finds Out – Watching the Dallas Cowboys on Death Row</title>
       <link>https://hhammarstrand.github.io/poddtipset/#/avsnitt/2026-06-21</link>

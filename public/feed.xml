@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Mon, 22 Jun 2026 12:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 23 Jun 2026 12:00:00 GMT</lastBuildDate>
+    <item>
+      <title>In Our Time – The Battle of Bannockburn</title>
+      <link>https://hhammarstrand.github.io/poddtipset/#/avsnitt/2026-06-23</link>
+      <guid isPermaLink="false">dagens-pod-2026-06-23</guid>
+      <pubDate>Tue, 23 Jun 2026 12:00:00 GMT</pubDate>
+      <category>History</category>
+      <description>Melvyn Bragg samlar historiker för ett samtal om slaget där Robert the Bruce och hans skotska styrkor konfronterade en engelsk armé den 23 juni 1314. Diskussionen rör sig från de konkreta taktiska valen på slagfältet till den långvariga mytbildningen kring en händelse som fortfarande laddar den skotska identitetsberättelsen. Facktidskriften Medievalists.net har ägnat avsnittet en utförlig recension, där samtalets förmåga att binda samman militärhistoria med bredare kulturell kontext lyfts fram.</description>
+    </item>
     <item>
       <title>WW2 Podcast – Operation Barbarossa</title>
       <link>https://hhammarstrand.github.io/poddtipset/#/avsnitt/2026-06-22</link>

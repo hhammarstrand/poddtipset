@@ -1,5 +1,34 @@
 [
   {
+    "date": "2026-06-24",
+    "episode_title": "John Cabot and the Exploration of North America",
+    "show_name": "Explorers Podcast",
+    "show_slug": "explorers-podcast",
+    "hosts": "",
+    "genre": "history",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "1497 – John Cabot landstiger i Nova Scotia",
+    "day_connection": "Avsnittet handlar om John Cabots resa 1497, samma händelse som enligt traditionen ägde rum den 24 juni detta år.",
+    "why_great": "Avsnittet skildrar den italienske sjöfararen Giovanni Caboto – John Cabot – och hans 1497-resa från England över Nordatlanten, där han enligt traditionen blev den förste européen att landsätta på Nordamerikas fastland sedan Leif Erikson. Berättelsen kretsar kring en enskild expedition och dess plats i upptäcktsfärdernas historia.",
+    "listen_links": {
+      "spotify": "https://open.spotify.com/episode/4Hu8b2wPsEtx5RsvFL9KsM",
+      "apple": "https://podcasts.apple.com/se/podcast/john-cabot-and-the-exploration-of-north-america/id1161063301?i=1000378734164&uo=4"
+    },
+    "sources": [
+      {
+        "title": "John Cabot and the Exploration of North America – Explorers Podcast",
+        "url": "https://explorerspodcast.com/john-cabot/"
+      },
+      {
+        "title": "John Cabot – Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/John_Cabot"
+      }
+    ],
+    "created_at": "2026-06-24T04:58:07.037Z"
+  },
+  {
     "date": "2026-06-23",
     "episode_title": "The Battle of Bannockburn",
     "show_name": "In Our Time",

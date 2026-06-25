@@ -1,5 +1,30 @@
 [
   {
+    "date": "2026-06-25",
+    "episode_title": "Michael Swango, Dr. Death",
+    "show_name": "True Crime All the Time",
+    "show_slug": "true-crime-all-the-time",
+    "hosts": "",
+    "genre": "True Crime",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Det här avsnittet av True Crime All the Time lyfts i en stor Reddit-tråd om true crime-avsnitt man aldrig glömmer. Berättelsen om läkaren Michael Swango, kallad Dr. Death, rekommenderas i samma andetag som den uppmärksammade BTK-serien, vilket placerar den i toppskiktet av verk som etsat sig fast hos lyssnare i genren.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/michael-swango-dr-death/id1179629560?i=1000390223064&uo=4",
+      "spotify": "https://open.spotify.com/search/True%20Crime%20All%20the%20Time%20Michael%20Swango%2C%20Dr.%20Death"
+    },
+    "sources": [
+      {
+        "title": "True crime episodes you'll never forget? : r/podcasts - Reddit",
+        "url": "https://www.reddit.com/r/podcasts/comments/caqh58/true_crime_episodes_youll_never_forget/"
+      }
+    ],
+    "created_at": "2026-06-25T05:00:34.715Z"
+  },
+  {
     "date": "2026-06-24",
     "episode_title": "John Cabot and the Exploration of North America",
     "show_name": "Explorers Podcast",

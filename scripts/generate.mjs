@@ -58,6 +58,10 @@ const QUOTE_RE = /["“”«»]|'[^']*\s[^']*'/;
 // titeln). Sant later osakert och ar inte tidnings-/nyhetsbrevskvalitet.
 const SPECULATION_RE =
   /\bkanske\b|\bantyder\b|\bantagligen\b|\bförmodligen\b|\btroligen\b|\bsannolikt\b|\bgissningsvis\b|\blär\s+vara\b|\bverkar\s+(vara|handla)\b|\btycks\b|titeln\s+(antyder|avslöjar|skvallrar|tyder)|man\s+kan\s+anta|\bpresumably\b|\bprobably\b|\blikely\b|\bmight\s+be\b|\bmay\s+be\b|\bcould\s+be\b|seems?\s+to\b|appears?\s+to\b|the\s+title\s+suggests/i;
+// Artikel-/listrubriker som rojer att "avsnittet" egentligen ar en tidningsartikel
+// eller en "arets basta avsnitt"-lista – aldrig ett enskilt spelbart poddavsnitt.
+const ARTICLE_TITLE_RE =
+  /\barets\s+basta\b|\barmsta\s+basta\b|basta\s+podd(avsnitt|ar|en)\b|oforglomliga\s+avsnitt|\b\d+\s+(basta|oforglomliga|favorit)\b|\bbest\s+podcast\s+episodes?\b|podcasts?\s+you\s+(need\s+to|should|must)\s+(listen|hear)|\b(topp|top)\s*\d+\s+(podd|podcast)/i;
 // Erkannanden i texten om att avsnittet ar del av en serie/sasong (titeln rojer det inte alltid).
 const SERIES_ADMISSION_RE =
   /\b(den\s+)?första\s+(delen|avsnittet|episoden)\b|\bförsta\s+delen\s+i\b|\bdel\s*(1|ett)\b|\bfirst\s+(part|episode|installment)\b|\bpart\s+one\b|\bseason\s+(opener|premiere)\b|\bseries\s+opener\b|\bpremiär(avsnitt|avsnittet)\b|\bopening\s+episode\b|\b(två|tre|fyra|fem|sex|sju|åtta|fler)delad\b|\b(multi-?part|two-?part|three-?part)\b|\bdel\s+av\s+en\s+(serie|flerdelad\s+serie)\b|\bfirst\s+in\s+a\s+(series|season)\b|\bden\s+första\s+i\s+en\b|\bkicks?\s+off\s+(the\s+)?(season|series)\b/i;
@@ -412,6 +416,11 @@ KRAV PA AVSNITTET:
 - Sprak: ${langNames}. Vaxla garna sprak och genre fran dag till dag for variation.
 - ${genreLine}
 
+SPELBART, RIKTIGT AVSNITT (inte en artikel eller lista):
+- Du MASTE valja ett enskilt poddAVSNITT som gar att lyssna pa i en poddapp (Apple Podcasts/Spotify). ALDRIG en tidningsartikel, kronika, nyhetsnotis, blogginlagg eller en "arets basta avsnitt"-lista.
+- "show_name" ska vara en RIKTIG PODD. Anvand ALDRIG namnet pa en tidning eller ett magasin som podd (t.ex. inte "Svenska Dagbladet", "Aftonbladet", "Expressen", "Femina", "Dagens Nyheter") – om du inte menar deras specifika namngivna podd, och da med poddens exakta namn.
+- "episode_title" ska vara titeln pa ETT enskilt avsnitt – inte en artikelrubrik och inte en lista ("11 oforglomliga avsnitt", "arets basta poddavsnitt"). Om sokresultatet ar en artikel som listar bra avsnitt: valj ett av de namngivna AVSNITTEN ur listan (om podden ocksa namns), inte artikeln i sig.
+
 EPISODE_TITLE MASTE VARA ETT SPECIFIKT AVSNITT:
 - "episode_title" ar titeln pa det enskilda avsnittet, INTE namnet pa podden. Det ska sakta vad just detta avsnitt handlar om (t.ex. gasten, fallet, amnet).
 - Skriv ALDRIG samma sak i "episode_title" som i "show_name", och anvand inte poddens slogan/undertitel som avsnittstitel. Om sokresultaten bara ger poddens namn men inget specifikt avsnitt – valj ett annat avsnitt dar avsnittstiteln framgar.
@@ -528,6 +537,12 @@ function validateTip(raw, recentKeys, seen, hardShowSlugs = new Set()) {
   const showCheck = collapse(show_name);
   if (epC && showCheck && (epC === showCheck || epC.startsWith(showCheck + " with ") || epC.startsWith(showCheck + " med "))) {
     return { ok: false, error: `episode_title "${episode_title}" ar poddens namn, inte ett specifikt avsnitt.` };
+  }
+
+  // Guardrail: avsnittstiteln far inte vara en artikel-/listrubrik ("arets basta
+  // poddavsnitt", "11 oforglomliga avsnitt") – det ar ingen enskild lyssningsbar episod.
+  if (ARTICLE_TITLE_RE.test(collapse(episode_title))) {
+    return { ok: false, error: `episode_title "${episode_title}" ser ut som en artikel-/listrubrik, inte ett enskilt poddavsnitt.` };
   }
 
   // Guardrail: inga citat i why_great (kan inte garanteras stamma).
@@ -751,6 +766,56 @@ async function itunesAppleUrl(showName, episodeTitle) {
   return null;
 }
 
+// Verifierar att (podd, avsnitt) ar ett AKTA, spelbart poddavsnitt genom att sla upp
+// det i Apples avsnitts-index (iTunes Search, entity=podcastEpisode) – djupare an RSS,
+// sa aven aldre avsnitt syns. Detta ar spelbarhets-gaten som stanger ute tidningsartiklar,
+// "basta-listor" och fel ihopparade titlar (de finns inte som avsnitt). Returnerar:
+//   { level: "episode", url } – bade podd och avsnitt hittades (direkt, verifierad avsnittslank)
+//   { level: "show" }         – podden finns men inte avsnittet (artikel/fel par)
+//   { level: "none" }         – varken podd eller avsnitt hittades (ingen riktig podd)
+//   { level: "error" }        – uppslaget kunde inte goras (natfel) – behandlas mjukt (slapps igenom)
+export async function lookupAppleEpisode(showName, episodeTitle) {
+  const search = async (entity, term, country) => {
+    const u = new URL("https://itunes.apple.com/search");
+    u.searchParams.set("media", "podcast");
+    u.searchParams.set("entity", entity);
+    u.searchParams.set("limit", "15");
+    u.searchParams.set("country", country);
+    u.searchParams.set("term", term);
+    const res = await fetch(u, {
+      headers: { "user-agent": "DagensPod/1.0 (+https://github.com/hhammarstrand/poddtipset)" },
+      signal: AbortSignal.timeout(SOURCE_FETCH_TIMEOUT_MS),
+    });
+    if (!res.ok) throw new Error(`itunes ${res.status}`);
+    const data = await res.json();
+    return Array.isArray(data.results) ? data.results : [];
+  };
+  let showSeen = false;
+  try {
+    for (const country of ["SE", "US"]) {
+      for (const r of await search("podcastEpisode", `${showName} ${episodeTitle}`, country)) {
+        const showOk = looseMatch(r.collectionName || "", showName);
+        if (showOk) showSeen = true;
+        if (showOk && looseMatch(r.trackName || "", episodeTitle)) {
+          const url = r.trackViewUrl || r.episodeUrl || r.collectionViewUrl;
+          if (url) return { level: "episode", url: appleSe(url) };
+        }
+      }
+    }
+    if (!showSeen) {
+      for (const country of ["SE", "US"]) {
+        if ((await search("podcast", showName, country)).some((r) => looseMatch(r.collectionName || "", showName))) {
+          showSeen = true;
+          break;
+        }
+      }
+    }
+    return { level: showSeen ? "show" : "none" };
+  } catch {
+    return { level: "error" };
+  }
+}
+
 // Garanterar att tipset alltid har minst en Apple- och en Spotify-lank.
 // Behaller redan nabara modell-lankar; fyller bara i det som saknas.
 // Exporteras sa att enrich-links.mjs kan efter-fylla aldre poster med samma logik.
@@ -836,6 +901,21 @@ async function main() {
       const v = validateTip(parsed, recentKeys, SEEN, hardShowSlugs);
       if (!v.ok) { lastError = v.error; console.log(`Forsok ${attempt} underkant: ${v.error}`); continue; }
 
+      // SPELBARHETS-GATE: avsnittet MASTE ga att hitta som ett akta poddavsnitt i Apple
+      // Podcasts (djupare index an RSS). Stanger ute tidningsartiklar, "basta-listor" och
+      // fel ihopparade titlar – de finns inte som avsnitt. Vid natfel slapps det igenom mjukt.
+      const apple = await lookupAppleEpisode(v.tip.show_name, v.tip.episode_title);
+      if (apple.level === "show" || apple.level === "none") {
+        lastError = apple.level === "show"
+          ? `Podden "${v.tip.show_name}" finns men avsnittet "${v.tip.episode_title}" gick inte att hitta som ett spelbart avsnitt i Apple Podcasts (kan vara en artikel/lista eller fel ihopparning).`
+          : `"${v.tip.show_name}" gick inte att hitta som en podd i Apple Podcasts – troligen ingen riktig podd (artikel/lista).`;
+        console.log(`Forsok ${attempt} underkant: ${lastError}`);
+        continue;
+      }
+      if (apple.level === "error") {
+        console.log(`Forsok ${attempt}: Apple-verifiering kunde inte goras (natfel) – slapper igenom mjukt.`);
+      }
+
       // Ingen separat reachability-koll pa kallor: de ar redan garanterat akta (de
       // MASTE ordagrant ha kommit ur MiniMax sokresultat, se validateTip). En extra
       // live-fetch foll bara pa bot-skyddade sajter (Reddit/nyhetssajter blockar
@@ -846,6 +926,8 @@ async function main() {
       // Rensa bort lyssna-lankar som inte gar att na (t.ex. pahittade Spotify-URL:er),
       // och garantera sedan att Apple + Spotify alltid finns (iTunes-API + sok-deeplänk).
       v.tip.listen_links = await filterReachableLinks(v.tip.listen_links);
+      // Anvand den verifierade, exakta avsnittslanken fran Apple (inte en sok-deeplänk).
+      if (apple.level === "episode" && apple.url) v.tip.listen_links.apple = apple.url;
       v.tip.listen_links = await ensureListenLinks(v.tip.listen_links, v.tip.show_name, v.tip.episode_title);
 
       const record = { date, ...v.tip, created_at: new Date().toISOString() };

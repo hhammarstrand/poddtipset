@@ -24,6 +24,10 @@ on:
         description: "Fyll i alla datum fran detta (YYYY-MM-DD) t.o.m. 'date'/idag. Tomt = av."
         required: false
         type: string
+      regen_dates:
+        description: "Tvinga om-generering av dessa datum (komma-separerat, YYYY-MM-DD). Tomt = av."
+        required: false
+        type: string
 
 permissions:
   contents: write   # generering committar dagens tips
@@ -52,9 +56,17 @@ jobs:
           GENERATE_DATE: ${{ inputs.date }}
           GENERATE_FORCE: ${{ inputs.force }}
           BACKFILL_START: ${{ inputs.backfill_start }}
+          REGEN_DATES: ${{ inputs.regen_dates }}
         run: |
           if [ -z "$MINIMAX_API_KEY" ]; then
             echo "::warning::MINIMAX_API_KEY saknas som repo-secret – hoppar over genereringen."
+          elif [ -n "$REGEN_DATES" ]; then
+            echo "Om-genererar (force) datum: $REGEN_DATES"
+            for d in $(echo "$REGEN_DATES" | tr ',' ' '); do
+              echo "--- regenererar $d ---"
+              GENERATE_DATE="$d" GENERATE_FORCE=true node scripts/generate.mjs || true
+              sleep 2
+            done
           elif [ -n "$BACKFILL_START" ]; then
             end="${GENERATE_DATE:-$(TZ=Europe/Stockholm date +%F)}"
             d="$BACKFILL_START"

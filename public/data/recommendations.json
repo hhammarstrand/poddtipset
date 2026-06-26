@@ -238,7 +238,7 @@
     "day_connection": "",
     "why_great": "American History Hit listas bland de bästa historpoddarna 2026 och avsnittet om Harlem Renaissance presenteras som ett av de främsta episoder i programmets katalog. Det utforskar en central period i amerikansk historia med den värd som är känd för sin engagerande berättarstil.",
     "listen_links": {
-      "apple": "https://podcasts.apple.com/se/podcast/american-history-hit/id1638918169",
+      "apple": "https://podcasts.apple.com/se/podcast/the-harlem-renaissance/id1638918169?i=1000772982966&uo=4",
       "spotify": "https://open.spotify.com/search/American%20History%20Hit%20The%20Harlem%20Renaissance"
     },
     "sources": [
@@ -252,56 +252,6 @@
       }
     ],
     "created_at": "2026-06-18T06:42:14.977Z"
-  },
-  {
-    "date": "2026-06-17",
-    "episode_title": "The Rumble Strip",
-    "show_name": "The Rumble Strip",
-    "show_slug": "the-rumble-strip",
-    "hosts": "Erica Heilman",
-    "genre": "Samhälle",
-    "language": "en",
-    "year": null,
-    "duration_minutes": null,
-    "day_occasion": "",
-    "day_connection": "",
-    "why_great": "Avsnittet har lyfts fram av Peabody Awards som ett utmärkt exempel på poddens stil med god samtal som tar sin tid. Det beskrivs som en primär exemplifiering av hur formatet fungerar, vilket placerar det högt i listan över rekommenderade avsnitt från en prestigefylld källa.",
-    "listen_links": {
-      "apple": "https://podcasts.apple.com/se/podcast/the-rumble-strip/id1434909329?uo=4",
-      "spotify": "https://open.spotify.com/search/The%20Rumble%20Strip%20The%20Rumble%20Strip"
-    },
-    "sources": [
-      {
-        "title": "The Best Podcasts to Listen to Right Now – The Peabody Awards",
-        "url": "https://peabodyawards.com/stories/the-best-podcasts-to-listen-to-right-now/"
-      }
-    ],
-    "created_at": "2026-06-17T21:47:23.680Z"
-  },
-  {
-    "date": "2026-06-16",
-    "episode_title": "Doug Clark and Carol Bundy",
-    "show_name": "Murder on the Sunset Strip",
-    "show_slug": "murder-on-the-sunset-strip",
-    "hosts": "Kim Cresswell",
-    "genre": "True Crime",
-    "language": "en",
-    "year": null,
-    "duration_minutes": null,
-    "day_occasion": "",
-    "day_connection": "",
-    "why_great": "Detta avsnitt listas som ett av de bästa inom genren i en populär Spotify-playlist som sammanställer källor och avsnitt som anses vara av högsta klass. Historien om Doug Clark och Carol Bundy är känd för sin djupgående och detaljerade berättelse, vilket gör den till en stark ingång i podden.",
-    "listen_links": {
-      "spotify": "https://open.spotify.com/playlist/2YhGmBDjE0htaswtSRqYbL",
-      "apple": "https://podcasts.apple.com/se/search?term=Murder%20on%20the%20Sunset%20Strip%20Doug%20Clark%20and%20Carol%20Bundy"
-    },
-    "sources": [
-      {
-        "title": "best true crime podcast episodes - playlist by aria | Spotify",
-        "url": "https://open.spotify.com/playlist/2YhGmBDjE0htaswtSRqYbL"
-      }
-    ],
-    "created_at": "2026-06-17T21:42:17.221Z"
   },
   {
     "date": "2026-06-15",
@@ -355,57 +305,6 @@
     "created_at": "2026-06-17T21:41:31.723Z"
   },
   {
-    "date": "2026-06-13",
-    "episode_title": "The Day Roe v. Wade Was Overturned",
-    "show_name": "This American Life",
-    "show_slug": "this-american-life",
-    "hosts": "Ira Glass",
-    "genre": "Journalism, Storytelling",
-    "language": "en",
-    "year": 2022,
-    "duration_minutes": null,
-    "day_occasion": "",
-    "day_connection": "",
-    "why_great": "Avsnittet har tilldelats ett Peabody Award och hyllas som en av showens mest betydelsefulla produktioner genom att dokumentera den exakta dagen som Högsta domstolen välte Roe mot Wade. Med filmaren Maisie Crow som medskapare fångas stämningen och reaktionerna på ett sätt som gör det till en historisk tidskapsel. Det är ett komplett och självständigt reportage som står starkt utan föregående avsnitt.",
-    "listen_links": {
-      "apple": "https://podcasts.apple.com/se/podcast/this-american-life/id201671138?uo=4",
-      "spotify": "https://open.spotify.com/search/This%20American%20Life%20The%20Day%20Roe%20v.%20Wade%20Was%20Overturned"
-    },
-    "sources": [
-      {
-        "title": "Award Winners - This American Life",
-        "url": "https://www.thisamericanlife.org/recommended/award-winners"
-      }
-    ],
-    "created_at": "2026-06-17T21:41:14.845Z"
-  },
-  {
-    "date": "2026-06-12",
-    "episode_title": "11 oförglömliga avsnitt av P3 Dokumentär",
-    "show_name": "Femina",
-    "show_slug": "femina",
-    "hosts": "Femina",
-    "genre": "Kultur, Samhälle",
-    "language": "sv",
-    "year": 2026,
-    "duration_minutes": null,
-    "day_occasion": "",
-    "day_connection": "",
-    "why_great": "Detta avsnitt fungerar som en perfekt introduktion till P3 Dokumentär genom att presentera elva av seriens mest hyllade och minnesvärda avsnitt. Det tar upp tunga och historiskt betydelsefulla teman som diskoteksbranden i Göteborg, fallet Bobby och black metal-morden, vilket ger lyssnaren en konkret överblick över vad som gör programmet till en svensk klassiker. Det är en sammanfattning som står starkt i sig själv och belyser varför dessa berättelser har satt så djupa avtryck i den svenska kulturscenen.",
-    "listen_links": {
-      "web": "https://www.femina.se/kultur/branddadet-skakade-sverige-det-starkaste-som-sants/11362723",
-      "apple": "https://podcasts.apple.com/se/podcast/the-femina-podcast/id1530643241?uo=4",
-      "spotify": "https://open.spotify.com/search/Femina%2011%20of%C3%B6rgl%C3%B6mliga%20avsnitt%20av%20P3%20Dokument%C3%A4r"
-    },
-    "sources": [
-      {
-        "title": "11 bästa avsnitten av P3 Dokumentär - Femina",
-        "url": "https://www.femina.se/kultur/branddadet-skakade-sverige-det-starkaste-som-sants/11362723"
-      }
-    ],
-    "created_at": "2026-06-17T21:31:40.649Z"
-  },
-  {
     "date": "2026-06-11",
     "episode_title": "The Model City",
     "show_name": "Empire City: The Untold Origin Story of the NYPD",
@@ -456,81 +355,6 @@
     "created_at": "2026-06-17T21:20:43.974Z"
   },
   {
-    "date": "2026-06-09",
-    "episode_title": "Motbjudande och oemotståndligt: årets bästa poddavsnitt hittills",
-    "show_name": "Svenska Dagbladet",
-    "show_slug": "svenska-dagbladet",
-    "hosts": "Svenska Dagbladet",
-    "genre": "Samhälle och kultur",
-    "language": "sv",
-    "year": 2021,
-    "duration_minutes": null,
-    "day_occasion": "",
-    "day_connection": "",
-    "why_great": "Detta avsnitt presenteras som en samlingslista över årets bästa poddavsnitt och lyfter fram en mästerligt berättad true crime-historia som utspelar sig på södra Irland. Avsnittet har hyllats för sin makliga och engagerande berättarteknik och fungerar som en utmärkt ingång till poddvärlden genom att sammanfatta höjdpunkter från det senaste året.",
-    "listen_links": {
-      "apple": "https://podcasts.apple.com/se/search?term=Svenska%20Dagbladet%20Motbjudande%20och%20oemotst%C3%A5ndligt%3A%20%C3%A5rets%20b%C3%A4sta%20poddavsnitt%20hittills",
-      "spotify": "https://open.spotify.com/search/Svenska%20Dagbladet%20Motbjudande%20och%20oemotst%C3%A5ndligt%3A%20%C3%A5rets%20b%C3%A4sta%20poddavsnitt%20hittills"
-    },
-    "sources": [
-      {
-        "title": "Jätteguide: De är årets 50 bästa poddavsnitt",
-        "url": "https://www.svd.se/a/M3zm1M/motbjudande-och-oemotstandligt-arets-basta-poddavsnitt-hittills"
-      }
-    ],
-    "created_at": "2026-06-17T21:20:26.042Z"
-  },
-  {
-    "date": "2026-06-08",
-    "episode_title": "122. Three Centuries of Uppsala Cathedral",
-    "show_name": "Researching Peace",
-    "show_slug": "researching-peace",
-    "hosts": "Uppsala University",
-    "genre": "History",
-    "language": "en",
-    "year": 2025,
-    "duration_minutes": null,
-    "day_occasion": "Uppsala domkyrka (se bild) invigs.",
-    "day_connection": "Avsnittet handlar om Uppsala domkyrkas historia och invigningen 1435.",
-    "why_great": "Detta avsnitt ger en djupdykning i domkyrkans byggnadshistoria och de tre århundradena av händelser som har präglat Sveriges rikshelgedom. Det fungerar som en fristående introduktion till kyrkans betydelse och arkitektur utan att kräva förkunskaper.",
-    "listen_links": {
-      "spotify": "https://open.spotify.com/episode/1gHcRYgM0eEPJGWD5AEX59",
-      "apple": "https://podcasts.apple.com/se/podcast/researching-peace-a-podcast-by-uppsala-university/id1552179383?uo=4"
-    },
-    "sources": [
-      {
-        "title": "122. Three Centuries of Uppsala Cathedral - Spotify",
-        "url": "https://open.spotify.com/episode/1gHcRYgM0eEPJGWD5AEX59"
-      }
-    ],
-    "created_at": "2026-06-17T21:20:10.783Z"
-  },
-  {
-    "date": "2026-06-07",
-    "episode_title": "The Empty Grave of Comrade Bishop",
-    "show_name": "The Retrievals",
-    "show_slug": "the-retrievals",
-    "hosts": "N/A",
-    "genre": "Documentary",
-    "language": "en",
-    "year": null,
-    "duration_minutes": null,
-    "day_occasion": "",
-    "day_connection": "",
-    "why_great": "Detta avsnitt har prisats med en Peabody Award, vilket placerar det bland de mest hyllade poddavsnitten som finns. Det är en dokumentärserie som granskar historiska händelser och personligheter med hög journalistisk standard, vilket gör det till ett utmärkt och erkänt val för lyssnare som söker kvalitet.",
-    "listen_links": {
-      "apple": "https://podcasts.apple.com/se/podcast/the-retrievals/id1691599042?uo=4",
-      "spotify": "https://open.spotify.com/search/The%20Retrievals%20The%20Empty%20Grave%20of%20Comrade%20Bishop"
-    },
-    "sources": [
-      {
-        "title": "Podcast & Radio - The Peabody Awards",
-        "url": "https://peabodyawards.com/categories/podcast-radio/"
-      }
-    ],
-    "created_at": "2026-06-17T21:19:57.075Z"
-  },
-  {
     "date": "2026-06-06",
     "episode_title": "Drottning Kristina valde sitt egna öde",
     "show_name": "Historia.nu med Urban Lindstedt",
@@ -544,7 +368,7 @@
     "day_connection": "Avsnittet handlar om Drottning Kristina och hennes avgörande val att abdikera 1654.",
     "why_great": "Detta avsnitt utforskar en av Sveriges mest omtvistade regenter och hennes chockerande beslut att lämna kungamakten samt konvertera till katolicismen. Historikern Urban Lindstedt ger en nyanserad bild av Kristinas liv och de konsekvenser hennes val fick för både henne själv och det svenska kungariket.",
     "listen_links": {
-      "apple": "https://podcasts.apple.com/se/podcast/drottning-kristina-valde-sitt-egna-%C3%B6de/id1384957479?i=1000670340034",
+      "apple": "https://podcasts.apple.com/se/podcast/drottning-kristina-valde-sitt-egna-%C3%B6de/id1384957479?i=1000670340034&uo=4",
       "spotify": "https://open.spotify.com/episode/1El3y4gE9A07OZ7avxhGaR"
     },
     "sources": [
@@ -569,7 +393,7 @@
     "day_connection": "Avsnittet handlar direkt om Profumoaffären, den skandal som tvingade den brittiska försvarsministern John Profumo att avgå.",
     "why_great": "Detta avsnitt ger en djupdykning i den skandal som skakade om det brittiska samhället under kalla kriget, med historikern Richard Davenport-Hines som gäst. Det belyser inte bara händelseförloppet utan också vad affären säger om samhället vid den tiden och dess långsiktiga konsekvenser.",
     "listen_links": {
-      "apple": "https://podcasts.apple.com/se/podcast/the-profumo-affair-sex-lies-and-spies/id1563775446?i=1000532190938",
+      "apple": "https://podcasts.apple.com/se/podcast/the-profumo-affair/id1042631089?i=1000524306376&uo=4",
       "web": "https://shows.acast.com/dansnowshistoryhit/episodes/theprofumoaffair",
       "spotify": "https://open.spotify.com/search/Dan%20Snow's%20History%20Hit%20The%20Profumo%20Affair"
     },
@@ -580,32 +404,6 @@
       }
     ],
     "created_at": "2026-06-17T21:07:51.917Z"
-  },
-  {
-    "date": "2026-06-04",
-    "episode_title": "Därför är Hongkongprotesterna ett problem för Kina",
-    "show_name": "Aftonbladet",
-    "show_slug": "aftonbladet",
-    "hosts": "Aftonbladet",
-    "genre": "Samhalle & Nyheter",
-    "language": "sv",
-    "year": null,
-    "duration_minutes": null,
-    "day_occasion": "",
-    "day_connection": "",
-    "why_great": "Avsnittet analyserar den komplexa dynamiken mellan den kinesiska regimen och proteströrelserna, med fokus på Hongkong som en spegelbild av de historiska spänningarna kring 1989. Det ger en djup förståelse för varför frågan fortfarande är en existentiell utmaning för Kinas ledning och hur historien formar dagens geopolitik. En stark och aktuell analys av en av världens mest känsliga politiska frågor.",
-    "listen_links": {
-      "web": "https://www.aftonbladet.se/podcasts/ab/episode/317806",
-      "apple": "https://podcasts.apple.com/se/podcast/aftonbladet-daily/id1435150323?uo=4",
-      "spotify": "https://open.spotify.com/search/Aftonbladet%20D%C3%A4rf%C3%B6r%20%C3%A4r%20Hongkongprotesterna%20ett%20problem%20f%C3%B6r%20Kina"
-    },
-    "sources": [
-      {
-        "title": "Därför är Hongkongprotesterna ett problem för Kina",
-        "url": "https://www.aftonbladet.se/podcasts/ab/episode/317806"
-      }
-    ],
-    "created_at": "2026-06-17T21:07:23.713Z"
   },
   {
     "date": "2026-06-03",

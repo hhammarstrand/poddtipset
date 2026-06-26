@@ -181,6 +181,7 @@ function metaBlock(rec) {
     `<meta name="twitter:description" content="${esc(desc)}" />`,
     `<meta name="twitter:image" content="${OG_IMAGE}" />`,
     `<link rel="alternate" type="application/rss+xml" title="${esc(SITE_NAME)} – dagens poddtips" href="${SITE_URL}/feed.xml" />`,
+    `<link rel="alternate" type="application/rss+xml" title="${esc(SITE_NAME)} – podcast (lyssna i poddspelare)" href="${SITE_URL}/podcast.xml" />`,
   ];
   return lines.map((l) => `    ${l}`).join("\n");
 }
@@ -195,6 +196,17 @@ function jsonLdBlock(rec, recent) {
       url: `${SITE_URL}/`,
       description: SITE_DESC,
       inLanguage: "sv-SE",
+    },
+    {
+      // Vart egna kurerade podd-flode (gor det upptackbart for sokmotorer/poddappar).
+      "@type": "PodcastSeries",
+      "@id": `${SITE_URL}/#podcast`,
+      name: SITE_NAME,
+      url: `${SITE_URL}/`,
+      description: SITE_DESC,
+      inLanguage: "sv-SE",
+      image: `${SITE_URL}/podcast-cover.png`,
+      webFeed: `${SITE_URL}/podcast.xml`,
     },
   ];
   if (rec) {

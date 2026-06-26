@@ -84,11 +84,13 @@ jobs:
             node scripts/generate.mjs
           fi
 
-      - name: Bygg SEO-/delningsartefakter
+      - name: Bygg SEO-/delningsartefakter + podd-RSS
         # Forrendera dagens tips i index.html + uppdatera sitemap/robots/RSS/manifest
-        # sa crawlers och sociala medier ser riktigt innehall. Deterministiskt:
+        # och podd-RSS:en (podcast.xml fran lagrade ljud-enclosures). Deterministiskt:
         # andras bara nar datan andrats, sa det skapar ingen commit-brus pa deploy-push.
-        run: node scripts/build-seo.mjs
+        run: |
+          node scripts/build-seo.mjs
+          node scripts/build-podcast.mjs
 
       - name: Spara nytt tips (commit)
         if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}

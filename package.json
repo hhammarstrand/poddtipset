@@ -7,7 +7,9 @@
   "scripts": {
     "generate": "node scripts/generate.mjs",
     "build:seo": "node scripts/build-seo.mjs",
+    "build:podcast": "node scripts/build-podcast.mjs",
     "build:og": "node scripts/build-og.mjs",
+    "backfill:enclosures": "node scripts/backfill-enclosures.mjs",
     "verify": "node scripts/verify-site.mjs",
     "serve": "npx --yes http-server public -p 8080 -c-1"
   }

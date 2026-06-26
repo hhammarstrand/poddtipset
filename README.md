@@ -88,9 +88,28 @@ gång ett nytt tips genereras (och vid varje deploy – deterministiskt, så det
 - **`404.html`** = kopia av `index.html` (SPA-fallback för djuplänkar).
 - Per vy uppdaterar frontend `document.title` + meta-description (Dagens/Historik/Statistik/avsnitt).
 
-Delningsbilden **`og.png`** (1200×630, varumärkesbärande) byggs separat och statiskt med
-[`scripts/build-og.mjs`](scripts/build-og.mjs) (Playwright/Chromium) och committas – den körs alltså
-*inte* i CI. Vill du ändra den: `npm run build:og`.
+Delningsbilden **`og.png`** (1200×630, varumärkesbärande) och **podd-omslaget `podcast-cover.png`**
+(1500×1500) byggs separat och statiskt med [`scripts/build-og.mjs`](scripts/build-og.mjs)
+(Playwright/Chromium) och committas – de körs alltså *inte* i CI. Vill du ändra dem: `npm run build:og`.
+
+### Podd-RSS (`scripts/build-podcast.mjs`)
+
+Förutom artikel-flödet `feed.xml` (för RSS-läsare) byggs ett **riktigt podd-RSS-flöde `podcast.xml`**
+som går att lägga in i valfri poddspelare (Apple Podcasts, Pocket Casts, Overcast …):
+
+- **Spelbarhets-gate:** varje tips slås upp i Apples avsnitts-index – är det ingen äkta podd-episod
+  (t.ex. en tidningsartikel eller "bästa-lista") underkänns det och kommer aldrig in.
+- **Riktig ljud-enclosure:** vid genereringen slås avsnittets **egna ljud-URL** upp ur poddens RSS och
+  sparas i fältet `audio` (`{url,type,length,durationSec}`). Podd-flödet pekar med `<enclosure>` på den
+  URL:en, så ljudet streamas från **utgivarens egen host** – nedladdning, statistik och annonser stannar
+  hos dem; vi re-hostar inget. Avsnitt utan upplösbar enclosure (t.ex. gamla som ramlat ur poddens flöde)
+  utelämnas (best-effort, ~90 % täckning).
+- `itunes:`-taggar, omslag (`podcast-cover.png`) och kategori finns; **ingen privat e-post exponeras**
+  (sätt `PODCAST_OWNER_EMAIL` om du vill registrera flödet i Apple Podcasts-katalogen).
+- Varje avsnitt länkar tillbaka till sajten (driver trafik). Flödet deklareras även i `<head>` och som
+  `PodcastSeries` i JSON-LD för upptäckbarhet.
+
+Äldre poster efterfylls med enclosure via `npm run backfill:enclosures`.
 
 Den publika adressen styrs av `SITE_URL` (default `https://hhammarstrand.github.io/poddtipset`); sätt
 miljövariabeln om du flyttar till egen domän så uppdateras canonical/OG/sitemap/RSS automatiskt.

@@ -64,14 +64,46 @@ async function main() {
     </div>
   </body></html>`;
 
+  // Kvadratiskt podd-omslag (1500×1500) for podd-RSS:ens itunes:image (Apple kraver 1400–3000 px).
+  const coverHtml = `<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+    @font-face { font-family:"Fraunces"; font-weight:100 900; src:url(data:font/woff2;base64,${fraunces}) format("woff2"); }
+    @font-face { font-family:"InterVar"; font-weight:100 900; src:url(data:font/woff2;base64,${inter}) format("woff2"); }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { width:1500px; height:1500px; }
+    .cover { width:1500px; height:1500px; background:#8c2f23; color:#f6f1e7;
+      display:flex; flex-direction:column; align-items:center; justify-content:center; gap:60px; padding:120px; text-align:center; }
+    .badge { width:380px; height:380px; }
+    .badge g { stroke:#f6f1e7; }
+    .t { font-family:"Fraunces"; font-weight:600; font-size:240px; line-height:.92; letter-spacing:-.02em; }
+    .s { font-family:"Fraunces"; font-style:italic; font-size:74px; color:#f1d9c9; max-width:1100px; }
+  </style></head><body>
+    <div class="cover">
+      <svg class="badge" viewBox="0 0 512 512">
+        <g fill="none" stroke-width="26" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="206" y="118" width="100" height="170" rx="50"/>
+          <path d="M150 250a106 106 0 0 0 212 0"/>
+          <line x1="256" y1="356" x2="256" y2="408"/>
+          <line x1="206" y1="408" x2="306" y2="408"/>
+        </g>
+      </svg>
+      <div class="t">Dagens<br>Pod</div>
+      <div class="s">Ett handplockat poddavsnitt om dagen</div>
+    </div>
+  </body></html>`;
+
   const browser = await chromium.launch();
   try {
     const page = await browser.newPage({ viewport: { width: 1200, height: 630 }, deviceScaleFactor: 1 });
     await page.setContent(html, { waitUntil: "networkidle" });
     await page.evaluate(() => document.fonts.ready);
-    const el = await page.$(".card");
-    await el.screenshot({ path: join(PUBLIC_DIR, "og.png") });
+    await (await page.$(".card")).screenshot({ path: join(PUBLIC_DIR, "og.png") });
     console.log("Skrev public/og.png (1200×630).");
+
+    const cover = await browser.newPage({ viewport: { width: 1500, height: 1500 }, deviceScaleFactor: 1 });
+    await cover.setContent(coverHtml, { waitUntil: "networkidle" });
+    await cover.evaluate(() => document.fonts.ready);
+    await (await cover.$(".cover")).screenshot({ path: join(PUBLIC_DIR, "podcast-cover.png") });
+    console.log("Skrev public/podcast-cover.png (1500×1500).");
   } finally {
     await browser.close();
   }

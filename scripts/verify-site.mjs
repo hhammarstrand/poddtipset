@@ -162,6 +162,32 @@ async function main() {
     const manifest = await get("/manifest.webmanifest");
     let mok = false; try { mok = !!JSON.parse(manifest.body).name; } catch {}
     check("manifest.webmanifest parsar", manifest.status === 200 && mok);
+
+    // ── Podd-RSS ──────────────────────────────────────────────────────────────
+    console.log("\n[Podd-RSS]");
+    const pod = await get("/podcast.xml");
+    const podItems = (pod.body.match(/<item>/g) || []).length;
+    const podEnc = (pod.body.match(/<enclosure\b/g) || []).length;
+    check("podcast.xml serveras + itunes-namespace", pod.status === 200 && /xmlns:itunes=/.test(pod.body));
+    check("podcast.xml har itunes:image + kategori", /<itunes:image\b/.test(pod.body) && /<itunes:category\b/.test(pod.body));
+    check("podcast.xml har items med enclosure", podItems > 0 && podEnc === podItems, `${podItems} items, ${podEnc} enclosures`);
+    check("podcast.xml exponerar INTE privat mejl", !/<itunes:email>/.test(pod.body));
+    // Omslaget nabart (samma origin, hamtas i Node).
+    let coverStatus = 0; try { coverStatus = (await fetch(`${base}/podcast-cover.png`)).status; } catch {}
+    check("podcast-cover.png serveras (1500×1500)", coverStatus === 200, `status ${coverStatus}`);
+    // Forsta enclosure-ljudet ska faktiskt vara nabart (extern URL – hamtas i Node, ingen CORS).
+    const firstEnc = (pod.body.match(/<enclosure[^>]*url=["']([^"']+)["']/i) || [])[1];
+    if (firstEnc) {
+      let encStatus = 0;
+      try {
+        const r = await fetch(firstEnc, { method: "GET", headers: { Range: "bytes=0-1" }, redirect: "follow", signal: AbortSignal.timeout(15000) });
+        encStatus = r.status;
+      } catch (e) { encStatus = String(e?.message || e); }
+      check("forsta enclosure-ljudet ar nabart (riktig lank)", encStatus === 200 || encStatus === 206, `status ${encStatus} (${firstEnc.slice(0, 50)})`);
+    } else {
+      bad("ingen enclosure-URL att kontrollera");
+    }
+    check("podd-flode lankat i <head>", /href="[^"]*podcast\.xml"/.test(rawHtml));
     const og = await ctx.goto(`${base}/og.png`, { waitUntil: "domcontentloaded" });
     check("og.png serveras", og.status() === 200);
     const r404 = await ctx.goto(`${base}/finns-inte-xyz`, { waitUntil: "domcontentloaded" });

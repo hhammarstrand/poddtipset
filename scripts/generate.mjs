@@ -816,6 +816,64 @@ export async function lookupAppleEpisode(showName, episodeTitle) {
   }
 }
 
+// Slar upp poddens EGNA RSS-flode (via iTunes feedUrl) och plockar ut just detta
+// avsnitts ljud-enclosure (mp3/aac). Anvands for podd-RSS:en sa lyssnaren kan
+// spela avsnittet direkt i en poddapp – ljudet streamas fran utgivarens host
+// (nedladdning/annonser stannar hos dem; vi re-hostar inget). Returnerar
+// { url, type, length, durationSec } eller null om avsnittet inte finns kvar i floden.
+export async function resolveEnclosure(showName, episodeTitle) {
+  const headers = { "user-agent": "DagensPod/1.0 (+https://github.com/hhammarstrand/poddtipset)" };
+  // 1) Hitta poddens feedUrl.
+  const feedUrlFor = async () => {
+    for (const country of ["SE", "US"]) {
+      const u = new URL("https://itunes.apple.com/search");
+      u.searchParams.set("media", "podcast");
+      u.searchParams.set("entity", "podcast");
+      u.searchParams.set("limit", "5");
+      u.searchParams.set("country", country);
+      u.searchParams.set("term", showName);
+      const res = await fetch(u, { headers, signal: AbortSignal.timeout(SOURCE_FETCH_TIMEOUT_MS) });
+      if (!res.ok) continue;
+      const data = await res.json();
+      for (const r of data.results || []) if (looseMatch(r.collectionName || "", showName) && r.feedUrl) return r.feedUrl;
+    }
+    return null;
+  };
+  // <itunes:duration> kan vara sekunder eller HH:MM:SS.
+  const parseDuration = (s) => {
+    if (!s) return null;
+    s = s.trim();
+    if (/^\d+$/.test(s)) return parseInt(s, 10);
+    const p = s.split(":").map(Number);
+    if (p.some(Number.isNaN)) return null;
+    return p.reduce((acc, n) => acc * 60 + n, 0);
+  };
+  try {
+    const feedUrl = await feedUrlFor();
+    if (!feedUrl) return null;
+    const res = await fetch(feedUrl, { headers, redirect: "follow", signal: AbortSignal.timeout(SEARCH_TIMEOUT_MS) });
+    if (!res.ok) return null;
+    const xml = (await res.text()).slice(0, 6_000_000);
+    for (const chunk of xml.split(/<item[\s>]/i).slice(1)) {
+      const block = chunk.split(/<\/item>/i)[0];
+      const tm = block.match(/<title>([\s\S]*?)<\/title>/i);
+      const title = tm ? tm[1].replace(/<!\[CDATA\[|\]\]>/g, "").trim() : "";
+      if (!title || !looseMatch(title, episodeTitle)) continue;
+      const enc = block.match(/<enclosure\b[^>]*>/i);
+      if (!enc) continue;
+      const url = (enc[0].match(/\burl=["']([^"']+)["']/i) || [])[1];
+      if (!url || !/^https?:\/\//i.test(url)) continue;
+      const type = (enc[0].match(/\btype=["']([^"']+)["']/i) || [])[1] || "audio/mpeg";
+      const length = (enc[0].match(/\blength=["']([^"']+)["']/i) || [])[1] || "";
+      const durRaw = (block.match(/<itunes:duration>([\s\S]*?)<\/itunes:duration>/i) || [])[1];
+      return { url, type, length, durationSec: parseDuration(durRaw) };
+    }
+  } catch {
+    /* nat-/parsfel -> null (avsnittet utelamnas ur podd-floden) */
+  }
+  return null;
+}
+
 // Garanterar att tipset alltid har minst en Apple- och en Spotify-lank.
 // Behaller redan nabara modell-lankar; fyller bara i det som saknas.
 // Exporteras sa att enrich-links.mjs kan efter-fylla aldre poster med samma logik.
@@ -929,6 +987,10 @@ async function main() {
       // Anvand den verifierade, exakta avsnittslanken fran Apple (inte en sok-deeplänk).
       if (apple.level === "episode" && apple.url) v.tip.listen_links.apple = apple.url;
       v.tip.listen_links = await ensureListenLinks(v.tip.listen_links, v.tip.show_name, v.tip.episode_title);
+
+      // Hamta avsnittets ljud-enclosure ur poddens egna RSS for podd-floden (best-effort).
+      v.tip.audio = await resolveEnclosure(v.tip.show_name, v.tip.episode_title);
+      console.log(v.tip.audio ? `  ljud-enclosure hittad (podd-RSS): ${v.tip.audio.url.slice(0, 80)}` : "  ingen ljud-enclosure i poddens RSS – utelamnas ur podd-floden");
 
       const record = { date, ...v.tip, created_at: new Date().toISOString() };
       const next = [record, ...data].sort((a, b) => (a.date < b.date ? 1 : -1));

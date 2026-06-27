@@ -20,8 +20,8 @@ const MIME = {
   ".html": "text/html; charset=utf-8", ".js": "text/javascript; charset=utf-8",
   ".css": "text/css; charset=utf-8", ".json": "application/json; charset=utf-8",
   ".xml": "application/xml; charset=utf-8", ".txt": "text/plain; charset=utf-8",
-  ".svg": "image/svg+xml", ".png": "image/png", ".woff2": "font/woff2",
-  ".webmanifest": "application/manifest+json",
+  ".svg": "image/svg+xml", ".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg",
+  ".woff2": "font/woff2", ".webmanifest": "application/manifest+json",
 };
 
 let pass = 0, fail = 0;
@@ -172,9 +172,10 @@ async function main() {
     check("podcast.xml har itunes:image + kategori", /<itunes:image\b/.test(pod.body) && /<itunes:category\b/.test(pod.body));
     check("podcast.xml har items med enclosure", podItems > 0 && podEnc === podItems, `${podItems} items, ${podEnc} enclosures`);
     check("podcast.xml lacker inte privat gmail", !/hhammarstrand@gmail\.com/i.test(pod.body));
-    // Omslaget nabart (samma origin, hamtas i Node).
-    let coverStatus = 0; try { coverStatus = (await fetch(`${base}/podcast-cover.png`)).status; } catch {}
-    check("podcast-cover.png serveras (1500×1500)", coverStatus === 200, `status ${coverStatus}`);
+    // Omslaget nabart (samma origin, hamtas i Node) + ratt typ + refererat i floden.
+    let coverStatus = 0, coverType = ""; try { const cr = await fetch(`${base}/podcast-cover.jpg`); coverStatus = cr.status; coverType = cr.headers.get("content-type") || ""; } catch {}
+    check("podcast-cover.jpg serveras som JPEG", coverStatus === 200 && /jpeg/i.test(coverType), `status ${coverStatus} type ${coverType}`);
+    check("floden refererar omslaget (channel + per avsnitt)", /<itunes:image href="[^"]*podcast-cover\.jpg"/.test(pod.body) && (pod.body.match(/podcast-cover\.jpg/g) || []).length >= podItems + 2);
     // Forsta enclosure-ljudet ska faktiskt vara nabart (extern URL – hamtas i Node, ingen CORS).
     const firstEnc = (pod.body.match(/<enclosure[^>]*url=["']([^"']+)["']/i) || [])[1];
     if (firstEnc) {

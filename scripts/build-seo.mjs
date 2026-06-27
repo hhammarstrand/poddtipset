@@ -205,7 +205,7 @@ function jsonLdBlock(rec, recent) {
       url: `${SITE_URL}/`,
       description: SITE_DESC,
       inLanguage: "sv-SE",
-      image: `${SITE_URL}/podcast-cover.png`,
+      image: `${SITE_URL}/podcast-cover.jpg`,
       webFeed: `${SITE_URL}/podcast.xml`,
     },
   ];

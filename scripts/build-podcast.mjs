@@ -66,6 +66,7 @@ async function main() {
       <itunes:summary>${esc((r.why_great || "").replace(/\s+/g, " ").trim())}</itunes:summary>
       <itunes:episodeType>full</itunes:episodeType>
       <itunes:explicit>false</itunes:explicit>
+      <itunes:image href="${SITE_URL}/podcast-cover.jpg" />
       ${dur ? `<itunes:duration>${dur}</itunes:duration>` : ""}
       <enclosure url="${esc(r.audio.url)}" type="${esc(r.audio.type || "audio/mpeg")}"${r.audio.length ? ` length="${esc(r.audio.length)}"` : ""} />
     </item>`;
@@ -91,10 +92,10 @@ async function main() {
     <itunes:summary>${esc(DESC)}</itunes:summary>
     <itunes:type>episodic</itunes:type>
     <itunes:explicit>false</itunes:explicit>
-    <itunes:image href="${SITE_URL}/podcast-cover.png" />
+    <itunes:image href="${SITE_URL}/podcast-cover.jpg" />
     <itunes:category text="${esc(CATEGORY)}" />
 ${owner}    <image>
-      <url>${SITE_URL}/podcast-cover.png</url>
+      <url>${SITE_URL}/podcast-cover.jpg</url>
       <title>${esc(SITE_NAME)}</title>
       <link>${SITE_URL}/</link>
     </image>

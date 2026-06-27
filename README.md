@@ -88,8 +88,8 @@ gång ett nytt tips genereras (och vid varje deploy – deterministiskt, så det
 - **`404.html`** = kopia av `index.html` (SPA-fallback för djuplänkar).
 - Per vy uppdaterar frontend `document.title` + meta-description (Dagens/Historik/Statistik/avsnitt).
 
-Delningsbilden **`og.png`** (1200×630, varumärkesbärande) och **podd-omslaget `podcast-cover.png`**
-(1500×1500) byggs separat och statiskt med [`scripts/build-og.mjs`](scripts/build-og.mjs)
+Delningsbilden **`og.png`** (1200×630, varumärkesbärande) och **podd-omslaget `podcast-cover.jpg`
+(3000×3000 JPEG) byggs separat och statiskt med [`scripts/build-og.mjs`](scripts/build-og.mjs)
 (Playwright/Chromium) och committas – de körs alltså *inte* i CI. Vill du ändra dem: `npm run build:og`.
 
 ### Podd-RSS (`scripts/build-podcast.mjs`)
@@ -104,7 +104,7 @@ som går att lägga in i valfri poddspelare (Apple Podcasts, Pocket Casts, Overc
   URL:en, så ljudet streamas från **utgivarens egen host** – nedladdning, statistik och annonser stannar
   hos dem; vi re-hostar inget. Avsnitt utan upplösbar enclosure (t.ex. gamla som ramlat ur poddens flöde)
   utelämnas (best-effort, ~90 % täckning).
-- `itunes:`-taggar, omslag (`podcast-cover.png`) och kategori finns; **ingen privat e-post exponeras**
+- `itunes:`-taggar, omslag (`podcast-cover.jpg`, 3000×3000 JPEG) och kategori finns; **ingen privat e-post exponeras**
   (sätt `PODCAST_OWNER_EMAIL` om du vill registrera flödet i Apple Podcasts-katalogen).
 - Varje avsnitt länkar tillbaka till sajten (driver trafik). Flödet deklareras även i `<head>` och som
   `PodcastSeries` i JSON-LD för upptäckbarhet.

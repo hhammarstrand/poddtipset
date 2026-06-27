@@ -1,5 +1,44 @@
 [
   {
+    "date": "2026-06-27",
+    "episode_title": "Striden om maten",
+    "show_name": "P1 Dokumentär",
+    "show_slug": "p1-dokumentar",
+    "hosts": "Mia Blomgren",
+    "genre": "Dokumentär",
+    "language": "sv",
+    "year": null,
+    "duration_minutes": 51,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "P1 Dokumentär är Sveriges Radios dokumentärpodd på P1, beskriven som en kanal för avslöjanden och unika berättelser om vår tid, och på Reddit jämförs den flitigt med P3 Dokumentär som en av landets främsta poddar i genren. Avsnittet Striden om maten är en fristående dokumentär på drygt 50 minuter, producerad av Mia Blomgren, som tar sig an en konflikt med tydlig koppling till mat och livsmedelsfrågor.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/striden-om-maten/id302534426?i=1000757424244&uo=4",
+      "spotify": "https://open.spotify.com/search/P1%20Dokument%C3%A4r%20Striden%20om%20maten"
+    },
+    "sources": [
+      {
+        "title": "P1 Dokumentär podcast – Player FM",
+        "url": "https://sv.player.fm/series/p1-dokumentar-2139853"
+      },
+      {
+        "title": "Vilken podd är bäst, P1 Dokumentär eller P3 Dokumentär? – Reddit",
+        "url": "https://www.reddit.com/r/sweden/comments/omy5ns/vilken_podd_%C3%A4r_b%C3%A4st_p1_dokument%C3%A4r_eller_p3/"
+      },
+      {
+        "title": "P1 Dokumentär – Sveriges Radio",
+        "url": "https://www.sverigesradio.se/p1dokumentar"
+      }
+    ],
+    "audio": {
+      "url": "https://static-cdn.sr.se/laddahem/podradio/2026/03/p1_dokumentar_striden_om_maten_20260325_1646589914.mp3",
+      "type": "audio/mpeg",
+      "length": "49465117",
+      "durationSec": 3090
+    },
+    "created_at": "2026-06-27T04:58:01.210Z"
+  },
+  {
     "date": "2026-06-26",
     "episode_title": "Baby Shark",
     "show_name": "Decoder Ring",

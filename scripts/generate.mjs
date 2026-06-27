@@ -26,7 +26,7 @@ const GENRES = "all"; // "all" eller t.ex. ["history", "true crime"]
 // (som ibland bytte sprak mitt i). Alternativ: "MiniMax-M2.7", "MiniMax-M2.5".
 const MODEL = process.env.MINIMAX_MODEL || "MiniMax-M3";
 const DEDUP_COUNT = 60;          // avsnitts-dedup (skickas till modellen)
-const MAX_ATTEMPTS = 12;         // forsok per dag (sveper bredare sa fler dagar blir kompletta)
+const MAX_ATTEMPTS = Number(process.env.MAX_ATTEMPTS) || 12; // forsok per dag (env-overstyrbar; lagre vid backfill sa svara dagar misslyckas snabbt istallet for att mala)
 const SEED_RESULTS_PER_QUERY = 8; // traffar per sokning som skickas till modellen
 const SNIPPET_LEN = 320;         // max tecken per snippet (langre = fler poddnamn overlever i korpus -> farre falska "podd saknas i resultaten"-underkanningar)
 const THEME_HOOKS = 8;           // antal "on this day"-krokar som skickas med

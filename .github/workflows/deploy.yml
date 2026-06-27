@@ -62,9 +62,11 @@ jobs:
             echo "::warning::MINIMAX_API_KEY saknas som repo-secret – hoppar over genereringen."
           elif [ -n "$REGEN_DATES" ]; then
             echo "Om-genererar (force) datum: $REGEN_DATES"
+            # Lagre forsoks-tak vid backfill: svara dagar (som inte ger ett verifierat
+            # avsnitt) misslyckas snabbt istallet for att mala genom 12 langsamma forsok.
             for d in $(echo "$REGEN_DATES" | tr ',' ' '); do
               echo "--- regenererar $d ---"
-              GENERATE_DATE="$d" GENERATE_FORCE=true node scripts/generate.mjs || true
+              MAX_ATTEMPTS="${REGEN_MAX_ATTEMPTS:-6}" GENERATE_DATE="$d" GENERATE_FORCE=true node scripts/generate.mjs || true
               sleep 2
             done
           elif [ -n "$BACKFILL_START" ]; then

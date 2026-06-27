@@ -99,11 +99,13 @@ async function main() {
     await (await page.$(".card")).screenshot({ path: join(PUBLIC_DIR, "og.png") });
     console.log("Skrev public/og.png (1200×630).");
 
-    const cover = await browser.newPage({ viewport: { width: 1500, height: 1500 }, deviceScaleFactor: 1 });
+    // Podd-omslag: JPEG (RGB, ingen alfa) i Apples rekommenderade 3000×3000 – mest
+    // kompatibelt med poddspelare (vissa visar inte PNG-omslag tillforlitligt).
+    const cover = await browser.newPage({ viewport: { width: 1500, height: 1500 }, deviceScaleFactor: 2 });
     await cover.setContent(coverHtml, { waitUntil: "networkidle" });
     await cover.evaluate(() => document.fonts.ready);
-    await (await cover.$(".cover")).screenshot({ path: join(PUBLIC_DIR, "podcast-cover.png") });
-    console.log("Skrev public/podcast-cover.png (1500×1500).");
+    await (await cover.$(".cover")).screenshot({ path: join(PUBLIC_DIR, "podcast-cover.jpg"), type: "jpeg", quality: 90 });
+    console.log("Skrev public/podcast-cover.jpg (3000×3000, JPEG).");
   } finally {
     await browser.close();
   }

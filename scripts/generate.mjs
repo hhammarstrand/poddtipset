@@ -1,4 +1,4 @@
-// Dagens Pod – dygnsgenerering for GitHub Actions.
+// Dagens Podd – dygnsgenerering for GitHub Actions.
 // Kors en gang per dygn: gor varierade webbsokningar mot MiniMax server-sidiga
 // sok-endpoint (/v1/coding_plan/search) och matar in traffarna i ETT anrop till
 // en MiniMax-chattmodell som valjer ETT dokumenterat hyllat avsnitt. Resultatet

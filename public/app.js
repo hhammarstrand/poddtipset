@@ -3,7 +3,7 @@
 // ── Hjalpare ────────────────────────────────────────────────────────────────
 const app = document.getElementById("app");
 
-const SITE_NAME = "Dagens Pod";
+const SITE_NAME = "Dagens Podd";
 
 // ── Tema (morkt/ljust) ───────────────────────────────────────────────────────
 // Inget val sparat = folj systemet (CSS prefers-color-scheme). Knappen overstyr

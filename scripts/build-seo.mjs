@@ -1,4 +1,4 @@
-// Dagens Pod – bygg SEO-/delnings-artefakter ur den statiska datafilen.
+// Dagens Podd – bygg SEO-/delnings-artefakter ur den statiska datafilen.
 //
 // Korst efter generate.mjs (och vid varje deploy). Lasar public/data/recommendations.json
 // och producerar allt som gor sidan synlig for sokmotorer och delningsbar i sociala medier
@@ -28,7 +28,7 @@ const INDEX_FILE = join(PUBLIC_DIR, "index.html");
 
 // Kanonisk publik adress. Overstyrbar via SITE_URL (t.ex. egen doman). Ingen avslutande slash.
 const SITE_URL = (process.env.SITE_URL || "https://hhammarstrand.github.io/poddtipset").replace(/\/+$/, "");
-const SITE_NAME = "Dagens Pod";
+const SITE_NAME = "Dagens Podd";
 const SITE_TAGLINE = "Ett handplockat poddavsnitt om dagen";
 const SITE_DESC =
   "Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. " +

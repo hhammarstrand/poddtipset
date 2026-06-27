@@ -1,4 +1,4 @@
-# Dagens Pod 🎧
+# Dagens Podd 🎧
 
 En webbapp som varje dygn automatiskt väljer ut **ETT** dokumenterat hyllat poddavsnitt och
 presenterar det som "dagens tips". Användaren ser dagens avsnitt, bläddrar i historik och ser

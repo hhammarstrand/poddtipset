@@ -88,6 +88,10 @@ jobs:
         # Forrendera dagens tips i index.html + uppdatera sitemap/robots/RSS/manifest
         # och podd-RSS:en (podcast.xml fran lagrade ljud-enclosures). Deterministiskt:
         # andras bara nar datan andrats, sa det skapar ingen commit-brus pa deploy-push.
+        # PODCAST_OWNER_EMAIL bakas in i podd-floden (kravs for Apple Podcasts-katalogen);
+        # mejlen ar publik i floden, sa den ligger har avsiktligt.
+        env:
+          PODCAST_OWNER_EMAIL: Hugo@hammarstrand.uk
         run: |
           node scripts/build-seo.mjs
           node scripts/build-podcast.mjs

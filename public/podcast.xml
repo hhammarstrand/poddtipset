@@ -15,6 +15,10 @@
     <itunes:explicit>false</itunes:explicit>
     <itunes:image href="https://hhammarstrand.github.io/poddtipset/podcast-cover.png" />
     <itunes:category text="Society &amp; Culture" />
+    <itunes:owner>
+      <itunes:name>Dagens Pod</itunes:name>
+      <itunes:email>Hugo@hammarstrand.uk</itunes:email>
+    </itunes:owner>
     <image>
       <url>https://hhammarstrand.github.io/poddtipset/podcast-cover.png</url>
       <title>Dagens Pod</title>

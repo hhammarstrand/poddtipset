@@ -171,7 +171,7 @@ async function main() {
     check("podcast.xml serveras + itunes-namespace", pod.status === 200 && /xmlns:itunes=/.test(pod.body));
     check("podcast.xml har itunes:image + kategori", /<itunes:image\b/.test(pod.body) && /<itunes:category\b/.test(pod.body));
     check("podcast.xml har items med enclosure", podItems > 0 && podEnc === podItems, `${podItems} items, ${podEnc} enclosures`);
-    check("podcast.xml exponerar INTE privat mejl", !/<itunes:email>/.test(pod.body));
+    check("podcast.xml lacker inte privat gmail", !/hhammarstrand@gmail\.com/i.test(pod.body));
     // Omslaget nabart (samma origin, hamtas i Node).
     let coverStatus = 0; try { coverStatus = (await fetch(`${base}/podcast-cover.png`)).status; } catch {}
     check("podcast-cover.png serveras (1500×1500)", coverStatus === 200, `status ${coverStatus}`);

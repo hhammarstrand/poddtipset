@@ -55,7 +55,7 @@ async function main() {
       </svg>
       <div>
         <div class="eyebrow">Dagens tips</div>
-        <div class="title">Dagens<br>Pod</div>
+        <div class="title">Dagens<br>Podd</div>
         <div class="tagline">Ett handplockat poddavsnitt om dagen.</div>
       </div>
       <div class="foot">
@@ -86,7 +86,7 @@ async function main() {
           <line x1="206" y1="408" x2="306" y2="408"/>
         </g>
       </svg>
-      <div class="t">Dagens<br>Pod</div>
+      <div class="t">Dagens<br>Podd</div>
       <div class="s">Ett handplockat poddavsnitt om dagen</div>
     </div>
   </body></html>`;

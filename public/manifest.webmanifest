@@ -1,6 +1,6 @@
 {
-  "name": "Dagens Pod",
-  "short_name": "Dagens Pod",
+  "name": "Dagens Podd",
+  "short_name": "Dagens Podd",
   "description": "Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.",
   "start_url": "./",
   "scope": "./",

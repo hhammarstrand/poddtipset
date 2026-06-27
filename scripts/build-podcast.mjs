@@ -15,12 +15,12 @@ const PUBLIC_DIR = join(__dirname, "..", "public");
 const DATA_FILE = join(PUBLIC_DIR, "data", "recommendations.json");
 
 const SITE_URL = (process.env.SITE_URL || "https://hhammarstrand.github.io/poddtipset").replace(/\/+$/, "");
-const SITE_NAME = "Dagens Pod";
-const AUTHOR = "Dagens Pod";
+const SITE_NAME = "Dagens Podd";
+const AUTHOR = "Dagens Podd";
 const OWNER_EMAIL = process.env.PODCAST_OWNER_EMAIL || ""; // tom = utelamnas (exponera inte privat mejl)
 const CATEGORY = "Society & Culture";
 const DESC =
-  "Ett handplockat, dokumenterat hyllat poddavsnitt om dagen – kurerat av Dagens Pod. " +
+  "Ett handplockat, dokumenterat hyllat poddavsnitt om dagen – kurerat av Dagens Podd. " +
   "Varje dag lyfter vi fram ett enastaende avsnitt och lankar dig direkt till det. " +
   "Avsnitten spelas fran respektive podds eget flode.";
 
@@ -53,7 +53,7 @@ async function main() {
     const body =
       `<p><strong>${esc(r.show_name)} – ${esc(r.episode_title)}</strong></p>` +
       `<p>${esc(r.why_great || "")}</p>` +
-      `<p>Dagens tips ${esc(r.date)} fran Dagens Pod. Las mer och se kallor: <a href="${esc(page)}">${esc(page)}</a></p>`;
+      `<p>Dagens tips ${esc(r.date)} fran Dagens Podd. Las mer och se kallor: <a href="${esc(page)}">${esc(page)}</a></p>`;
     return `    <item>
       <title>${esc(title)}</title>
       <link>${esc(page)}</link>

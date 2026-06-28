@@ -211,3 +211,15 @@ npx --yes http-server public -p 8090 -c-1
   gårdagens tips.
 - **Subväg:** frontend använder relativa sökvägar och fungerar därför både på
   `<user>.github.io/poddtipset/` och under egen domän.
+
+## Licenser & krediter
+
+- **Typsnitt (självhostade, SIL Open Font License 1.1):** Fraunces (© The Fraunces Project Authors)
+  och Inter (© The Inter Project Authors). Licenstexterna ligger i
+  [`public/fonts/Fraunces-OFL.txt`](public/fonts/Fraunces-OFL.txt) och
+  [`public/fonts/Inter-OFL.txt`](public/fonts/Inter-OFL.txt) – OFL kräver att licensen följer med fonterna.
+- **"On this day"-data:** Wikipedia (CC BY-SA) – endast fakta (händelser/födslar) används som tema.
+- **Avsnitts-/poddata & länkar:** iTunes Search API (nyckellöst) för att hitta avsnitt och länka till
+  Apple Podcasts/poddflöden. Avsnitten ägs av respektive producent; Dagens Podd är en oberoende
+  kurering som inte gör anspråk på avsnittens upphovsrätt (se disclaimer i sidfoten och `<copyright>`
+  i podd-flödet). Podd-flödet är som standard blockerat från Apple/Spotify-kataloger (`<itunes:block>`).

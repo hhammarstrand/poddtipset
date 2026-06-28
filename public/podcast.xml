@@ -14,6 +14,7 @@
     <itunes:summary>Ett handplockat, dokumenterat hyllat poddavsnitt om dagen – kurerat av Dagens Podd. Varje dag lyfter vi fram ett enastaende avsnitt och lankar dig direkt till det. Dagens Podd ar en oberoende redaktionell kurering och ar inte knuten till poddarna som tipsas; varje avsnitt ags av respektive producent och spelas direkt fran deras eget flode (vi lagrar inget ljud). Vill du fa ett avsnitt borttaget, mejla Hugo@hammarstrand.uk.</itunes:summary>
     <itunes:type>episodic</itunes:type>
     <itunes:explicit>false</itunes:explicit>
+    <itunes:block>Yes</itunes:block>
     <itunes:image href="https://hhammarstrand.github.io/poddtipset/podcast-cover.jpg" />
     <itunes:category text="Society &amp; Culture" />
     <itunes:owner>

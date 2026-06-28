@@ -104,10 +104,18 @@ som går att lägga in i valfri poddspelare (Apple Podcasts, Pocket Casts, Overc
   URL:en, så ljudet streamas från **utgivarens egen host** – nedladdning, statistik och annonser stannar
   hos dem; vi re-hostar inget. Avsnitt utan upplösbar enclosure (t.ex. gamla som ramlat ur poddens flöde)
   utelämnas (best-effort, ~90 % täckning).
-- `itunes:`-taggar, omslag (`podcast-cover.jpg`, 3000×3000 JPEG) och kategori finns; **ingen privat e-post exponeras**
-  (sätt `PODCAST_OWNER_EMAIL` om du vill registrera flödet i Apple Podcasts-katalogen).
+- `itunes:`-taggar, omslag (`podcast-cover.jpg`, 3000×3000 JPEG) och kategori finns. Ägar-mejl sätts via
+  `PODCAST_OWNER_EMAIL` (annars utelämnas den).
 - Varje avsnitt länkar tillbaka till sajten (driver trafik). Flödet deklareras även i `<head>` och som
   `PodcastSeries` i JSON-LD för upptäckbarhet.
+
+**Rättigheter / katalog-blockering (viktigt):** flödet kuraterar *andras* avsnitt och pekar `<enclosure>` på
+respektive producents egna ljud (vi re-hostar inget). För att inte ge sken av att äga innehållet sätter
+`build-podcast.mjs` som standard **`<itunes:block>Yes</itunes:block>`** + `<copyright>` som tydligt säger att
+rättigheterna tillhör producenterna. Det betyder att flödet **inte** listas i Apple/Spotify-katalogerna –
+men det fungerar fortfarande att lägga in via URL/dela. Att aktivt skicka in flödet till en katalog kräver
+att man intygar rätt till tredjepartsinnehåll, vilket man inte har. Vill man ändå lista det (på egen risk):
+sätt `PODCAST_LIST_IN_DIRECTORY=1`. Sajten har även en disclaimer + takedown-kontakt i sidfoten.
 
 Äldre poster efterfylls med enclosure via `npm run backfill:enclosures`.
 

@@ -27,6 +27,11 @@ const DESC =
   "varje avsnitt ags av respektive producent och spelas direkt fran deras eget flode (vi lagrar inget ljud)." +
   (CONTACT ? ` Vill du fa ett avsnitt borttaget, mejla ${CONTACT}.` : "");
 const COPYRIGHT = "Avsnitten tillhor respektive poddproducent. Dagens Podd ar en oberoende kurering och gor inte ansprak pa avsnittens upphovsratt.";
+// Som standard ber vi Apple/Spotify att INTE lista floden i sina kataloger
+// (<itunes:block>). Floden fungerar fortfarande via URL/delning – men vi slipper
+// den riskabla katalog-inskickningen som kraver att man intygar ratt till andras
+// avsnitt. Vill man medvetet lista den: satt PODCAST_LIST_IN_DIRECTORY=1.
+const BLOCK_DIRECTORY = process.env.PODCAST_LIST_IN_DIRECTORY !== "1";
 
 const esc = (s) =>
   String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -97,6 +102,7 @@ async function main() {
     <itunes:summary>${esc(DESC)}</itunes:summary>
     <itunes:type>episodic</itunes:type>
     <itunes:explicit>false</itunes:explicit>
+    ${BLOCK_DIRECTORY ? "<itunes:block>Yes</itunes:block>" : ""}
     <itunes:image href="${SITE_URL}/podcast-cover.jpg" />
     <itunes:category text="${esc(CATEGORY)}" />
 ${owner}    <image>

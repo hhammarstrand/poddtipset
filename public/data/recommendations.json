@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-06-28",
+    "episode_title": "Voices of a Lynching",
+    "show_name": "Radio Diaries",
+    "show_slug": "radio-diaries",
+    "hosts": "",
+    "genre": "History/Documentary",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Radio Diaries har gjort sig kända för att gräva i amerikansk historia genom förstahandsberättelser, och det här avsnittet hör till de starkaste exemplen på vad poddformatet kan som dokumentärgenre. Avsnittet har lyfts av RELEVANT magazine som ett av de sju mest gripande poddavsnitten som någonsin skapats - ett erkännande som placerar det i en mycket liten skara. För den som vill höra historien berättad inifrån, med röster som annars sällan når fram, är det ett avsnitt som stannar kvar länge efter att hörlurarna lagts åt sidan.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/strange-fruit-voices-of-a-lynching/id207505466?i=1000334828912&uo=4",
+      "spotify": "https://open.spotify.com/search/Radio%20Diaries%20Voices%20of%20a%20Lynching"
+    },
+    "sources": [
+      {
+        "title": "The 7 Most Moving Podcast Episodes Ever Created",
+        "url": "https://relevantmagazine.com/culture/7-most-moving-podcast-episodes-ever-created/"
+      }
+    ],
+    "audio": {
+      "url": "https://dts.podtrac.com/redirect.mp3/media.blubrry.com/radiodiaries/tracking.swap.fm/track/sblTq32fyWAjsHzze2LG/dovetail.prxu.org/_/35/764a026e-996e-4de3-ae32-cea87db3fe05/Strange-Fruit-Podcast.mp3",
+      "type": "audio/mpeg",
+      "length": "8886533",
+      "durationSec": 1025
+    },
+    "created_at": "2026-06-28T05:11:38.061Z"
+  },
+  {
     "date": "2026-06-27",
     "episode_title": "Striden om maten",
     "show_name": "P1 Dokumentär",

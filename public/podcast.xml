@@ -8,9 +8,10 @@
     <link>https://hhammarstrand.github.io/poddtipset/</link>
     <atom:link href="https://hhammarstrand.github.io/poddtipset/podcast.xml" rel="self" type="application/rss+xml" />
     <language>sv-se</language>
-    <description>Ett handplockat, dokumenterat hyllat poddavsnitt om dagen – kurerat av Dagens Podd. Varje dag lyfter vi fram ett enastaende avsnitt och lankar dig direkt till det. Avsnitten spelas fran respektive podds eget flode.</description>
+    <copyright>Avsnitten tillhor respektive poddproducent. Dagens Podd ar en oberoende kurering och gor inte ansprak pa avsnittens upphovsratt.</copyright>
+    <description>Ett handplockat, dokumenterat hyllat poddavsnitt om dagen – kurerat av Dagens Podd. Varje dag lyfter vi fram ett enastaende avsnitt och lankar dig direkt till det. Dagens Podd ar en oberoende redaktionell kurering och ar inte knuten till poddarna som tipsas; varje avsnitt ags av respektive producent och spelas direkt fran deras eget flode (vi lagrar inget ljud). Vill du fa ett avsnitt borttaget, mejla Hugo@hammarstrand.uk.</description>
     <itunes:author>Dagens Podd</itunes:author>
-    <itunes:summary>Ett handplockat, dokumenterat hyllat poddavsnitt om dagen – kurerat av Dagens Podd. Varje dag lyfter vi fram ett enastaende avsnitt och lankar dig direkt till det. Avsnitten spelas fran respektive podds eget flode.</itunes:summary>
+    <itunes:summary>Ett handplockat, dokumenterat hyllat poddavsnitt om dagen – kurerat av Dagens Podd. Varje dag lyfter vi fram ett enastaende avsnitt och lankar dig direkt till det. Dagens Podd ar en oberoende redaktionell kurering och ar inte knuten till poddarna som tipsas; varje avsnitt ags av respektive producent och spelas direkt fran deras eget flode (vi lagrar inget ljud). Vill du fa ett avsnitt borttaget, mejla Hugo@hammarstrand.uk.</itunes:summary>
     <itunes:type>episodic</itunes:type>
     <itunes:explicit>false</itunes:explicit>
     <itunes:image href="https://hhammarstrand.github.io/poddtipset/podcast-cover.jpg" />

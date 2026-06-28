@@ -19,10 +19,14 @@ const SITE_NAME = "Dagens Podd";
 const AUTHOR = "Dagens Podd";
 const OWNER_EMAIL = process.env.PODCAST_OWNER_EMAIL || ""; // tom = utelamnas (exponera inte privat mejl)
 const CATEGORY = "Society & Culture";
+const CONTACT = process.env.PODCAST_OWNER_EMAIL || "";
 const DESC =
   "Ett handplockat, dokumenterat hyllat poddavsnitt om dagen – kurerat av Dagens Podd. " +
   "Varje dag lyfter vi fram ett enastaende avsnitt och lankar dig direkt till det. " +
-  "Avsnitten spelas fran respektive podds eget flode.";
+  "Dagens Podd ar en oberoende redaktionell kurering och ar inte knuten till poddarna som tipsas; " +
+  "varje avsnitt ags av respektive producent och spelas direkt fran deras eget flode (vi lagrar inget ljud)." +
+  (CONTACT ? ` Vill du fa ett avsnitt borttaget, mejla ${CONTACT}.` : "");
+const COPYRIGHT = "Avsnitten tillhor respektive poddproducent. Dagens Podd ar en oberoende kurering och gor inte ansprak pa avsnittens upphovsratt.";
 
 const esc = (s) =>
   String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -87,6 +91,7 @@ async function main() {
     <link>${SITE_URL}/</link>
     <atom:link href="${SITE_URL}/podcast.xml" rel="self" type="application/rss+xml" />
     <language>sv-se</language>
+    <copyright>${esc(COPYRIGHT)}</copyright>
     <description>${esc(DESC)}</description>
     <itunes:author>${esc(AUTHOR)}</itunes:author>
     <itunes:summary>${esc(DESC)}</itunes:summary>

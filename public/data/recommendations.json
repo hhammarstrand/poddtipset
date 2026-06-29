@@ -1,5 +1,40 @@
 [
   {
+    "date": "2026-06-29",
+    "episode_title": "Maura Murray",
+    "show_name": "Crime Junkie",
+    "show_slug": "crime-junkie",
+    "hosts": "",
+    "genre": "True crime",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Crime Junkie ligger etta på Apple Podcasts true crime-lista och räknas som en av de mest etablerade poddarna i genren. Det här avsnittet om Maura Murray finns med på The Everygirls lista över de tio bästa true crime-podcastavsnitten och fungerar som ett fristående avsnitt.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/missing-maura-murray-new/id1322200189?i=1000644182376&uo=4",
+      "spotify": "https://open.spotify.com/search/Crime%20Junkie%20Maura%20Murray"
+    },
+    "sources": [
+      {
+        "title": "Top True Crime Podcasts – Apple Podcasts Charts",
+        "url": "https://podcasts.apple.com/us/charts?genre=1488"
+      },
+      {
+        "title": "The 10 Best True-Crime Podcast Episodes",
+        "url": "https://theeverygirl.com/true-crime-podcast-episodes/"
+      }
+    ],
+    "audio": {
+      "url": "https://tracking.swap.fm/track/fxUKVg2nSMaPSHLeKNKH/pscrb.fm/rss/p/dts.podtrac.com/redirect.mp3/rsv.simplecastaudio.com/ec74d48c-cbf1-4764-923e-7d584dce50fa/episodes/8f2a337d-e599-4983-8d47-5cb577a920a1/audio/128/default.mp3?aid=rss_feed&amp;awCollectionId=ec74d48c-cbf1-4764-923e-7d584dce50fa&amp;awEpisodeId=8f2a337d-e599-4983-8d47-5cb577a920a1&amp;feed=qm_9xx0g",
+      "type": "audio/mpeg",
+      "length": "73461302",
+      "durationSec": 4586
+    },
+    "created_at": "2026-06-29T05:23:12.423Z"
+  },
+  {
     "date": "2026-06-28",
     "episode_title": "Voices of a Lynching",
     "show_name": "Radio Diaries",

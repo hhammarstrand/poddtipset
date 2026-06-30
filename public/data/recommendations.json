@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-06-30",
+    "episode_title": "Abducted In Plain Sight: The Jan Broberg Story",
+    "show_name": "Mile Higher",
+    "show_slug": "mile-higher",
+    "hosts": "Kendall Rae",
+    "genre": "True Crime",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Avsnittet tar sig an en bortforandehistoria med Jan Broberg som namngiven mittpunkt. Det placerar sig pa andra plats pa The Everygirls lista over de basta true crime-poddavsnitten, slaget bara av ytterligare en episod fran samma podd som toppar listan. Den dubbla topp-placeringen befaster Mile Higher som ett av de mest haedrade namnen i true crime-genren just nu.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/abducted-in-plain-sight-the-jan-broberg-story/id1332383970?i=1000431056248&uo=4",
+      "spotify": "https://open.spotify.com/search/Mile%20Higher%20Abducted%20In%20Plain%20Sight%3A%20The%20Jan%20Broberg%20Story"
+    },
+    "sources": [
+      {
+        "title": "The 10 Best True-Crime Podcast Episodes",
+        "url": "https://theeverygirl.com/true-crime-podcast-episodes/"
+      }
+    ],
+    "audio": {
+      "url": "https://op3.dev/e/pdst.fm/e/arttrk.com/p/ABMA5/clrtpod.com/m/pscrb.fm/rss/p/prfx.byspotify.com/e/dts.podtrac.com/redirect.mp3/audioboom.com/posts/7432061.mp3?modified=1739984460&amp;sid=5011925&amp;source=rss",
+      "type": "audio/mpeg",
+      "length": "0",
+      "durationSec": 5173
+    },
+    "created_at": "2026-06-30T05:01:37.327Z"
+  },
+  {
     "date": "2026-06-29",
     "episode_title": "Maura Murray",
     "show_name": "Crime Junkie",

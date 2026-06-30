@@ -181,7 +181,9 @@ function metaBlock(rec) {
     `<meta name="twitter:description" content="${esc(desc)}" />`,
     `<meta name="twitter:image" content="${OG_IMAGE}" />`,
     `<link rel="alternate" type="application/rss+xml" title="${esc(SITE_NAME)} – dagens poddtips" href="${SITE_URL}/feed.xml" />`,
-    `<link rel="alternate" type="application/rss+xml" title="${esc(SITE_NAME)} – podcast (lyssna i poddspelare)" href="${SITE_URL}/podcast.xml" />`,
+    // Podd-RSS-floden (podcast.xml) deklareras MEDVETET inte har – det ar ett
+    // privat/olistat flode (anvandarens eget bruk), inte nagot vi vill gora
+    // upptackbart for crawlers/poddappar.
   ];
   return lines.map((l) => `    ${l}`).join("\n");
 }
@@ -197,17 +199,9 @@ function jsonLdBlock(rec, recent) {
       description: SITE_DESC,
       inLanguage: "sv-SE",
     },
-    {
-      // Vart egna kurerade podd-flode (gor det upptackbart for sokmotorer/poddappar).
-      "@type": "PodcastSeries",
-      "@id": `${SITE_URL}/#podcast`,
-      name: SITE_NAME,
-      url: `${SITE_URL}/`,
-      description: SITE_DESC,
-      inLanguage: "sv-SE",
-      image: `${SITE_URL}/podcast-cover.jpg`,
-      webFeed: `${SITE_URL}/podcast.xml`,
-    },
+    // OBS: ingen PodcastSeries har – podd-RSS-floden (podcast.xml) ar medvetet
+    // olistat/privat (anvandarens eget bruk) och ska inte gora sokmotorer/
+    // poddappar medvetna om det.
   ];
   if (rec) {
     graph.push({
@@ -255,8 +249,12 @@ function sitemapXml(latestDate) {
 }
 
 function robotsTxt() {
+  // podcast.xml/podcast-cover.jpg ar medvetet privata/olistade (inte lankade
+  // nagonstans pa sidan) – be valuppfostrade crawlers att inte indexera dem.
   return `User-agent: *
 Allow: /
+Disallow: /podcast.xml
+Disallow: /podcast-cover.jpg
 
 Sitemap: ${SITE_URL}/sitemap.xml
 `;

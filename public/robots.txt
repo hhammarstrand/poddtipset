@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /podcast.xml
+Disallow: /podcast-cover.jpg
 
 Sitemap: https://hhammarstrand.github.io/poddtipset/sitemap.xml

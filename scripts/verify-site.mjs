@@ -188,7 +188,9 @@ async function main() {
     } else {
       bad("ingen enclosure-URL att kontrollera");
     }
-    check("podd-flode lankat i <head>", /href="[^"]*podcast\.xml"/.test(rawHtml));
+    // Flodet ar medvetet olistat/privat: ska INTE lankas fran sidan (vare sig i
+    // <head> eller footer) men ska fortfarande funka pa direkt URL (testat ovan).
+    check("podd-flode INTE lankat pa sidan (privat/olistat)", !/href="[^"]*podcast\.xml"/.test(rawHtml));
     const og = await ctx.goto(`${base}/og.png`, { waitUntil: "domcontentloaded" });
     check("og.png serveras", og.status() === 200);
     const r404 = await ctx.goto(`${base}/finns-inte-xyz`, { waitUntil: "domcontentloaded" });

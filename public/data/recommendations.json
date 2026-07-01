@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-07-01",
+    "episode_title": "Who Killed Me",
+    "show_name": "Already Gone",
+    "show_slug": "already-gone",
+    "hosts": "Kirby Sommer",
+    "genre": "true crime",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Avsnittet lyftes specifikt som ett av de mest oforglomliga true crime-avsnitten i en av Reddit-podcasttradarnas mest rekommenderade listor, dar lyssnare vittnade om att det satt kvar lange efterat. Already Gone ar Kirby Sommers podd som tar sig an ouppklarade fall - titeln Who Killed Me for in berattelsen direkt i offrets perspektiv, som en rost fran den som inte langre kan tala. Ett koncentrerat avsnitt som visar hur ett enda tydligt grepp kan gora ett helt true crime-avsnitt minnesvart.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/who-killed-me-alana-laney-gwinner/id1109927634?i=1000392233590&uo=4",
+      "spotify": "https://open.spotify.com/search/Already%20Gone%20Who%20Killed%20Me"
+    },
+    "sources": [
+      {
+        "title": "True crime episodes you'll never forget? : r/podcasts",
+        "url": "https://www.reddit.com/r/podcasts/comments/caqh58/true_crime_episodes_youll_never_forget/"
+      }
+    ],
+    "audio": {
+      "url": "https://pscrb.fm/rss/p/clrtpod.com/m/mgln.ai/e/1184/rss.art19.com/episodes/2811c730-1f9b-4773-a331-10bfb3ddd3c7.mp3?rss_browser=BAhJIg5EYWdlbnNQb2QGOgZFVA%3D%3D--b98dcc407372089752a32c42e142af13a8d79da2",
+      "type": "audio/mpeg",
+      "length": "38026762",
+      "durationSec": 2376
+    },
+    "created_at": "2026-07-01T05:23:12.567Z"
+  },
+  {
     "date": "2026-06-30",
     "episode_title": "Abducted In Plain Sight: The Jan Broberg Story",
     "show_name": "Mile Higher",

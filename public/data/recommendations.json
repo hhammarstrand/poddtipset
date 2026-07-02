@@ -1,5 +1,52 @@
 [
   {
+    "date": "2026-07-02",
+    "episode_title": "Alex Morgan: Soccer, Sexualization, & Suing US Soccer",
+    "show_name": "Call Her Daddy",
+    "show_slug": "call-her-daddy",
+    "hosts": "Alex Cooper",
+    "genre": "Interview/Sports",
+    "language": "en",
+    "year": 2025,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Alex Cooper bjöd in Alex Morgan för ett av Call Her Daddys mest personliga samtal. Morgan öppnar sig om den utdragna kampen för lika lön, varför hon valde att stämma det amerikanska fotbollsförbundet och hur det är att som kvinna i en idrottsvärld ständigt möta dubbla måttstockar. Hon berättar om barndomsminnet av en lapp på kylskåpet där hon skrev att hon skulle bli proffs, och om livet som mamma mitt i karriären. Avsnittet har spridits vida och genererat långa diskussionstrådar på Reddit, och bevakats av flera amerikanska medier för sin sällsynt generösa ärligt.",
+    "listen_links": {
+      "spotify": "https://open.spotify.com/episode/6Bx4oHOPYOLny9Z9ODqOkm",
+      "apple": "https://podcasts.apple.com/se/podcast/alex-morgan-soccer-sexualization-suing-us-soccer/id1418960261?i=1000724663157&uo=4"
+    },
+    "sources": [
+      {
+        "title": "Alex Morgan: Soccer, Sexualization, & Suing US Soccer (Spotify)",
+        "url": "https://open.spotify.com/episode/6Bx4oHOPYOLny9Z9ODqOkm"
+      },
+      {
+        "title": "Listen: Alex Morgan on Alex Cooper's Call Her Daddy",
+        "url": "https://www.siriusxm.com/blog/alex-morgan-call-her-daddy"
+      },
+      {
+        "title": "What you missed from Alex Morgan's Call Her Daddy episode",
+        "url": "https://www.nwslsoccer.com/news/what-you-missed-from-alex-morgan-s-call-her-daddy-episode"
+      },
+      {
+        "title": "Soccer star Alex Morgan opens up in new episode of Call Her Daddy",
+        "url": "https://www.ramaponews.com/2025/09/18/soccer-star-alex-morgan-opens-up-in-new-episode-of-call-her-daddy/"
+      },
+      {
+        "title": "Alex Morgan on Call Her Daddy (Reddit)",
+        "url": "https://www.reddit.com/r/NWSL/comments/1n7ioqj/alex_morgan_on_call_her_daddy/"
+      }
+    ],
+    "audio": {
+      "url": "https://dts.podtrac.com/redirect.mp3/stitcher.simplecastaudio.com/f09b6967-f720-4383-a6cf-42d1f475bd95/episodes/44919ce6-5af5-46ba-84f5-b8b0194ab660/audio/128/default.mp3?aid=rss_feed&amp;awCollectionId=f09b6967-f720-4383-a6cf-42d1f475bd95&amp;awEpisodeId=44919ce6-5af5-46ba-84f5-b8b0194ab660&amp;feed=mKn_QmLS",
+      "type": "audio/mpeg",
+      "length": "71295582",
+      "durationSec": 4191
+    },
+    "created_at": "2026-07-02T04:51:51.719Z"
+  },
+  {
     "date": "2026-07-01",
     "episode_title": "Who Killed Me",
     "show_name": "Already Gone",

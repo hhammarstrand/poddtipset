@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Thu, 02 Jul 2026 12:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 03 Jul 2026 12:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Darknet Diaries – Kik</title>
+      <link>https://hhammarstrand.github.io/poddtipset/#/avsnitt/2026-07-03</link>
+      <guid isPermaLink="false">dagens-pod-2026-07-03</guid>
+      <pubDate>Fri, 03 Jul 2026 12:00:00 GMT</pubDate>
+      <category>Cybersecurity storytelling</category>
+      <description>Kik är ett avsnitt ur Darknet Diaries som lyfts fram som ett av de starkaste exemplen på storytelling i podcastformatet. Serien kretsar kring den kriminella baksidan av internet och just det här avsnittet används som tydligt typexempel på hur en nischad teknikhistoria kan göras medryckande för en bred lyssnare. Det återkommer på listor som hyllar podcasts som faktiskt behärskar konsten att berätta.</description>
+    </item>
     <item>
       <title>Call Her Daddy – Alex Morgan: Soccer, Sexualization, &amp; Suing US Soccer</title>
       <link>https://hhammarstrand.github.io/poddtipset/#/avsnitt/2026-07-02</link>

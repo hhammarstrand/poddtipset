@@ -1,5 +1,40 @@
 [
   {
+    "date": "2026-07-04",
+    "episode_title": "Saladin Takes Back the Holy City",
+    "show_name": "HISTORY This Week",
+    "show_slug": "history-this-week",
+    "hosts": "various",
+    "genre": "History",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "Slaget vid Hattin, 4 juli 1187",
+    "day_connection": "Avsnittet handlar om Saladins fälttåg 1187, där slaget vid Hattin den 4 juli var den avgörande seger som ledde fram till att han intog Jerusalem.",
+    "why_great": "HISTORY This Week gör varje avsnitt ett avgränsat nedslag i en historisk händelse, och det här avsnittet fördjupar sig i den muslimske sultanen Saladin och hans fälttåg 1187. Berättelsen följer trupperna när de inringar den heliga staden och utnyttjar sitt numerära övertag mot korsfararna. Upplägget är koncentrerat och berättande, och fungerar som ett fristående smakprov på korstågens mest dramatiska maktskifte.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/saladin-takes-back-the-holy-city/id1493453604?i=1000579908994&uo=4",
+      "spotify": "https://open.spotify.com/search/HISTORY%20This%20Week%20Saladin%20Takes%20Back%20the%20Holy%20City"
+    },
+    "sources": [
+      {
+        "title": "Saladin Takes Back the Holy City - HISTORY This Week on Apple Podcasts",
+        "url": "https://podcasts.apple.com/au/podcast/saladin-takes-back-the-holy-city/id1493453604?i=1000579908994"
+      },
+      {
+        "title": "Crusades, Saladin & Jerusalem 1187 - tttpodcast.com",
+        "url": "https://www.tttpodcast.com/season-1/saladin-and-jerusalem-professor-jonathan-phillips-1187"
+      }
+    ],
+    "audio": {
+      "url": "https://pdst.fm/e/tracking.swap.fm/track/v9Uiw3bGr54f6BVZKSyc/pscrb.fm/rss/p/serve.castfire.com/audio/8247889/8247889_2026-04-14-063329.192.mp3?rssID=6398",
+      "type": "audio/mpeg",
+      "length": "42020571",
+      "durationSec": 1750
+    },
+    "created_at": "2026-07-04T04:42:48.017Z"
+  },
+  {
     "date": "2026-07-03",
     "episode_title": "Kik",
     "show_name": "Darknet Diaries",

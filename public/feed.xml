@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Sat, 04 Jul 2026 12:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 05 Jul 2026 12:00:00 GMT</lastBuildDate>
+    <item>
+      <title>P1 Dokumentär – Pionjärdykarna i Nordsjön</title>
+      <link>https://hhammarstrand.github.io/poddtipset/#/avsnitt/2026-07-05</link>
+      <guid isPermaLink="false">dagens-pod-2026-07-05</guid>
+      <pubDate>Sun, 05 Jul 2026 12:00:00 GMT</pubDate>
+      <category>Dokumentär</category>
+      <description>Ett fristående reportage från Sveriges Radio om pionjärerna som utforskade Nordsjöns djup, ett ämne som sällan behandlas i svensk dokumentär. Av en engagerad lyssnare på r/sweden utnämnd till en av SR:s starkaste dokumentärer, just för att programmet lyckas göra ett tekniskt och udda ämne till en medryckande ljudupplevelse.</description>
+    </item>
     <item>
       <title>HISTORY This Week – Saladin Takes Back the Holy City</title>
       <link>https://hhammarstrand.github.io/poddtipset/#/avsnitt/2026-07-04</link>

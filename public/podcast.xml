@@ -26,7 +26,23 @@
       <title>Dagens Podd</title>
       <link>https://hhammarstrand.github.io/poddtipset/</link>
     </image>
-    <lastBuildDate>Sat, 04 Jul 2026 08:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 05 Jul 2026 08:00:00 GMT</lastBuildDate>
+    <item>
+      <title>P1 Dokumentär – Pionjärdykarna i Nordsjön</title>
+      <link>https://hhammarstrand.github.io/poddtipset/#/avsnitt/2026-07-05</link>
+      <guid isPermaLink="false">dagens-pod-2026-07-05</guid>
+      <pubDate>Sun, 05 Jul 2026 08:00:00 GMT</pubDate>
+      <description><![CDATA[<p><strong>P1 Dokumentär – Pionjärdykarna i Nordsjön</strong></p><p>Ett fristående reportage från Sveriges Radio om pionjärerna som utforskade Nordsjöns djup, ett ämne som sällan behandlas i svensk dokumentär. Av en engagerad lyssnare på r/sweden utnämnd till en av SR:s starkaste dokumentärer, just för att programmet lyckas göra ett tekniskt och udda ämne till en medryckande ljudupplevelse.</p><p>Dagens tips 2026-07-05 fran Dagens Podd. Las mer och se kallor: <a href="https://hhammarstrand.github.io/poddtipset/#/avsnitt/2026-07-05">https://hhammarstrand.github.io/poddtipset/#/avsnitt/2026-07-05</a></p>]]></description>
+      <content:encoded><![CDATA[<p><strong>P1 Dokumentär – Pionjärdykarna i Nordsjön</strong></p><p>Ett fristående reportage från Sveriges Radio om pionjärerna som utforskade Nordsjöns djup, ett ämne som sällan behandlas i svensk dokumentär. Av en engagerad lyssnare på r/sweden utnämnd till en av SR:s starkaste dokumentärer, just för att programmet lyckas göra ett tekniskt och udda ämne till en medryckande ljudupplevelse.</p><p>Dagens tips 2026-07-05 fran Dagens Podd. Las mer och se kallor: <a href="https://hhammarstrand.github.io/poddtipset/#/avsnitt/2026-07-05">https://hhammarstrand.github.io/poddtipset/#/avsnitt/2026-07-05</a></p>]]></content:encoded>
+      <itunes:title>Pionjärdykarna i Nordsjön</itunes:title>
+      <itunes:author>P1 Dokumentär</itunes:author>
+      <itunes:summary>Ett fristående reportage från Sveriges Radio om pionjärerna som utforskade Nordsjöns djup, ett ämne som sällan behandlas i svensk dokumentär. Av en engagerad lyssnare på r/sweden utnämnd till en av SR:s starkaste dokumentärer, just för att programmet lyckas göra ett tekniskt och udda ämne till en medryckande ljudupplevelse.</itunes:summary>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <itunes:image href="https://hhammarstrand.github.io/poddtipset/podcast-cover.jpg" />
+      <itunes:duration>49:58</itunes:duration>
+      <enclosure url="https://static-cdn.sr.se/laddahem/podradio/2022/10/program_pionjardykarna_i_nordsjon_20221028_0900098735.mp3" type="audio/mpeg" length="47989312" />
+    </item>
     <item>
       <title>HISTORY This Week – Saladin Takes Back the Holy City</title>
       <link>https://hhammarstrand.github.io/poddtipset/#/avsnitt/2026-07-04</link>

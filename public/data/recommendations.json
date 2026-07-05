@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-07-05",
+    "episode_title": "Pionjärdykarna i Nordsjön",
+    "show_name": "P1 Dokumentär",
+    "show_slug": "p1-dokumentar",
+    "hosts": "",
+    "genre": "Dokumentär",
+    "language": "sv",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Ett fristående reportage från Sveriges Radio om pionjärerna som utforskade Nordsjöns djup, ett ämne som sällan behandlas i svensk dokumentär. Av en engagerad lyssnare på r/sweden utnämnd till en av SR:s starkaste dokumentärer, just för att programmet lyckas göra ett tekniskt och udda ämne till en medryckande ljudupplevelse.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/pionj%C3%A4rdykarna-i-nordsj%C3%B6n/id302534426?i=1000584200943&uo=4",
+      "spotify": "https://open.spotify.com/search/P1%20Dokument%C3%A4r%20Pionj%C3%A4rdykarna%20i%20Nordsj%C3%B6n"
+    },
+    "sources": [
+      {
+        "title": "Vilken P3 dokumentär är bäst? : r/sweden",
+        "url": "https://www.reddit.com/r/sweden/comments/ut7u3h/vilken_p3_dokument%C3%A4r_%C3%A4r_b%C3%A4st/"
+      }
+    ],
+    "audio": {
+      "url": "https://static-cdn.sr.se/laddahem/podradio/2022/10/program_pionjardykarna_i_nordsjon_20221028_0900098735.mp3",
+      "type": "audio/mpeg",
+      "length": "47989312",
+      "durationSec": 2998
+    },
+    "created_at": "2026-07-05T05:00:03.055Z"
+  },
+  {
     "date": "2026-07-04",
     "episode_title": "Saladin Takes Back the Holy City",
     "show_name": "HISTORY This Week",

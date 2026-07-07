@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-07-07",
+    "episode_title": "The Architect of Hollywood",
+    "show_name": "99% Invisible",
+    "show_slug": "99-invisible",
+    "hosts": "Roman Mars",
+    "genre": "Design/Architecture",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "99% Invisible har byggt sitt rykte kring berättelser om design och arkitektur, och avsnittet The Architect of Hollywood toppar Buzzfeeds lista över livsomvälvande poddavsnitt. Det är ett typexempel på vad podden gör bäst: att hitta de stora berättelserna bakom detaljerna i vår byggda miljö.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/the-architect-of-hollywood/id394775318?i=1000519252602&uo=4",
+      "spotify": "https://open.spotify.com/search/99%25%20Invisible%20The%20Architect%20of%20Hollywood"
+    },
+    "sources": [
+      {
+        "title": "22 Life-Changing Podcast Episodes We Recommend To A Friend",
+        "url": "https://www.buzzfeed.com/rachelwmiller/best-podcast-episodes"
+      }
+    ],
+    "audio": {
+      "url": "https://mgln.ai/e/2/dts.podtrac.com/redirect.mp3/stitcher.simplecastaudio.com/3bb687b0-04af-4257-90f1-39eef4e631b6/episodes/d70635bb-df82-445a-8a75-b1dd516cc9db/audio/128/default.mp3?aid=rss_feed&amp;awCollectionId=3bb687b0-04af-4257-90f1-39eef4e631b6&amp;awEpisodeId=d70635bb-df82-445a-8a75-b1dd516cc9db&amp;feed=BqbsxVfO",
+      "type": "audio/mpeg",
+      "length": "19038691",
+      "durationSec": 1188
+    },
+    "created_at": "2026-07-07T04:41:27.736Z"
+  },
+  {
     "date": "2026-07-06",
     "episode_title": "The Life of Anne Frank",
     "show_name": "Warfare",

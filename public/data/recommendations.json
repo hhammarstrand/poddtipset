@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-07-08",
+    "episode_title": "Anna in Somalia",
+    "show_name": "Rough Translation",
+    "show_slug": "rough-translation",
+    "hosts": "",
+    "genre": "Documentary",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Det har avsnittet av NPR:s Rough Translation har hyllats av lyssnare for sin starka berattelse om hopp och overlevnad med rotter i en somalisk kontext. Det ar den typ av nargangen dokumentarjournalistik podden er kand for. I en uppmarksammad Reddit-trad om rorande poddavsnitt lyfts just detta avsnitt fram som det mest gripande som en enskild lyssnare har hort.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/anna-in-somalia/id1268047665?i=1000392133523&uo=4",
+      "spotify": "https://open.spotify.com/search/Rough%20Translation%20Anna%20in%20Somalia"
+    },
+    "sources": [
+      {
+        "title": "extremely moving or inspirational podcast episodes? - Reddit",
+        "url": "https://www.reddit.com/r/podcasts/comments/1gua00v/extremely_moving_or_inspirational_podcast_episodes/"
+      }
+    ],
+    "audio": {
+      "url": "https://prfx.byspotify.com/e/play.podtrac.com/npr-510324/npr.simplecastaudio.com/dc5d6d52-8079-4820-9a9a-f24ce5188fa2/episodes/11bbc8fc-5660-46a8-83b5-4193a090d71e/audio/128/default.mp3?awCollectionId=dc5d6d52-8079-4820-9a9a-f24ce5188fa2&amp;awEpisodeId=11bbc8fc-5660-46a8-83b5-4193a090d71e&amp;t=podcast&amp;e=1169497305&amp;p=510324&amp;d=2209&amp;size=35358556",
+      "type": "audio/mpeg",
+      "length": "35358556",
+      "durationSec": 2209
+    },
+    "created_at": "2026-07-08T04:25:20.014Z"
+  },
+  {
     "date": "2026-07-07",
     "episode_title": "The Architect of Hollywood",
     "show_name": "99% Invisible",

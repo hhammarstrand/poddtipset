@@ -44,27 +44,33 @@ const LOW_HIT_THRESHOLD = 5;     // under detta antal traffar racker det inte fo
 const ONTHISDAY_WIKIS = ["sv", "en"];
 
 // Guardrails (validering)
+// OBS: JS \b ar ASCII-only – ordgranser intill å/ä/ö beter sig fel (t.ex. matchar
+// "två\b" aldrig "del två "). Anvand lookaround med [a-zåäö] i stallet intill diakriter.
 // Titel-monster som indikerar att avsnittet INTE ar fristaende (uppfoljare/serie/del/finale).
 const NON_STANDALONE_RE =
-  /\bupdate\b|update:|\buppdatering\b|\bpart\s+(one|two|three|four|five|1|2|3|4|5)\b|\bpt\.?\s*\d+\b|\bdel\s+(en|tva|två|tre|fyra|fem|\d+)\b|\bkapitel\s*\d+\b|\bchapter\s*\d+\b|\bepisode\s*\d+\b|\bavsnitt\s*\d+\b|\bseason\s+(one|two|three|four|five|\d+)\b|\bsäsong\s+(ett|två|tre|fyra|fem|\d+)\b|\b\d+\s*\/\s*\d+\b|\bfinale\b|\bconclusion\b|\bcontinued\b|\bforts\.?\b|\bfortsättning\b|\bprolog|\bepilog/i;
-// Icke-latinska tecken (CJK/japanska/koreanska) i textfalt = modellen har bytt sprak
+  /\bupdate\b|update:|\buppdatering\b|\bpart\s+(one|two|three|four|five|1|2|3|4|5)\b|\bpt\.?\s*\d+\b|\bdel\s+(en|tva|två|tre|fyra|fem|\d+)(?![a-z0-9åäö])|\bkapitel\s*\d+\b|\bchapter\s*\d+\b|\bepisode\s*\d+\b|\bavsnitt\s*\d+\b|\bseason\s+(one|two|three|four|five|\d+)\b|\bsäsong\s+(ett|två|tre|fyra|fem|\d+)(?![a-z0-9åäö])|\b\d+\s*\/\s*\d+\b|\bfinale\b|\bconclusion\b|\bcontinued\b|\bforts\.?\b|\bfortsättning\b|\bprolog|\bepilog/i;
+// Tecken fran andra skriftsystem (CJK/koreanska/kyrilliska/grekiska/arabiska/hebreiska/
+// thai/devanagari) i textfalt = modellen har bytt sprak
 // mitt i (MiniMax-quirk). Sant ar aldrig korrekt for svensk/engelsk text och underkanns.
-const NON_LATIN_RE = /[぀-ヿ㐀-䶿一-鿿豈-﫿가-힯]/;
+const NON_LATIN_RE = /[぀-ヿ㐀-䶿一-鿿豈-﫿가-힯\u0370-\u03FF\u0400-\u04FF\u0590-\u05FF\u0600-\u06FF\u0900-\u097F\u0E00-\u0E7F]/;
 // Sociala/video-lankar belagger INTE att ett avsnitt ar hyllat – kraver minst en riktig kalla.
 const SOCIAL_HOST_RE = /(^|\.)(youtube\.com|youtu\.be|instagram\.com|tiktok\.com|facebook\.com|fb\.com|twitter\.com|x\.com|threads\.net|pinterest\.com)$/i;
 // Citat far inte forekomma i why_great – vi kan inte garantera att de stammer, sa de forbjuds helt.
-const QUOTE_RE = /["“”«»]|'[^']*\s[^']*'/;
+// Raka enkelcitat raknas bara som citat nar de omsluter en flerordsfras (borjar efter
+// blanksteg/radstart och slutar fore blanksteg/skiljetecken) – annars falsklarmar
+// possessiv-apostrofer som "Dan Snow's ... Sommers' podd".
+const QUOTE_RE = /["“”«»]|(^|[\s(])'[^']+\s[^']*'(?=$|[\s).,!?])/;
 // Spekulation/gissning – why_great far INTE gissa om avsnittets innehall (t.ex. utifran
 // titeln). Sant later osakert och ar inte tidnings-/nyhetsbrevskvalitet.
 const SPECULATION_RE =
-  /\bkanske\b|\bantyder\b|\bantagligen\b|\bförmodligen\b|\btroligen\b|\bsannolikt\b|\bgissningsvis\b|\blär\s+vara\b|\bverkar\s+(vara|handla)\b|\btycks\b|titeln\s+(antyder|avslöjar|skvallrar|tyder)|man\s+kan\s+anta|\bpresumably\b|\bprobably\b|\blikely\b|\bmight\s+be\b|\bmay\s+be\b|\bcould\s+be\b|seems?\s+to\b|appears?\s+to\b|the\s+title\s+suggests/i;
+  /\bkanske\b|\bantyder\b|\bantagligen\b|\bförmodligen\b|\bformodligen\b|\btroligen\b|\bsannolikt\b|\bgissningsvis\b|\blär\s+vara\b|\blar\s+vara\b|\bverkar\s+(vara|handla)\b|\btycks\b|titeln\s+(antyder|avslöjar|skvallrar|tyder)|man\s+kan\s+anta|\bpresumably\b|\bprobably\b|\blikely\b|\bmight\s+be\b|\bmay\s+be\b|\bcould\s+be\b|seems?\s+to\b|appears?\s+to\b|the\s+title\s+suggests/i;
 // Artikel-/listrubriker som rojer att "avsnittet" egentligen ar en tidningsartikel
 // eller en "arets basta avsnitt"-lista – aldrig ett enskilt spelbart poddavsnitt.
 const ARTICLE_TITLE_RE =
   /\barets\s+basta\b|\barmsta\s+basta\b|basta\s+podd(avsnitt|ar|en)\b|oforglomliga\s+avsnitt|\b\d+\s+(basta|oforglomliga|favorit)\b|\bbest\s+podcast\s+episodes?\b|podcasts?\s+you\s+(need\s+to|should|must)\s+(listen|hear)|\b(topp|top)\s*\d+\s+(podd|podcast)/i;
 // Erkannanden i texten om att avsnittet ar del av en serie/sasong (titeln rojer det inte alltid).
 const SERIES_ADMISSION_RE =
-  /\b(den\s+)?första\s+(delen|avsnittet|episoden)\b|\bförsta\s+delen\s+i\b|\bdel\s*(1|ett)\b|\bfirst\s+(part|episode|installment)\b|\bpart\s+one\b|\bseason\s+(opener|premiere)\b|\bseries\s+opener\b|\bpremiär(avsnitt|avsnittet)\b|\bopening\s+episode\b|\b(två|tre|fyra|fem|sex|sju|åtta|fler)delad\b|\b(multi-?part|two-?part|three-?part)\b|\bdel\s+av\s+en\s+(serie|flerdelad\s+serie)\b|\bfirst\s+in\s+a\s+(series|season)\b|\bden\s+första\s+i\s+en\b|\bkicks?\s+off\s+(the\s+)?(season|series)\b/i;
+  /\b(den\s+)?första\s+(delen|avsnittet|episoden)\b|\bförsta\s+delen\s+i\b|\bdel\s*(1|ett)\b|\bfirst\s+(part|episode|installment)\b|\bpart\s+one\b|\bseason\s+(opener|premiere)\b|\bseries\s+opener\b|\bpremiär(avsnitt|avsnittet)\b|\bopening\s+episode\b|(?<![a-zåäö])(två|tre|fyra|fem|sex|sju|åtta|fler)delad\b|\b(multi-?part|two-?part|three-?part)\b|\bdel\s+av\s+en\s+(serie|flerdelad\s+serie)\b|\bfirst\s+in\s+a\s+(series|season)\b|\bden\s+första\s+i\s+en\b|\bkicks?\s+off\s+(the\s+)?(season|series)\b/i;
 
 // MiniMax-endpoints (server-side sok + OpenAI-kompatibel chat). Byt MINIMAX_BASE_URL
 // till t.ex. https://api.minimaxi.com om nyckeln tillhor en annan region.
@@ -407,7 +413,7 @@ ABSOLUTA REGLER MOT PAHITT (overordnade allt annat):
 - INGA CITAT nagonstans i texten. Anvand aldrig citationstecken och tillskriv aldrig en namngiven person ett yttrande. Skriv om i stallet: i stallet for: hon kallade det "ett mastervaerk" -> skriv: det har hyllats som ett mastervaerk. Inga " ' « » far forekomma i why_great eller day_connection.
 - Ar du osaker pa ett falt (artal/langd) – satt det till null i stallet for att gissa.
 - Poddens namn maste finnas i dina sokresultat. Annars valj en annan podd.
-- SPRAK/TECKEN: skriv HELA svaret (alla falt) enbart med latinska bokstaver pa svenska eller engelska. Anvand ALDRIG japanska, kinesiska, koreanska eller andra icke-latinska tecken nagonstans – inte ens i enstaka ord.
+- SPRAK/TECKEN: skriv pa korrekt svenska eller engelska. Svensk text SKA stavas med å, ä och ö – skriv "för", "är", "berättelse", "hört", ALDRIG av-ASCII:ade former som "for", "ar", "berattelse", "hort". Anvand daremot ALDRIG tecken fran andra skriftsystem (japanska, kinesiska, koreanska, kyrilliska, arabiska osv.) nagonstans – inte ens i enstaka ord.
 - GISSA ALDRIG vad avsnittet handlar om utifran titeln. Skriv bara om avsnittets innehall om sokresultaten FAKTISKT beskriver just det avsnittet (vad det handlar om, vem som medverkar, varfor det hyllas). Anvand aldrig ord som "kanske", "antyder", "titeln antyder", "troligen", "verkar" – sant avslojar att du gissar. Om sokresultaten bara namnger podden men inte beskriver det enskilda avsnittet: valj ett ANNAT avsnitt som verkligen beskrivs i resultaten.
 - Anvand poddens namn EXAKT som det skrivs i sokresultaten (t.ex. inte "An Infinite Monkey Cage" om resultaten sager "The Infinite Monkey Cage").
 
@@ -616,6 +622,14 @@ function validateTip(raw, recentKeys, seen, hardShowSlugs = new Set()) {
   const sourceMentionsShow = sources.some((s) => (seenByUrl.get(normUrl(s.url)) || "").includes(showC));
   if (showC && !sourceMentionsShow) {
     return { ok: false, error: `Ingen kalla namner podden "${show_name}" – kallan belagger inte ratt podd.` };
+  }
+
+  // Guardrail: riktig svenska innehaller å/ä/ö. Modellen skrev ibland av-ASCII:ad
+  // svenska ("Det har avsnittet ... for sin starka berattelse") – 2-4 meningar
+  // svensk text utan ett enda å/ä/ö ar i praktiken omojligt. Sadan text smiter
+  // dessutom forbi andra guardrails vars monster innehaller å/ä/ö, sa den underkanns.
+  if (WHY_LANG === "sv" && !/[åäöÅÄÖ]/.test(why_great)) {
+    return { ok: false, error: "why_great saknar å/ä/ö – svensk text ska stavas korrekt ('för', 'är', 'berättelse'), inte av-ASCII:as ('for', 'ar', 'berattelse'). Skriv om med riktig svensk stavning." };
   }
 
   // Guardrail: nar why_great ska vara pa svenska, kontrollera att den faktiskt ar det

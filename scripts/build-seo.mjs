@@ -53,7 +53,8 @@ function clip(text, max) {
 
 const LANG_NAMES = { sv: "Svenska", en: "Engelska" };
 const langName = (l) => LANG_NAMES[l] || String(l || "").toUpperCase();
-const ogLocale = (l) => (l === "en" ? "en_US" : "sv_SE");
+// Sidan ar alltid svensksprakigt (why_great pa svenska) – og:locale ska darfor
+// alltid vara sv_SE aven nar dagens avsnitt rakar vara pa engelska.
 
 function fmtDateSv(d) {
   try {
@@ -175,7 +176,7 @@ function metaBlock(rec) {
     `<meta property="og:image:width" content="1200" />`,
     `<meta property="og:image:height" content="630" />`,
     `<meta property="og:image:alt" content="${esc(SITE_NAME)} – ${esc(SITE_TAGLINE)}" />`,
-    `<meta property="og:locale" content="${rec ? ogLocale(rec.language) : "sv_SE"}" />`,
+    `<meta property="og:locale" content="sv_SE" />`,
     `<meta name="twitter:card" content="summary_large_image" />`,
     `<meta name="twitter:title" content="${esc(rec ? epTitle : pageTitle)}" />`,
     `<meta name="twitter:description" content="${esc(desc)}" />`,

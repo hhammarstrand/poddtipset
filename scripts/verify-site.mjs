@@ -191,6 +191,18 @@ async function main() {
     // Flodet ar medvetet olistat/privat: ska INTE lankas fran sidan (vare sig i
     // <head> eller footer) men ska fortfarande funka pa direkt URL (testat ovan).
     check("podd-flode INTE lankat pa sidan (privat/olistat)", !/href="[^"]*podcast\.xml"/.test(rawHtml));
+    // ── Datakvalitet ──────────────────────────────────────────────────────────
+    console.log("\n[Datakvalitet]");
+    const dataRes = await get("/data/recommendations.json");
+    let recs = []; try { recs = JSON.parse(dataRes.body); } catch {}
+    check("datafilen parsar + har poster", Array.isArray(recs) && recs.length > 0, `${recs.length} poster`);
+    const noSwe = recs.filter((r) => !/[åäöÅÄÖ]/.test(r.why_great || ""));
+    check("alla why_great har å/ä/ö (riktig svenska, ej av-ASCII:ad)", noSwe.length === 0, noSwe.map((r) => r.date).join(", "));
+    const noQuotes = recs.filter((r) => /["“”«»]/.test(r.why_great || ""));
+    check("inga citattecken i why_great", noQuotes.length === 0, noQuotes.map((r) => r.date).join(", "));
+    const noSrc = recs.filter((r) => !r.sources || !r.sources.length);
+    check("alla poster har minst en källa", noSrc.length === 0, noSrc.map((r) => r.date).join(", "));
+
     const og = await ctx.goto(`${base}/og.png`, { waitUntil: "domcontentloaded" });
     check("og.png serveras", og.status() === 200);
     const r404 = await ctx.goto(`${base}/finns-inte-xyz`, { waitUntil: "domcontentloaded" });

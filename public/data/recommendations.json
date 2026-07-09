@@ -1,5 +1,37 @@
 [
   {
+    "date": "2026-07-09",
+    "episode_title": "The Argentine Revolution",
+    "show_name": "AskHistorians Podcast",
+    "show_slug": "askhistorians-podcast",
+    "hosts": "EnclavedMicrostate with guest Seb Lewin (aquatermain)",
+    "genre": "History",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Majrevolutionen 1810 är den händelse som inleder Argentinas långa väg bort från det spanska imperiet – ett ämne som sällan får plats på anglosaxiska historiepoddar. Här samtalar /u/EnclavedMicrostate med Seb Lewin (aquatermain) i en konversation där de går igenom förutsättningarna och förloppet kring revolutionen i Buenos Aires. AskHistorians-podden görs i samarbete med det stora r/AskHistorians-forumet och brukar bjuda in flairade ämnesspecialister som kan gå på djupet utan att tappa i nyanser.",
+    "listen_links": {
+      "web": "https://askhistorians.libsyn.com/askhistorians-podcast-episode-176-the-argentine-revolution",
+      "apple": "https://podcasts.apple.com/se/podcast/askhistorians-podcast-episode-177-the-argentine/id812302476?i=1000525108497&uo=4",
+      "spotify": "https://open.spotify.com/search/AskHistorians%20Podcast%20The%20Argentine%20Revolution"
+    },
+    "sources": [
+      {
+        "title": "AskHistorians Podcast Episode 176 – The Argentine Revolution",
+        "url": "https://askhistorians.libsyn.com/askhistorians-podcast-episode-176-the-argentine-revolution"
+      }
+    ],
+    "audio": {
+      "url": "https://traffic.libsyn.com/secure/askhistorians/AH_bigboss_Ethiopia_1974.mp3?dest-id=172941",
+      "type": "audio/mpeg",
+      "length": "50390232",
+      "durationSec": 3199
+    },
+    "created_at": "2026-07-09T04:47:04.558Z"
+  },
+  {
     "date": "2026-07-08",
     "episode_title": "Anna in Somalia",
     "show_name": "Rough Translation",

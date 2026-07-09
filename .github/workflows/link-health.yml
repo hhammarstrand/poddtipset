@@ -1,0 +1,45 @@
+name: Lank-halsokoll (manadsvis)
+
+# Lankar ruttnar: avsnitt tas bort ur poddars floden, hostar flyttar filer.
+# Detta jobb re-resolvar doda ljud-enclosures och lyssna-lankar en gang i
+# manaden och committar resultatet. Pushen till main triggar deploy.yml som
+# bygger om SEO/podd-RSS och deployar.
+on:
+  schedule:
+    - cron: "30 4 1 * *"   # 04:30 UTC forsta dagen varje manad
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Kor lank-halsokollen
+        run: node scripts/link-health.mjs
+
+      - name: Bygg om artefakter ur uppdaterad data
+        env:
+          PODCAST_OWNER_EMAIL: Hugo@hammarstrand.uk
+        run: |
+          node scripts/build-seo.mjs
+          node scripts/build-podcast.mjs
+
+      - name: Committa lagade lankar
+        run: |
+          if [ -n "$(git status --porcelain public)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add public
+            git commit -m "Lank-halsokoll: laga/rensa doda lankar"
+            git push
+          else
+            echo "Alla lankar friska – inget att committa."
+          fi

@@ -24,10 +24,18 @@ const MIME = {
   ".woff2": "font/woff2", ".webmanifest": "application/manifest+json",
 };
 
-let pass = 0, fail = 0;
+let pass = 0, fail = 0, warn = 0;
 const ok = (name) => { pass++; console.log(`  ✓ ${name}`); };
 const bad = (name, detail) => { fail++; console.log(`  ✗ ${name}${detail ? `  → ${detail}` : ""}`); };
 function check(name, cond, detail) { cond ? ok(name) : bad(name, detail); }
+// For kontroller mot EXTERNA hostar (t.ex. enclosure-ljud): i CI far ett externt
+// hicka inte blockera dagens deploy – med VERIFY_SOFT_EXTERNAL=1 blir de varningar.
+const SOFT_EXTERNAL = process.env.VERIFY_SOFT_EXTERNAL === "1";
+function checkExternal(name, cond, detail) {
+  if (cond) return ok(name);
+  if (SOFT_EXTERNAL) { warn++; console.log(`  ⚠ ${name}${detail ? `  → ${detail}` : ""} (extern – blockerar inte)`); }
+  else bad(name, detail);
+}
 
 function startServer() {
   const server = createServer(async (req, res) => {
@@ -54,7 +62,11 @@ async function main() {
   await mkdir(SHOT_DIR, { recursive: true });
   const { server, port } = await startServer();
   const base = `http://127.0.0.1:${port}`;
-  const browser = await chromium.launch();
+  const browser = await chromium.launch(
+    // I CI: PLAYWRIGHT_CHANNEL=chrome anvander runnerns forinstallerade Chrome
+    // (ingen browser-nedladdning behovs). Lokalt: default-chromium.
+    process.env.PLAYWRIGHT_CHANNEL ? { channel: process.env.PLAYWRIGHT_CHANNEL } : {}
+  );
   const shots = [];
   try {
     const ctx = await browser.newPage({ viewport: { width: 1280, height: 900 } });
@@ -184,7 +196,7 @@ async function main() {
         const r = await fetch(firstEnc, { method: "GET", headers: { Range: "bytes=0-1" }, redirect: "follow", signal: AbortSignal.timeout(15000) });
         encStatus = r.status;
       } catch (e) { encStatus = String(e?.message || e); }
-      check("forsta enclosure-ljudet ar nabart (riktig lank)", encStatus === 200 || encStatus === 206, `status ${encStatus} (${firstEnc.slice(0, 50)})`);
+      checkExternal("forsta enclosure-ljudet ar nabart (riktig lank)", encStatus === 200 || encStatus === 206, `status ${encStatus} (${firstEnc.slice(0, 50)})`);
     } else {
       bad("ingen enclosure-URL att kontrollera");
     }
@@ -202,6 +214,23 @@ async function main() {
     check("inga citattecken i why_great", noQuotes.length === 0, noQuotes.map((r) => r.date).join(", "));
     const noSrc = recs.filter((r) => !r.sources || !r.sources.length);
     check("alla poster har minst en källa", noSrc.length === 0, noSrc.map((r) => r.date).join(", "));
+
+    // ── Per-avsnitts-sidor (SEO) ─────────────────────────────────────────────
+    console.log("\n[Avsnittssidor]");
+    const newest = recs[0];
+    if (newest) {
+      const ep = await get(`/avsnitt/${newest.date}.html`);
+      check("nyaste avsnittssidan serveras", ep.status === 200);
+      check("avsnittssidan har egen canonical", ep.body.includes(`/avsnitt/${newest.date}.html"`) && /rel="canonical"/.test(ep.body));
+      check("avsnittssidan har PodcastEpisode-JSON-LD", /"@type":"PodcastEpisode"/.test(ep.body));
+      check("avsnittssidan har hero-innehall", /<h2>[^<]{3,}<\/h2>/.test(ep.body));
+      const sm = await get("/sitemap.xml");
+      const urlCount = (sm.body.match(/<loc>/g) || []).length;
+      check("sitemap listar startsida + alla avsnittssidor", urlCount === recs.length + 1, `${urlCount} urls, ${recs.length} poster`);
+      check("startsidans fler-tips lankar till statiska sidor (crawler-vy)", /href="avsnitt\/\d{4}-\d{2}-\d{2}\.html"/.test(rawHtml));
+    } else {
+      bad("ingen post att kontrollera avsnittssida for");
+    }
 
     const og = await ctx.goto(`${base}/og.png`, { waitUntil: "domcontentloaded" });
     check("og.png serveras", og.status() === 200);
@@ -221,7 +250,7 @@ async function main() {
     server.close();
   }
 
-  console.log(`\n${"─".repeat(48)}\nRESULTAT: ${pass} grona, ${fail} roda.`);
+  console.log(`\n${"─".repeat(48)}\nRESULTAT: ${pass} grona, ${fail} roda${warn ? `, ${warn} varningar (externa)` : ""}.`);
   if (shots.length) console.log("Skarmbilder: " + shots.map((s) => s.replace(join(__dirname, ".."), ".")).join(", "));
   process.exit(fail ? 1 : 0);
 }

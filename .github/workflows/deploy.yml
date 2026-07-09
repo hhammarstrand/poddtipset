@@ -98,6 +98,18 @@ jobs:
           node scripts/build-seo.mjs
           node scripts/build-podcast.mjs
 
+      - name: Verifiera sajten (Playwright)
+        # Gate fore commit/deploy: 50+ kontroller av rendering, SEO-artefakter och
+        # datakvalitet. Anvander runnerns forinstallerade Chrome (ingen browser-
+        # nedladdning). Externa hostar (enclosure-ljud) ar varningar, inte fel –
+        # ett externt hicka ska inte stoppa dagens deploy.
+        env:
+          PLAYWRIGHT_CHANNEL: chrome
+          VERIFY_SOFT_EXTERNAL: "1"
+        run: |
+          npm install --no-save --no-audit --no-fund playwright
+          node scripts/verify-site.mjs
+
       - name: Spara nytt tips (commit)
         if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
         run: |

@@ -214,6 +214,9 @@ async function main() {
     check("inga citattecken i why_great", noQuotes.length === 0, noQuotes.map((r) => r.date).join(", "));
     const noSrc = recs.filter((r) => !r.sources || !r.sources.length);
     check("alla poster har minst en källa", noSrc.length === 0, noSrc.map((r) => r.date).join(", "));
+    const GENRES_OK = new Set(["Historia", "True crime", "Dokumentär", "Berättande", "Vetenskap", "Teknik", "Sport", "Kultur", "Samhälle", "Intervju", "Nyheter", "Komedi"]);
+    const badGenre = recs.filter((r) => !GENRES_OK.has(r.genre));
+    check("alla genrer inom den fasta taxonomin", badGenre.length === 0, badGenre.map((r) => `${r.date}:${r.genre}`).join(", "));
 
     // ── Per-avsnitts-sidor (SEO) ─────────────────────────────────────────────
     console.log("\n[Avsnittssidor]");

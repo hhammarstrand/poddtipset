@@ -147,6 +147,42 @@ function collapse(s) {
     .trim();
 }
 
+// ── Genre-taxonomi ────────────────────────────────────────────────────────────
+// Modellen skrev genre som fritext -> 20 varianter pa 31 poster ("True Crime",
+// "true crime", "History/Documentary", "Music / Culture", "Cybersecurity
+// storytelling"...). Det trasar sonder genre-filtret och statistiken. Fast
+// svensk taxonomi + nyckelordsmappning; ORDNINGEN ar betydande (forsta traff
+// vinner: "Interview/Sports" -> Intervju, "Sports documentary" -> Sport,
+// "Samhalle och kultur" -> Samhalle).
+const GENRE_TAXONOMY = [
+  "Historia", "True crime", "Dokumentär", "Berättande", "Vetenskap", "Teknik",
+  "Sport", "Kultur", "Samhälle", "Intervju", "Nyheter", "Komedi",
+];
+const GENRE_RULES = [
+  [/true ?crime|krim/, "True crime"],
+  [/interview|intervju/, "Intervju"],
+  [/sport/, "Sport"],
+  [/histor/, "Historia"],
+  [/science|vetenskap/, "Vetenskap"],
+  [/cyber|tech|teknik|hack|darknet/, "Teknik"],
+  [/news|nyhet|aktuellt/, "Nyheter"],
+  [/comedy|humor|komedi/, "Komedi"],
+  [/samhalle|society|journalis|investigative|granskning|politi/, "Samhälle"],
+  [/kultur|culture|music|musik|design|architecture|konst|art\b|film/, "Kultur"],
+  [/dokumentar|documentary/, "Dokumentär"],
+  [/storytelling|berattande|berattelse|crime\b/, "Berättande"],
+];
+export function normalizeGenre(raw) {
+  const g = collapse(raw);
+  if (!g) return null;
+  for (const t of GENRE_TAXONOMY) if (collapse(t) === g) return t;
+  for (const [re, target] of GENRE_RULES) if (re.test(g)) return target;
+  return null;
+}
+
+// Skrap-varden som modellen ibland satter som "vardar" – hellre tomt an "various".
+const JUNK_HOSTS_RE = /^(various|unknown|n\/?a|okand|okänd|flera|diverse|-+)$/i;
+
 // Tvinga svensk storefront pa Apple Podcasts-lankar OCH ta bort sprakparametern
 // (annars kan sidan oppnas pa fel sprak, t.ex. ?l=ar -> arabiska).
 function appleSe(url) {
@@ -427,7 +463,9 @@ function tryParse(s) {
 // ─────────────────────────────────────────────────────────────────────────────
 function systemPrompt() {
   const langNames = LANGUAGES.map((l) => (l === "sv" ? "svenska" : l === "en" ? "engelska" : l)).join(" eller ");
-  const genreLine = GENRES === "all" ? "Alla genrer ar tillatna." : `Prioritera dessa genrer: ${GENRES.join(", ")}.`;
+  const genreLine = GENRES === "all"
+    ? `Satt "genre" till EXAKT en av: ${GENRE_TAXONOMY.join(", ")} (valj den narmaste).`
+    : `Prioritera dessa genrer: ${GENRES.join(", ")}. Satt "genre" till EXAKT en av: ${GENRE_TAXONOMY.join(", ")}.`;
   return `Du ar en mycket paläst poddredaktor som valjer ut ETT enastaende poddavsnitt som "dagens tips". Tonen och omdomet ska halla samma niva som en redaktionell rekommendation i en kvalitetstidning eller ett valkurerat nyhetsbrev.
 
 Du far en uppsattning sokresultat (titlar, URL:er, utdrag). Du kan INTE soka sjalv – valj ENBART utifran det som star i sokresultaten.
@@ -532,7 +570,8 @@ function validateTip(raw, recentKeys, seen, hardShowSlugs = new Set()) {
 
   const episode_title = str(raw.episode_title);
   const show_name = str(raw.show_name);
-  const hosts = str(raw.hosts);
+  let hosts = str(raw.hosts);
+  if (JUNK_HOSTS_RE.test(hosts)) hosts = ""; // "various"/"unknown" -> hellre tomt
   const genre = str(raw.genre);
   const language = str(raw.language).toLowerCase();
   const why_great = str(raw.why_great);
@@ -547,6 +586,13 @@ function validateTip(raw, recentKeys, seen, hardShowSlugs = new Set()) {
 
   if (!LANGUAGES.includes(language)) {
     return { ok: false, error: `language "${language}" ar inte tillatet (tillatna: ${LANGUAGES.join(", ")}).` };
+  }
+
+  // Guardrail: genre normaliseras till den fasta taxonomin (fritext gav 20
+  // varianter pa 31 poster och trasade sonder filter/statistik).
+  const genreNorm = normalizeGenre(genre);
+  if (!genreNorm) {
+    return { ok: false, error: `genre "${genre}" gick inte att mappa – valj en av: ${GENRE_TAXONOMY.join(", ")}.` };
   }
 
   // Guardrail: inga icke-latinska tecken nagonstans (modellen far inte byta sprak mitt i).
@@ -690,7 +736,7 @@ function validateTip(raw, recentKeys, seen, hardShowSlugs = new Set()) {
       show_name,
       show_slug: slugify(show_name),
       hosts,
-      genre,
+      genre: genreNorm,
       language,
       year: typeof raw.year === "number" ? raw.year : null,
       duration_minutes: typeof raw.duration_minutes === "number" ? raw.duration_minutes : null,

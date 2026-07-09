@@ -37,8 +37,10 @@ const esc = (s) =>
   String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const cdata = (s) => `<![CDATA[${String(s ?? "").replace(/\]\]>/g, "]]]]><![CDATA[>")}]]>`;
 
+// 00:00 UTC: cron kor 01:00 UTC – med 08:00Z var dagens avsnitt "framtida" i 7 h,
+// vilket vissa poddspelare doljer. Nu alltid i datid, konsekvent med feed.xml.
 function rfc822(d) {
-  try { return new Date(d + "T08:00:00Z").toUTCString(); } catch { return new Date().toUTCString(); }
+  try { return new Date(d + "T00:00:00Z").toUTCString(); } catch { return new Date().toUTCString(); }
 }
 function hhmmss(sec) {
   if (!sec || sec <= 0) return null;
@@ -56,7 +58,7 @@ async function main() {
   const skipped = data.length - playable.length;
 
   const items = playable.map((r) => {
-    const page = `${SITE_URL}/#/avsnitt/${r.date}`;
+    const page = `${SITE_URL}/avsnitt/${r.date}.html`;
     const dur = hhmmss(r.audio.durationSec);
     const title = `${r.show_name} – ${r.episode_title}`;
     const body =

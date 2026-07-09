@@ -136,14 +136,15 @@ function listenButtons(links) {
   return out.join("");
 }
 
-function chips(rec) {
+// withHosts=false i hero-kortet (dar visas varden redan pa "Med X"-raden – ingen dubblett).
+function chips(rec, withHosts = true) {
   const out = [];
   if (rec.genre) out.push(`<span class="chip"><b>${esc(rec.genre)}</b></span>`);
   if (rec.language) out.push(`<span class="chip">${esc(langName(rec.language))}</span>`);
   if (rec.year) out.push(`<span class="chip">${esc(rec.year)}</span>`);
   const dur = fmtDuration(rec.duration_minutes);
   if (dur) out.push(`<span class="chip">⏱ ${esc(dur)}</span>`);
-  if (rec.hosts) out.push(`<span class="chip">${esc(rec.hosts)}</span>`);
+  if (withHosts && rec.hosts) out.push(`<span class="chip">${esc(rec.hosts)}</span>`);
   return out.join("");
 }
 
@@ -176,7 +177,7 @@ function heroCard(rec, stale, today) {
       <div class="kicker">${esc(rec.show_name)}</div>
       <h2>${esc(rec.episode_title)}</h2>
       <div class="show">${rec.hosts ? "Med " + esc(rec.hosts) : ""}</div>
-      <div class="meta">${chips(rec)}</div>
+      <div class="meta">${chips(rec, false)}</div>
       ${dayConnection}
       <p class="why">${esc(rec.why_great)}</p>
       <div class="actions">${listenButtons(rec.listen_links) || '<span class="muted">Lyssna-länkar saknas</span>'}</div>

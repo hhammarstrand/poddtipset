@@ -17,7 +17,7 @@
 //
 // Inga npm-beroenden. Node 20+.
 
-import { readFile, writeFile } from "node:fs/promises";
+import { readFile, writeFile, mkdir, readdir, unlink } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
@@ -75,9 +75,11 @@ function fmtDuration(min) {
   if (h) return `${h} h`;
   return `${m} min`;
 }
-// RFC-822-datum for RSS (12:00 UTC for stabilitet, oberoende av kortid).
+// RFC-822-datum for RSS. 00:00 UTC: cron kor 01:00 UTC, sa pubDate ar alltid i
+// datidens – en FRAMTIDA pubDate kan fa lasare/spelare att dolja posten. Samma
+// klockslag som podd-floden (konsekvent mellan feed.xml och podcast.xml).
 function rfc822(d) {
-  try { return new Date(d + "T12:00:00Z").toUTCString(); } catch { return new Date().toUTCString(); }
+  try { return new Date(d + "T00:00:00Z").toUTCString(); } catch { return new Date().toUTCString(); }
 }
 // Apple-lankar: tvinga svensk storefront, ta bort sprakparam (samma som frontend).
 function appleSe(url) {
@@ -100,13 +102,13 @@ function replaceRegion(html, tag, inner) {
 
 // ── Forrenderad hero (speglar app.js heroCard – riktigt innehall i HTML) ───────
 function chipsHtml(rec) {
+  // Ingen hosts-chip har: hero-kortet visar redan varden pa "Med X"-raden.
   const out = [];
   if (rec.genre) out.push(`<span class="chip"><b>${esc(rec.genre)}</b></span>`);
   if (rec.language) out.push(`<span class="chip">${esc(langName(rec.language))}</span>`);
   if (rec.year) out.push(`<span class="chip">${esc(rec.year)}</span>`);
   const dur = fmtDuration(rec.duration_minutes);
   if (dur) out.push(`<span class="chip">⏱ ${esc(dur)}</span>`);
-  if (rec.hosts) out.push(`<span class="chip">${esc(rec.hosts)}</span>`);
   return out.join("");
 }
 function listenButtonsHtml(links) {
@@ -139,10 +141,12 @@ function prerenderedHero(rec, recent) {
   if (!rec) {
     return `<div class="empty">Inget tips än. Det första tipset dyker upp här snart.</div>`;
   }
+  // Lanka till de STATISKA avsnittssidorna (crawlbara for Google). Klient-JS:en
+  // ersatter listan med SPA-hashlankar efter hydrering – det har ar crawler-vyn.
   const moreItems = recent
     .filter((r) => r.date !== rec.date)
     .slice(0, 8)
-    .map((r) => `<li><a href="#/avsnitt/${esc(r.date)}"><span class="more-date">${esc(fmtDayMonth(r.date))}</span> <span class="more-title">${esc(r.episode_title)}</span> <span class="more-show">${esc(r.show_name)}</span></a></li>`)
+    .map((r) => `<li><a href="avsnitt/${esc(r.date)}.html"><span class="more-date">${esc(fmtDayMonth(r.date))}</span> <span class="more-title">${esc(r.episode_title)}</span> <span class="more-show">${esc(r.show_name)}</span></a></li>`)
     .join("");
   return `<div class="today-banner"><span class="dot"></span>Dagens tips · ${esc(fmtDateSv(rec.date))}</div>
     <article class="hero prerendered">
@@ -235,16 +239,131 @@ function jsonLdBlock(rec, recent) {
   return `    <script type="application/ld+json">${jsonLd(doc)}</script>`;
 }
 
+// ── Per-avsnitts-sidor (public/avsnitt/<datum>.html) ─────────────────────────
+// Riktiga statiska sidor per tips: Google far en indexerbar sida per avsnitt
+// (i stallet for bara startsidan) med egen canonical, meta, OG och JSON-LD.
+// Ingen app.js – sidorna ar rena dokument med samma utseende som hero-kortet.
+function episodePageHtml(rec, all) {
+  const pageUrl = `${SITE_URL}/avsnitt/${rec.date}.html`;
+  const epTitle = `${rec.episode_title} – ${rec.show_name}`;
+  const desc = clip(rec.why_great, 160);
+  const others = all.filter((r) => r.date !== rec.date).slice(0, 8);
+  const moreItems = others
+    .map((r) => `<li><a href="./${esc(r.date)}.html"><span class="more-date">${esc(fmtDayMonth(r.date))}</span> <span class="more-title">${esc(r.episode_title)}</span> <span class="more-show">${esc(r.show_name)}</span></a></li>`)
+    .join("");
+  const ld = {
+    "@context": "https://schema.org",
+    "@type": "PodcastEpisode",
+    "@id": `${pageUrl}#episode`,
+    url: pageUrl,
+    name: rec.episode_title,
+    datePublished: rec.date,
+    inLanguage: rec.language === "en" ? "en" : "sv",
+    description: clip(rec.why_great, 280),
+    ...(rec.duration_minutes ? { timeRequired: `PT${rec.duration_minutes}M` } : {}),
+    partOfSeries: { "@type": "PodcastSeries", name: rec.show_name },
+    ...(rec.hosts ? { author: { "@type": "Person", name: rec.hosts } } : {}),
+  };
+  return `<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#8c2f23" />
+  <title>${esc(epTitle)} · ${esc(SITE_NAME)}</title>
+  <meta name="description" content="${esc(desc)}" />
+  <link rel="canonical" href="${pageUrl}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="${esc(SITE_NAME)}" />
+  <meta property="og:title" content="${esc(epTitle)}" />
+  <meta property="og:description" content="${esc(desc)}" />
+  <meta property="og:url" content="${pageUrl}" />
+  <meta property="og:image" content="${OG_IMAGE}" />
+  <meta property="og:locale" content="sv_SE" />
+  <meta property="article:published_time" content="${esc(rec.date)}" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="${esc(epTitle)}" />
+  <meta name="twitter:description" content="${esc(desc)}" />
+  <meta name="twitter:image" content="${OG_IMAGE}" />
+  <link rel="alternate" type="application/rss+xml" title="${esc(SITE_NAME)} – dagens poddtips" href="${SITE_URL}/feed.xml" />
+  <link rel="icon" type="image/svg+xml" href="../icon.svg" />
+  <link rel="apple-touch-icon" href="../icon.svg" />
+  <link rel="stylesheet" href="../styles.css" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || t === "light") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    })();
+  </script>
+  <script type="application/ld+json">${jsonLd(ld)}</script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="masthead">
+      <a class="brand" href="../" aria-label="${esc(SITE_NAME)} – start">
+        <span class="brand-text">Dagens&nbsp;Podd</span>
+      </a>
+      <p class="dateline">${esc(SITE_TAGLINE)}</p>
+    </div>
+    <nav class="nav" aria-label="Huvudmeny">
+      <a href="../#/">Dagens</a>
+      <a href="../#/historik">Historik</a>
+      <a href="../#/statistik">Statistik</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="today-banner"><span class="dot"></span>Tips · ${esc(fmtDateSv(rec.date))}</div>
+    <article class="hero">
+      <div class="kicker">${esc(rec.show_name)}</div>
+      <h2>${esc(rec.episode_title)}</h2>
+      <div class="show">${rec.hosts ? "Med " + esc(rec.hosts) : ""}</div>
+      <div class="meta">${chipsHtml(rec)}</div>
+      ${dayConnectionHtml(rec)}
+      <p class="why">${esc(rec.why_great)}</p>
+      <div class="actions">${listenButtonsHtml(rec.listen_links) || '<span class="muted">Lyssna-länkar saknas</span>'}</div>
+      ${sourcesHtml(rec)}
+    </article>
+    ${moreItems ? `<nav class="more-tips" aria-label="Fler tips"><h2 class="more-head">Fler tips</h2><ul>${moreItems}</ul></nav>` : ""}
+  </main>
+
+  <footer class="footer">
+    <p class="footer-tagline">${esc(SITE_TAGLINE)}.</p>
+    <p class="footer-links">
+      <a href="../#/">Dagens</a> · <a href="../#/historik">Historik</a> · <a href="../#/statistik">Statistik</a> ·
+      <a href="../feed.xml">RSS</a>
+    </p>
+    <p class="footer-disclaimer">
+      Dagens Podd är en oberoende, redaktionell kurering och är inte knuten till de poddar som tipsas.
+      Avsnitten ägs av respektive producent och spelas direkt från deras egna flöden – vi lagrar inget ljud.
+      Vill du att ett tips tas bort, mejla <a href="mailto:Hugo@hammarstrand.uk">Hugo@hammarstrand.uk</a>.
+    </p>
+  </footer>
+</body>
+</html>
+`;
+}
+
 // ── sitemap / robots / RSS / manifest ─────────────────────────────────────────
-function sitemapXml(latestDate) {
+function sitemapXml(data) {
+  const latestDate = data[0]?.date || "";
+  const pages = data.map((r) => `  <url>
+    <loc>${SITE_URL}/avsnitt/${esc(r.date)}.html</loc>
+    <lastmod>${esc(r.date)}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>`).join("\n");
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>${SITE_URL}/</loc>
-    <lastmod>${esc(latestDate || "")}</lastmod>
+    <lastmod>${esc(latestDate)}</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
+${pages}
 </urlset>
 `;
 }
@@ -264,7 +383,7 @@ Sitemap: ${SITE_URL}/sitemap.xml
 function feedXml(data) {
   const items = data.slice(0, 60).map((r) => {
     const title = `${r.show_name} – ${r.episode_title}`;
-    const link = `${SITE_URL}/#/avsnitt/${r.date}`;
+    const link = `${SITE_URL}/avsnitt/${r.date}.html`;
     const desc = clip(r.why_great, 500);
     return `    <item>
       <title>${esc(title)}</title>
@@ -328,12 +447,27 @@ async function main() {
   // SPA-fallback: djuplankar (om man byter till path-routing eller skriver in en URL).
   await writeFile(join(PUBLIC_DIR, "404.html"), html, "utf8");
 
-  await writeFile(join(PUBLIC_DIR, "sitemap.xml"), sitemapXml(latest?.date), "utf8");
+  // Per-avsnitts-sidor: en indexerbar statisk sida per tips + stada bort sidor
+  // for datum som inte langre finns i datan (t.ex. borttagna poster).
+  const EP_DIR = join(PUBLIC_DIR, "avsnitt");
+  await mkdir(EP_DIR, { recursive: true });
+  const validFiles = new Set(data.map((r) => `${r.date}.html`));
+  for (const r of data) {
+    await writeFile(join(EP_DIR, `${r.date}.html`), episodePageHtml(r, data), "utf8");
+  }
+  for (const f of await readdir(EP_DIR)) {
+    if (f.endsWith(".html") && !validFiles.has(f)) {
+      await unlink(join(EP_DIR, f));
+      console.log(`Tog bort foraldrad avsnittssida: avsnitt/${f}`);
+    }
+  }
+
+  await writeFile(join(PUBLIC_DIR, "sitemap.xml"), sitemapXml(data), "utf8");
   await writeFile(join(PUBLIC_DIR, "robots.txt"), robotsTxt(), "utf8");
   await writeFile(join(PUBLIC_DIR, "feed.xml"), feedXml(data), "utf8");
   await writeFile(join(PUBLIC_DIR, "manifest.webmanifest"), manifest(), "utf8");
 
-  console.log(`SEO byggd: ${data.length} tips, senast ${latest?.date || "—"}. Skrev index.html, 404.html, sitemap.xml, robots.txt, feed.xml, manifest.webmanifest.`);
+  console.log(`SEO byggd: ${data.length} tips, senast ${latest?.date || "—"}. Skrev index.html, 404.html, ${data.length} avsnittssidor, sitemap.xml, robots.txt, feed.xml, manifest.webmanifest.`);
 }
 
 main().catch((err) => {

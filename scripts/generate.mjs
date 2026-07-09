@@ -161,16 +161,40 @@ function appleSe(url) {
   }
 }
 
+// fetch med retry/backoff for MiniMax-anropen: 429/5xx och natfel kostade tidigare
+// ett HELT generationsforsok (sokningar + modellanrop). Nytt AbortSignal per forsok
+// (en timeout-signal kan inte ateranvandas). Timeout retry:as bara nar retryTimeout
+// ar satt – chat-anrop pa 180s ska inte tredubbla varsta-fallet, men soket (20s) far.
+async function fetchWithRetry(url, baseOpts, { signalMs, retries = 2, retryTimeout = false, label = "anrop" } = {}) {
+  let delay = 2000;
+  for (let attempt = 0; ; attempt++) {
+    try {
+      const res = await fetch(url, { ...baseOpts, signal: AbortSignal.timeout(signalMs) });
+      if ((res.status === 429 || res.status >= 500) && attempt < retries) {
+        console.log(`  ${label}: HTTP ${res.status} – nytt forsok om ${delay / 1000}s`);
+        await sleep(delay); delay *= 2; continue;
+      }
+      return res;
+    } catch (err) {
+      const isTimeout = err?.name === "TimeoutError" || err?.name === "AbortError";
+      if (attempt < retries && (retryTimeout || !isTimeout)) {
+        console.log(`  ${label}: ${err?.message || err} – nytt forsok om ${delay / 1000}s`);
+        await sleep(delay); delay *= 2; continue;
+      }
+      throw err;
+    }
+  }
+}
+
 // En sokning mot MiniMax /v1/coding_plan/search. Svaret har formen
 // { organic: [{title, link, snippet, date}], related_searches: [...], base_resp: {...} }.
 async function minimaxSearch(apiKey, query) {
   try {
-    const res = await fetch(MINIMAX_SEARCH_URL, {
+    const res = await fetchWithRetry(MINIMAX_SEARCH_URL, {
       method: "POST",
       headers: { "content-type": "application/json", authorization: `Bearer ${apiKey}` },
       body: JSON.stringify({ q: query }),
-      signal: AbortSignal.timeout(SEARCH_TIMEOUT_MS),
-    });
+    }, { signalMs: SEARCH_TIMEOUT_MS, retries: 2, retryTimeout: true, label: "MiniMax-sok" });
     if (!res.ok) return { query, error: `MiniMax search ${res.status}`, results: [] };
     const data = await res.json();
     if (data?.base_resp && data.base_resp.status_code !== 0) {
@@ -331,7 +355,8 @@ function formatThemeBlock(hooks, mm, dd) {
 // gang, vilket kapar token-forbrukningen drastiskt.
 // ─────────────────────────────────────────────────────────────────────────────
 async function askModel(apiKey, systemMsg, userMsg) {
-  const res = await fetch(MINIMAX_CHAT_URL, {
+  // Retry pa 429/5xx/natfel men INTE pa timeout (180s-anrop ska inte tredubblas).
+  const res = await fetchWithRetry(MINIMAX_CHAT_URL, {
     method: "POST",
     headers: {
       "content-type": "application/json",
@@ -346,8 +371,7 @@ async function askModel(apiKey, systemMsg, userMsg) {
       temperature: TEMPERATURE,
       max_tokens: MAX_TOKENS,
     }),
-    signal: AbortSignal.timeout(MINIMAX_TIMEOUT_MS),
-  });
+  }, { signalMs: MINIMAX_TIMEOUT_MS, retries: 2, retryTimeout: false, label: "MiniMax-chat" });
   if (!res.ok) {
     const body = await res.text();
     throw new Error(`MiniMax API ${res.status}: ${body.slice(0, 500)}`);

@@ -1030,6 +1030,68 @@
     }
   },
   {
+    "date": "2026-06-09",
+    "episode_title": "Emperor Nero",
+    "show_name": "Short History Of...",
+    "show_slug": "short-history-of",
+    "hosts": "",
+    "genre": "Historia",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "Romerske kejsar Nero begår självmord (9 juni 68 e.Kr.)",
+    "day_connection": "Avsnittet handlar om kejsar Nero, som begick självmord den 9 juni år 68.",
+    "why_great": "Avsnittet undersöker vad som egentligen säkerställde Neros fall och den vanära som präglat hans eftermäle.",
+    "listen_links": {
+      "spotify": "https://open.spotify.com/episode/4zFT705hXrGbwIfV1GyH2x",
+      "apple": "https://podcasts.apple.com/se/podcast/emperor-nero/id1579040306?i=1000680702933&uo=4"
+    },
+    "sources": [
+      {
+        "title": "Emperor Nero - Short History Of... | Podcast on Spotify",
+        "url": "https://open.spotify.com/episode/4zFT705hXrGbwIfV1GyH2x"
+      }
+    ],
+    "audio": {
+      "url": "https://pdst.fm/e/traffic.megaphone.fm/NSR6579887635.mp3?updated=1739201595",
+      "type": "audio/mpeg",
+      "length": "0",
+      "durationSec": 3298
+    },
+    "created_at": "2026-07-10T07:36:05.417Z"
+  },
+  {
+    "date": "2026-06-07",
+    "episode_title": "My Little Hundred Million",
+    "show_name": "Revisionist History",
+    "show_slug": "revisionist-history",
+    "hosts": "Malcolm Gladwell",
+    "genre": "Berättande",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Buzzfeed placerar My Little Hundred Million på andra plats i sin lista över de bästa poddavsnitten genom tiderna, i sällskap med The Architect of Hollywood och andra moderna klassiker. Avsnittet är en fristående berättelse i Malcolm Gladwells serie Revisionist History, en podd som är byggd kring idén att etablerade historier kan se helt annorlunda ut när man tittar en gång till. Det är exakt det slags avsnitt som får en att haja till – och som gör att man gärna vill lyssna en gång till.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/my-little-hundred-million/id1119389968?i=1000372836942&uo=4",
+      "spotify": "https://open.spotify.com/search/Revisionist%20History%20My%20Little%20Hundred%20Million"
+    },
+    "sources": [
+      {
+        "title": "22 Life-Changing Podcast Episodes We Recommend To Everyone",
+        "url": "https://www.buzzfeed.com/rachelwmiller/best-podcast-episodes"
+      }
+    ],
+    "audio": {
+      "url": "https://pdrl.fm/ebe9fc/podtrac.com/pts/redirect.mp3/pscrb.fm/rss/p/tracking.swap.fm/track/SxlTEPDY7xDg35RXkASs/traffic.omny.fm/d/clips/e73c998e-6e60-432f-8610-ae210140c5b1/0e563f45-9d14-4ce8-8ef0-ae32006cd7e7/43adc777-b7dc-442c-983b-ae3200821b32/audio.mp3?utm_source=Podcast&amp;in_playlist=0d4cc74d-fff7-4b89-8818-ae32006cd7f0",
+      "type": "audio/mpeg",
+      "length": "37560900",
+      "durationSec": 2345
+    },
+    "created_at": "2026-07-10T07:03:50.871Z"
+  },
+  {
     "date": "2026-06-06",
     "episode_title": "Drottning Kristina valde sitt egna öde",
     "show_name": "Historia.nu med Urban Lindstedt",

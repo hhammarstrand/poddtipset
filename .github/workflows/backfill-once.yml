@@ -1,0 +1,53 @@
+name: Backfill 2026-06-08 (tillfallig)
+
+# TILLFALLIG: sista riktade forsoket for 2026-06-08. Diagnos fran forra korningen:
+# 5/12 forsok dog i MiniMax-timeouts, sa taket hojs till 18 (forsok 13-18 ger
+# dessutom helt nya sokkombinationer ur query-poolen). Tas bort efter korning.
+on:
+  push:
+    branches: [claude/dagens-pod-app-9neig2]
+
+permissions:
+  contents: write
+
+jobs:
+  backfill:
+    if: ${{ !startsWith(github.event.head_commit.message, 'Backfill:') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Generera 2026-06-08 (18 forsok)
+        env:
+          MINIMAX_API_KEY: ${{ secrets.MINIMAX_API_KEY }}
+          MAX_ATTEMPTS: "18"
+          GENERATE_DATE: "2026-06-08"
+        run: |
+          if [ -z "$MINIMAX_API_KEY" ]; then
+            echo "::error::MINIMAX_API_KEY saknas"; exit 1
+          fi
+          node scripts/generate.mjs || true
+
+      - name: Bygg om artefakter
+        env:
+          PODCAST_OWNER_EMAIL: Hugo@hammarstrand.uk
+        run: |
+          node scripts/build-seo.mjs
+          node scripts/build-podcast.mjs
+
+      - name: Committa resultatet till branchen
+        run: |
+          if [ -n "$(git status --porcelain public)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add public
+            git commit -m "Backfill: 2026-06-08 fylld"
+            git push
+          else
+            echo "2026-06-08 kunde inte fyllas (18 forsok)."
+          fi

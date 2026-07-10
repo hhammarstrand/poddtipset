@@ -27,12 +27,12 @@ jobs:
       - name: Generera saknade datum (bundet forsokstak)
         env:
           MINIMAX_API_KEY: ${{ secrets.MINIMAX_API_KEY }}
-          MAX_ATTEMPTS: "6"
+          MAX_ATTEMPTS: "12"
         run: |
           if [ -z "$MINIMAX_API_KEY" ]; then
             echo "::error::MINIMAX_API_KEY saknas"; exit 1
           fi
-          for d in 2026-06-04 2026-06-07 2026-06-08 2026-06-09 2026-06-12 2026-06-13 2026-06-16 2026-06-17; do
+          for d in 2026-06-07 2026-06-08 2026-06-09; do
             echo "--- genererar $d ---"
             GENERATE_DATE="$d" node scripts/generate.mjs || true
             sleep 2

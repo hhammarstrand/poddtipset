@@ -1,0 +1,58 @@
+name: Backfill saknade datum (tillfallig)
+
+# TILLFALLIG engangs-workflow: fyller de 8 datum som stadades bort vid
+# rattighetsgranskningen (tidningsartiklar m.m.), nu med alla nya guardrails
+# (spelbarhets-gate, aao-krav, genre-taxonomi) aktiva. Push-triggad pa feature-
+# branchen sa den kan koras utan workflow_dispatch-API. Tas bort efter korning.
+on:
+  push:
+    branches: [claude/dagens-pod-app-9neig2]
+
+permissions:
+  contents: write
+
+jobs:
+  backfill:
+    # Hoppa over nar det ar var egen data-commit som triggar (annars loop).
+    if: ${{ !startsWith(github.event.head_commit.message, 'Backfill:') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Generera saknade datum (bundet forsokstak)
+        env:
+          MINIMAX_API_KEY: ${{ secrets.MINIMAX_API_KEY }}
+          MAX_ATTEMPTS: "6"
+        run: |
+          if [ -z "$MINIMAX_API_KEY" ]; then
+            echo "::error::MINIMAX_API_KEY saknas"; exit 1
+          fi
+          for d in 2026-06-04 2026-06-07 2026-06-08 2026-06-09 2026-06-12 2026-06-13 2026-06-16 2026-06-17; do
+            echo "--- genererar $d ---"
+            GENERATE_DATE="$d" node scripts/generate.mjs || true
+            sleep 2
+          done
+
+      - name: Bygg om artefakter
+        env:
+          PODCAST_OWNER_EMAIL: Hugo@hammarstrand.uk
+        run: |
+          node scripts/build-seo.mjs
+          node scripts/build-podcast.mjs
+
+      - name: Committa resultatet till branchen
+        run: |
+          if [ -n "$(git status --porcelain public)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add public
+            git commit -m "Backfill: fyll saknade datum (guardrails aktiva)"
+            git push
+          else
+            echo "Inga datum kunde fyllas."
+          fi

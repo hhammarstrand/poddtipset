@@ -776,6 +776,74 @@
     }
   },
   {
+    "date": "2026-06-17",
+    "episode_title": "The Watergate Scandal",
+    "show_name": "Hot Mess History Podcast",
+    "show_slug": "hot-mess-history-podcast",
+    "hosts": "Hot Mess History Podcast",
+    "genre": "Historia",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "Watergateaffären inleds 1972 då en grupp inbrottsmän grips på det demokratiska partiets högkvarter",
+    "day_connection": "Avsnittet handlar om just Watergate – inbrottet den 17 juni 1972 och hela skandalen som tvingade Nixon att avgå.",
+    "why_great": "Ett rakt berättat avsnitt som vecklar ut konspirationen som fällde Richard Nixon, från de fem män som greps på bar gärning i Watergatekomplexet till avslöjandena som skakade den amerikanska republiken. Produktionen håller sig kort och koncis – perfekt för den som vill förstå hela kedjan av händelser utan att förvandlas till historikerättegång.",
+    "listen_links": {
+      "web": "https://shows.acast.com/hot-mess-history-podcast/episodes/the-watergate-scandal",
+      "apple": "https://podcasts.apple.com/se/podcast/the-watergate-scandal/id1825149302?i=1000775753845&uo=4",
+      "spotify": "https://open.spotify.com/search/Hot%20Mess%20History%20Podcast%20The%20Watergate%20Scandal"
+    },
+    "sources": [
+      {
+        "title": "The Watergate Scandal - Hot Mess History Podcast",
+        "url": "https://shows.acast.com/hot-mess-history-podcast/episodes/the-watergate-scandal"
+      }
+    ],
+    "audio": {
+      "url": "https://sphinx.acast.com/p/open/s/6865c573659c28f4ba630de4/e/6a4c89a14b1ada48f04beea7/media.mp3",
+      "type": "audio/mpeg",
+      "length": "24028891",
+      "durationSec": 1501
+    },
+    "created_at": "2026-07-10T06:50:20.976Z"
+  },
+  {
+    "date": "2026-06-16",
+    "episode_title": "Nazi Rage: The Murder of MP Jo Cox",
+    "show_name": "RedHanded",
+    "show_slug": "redhanded",
+    "hosts": "Suruthi Bala and Hannah Maguire",
+    "genre": "True crime",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "Den brittiska Labourpolitikern Jo Cox mördas 2016",
+    "day_connection": "RedHanded ägnar ett helt avsnitt åt mordet på Jo Cox, som skedde exakt den 16 juni 2016.",
+    "why_great": "RedHanded gräver i mordet på Labourpolitikern Jo Cox, som sköts och knivhöggs till döds utanför ett bibliotek i Birstall bara en vecka före folkomröstningen om EU. Avsnittet placerar dådet i sin politiska kontext och lyfter frågan om hur en ensam våldsverkare med högerextrem koppling kunde mörda en parlamentsledamot mitt på ljusa dagen. Suruthi Bala och Hannah Maguire gör vad serien är känd för: en researchtät berättelse som inte skyndar förbi det svåra.",
+    "listen_links": {
+      "web": "https://redhandedpodcast.com/episodes/episode-149-nazi-rage-the-murder-of-mp-jo-cox",
+      "apple": "https://podcasts.apple.com/se/podcast/episode-149-nazi-rage-the-murder-of-mp-jo-cox/id1250599915?i=1000476033882&uo=4",
+      "spotify": "https://open.spotify.com/search/RedHanded%20Nazi%20Rage%3A%20The%20Murder%20of%20MP%20Jo%20Cox"
+    },
+    "sources": [
+      {
+        "title": "Episode 149 – Nazi Rage: The Murder of MP Jo Cox",
+        "url": "https://redhandedpodcast.com/episodes/episode-149-nazi-rage-the-murder-of-mp-jo-cox"
+      },
+      {
+        "title": "The Best True Crime Podcasts – BuzzFeed",
+        "url": "https://www.buzzfeed.com/bendzialdowski/best-true-crime-podcasts"
+      }
+    ],
+    "audio": {
+      "url": "https://mgln.ai/e/51/dts.podtrac.com/redirect.mp3/audioboom.com/posts/8845860.mp3?modified=1769449402&amp;sid=5166531&amp;source=rss",
+      "type": "audio/mpeg",
+      "length": "0",
+      "durationSec": 4209
+    },
+    "created_at": "2026-07-10T06:44:04.871Z"
+  },
+  {
     "date": "2026-06-15",
     "episode_title": "The Troubles: How It Started",
     "show_name": "Dan Snow's History Hit",
@@ -831,6 +899,73 @@
       }
     ],
     "created_at": "2026-06-17T21:41:31.723Z"
+  },
+  {
+    "date": "2026-06-13",
+    "episode_title": "Brittiska imperiets födelse",
+    "show_name": "Harrisons dramatiska historia",
+    "show_slug": "harrisons-dramatiska-historia",
+    "hosts": "Dick Harrison",
+    "genre": "Historia",
+    "language": "sv",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "I det här avsnittet av Harrisons dramatiska historia samtalar Dick Harrison, professor i historia vid Lunds universitet, med fackboksförfattaren Katarina om den brittiska imperiebyggets tidiga historia. Dick Harrison är en av Sveriges mest profilerade historiker och ger i programmet en längre, sammanhängande svensk berättelse om hur en liten önation i Europas utkant kunde bli världens mest dominerande kolonimakt. Avsnittet fungerar som en fristående historisk exposé och kräver inga förkunskaper.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/brittiska-imperiets-f%C3%B6delse/id1677101142?i=1000696415898&uo=4",
+      "spotify": "https://open.spotify.com/search/Harrisons%20dramatiska%20historia%20Brittiska%20imperiets%20f%C3%B6delse"
+    },
+    "sources": [
+      {
+        "title": "Brittiska imperiets födelse ‑ Harrisons dramatiska historia",
+        "url": "https://podcasts.apple.com/ne/podcast/brittiska-imperiets-f%C3%B6delse/id1677101142?i=1000696415898"
+      }
+    ],
+    "audio": {
+      "url": "https://sphinx.acast.com/p/open/s/64020d42df946300111fcc8c/e/67bc8c8c19249d0c1a7015aa/media.mp3",
+      "type": "audio/mpeg",
+      "length": "73078445",
+      "durationSec": 3029
+    },
+    "created_at": "2026-07-10T06:39:32.845Z"
+  },
+  {
+    "date": "2026-06-12",
+    "episode_title": "The Berlin Wall",
+    "show_name": "The Rest Is History",
+    "show_slug": "the-rest-is-history",
+    "hosts": "Tom Holland och Dominic Sandbrook",
+    "genre": "Historia",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Tom och Dominic gästas av journalisten och författaren Iain MacGregor för ett samtal om Berlinmurens historia – hur en enkel barriär 1961 växte till en av det kalla krigets mest laddade symboler för den ideologiska klyftan mellan öst och väst. Avsnittet rör sig från vardagsliv bakom muren till storpolitiska beslut på högsta nivå, med en ledig ton som gör historien omedelbart levande. Det fungerar utmärkt som fristående lyssning, även för den som aldrig hört podden förut.",
+    "listen_links": {
+      "spotify": "https://open.spotify.com/episode/0PPbNibx5z72ERUpBc6QyC",
+      "web": "https://therestishistory.com/episodes/the-berlin-wall",
+      "apple": "https://podcasts.apple.com/se/podcast/the-berlin-wall/id1537788786?i=1000531035433&uo=4"
+    },
+    "sources": [
+      {
+        "title": "The Berlin Wall - The Rest Is History",
+        "url": "https://therestishistory.com/episodes/the-berlin-wall"
+      },
+      {
+        "title": "83. The Berlin Wall - The Rest Is History | Podcast on Spotify",
+        "url": "https://open.spotify.com/episode/0PPbNibx5z72ERUpBc6QyC"
+      }
+    ],
+    "audio": {
+      "url": "https://pdst.fm/e/traffic.megaphone.fm/GLT1824879961.mp3?updated=1777395052",
+      "type": "audio/mpeg",
+      "length": "0",
+      "durationSec": 3904
+    },
+    "created_at": "2026-07-10T06:38:04.051Z"
   },
   {
     "date": "2026-06-11",
@@ -956,6 +1091,32 @@
       "length": "52638410",
       "durationSec": 2192
     }
+  },
+  {
+    "date": "2026-06-04",
+    "episode_title": "A Hundred Years of Student Protests",
+    "show_name": "The Crack-Up",
+    "show_slug": "the-crack-up",
+    "hosts": "",
+    "genre": "Historia",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "Massakern på Himmelska fridens torg i Peking 1989",
+    "day_connection": "Avsnittet handlar om den kinesiska studentprotesttradition som kulminerade i massakern den 4 juni 1989.",
+    "why_great": "Kinaexperten Jeffrey Wasserstrom diskuterar i det här avsnittet av The Crack-Up den rika historien av kinesiska studentprotester. Avsnittet sträcker sig över ett sekel och visar hur studentrörelser har varit en återkommande kraft i Kinas moderna historia. Det är särskilt relevant att höra runt den 4 juni, årsdagen av massakern på Himmelska fridens torg 1989.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/a-hundred-years-of-student-protests-in-china/id1456002959?i=1000441878243&uo=4",
+      "spotify": "https://open.spotify.com/search/The%20Crack-Up%20A%20Hundred%20Years%20of%20Student%20Protests"
+    },
+    "sources": [
+      {
+        "title": "The Crack-Up: A Hundred Years of Student Protests",
+        "url": "https://podcasts.apple.com/us/podcast/the-crack-up-a-hundred-years-of-student-protests/id312418293?i=1000441838284"
+      }
+    ],
+    "audio": null,
+    "created_at": "2026-07-10T05:51:59.198Z"
   },
   {
     "date": "2026-06-03",

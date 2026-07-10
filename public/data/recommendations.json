@@ -1061,6 +1061,38 @@
     "created_at": "2026-07-10T07:36:05.417Z"
   },
   {
+    "date": "2026-06-08",
+    "episode_title": "Peak Norway",
+    "show_name": "Scandinavian History Podcast",
+    "show_slug": "scandinavian-history-podcast",
+    "hosts": "",
+    "genre": "Historia",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Avsnittet handlar om Haakon Haakonsson, vars 46 år långa regeringstid på 1200-talet brukar räknas som höjdpunkten i medeltida norsk historia. En berättelse om hur han enade riket och satte stopp för en lång period av splittring och inbördeskrig.",
+    "listen_links": {
+      "web": "https://scandinavianhistorypodcast.podbean.com/e/044-peak-norway/",
+      "apple": "https://podcasts.apple.com/se/podcast/044-peak-norway/id1536322900?i=1000565072009&uo=4",
+      "spotify": "https://open.spotify.com/search/Scandinavian%20History%20Podcast%20Peak%20Norway"
+    },
+    "sources": [
+      {
+        "title": "044 Peak Norway - The Scandinavian History Podcast",
+        "url": "https://scandinavianhistorypodcast.podbean.com/e/044-peak-norway/"
+      }
+    ],
+    "audio": {
+      "url": "https://mcdn.podbean.com/mf/web/bdamjf/SHP_044_Peak_Norway8jfoo.mp3",
+      "type": "audio/mpeg",
+      "length": "34858796",
+      "durationSec": 2008
+    },
+    "created_at": "2026-07-10T18:48:28.064Z"
+  },
+  {
     "date": "2026-06-07",
     "episode_title": "My Little Hundred Million",
     "show_name": "Revisionist History",

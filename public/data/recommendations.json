@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-07-11",
+    "episode_title": "23 Weeks 6 Days",
+    "show_name": "Radiolab",
+    "show_slug": "radiolab",
+    "hosts": "Jad Abumrad och Robert Krulwich",
+    "genre": "Berättande",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Relevant Magazine har utsett avsnittet till ett av de sju mest rörande poddavsnitt som någonsin skapats. Radiolab är känt för sin särpräglade blandning av vetenskap, personliga berättelser och experimentell ljuddesign, och det här avsnittet lyfts fram som ett tydligt exempel på vad poddformatet kan åstadkomma när det är som starkast.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/update-23-weeks-6-days/id152249110?i=1000365330692&uo=4",
+      "spotify": "https://open.spotify.com/search/Radiolab%2023%20Weeks%206%20Days"
+    },
+    "sources": [
+      {
+        "title": "The 7 Most Moving Podcast Episodes Ever Created",
+        "url": "https://relevantmagazine.com/culture/7-most-moving-podcast-episodes-ever-created/"
+      }
+    ],
+    "audio": {
+      "url": "https://pscrb.fm/rss/p/mgln.ai/e/14/prfx.byspotify.com/e/dts.podtrac.com/pts/redirect.mp3/waaa.wnyc.org/758af4c0-a2c3-47ec-a2d8-05f41bfbde51/episodes/089513fd-9770-4e1a-9496-8b2a94a57287/audio/128/default.mp3?aid=rss_feed&amp;awCollectionId=758af4c0-a2c3-47ec-a2d8-05f41bfbde51&amp;awEpisodeId=089513fd-9770-4e1a-9496-8b2a94a57287&amp;feed=EmVW7VGp",
+      "type": "audio/mpeg",
+      "length": "60674070",
+      "durationSec": 3786
+    },
+    "created_at": "2026-07-11T03:58:50.227Z"
+  },
+  {
     "date": "2026-07-10",
     "episode_title": "King Cnut & the End of the Viking Age",
     "show_name": "Gone Medieval",

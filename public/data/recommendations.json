@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-07-12",
+    "episode_title": "Malala Yousafzai discusses misrepresentations of Islam, the Taliban's 'gender apartheid', and her views on marriage",
+    "show_name": "The Louis Theroux Podcast",
+    "show_slug": "the-louis-theroux-podcast",
+    "hosts": "Louis Theroux",
+    "genre": "Intervju",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Louis Theroux samtalar med Malala Yousafzai i ett avsnitt som rör sig bortom den etablerade hjältebilden. Yousafzai, världens yngsta nobelpristagare, talar utförligt om hur islam ofta missförstås i västerländsk media, om den talibanska regimens behandling av kvinnor och om sina egna erfarenheter kring äktenskapsfrågan. Theroux är en av de skickligaste intervjuarna i brittisk dokumentärtradition, och hans respektfulla men nyfikna frågor skapar utrymme för nyanser kring religion och kvinnlig autonomi som sällan hörs i kortare nyhetsinslag.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/malala-yousafzai-discusses-misrepresentations-of/id1725833532?i=1000733789846&uo=4",
+      "spotify": "https://open.spotify.com/search/The%20Louis%20Theroux%20Podcast%20Malala%20Yousafzai%20discusses%20misrepresentations%20of%20Islam%2C%20the%20Taliban's%20'gender%20apartheid'%2C%20and%20her%20views%20on%20marriage"
+    },
+    "sources": [
+      {
+        "title": "Malala Yousafzai discusses misrepresentations of Islam, the Taliban's 'gender apartheid', and her views on marriage",
+        "url": "https://podcasts.apple.com/ie/podcast/malala-yousafzai-discusses-misrepresentations-of/id1725833532?i=1000733789846"
+      }
+    ],
+    "audio": {
+      "url": "https://traffic.megaphone.fm/GLT8797206477.mp3?updated=1772040524",
+      "type": "audio/mpeg",
+      "length": "0",
+      "durationSec": 3960
+    },
+    "created_at": "2026-07-12T04:35:19.130Z"
+  },
+  {
     "date": "2026-07-11",
     "episode_title": "23 Weeks 6 Days",
     "show_name": "Radiolab",

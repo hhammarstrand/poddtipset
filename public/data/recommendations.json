@@ -1,5 +1,37 @@
 [
   {
+    "date": "2026-07-13",
+    "episode_title": "Alexander the Great: life of the week",
+    "show_name": "HistoryExtra",
+    "show_slug": "historyextra",
+    "hosts": "",
+    "genre": "Historia",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "HistoryExtra hör hemma hos BBC History Magazine och har formats till ett prisbelönt poddprojekt där erfarna historiker veckovis tar sig an centrala gestalter och händelser. Avsnittet Alexander the Great: life of the week ingår i serien som ger koncentrerade biografiska essäer – den här gången om den makedonske fältherre som på ett drygt decennium reste ett imperium som sträckte sig från Grekland till Indien, ett av antikens mest omtalade militära och politiska projekt.",
+    "listen_links": {
+      "web": "https://www.historyextra.com/podcast/",
+      "apple": "https://podcasts.apple.com/se/podcast/alexander-the-great-life-of-the-week/id256580326?i=1000772381343&uo=4",
+      "spotify": "https://open.spotify.com/search/HistoryExtra%20Alexander%20the%20Great%3A%20life%20of%20the%20week"
+    },
+    "sources": [
+      {
+        "title": "HistoryExtra - Listen Now - HistoryExtra",
+        "url": "https://www.historyextra.com/podcast/"
+      }
+    ],
+    "audio": {
+      "url": "https://www.podtrac.com/pts/redirect.mp3/pdst.fm/e/pscrb.fm/rss/p/traffic.megaphone.fm/NSR5732821754.mp3",
+      "type": "audio/mpeg",
+      "length": "0",
+      "durationSec": 2613
+    },
+    "created_at": "2026-07-13T04:29:04.933Z"
+  },
+  {
     "date": "2026-07-12",
     "episode_title": "Malala Yousafzai discusses misrepresentations of Islam, the Taliban's 'gender apartheid', and her views on marriage",
     "show_name": "The Louis Theroux Podcast",

@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-07-15",
+    "episode_title": "Elon Musk",
+    "show_name": "The Joe Rogan Experience",
+    "show_slug": "the-joe-rogan-experience",
+    "hosts": "Joe Rogan",
+    "genre": "Intervju",
+    "language": "en",
+    "year": 2018,
+    "duration_minutes": 160,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Avsnitt #1169 med Elon Musk ligger etta på Podchasers lista över de femtiotvå bästa JRE-avsnitten genom tiderna. Samtalet från den 7 september 2018 är drygt två och en halv timme långt och rör sig från rymdprojekt och elbilar till AI och längre ut i filosofiska resonemang om framtiden, i den avslappnade långform som blivit JRE:s signum. Det är ett tydligt exempel på hur en stor gäst kan tala ostört i timmar utan att samtalet tappar gnista. För den som bara vill höra ett enda JRE-avsnitt är det här ett naturligt förstahandsval.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/2404-elon-musk/id360084272?i=1000734471135&uo=4",
+      "spotify": "https://open.spotify.com/search/The%20Joe%20Rogan%20Experience%20Elon%20Musk"
+    },
+    "sources": [
+      {
+        "title": "The 52 Best Episodes of The Joe Rogan Experience podcast",
+        "url": "https://www.podchaser.com/lists/the-52-best-episodes-of-the-joe-rogan-experience-podcast-107ZzpurHs"
+      }
+    ],
+    "audio": {
+      "url": "https://traffic.megaphone.fm/GLT8982688516.mp3?updated=1761931168",
+      "type": "audio/mpeg",
+      "length": "0",
+      "durationSec": 12175
+    },
+    "created_at": "2026-07-15T03:51:40.796Z"
+  },
+  {
     "date": "2026-07-13",
     "episode_title": "Alexander the Great: life of the week",
     "show_name": "HistoryExtra",

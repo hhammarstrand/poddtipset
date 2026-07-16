@@ -1,5 +1,44 @@
 [
   {
+    "date": "2026-07-16",
+    "episode_title": "The Case of the Missing Hit",
+    "show_name": "Reply All",
+    "show_slug": "reply-all",
+    "hosts": "",
+    "genre": "Berättande",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Avsnittet återfinns på åtskilliga listor över poddvärldens mest hyllade episoder, bland annat i Tim Duggan Substack-rankning av de bästa poddavsnitten genom tiderna och i Spotifys samling Top 15 Podcast Episodes Of All Time. Det är en fristående berättelse om ett internetmysterium, och det som gjort det bestående är kombinationen av en till synes enkel utgångspunkt med grundligt researcharbete och ett ovanligt noggrant berättande. Det fungerar utmärkt att höra utan att ha lyssnat på serien tidigare.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/158-the-case-of-the-missing-hit/id941907967?i=1000467513208&uo=4",
+      "spotify": "https://open.spotify.com/search/Reply%20All%20The%20Case%20of%20the%20Missing%20Hit"
+    },
+    "sources": [
+      {
+        "title": "Top 15 Podcast Episodes Of All Time (Spotify-playlist)",
+        "url": "https://open.spotify.com/playlist/6zWPJJDGey5kuKV1bskWX4"
+      },
+      {
+        "title": "The Greatest Podcast Episodes of All Time",
+        "url": "https://www.tiktok.com/@watchandlisten.ivy/video/7610474729635433742"
+      },
+      {
+        "title": "The Best Podcasts Ever Recorded – Tim Duggan",
+        "url": "https://timduggan.substack.com/p/the-best-podcasts-ever-recorded"
+      }
+    ],
+    "audio": {
+      "url": "https://chrt.fm/track/15E3G4/traffic.megaphone.fm/GLT5055930607.mp3?updated=1644002651",
+      "type": "audio/mpeg",
+      "length": "0",
+      "durationSec": 3153
+    },
+    "created_at": "2026-07-16T03:54:04.690Z"
+  },
+  {
     "date": "2026-07-15",
     "episode_title": "Elon Musk",
     "show_name": "The Joe Rogan Experience",

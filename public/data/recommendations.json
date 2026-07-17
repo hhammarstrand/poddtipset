@@ -1,5 +1,31 @@
 [
   {
+    "date": "2026-07-17",
+    "episode_title": "Werner Herzog",
+    "show_name": "The Portal",
+    "show_slug": "the-portal",
+    "hosts": "Eric Zimmer",
+    "genre": "Intervju",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Eric Zimmer samtalar med den tyske filmregissören Werner Herzog i ett avsnitt som av många utsetts till ett av de bästa poddavsnitten som gjorts. Det placerar sig etta på Ethan Maurices topplista över de tolv bästa poddavsnitt han hört och har blivit en referenspunkt för vad en lång, fördjupande poddintervju kan vara. Avsnittet lyfts ofta fram som ett typexempel på hur en gästs hela livsberättelse kan rymmas i ett enda samtal.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/3-werner-herzog/id1469999563?i=1000445326690&uo=4",
+      "spotify": "https://open.spotify.com/search/The%20Portal%20Werner%20Herzog"
+    },
+    "sources": [
+      {
+        "title": "The 12 Best Podcast Episodes I've Ever Heard",
+        "url": "https://ethanmaurice.com/blog/the-12-best-podcast-episodes-ever"
+      }
+    ],
+    "audio": null,
+    "created_at": "2026-07-17T04:00:27.336Z"
+  },
+  {
     "date": "2026-07-16",
     "episode_title": "The Case of the Missing Hit",
     "show_name": "Reply All",

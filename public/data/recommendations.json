@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-07-18",
+    "episode_title": "Black metal-morden",
+    "show_name": "P3 Dokumentär",
+    "show_slug": "p3-dokumentar",
+    "hosts": "Anton Berg",
+    "genre": "True crime",
+    "language": "sv",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Listad som ett av de 11 oförglömliga avsnitten av P3 Dokumentär i tidningen Feminas stora genomgång. Avsnittet om black metal-morden hör till de verkliga brott-dokumentärer som gjort P3 Dokumentär till en av Sveriges mest hyllade poddproduktioner.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/black-metal-morden/id308339623?i=1000738625753&uo=4",
+      "spotify": "https://open.spotify.com/search/P3%20Dokument%C3%A4r%20Black%20metal-morden"
+    },
+    "sources": [
+      {
+        "title": "11 bästa avsnitten av P3 Dokumentär",
+        "url": "https://www.femina.se/kultur/branddadet-skakade-sverige-det-starkaste-som-sants/11362723"
+      }
+    ],
+    "audio": {
+      "url": "https://static-cdn.sr.se/laddahem/podradio/2025/11/p3_dokumentar_black_metalmorden_20251107_1425117025.mp3",
+      "type": "audio/mpeg",
+      "length": "67129468",
+      "durationSec": 4194
+    },
+    "created_at": "2026-07-18T04:03:08.188Z"
+  },
+  {
     "date": "2026-07-17",
     "episode_title": "Werner Herzog",
     "show_name": "The Portal",

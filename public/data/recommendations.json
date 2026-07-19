@@ -1,5 +1,31 @@
 [
   {
+    "date": "2026-07-19",
+    "episode_title": "President Barack Obama",
+    "show_name": "WTF",
+    "show_slug": "wtf",
+    "hosts": "Marc Maron",
+    "genre": "Intervju",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Marc Marons långa samtal med Barack Obama räknas till de mest uppmärksammade poddavsnitten någonsin och placeras på tredje plats i en sammanställning över tidernas bästa poddavsnitt. Avsnittet har blivit en referenspunkt för hela formatet och har citerats i otaliga listor över banbrytande poddmoment. Det är ett samtal i Marons karaktäristiskt avslappnade stil, där gästen får utrymme att tala fritt.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/episode-1686-barack-obama/id329875043?i=1000731550704&uo=4",
+      "spotify": "https://open.spotify.com/search/WTF%20President%20Barack%20Obama"
+    },
+    "sources": [
+      {
+        "title": "25 Best Podcast Episodes of All Time",
+        "url": "https://async.com/blog/best-podcasts-episodes-of-all-time/"
+      }
+    ],
+    "audio": null,
+    "created_at": "2026-07-19T04:31:03.006Z"
+  },
+  {
     "date": "2026-07-18",
     "episode_title": "Black metal-morden",
     "show_name": "P3 Dokumentär",

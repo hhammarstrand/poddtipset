@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-07-22",
+    "episode_title": "The 1972 Munich Massacre",
+    "show_name": "The Conflict",
+    "show_slug": "the-conflict",
+    "hosts": "",
+    "genre": "Historia",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Avsnittet återvänder till de olympiska spelen i München 1972, när elva israeliska idrottare togs som gisslan och dödades under pågående tävlan. The Conflict går igenom händelseförloppet och hur världen reagerade i realtid på den gisslandramatik som förändrade säkerhetskulturen kring OS för lång tid framöver.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/the-1972-munich-massacre/id1711070531?i=1000674281245&uo=4",
+      "spotify": "https://open.spotify.com/search/The%20Conflict%20The%201972%20Munich%20Massacre"
+    },
+    "sources": [
+      {
+        "title": "The 1972 Munich Massacre – The Conflict på Apple Podcasts",
+        "url": "https://podcasts.apple.com/tn/podcast/the-1972-munich-massacre/id1711070531?i=1000674281245"
+      }
+    ],
+    "audio": {
+      "url": "http://open.live.bbc.co.uk/mediaselector/6/redir/version/2.0/mediaset/audio-nondrm-download-rss/proto/http/vpid/p0jzvf94.mp3",
+      "type": "audio/mpeg",
+      "length": "26112000",
+      "durationSec": 1632
+    },
+    "created_at": "2026-07-22T04:11:02.790Z"
+  },
+  {
     "date": "2026-07-21",
     "episode_title": "Can You Win Three Emmys and Still Wonder If The Check Will Clear?",
     "show_name": "Past Due with Ana Marie Cox",

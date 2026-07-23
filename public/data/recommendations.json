@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-07-23",
+    "episode_title": "Destruction of Mostar Bridge",
+    "show_name": "Witness History",
+    "show_slug": "witness-history",
+    "hosts": "",
+    "genre": "Historia",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "Stari most-bron i Mostar återinvigs efter återuppbyggnad (2004)",
+    "day_connection": "Avsnittet handlar om samma bro, Stari Most, som förstördes 1993 och återinvigdes denna dag 2004.",
+    "why_great": "BBC:s Witness History berättar i detta korta avsnitt om den 9 november 1993, när kroatiska styrkor sköt sönder Stari Most, bron som sedan 1500-talet varit ett av Bosniens mest kända landmärken. Händelsen blev en av de mest symboliska under Bosnienkriget och avsnittet ger en koncentrerad, tydlig redogörelse för ögonblicket bron föll och vad det betydde för Mostars befolkning.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/destruction-of-mostar-bridge/id339986758?i=1000634244239&uo=4",
+      "spotify": "https://open.spotify.com/search/Witness%20History%20Destruction%20of%20Mostar%20Bridge"
+    },
+    "sources": [
+      {
+        "title": "Destruction of Mostar Bridge–Witness History",
+        "url": "https://podcasts.apple.com/ph/podcast/destruction-of-mostar-bridge/id339986758?i=1000634244239"
+      }
+    ],
+    "audio": {
+      "url": "http://open.live.bbc.co.uk/mediaselector/6/redir/version/2.0/mediaset/audio-nondrm-download-rss-low/proto/http/vpid/p0glb925.mp3",
+      "type": "audio/mpeg",
+      "length": "4384000",
+      "durationSec": 548
+    },
+    "created_at": "2026-07-23T04:02:05.992Z"
+  },
+  {
     "date": "2026-07-22",
     "episode_title": "The 1972 Munich Massacre",
     "show_name": "The Conflict",

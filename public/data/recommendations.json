@@ -1,5 +1,37 @@
 [
   {
+    "date": "2026-07-24",
+    "episode_title": "Machu Picchu: The Lost City",
+    "show_name": "Dan Snow's History Hit",
+    "show_slug": "dan-snow-s-history-hit",
+    "hosts": "Dan Snow",
+    "genre": "Historia",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "Hiram Bingham återupptäcker inkastaden Machu Picchu i Peru (1911)",
+    "day_connection": "Avsnittet handlar om Hiram Binghams expedition som avtäckte Machu Picchu för världen den 24 juli 1911.",
+    "why_great": "Dan Snow tar med lyssnaren till de peruanska Anderna och följer i spåren på Hiram Bingham, den äventyrlige amerikanske exploratör som avtäckte Machu Picchu för omvärlden. Avsnittet är direkt kopplat till dagens datum 1911, då Bingham själv stod framför ruinerna och insåg vad han funnit – ett ögonblick som format vår bild av ett helt rike.",
+    "listen_links": {
+      "web": "https://shows.acast.com/dansnowshistoryhit/episodes/machu-picchu-the-lost-city",
+      "apple": "https://podcasts.apple.com/se/podcast/machu-picchu-the-lost-city/id1042631089?i=1000667425514&uo=4",
+      "spotify": "https://open.spotify.com/search/Dan%20Snow's%20History%20Hit%20Machu%20Picchu%3A%20The%20Lost%20City"
+    },
+    "sources": [
+      {
+        "title": "Machu Picchu: The Lost City – Dan Snow's History Hit",
+        "url": "https://shows.acast.com/dansnowshistoryhit/episodes/machu-picchu-the-lost-city"
+      }
+    ],
+    "audio": {
+      "url": "https://sphinx.acast.com/p/acast/s/dansnowshistoryhit/e/699dc6d1123f974082e0dd8d/media.mp3?tk=eyJ0ayI6ImRlZmF1bHQiLCJhZHMiOnRydWUsInNwb25zIjp0cnVlLCJzdGF0dXMiOiJwdWJsaWMifQ==&amp;sig=sCv0vpXrqx210kjCRKxpmGNrWTh2yVh6xIAq0ou9V8o",
+      "type": "audio/mpeg",
+      "length": "108313721",
+      "durationSec": 4512
+    },
+    "created_at": "2026-07-24T04:01:43.555Z"
+  },
+  {
     "date": "2026-07-23",
     "episode_title": "Destruction of Mostar Bridge",
     "show_name": "Witness History",

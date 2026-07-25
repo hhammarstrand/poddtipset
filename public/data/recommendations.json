@@ -1,5 +1,37 @@
 [
   {
+    "date": "2026-07-25",
+    "episode_title": "Konstantin den store – Roms första kristna kejsare",
+    "show_name": "Historia.nu med Urban Lindstedt",
+    "show_slug": "historia-nu-med-urban-lindstedt",
+    "hosts": "Urban Lindstedt",
+    "genre": "Historia",
+    "language": "sv",
+    "year": 2025,
+    "duration_minutes": null,
+    "day_occasion": "Konstantin den store utropas till romersk kejsare",
+    "day_connection": "Avsnittet handlar om Konstantin den store, samma person som den 25 juli år 306 utropades till romersk kejsare.",
+    "why_great": "Urban Lindstedt binder ihop Konstantin den stores personliga omvändelse med de politiska maktspelen i Rom och de långtgående följderna för hela Västerlandet. Berättelsen sträcker sig från kejsarens tidiga maktkamp till den dag hans tro förändrade en hel kontinent. Ett sammanhängande porträtt av en av antikens mest ödesdigra gestalter, kompakt nog att fungera som fristående lyssning.",
+    "listen_links": {
+      "spotify": "https://open.spotify.com/episode/6MbwJ2V5xfJOTCbUpIKnu5",
+      "web": "https://shows.acast.com/historianu-med-urban-lindstedt/episodes/konstantin-den-store-roms-forsta-kristna-kejsare",
+      "apple": "https://podcasts.apple.com/se/podcast/konstantin-den-store-roms-f%C3%B6rsta-kristna-kejsare/id1384957479?i=1000705486394&uo=4"
+    },
+    "sources": [
+      {
+        "title": "Roms första kristna kejsare - Historia.nu med Urban Lindstedt",
+        "url": "https://shows.acast.com/historianu-med-urban-lindstedt/episodes/konstantin-den-store-roms-forsta-kristna-kejsare"
+      }
+    ],
+    "audio": {
+      "url": "https://sphinx.acast.com/p/acast/s/historianu-med-urban-lindstedt/e/6807abf9da41f5ac1aba5440/media.mp3",
+      "type": "audio/mpeg",
+      "length": "64694321",
+      "durationSec": 2666
+    },
+    "created_at": "2026-07-25T04:03:04.988Z"
+  },
+  {
     "date": "2026-07-24",
     "episode_title": "Machu Picchu: The Lost City",
     "show_name": "Dan Snow's History Hit",

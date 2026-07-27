@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-07-27",
+    "episode_title": "Disco Demolition Night",
+    "show_name": "You're Wrong About",
+    "show_slug": "you-re-wrong-about",
+    "hosts": "Sarah Marshall and Michael Hobbes",
+    "genre": "Historia",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Avsnittet om Disco Demolition Night lyfts fram i en Reddit-tråd om de mest intressanta poddavsnitten, där en lyssnare beskriver det som ett lättare avsnitt och en utmärkt ingång för den som är ny till podden. Det är en fristående berättelse om en specifik händelse i amerikansk kulturhistoria som fungerar utan förkunskaper. You're Wrong About är dessutom en av de mest hyllade kultur- och historiepoddarna, känd för att gräva i myter och missuppfattningar kring välkända ämnen.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/disco-demolition-night/id1380008439?i=1000487011024&uo=4",
+      "spotify": "https://open.spotify.com/search/You're%20Wrong%20About%20Disco%20Demolition%20Night"
+    },
+    "sources": [
+      {
+        "title": "Most interesting podcast episode(s) you've ever heard",
+        "url": "https://www.reddit.com/r/podcasts/comments/1eb518u/most_interesting_podcast_episodes_youve_ever_heard/"
+      }
+    ],
+    "audio": {
+      "url": "https://traffic.megaphone.fm/AIL9101737306.mp3",
+      "type": "audio/mpeg",
+      "length": "0",
+      "durationSec": 5851
+    },
+    "created_at": "2026-07-27T04:36:12.409Z"
+  },
+  {
     "date": "2026-07-26",
     "episode_title": "#102 Long",
     "show_name": "Reply All",

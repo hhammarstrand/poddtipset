@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-07-28",
+    "episode_title": "Thomas Cromwell's Private Life",
+    "show_name": "Not Just the Tudors",
+    "show_slug": "not-just-the-tudors",
+    "hosts": "Tracy Borman",
+    "genre": "Historia",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "Thomas Cromwell avrättas på order av kung Henrik VIII (28 juli 1540)",
+    "day_connection": "Avsnittet utforskar just den statsman som miste huvudet denna dag.",
+    "why_great": "Tracy Borman skildrar Thomas Cromwell som en av Henrik VIII:s mest anmärkningsvärda figurer – juristen, politikern, ministern och peer of the realm som reste sig från enkla förhållanden till maktens absoluta topp. Avsnittet vrider blicken mot hans privatliv, bortom de politiska intrigerna och rubrikerna kring hans fall, och visar människan bakom en av Tudorerans mest omtalade karriärer.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/thomas-cromwells-private-life/id1564113869?i=1000577274354&uo=4",
+      "spotify": "https://open.spotify.com/search/Not%20Just%20the%20Tudors%20Thomas%20Cromwell's%20Private%20Life"
+    },
+    "sources": [
+      {
+        "title": "Thomas Cromwell's Private Life - Not Just the Tudors",
+        "url": "https://podcasts.apple.com/us/podcast/thomas-cromwells-private-life/id1564113869?i=1000577274354"
+      }
+    ],
+    "audio": {
+      "url": "https://sphinx.acast.com/p/acast/s/not-just-the-tudors/e/6304986edd670c00142bb728/media.mp3?tk=eyJ0ayI6ImRlZmF1bHQiLCJhZHMiOnRydWUsInNwb25zIjp0cnVlLCJzdGF0dXMiOiJwdWJsaWMifQ==&amp;sig=VyiEv6WIF867W8OUDmz8eE9FiYRFoA_Ba4bmk1QPfjI",
+      "type": "audio/mpeg",
+      "length": "53097777",
+      "durationSec": 3300
+    },
+    "created_at": "2026-07-28T03:53:54.268Z"
+  },
+  {
     "date": "2026-07-27",
     "episode_title": "Disco Demolition Night",
     "show_name": "You're Wrong About",

@@ -1,5 +1,40 @@
 [
   {
+    "date": "2026-07-29",
+    "episode_title": "Robert Baden-Powell: Scouting legend or fascist?",
+    "show_name": "History Defended",
+    "show_slug": "history-defended",
+    "hosts": "Steven Edginton",
+    "genre": "Historia",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "Scoutrörelsen grundas av Robert Baden-Powell (1907)",
+    "day_connection": "Ett avsnitt om Baden-Powell, grundaren av scoutrörelsen, som startade just den 29 juli 1907.",
+    "why_great": "Steven Edginton från History Defended intervjuar scouthistorikern Tony Ransley om Baden-Powells liv och arv. Avsnittet ställer frågan om han främst bör hyllas som scoutrörelsens grundare eller om det finns mörkare sidor i hans historia. Genom samtalet tecknas en nyanserad bild av en gestalt som ofta framställs ensidigt i populärkulturen.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/robert-baden-powell-scouting-legend-or-fascist/id1583727917?i=1000551983629&uo=4",
+      "spotify": "https://open.spotify.com/search/History%20Defended%20Robert%20Baden-Powell%3A%20Scouting%20legend%20or%20fascist%3F"
+    },
+    "sources": [
+      {
+        "title": "Robert Baden-Powell: Scouting legend or fascist? - Apple Podcasts",
+        "url": "https://podcasts.apple.com/se/podcast/robert-baden-powell-scouting-legend-or-fascist/id1583727917?i=1000551983629"
+      },
+      {
+        "title": "Robert Baden-Powell: Scouting legend or fascist? - History Defended (Poddtoppen)",
+        "url": "https://poddtoppen.se/podcast/1583727917/history-defended/robert-baden-powell-scouting-legend-or-fascist"
+      }
+    ],
+    "audio": {
+      "url": "https://sphinx.acast.com/p/open/s/6576de051585de0012bf1e07/e/gid%3A%2F%2Fart19-episode-locator%2FV0%2Fq1tTMfuqmikRZ_x8hVsDmyl3HhzXynJpmEGhaaB0deE/media.mp3",
+      "type": "audio/mpeg",
+      "length": "28933642",
+      "durationSec": 1815
+    },
+    "created_at": "2026-07-29T04:26:42.951Z"
+  },
+  {
     "date": "2026-07-28",
     "episode_title": "Thomas Cromwell's Private Life",
     "show_name": "Not Just the Tudors",

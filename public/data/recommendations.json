@@ -1,5 +1,40 @@
 [
   {
+    "date": "2026-07-30",
+    "episode_title": "The Disappearance of Labor Leader Jimmy Hoffa",
+    "show_name": "History Daily",
+    "show_slug": "history-daily",
+    "hosts": "",
+    "genre": "Historia",
+    "language": "en",
+    "year": 2023,
+    "duration_minutes": null,
+    "day_occasion": "Jimmy Hoffa försvinner spårlöst i Bloomfield Hills, Michigan (1975)",
+    "day_connection": "Avsnittet handlar om exakt samma händelse som inträffade denna dag 1975 – dagen då fackföreningsledaren James Riddle Hoffa förklarades saknad.",
+    "why_great": "History Daily berättar om den dag då den mäktige och notoriske fackföreningsledaren James Riddle Hoffa förklarades saknad, ett försvinnande som än i dag saknar lösning. Avsnittet är ett tydligt exempel på poddens format: en avgränsad historisk händelse, berättad koncist och med fokus på dramatiken i stunden. För den som vill ha en snabb, fokuserad ingång till en av USA:s mest segdragna gåtor fungerar avsnittet utmärkt som fristående lyssning.",
+    "listen_links": {
+      "spotify": "https://open.spotify.com/episode/2J7s6BEVKFLSh5mIPn3uGx",
+      "apple": "https://podcasts.apple.com/se/podcast/the-disappearance-of-labor-leader-jimmy-hoffa/id1591095413?i=1000718371058&uo=4"
+    },
+    "sources": [
+      {
+        "title": "The Disappearance of Labor Leader Jimmy Hoffa – History Daily",
+        "url": "https://open.spotify.com/episode/2J7s6BEVKFLSh5mIPn3uGx"
+      },
+      {
+        "title": "Jimmy Hoffa – Wikipedia",
+        "url": "https://sv.wikipedia.org/wiki/Jimmy_Hoffa"
+      }
+    ],
+    "audio": {
+      "url": "https://dts.podtrac.com/redirect.mp3/audioboom.com/posts/8901289.mp3?modified=1778265892&amp;sid=5162833&amp;source=rss",
+      "type": "audio/mpeg",
+      "length": "0",
+      "durationSec": 984
+    },
+    "created_at": "2026-07-30T04:14:11.449Z"
+  },
+  {
     "date": "2026-07-29",
     "episode_title": "Robert Baden-Powell: Scouting legend or fascist?",
     "show_name": "History Defended",

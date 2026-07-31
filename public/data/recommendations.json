@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-07-31",
+    "episode_title": "Food Fight",
+    "show_name": "Revisionist History",
+    "show_slug": "revisionist-history",
+    "hosts": "Malcolm Gladwell",
+    "genre": "Samhälle",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Food Fight är ett av de tydligaste exemplen på vad som gör Revisionist History så uppskattad: en till synes enkel vardagsfråga som visar sig ha oväntat stora konsekvenser för hela samhället. Avsnittet intar andra platsen på BuzzFeeds lista över de mest livsomvälvande poddavsnitten genom tiderna, där det hamnar i sällskap med några av poddvärldens mest hyllade verk.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/food-fight/id1119389968?i=1000372453199&uo=4",
+      "spotify": "https://open.spotify.com/search/Revisionist%20History%20Food%20Fight"
+    },
+    "sources": [
+      {
+        "title": "22 Life-Changing Podcast Episodes We Recommend To Everyone",
+        "url": "https://www.buzzfeed.com/rachelwmiller/best-podcast-episodes"
+      }
+    ],
+    "audio": {
+      "url": "https://pdrl.fm/ebe9fc/podtrac.com/pts/redirect.mp3/pscrb.fm/rss/p/tracking.swap.fm/track/SxlTEPDY7xDg35RXkASs/traffic.omny.fm/d/clips/e73c998e-6e60-432f-8610-ae210140c5b1/0e563f45-9d14-4ce8-8ef0-ae32006cd7e7/20501fc0-bce2-4ab1-8e47-ae320082aca4/audio.mp3?utm_source=Podcast&amp;in_playlist=0d4cc74d-fff7-4b89-8818-ae32006cd7f0",
+      "type": "audio/mpeg",
+      "length": "28953016",
+      "durationSec": 1807
+    },
+    "created_at": "2026-07-31T04:26:04.016Z"
+  },
+  {
     "date": "2026-07-30",
     "episode_title": "The Disappearance of Labor Leader Jimmy Hoffa",
     "show_name": "History Daily",

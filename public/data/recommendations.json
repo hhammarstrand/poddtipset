@@ -1,5 +1,40 @@
 [
   {
+    "date": "2026-08-01",
+    "episode_title": "Kevin Kelly",
+    "show_name": "The Tim Ferriss Show",
+    "show_slug": "the-tim-ferriss-show",
+    "hosts": "Tim Ferriss",
+    "genre": "Intervju",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Kevin Kelly hamnar på tredje plats när Ethan Maurice listar de tolv bästa poddavsnitt han hört, och Tim Ferriss Show är samma podd som finns representerad på Spotifys användarcurerade Top 15-lista via ett annat avsnitt. Ferriss har gjort sig känd för sina långa, noggrant förberedda samtal, och just Kevin Kelly-avsnittet lyfts specifikt fram som ett avsnitt värt att prioritera.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/669-kevin-kelly-excellent-advice-for-living/id863897795?i=1000610782498&uo=4",
+      "spotify": "https://open.spotify.com/search/The%20Tim%20Ferriss%20Show%20Kevin%20Kelly"
+    },
+    "sources": [
+      {
+        "title": "The 12 Best Podcast Episodes I've Ever Heard",
+        "url": "https://ethanmaurice.com/blog/the-12-best-podcast-episodes-ever"
+      },
+      {
+        "title": "Top 15 Podcast Episodes Of All Time - playlist by Ben Stevenson",
+        "url": "https://open.spotify.com/playlist/6zWPJJDGey5kuKV1bskWX4"
+      }
+    ],
+    "audio": {
+      "url": "https://rss.art19.com/episodes/09428d6c-0504-4662-92b6-37155a0edfb2.mp3?rss_browser=BAhJIg5EYWdlbnNQb2QGOgZFVA%3D%3D--b98dcc407372089752a32c42e142af13a8d79da2",
+      "type": "audio/mpeg",
+      "length": "149880581",
+      "durationSec": 9367
+    },
+    "created_at": "2026-08-01T04:35:20.401Z"
+  },
+  {
     "date": "2026-07-31",
     "episode_title": "Food Fight",
     "show_name": "Revisionist History",

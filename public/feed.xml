@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Sat, 01 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 02 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>The Third Story Podcast – Jacob Collier&#39;s First Interview</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-02.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-08-02</guid>
+      <pubDate>Sun, 02 Aug 2026 00:00:00 GMT</pubDate>
+      <category>Kultur</category>
+      <description>I The Third Story Podcast får vi här möta Jacob Collier i det som utgör poddens första längre intervju med honom. Samtalet med Leo Sidran rör sig kring Collier som sångare, multiinstrumentalist, arrangör och YouTube-sensation – främst känd för sina musikvideor.</description>
+    </item>
     <item>
       <title>The Tim Ferriss Show – Kevin Kelly</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-01.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Tue, 02 Jun 2026 00:00:00 GMT</pubDate>
       <category>Vetenskap</category>
       <description>Avsnittet rankas som ett av de allra bästa någonsin och listas i samlingar över de 30 poddavsnitt man bör lyssna på innan man dör. Det är ett av Radiolabs mest hyllade och prisbelönta verk som kombinerar vetenskaplig nyfikenhet med mänsklig drama på ett sätt som har definierat genren för narrativt storytelling inom poddar.</description>
-    </item>
-    <item>
-      <title>P3 Dokumentär – Diskoteksbranden i Göteborg</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-06-01.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-06-01</guid>
-      <pubDate>Mon, 01 Jun 2026 00:00:00 GMT</pubDate>
-      <category>Samhälle</category>
-      <description>Avsnittet om diskoteksbranden i Göteborg listas regelbundet bland de starkaste och mest oförglömliga produktionerna inom P3 Dokumentär, både i redaktionella topplistor och av lyssnare som beskriver det som ett av det starkaste som sänts. Det är ett fristående reportage som står för sig självt utan att kräva kunskap om tidigare avsnitt.</description>
     </item>
   </channel>
 </rss>

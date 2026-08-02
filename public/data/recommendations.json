@@ -1,5 +1,37 @@
 [
   {
+    "date": "2026-08-02",
+    "episode_title": "Jacob Collier's First Interview",
+    "show_name": "The Third Story Podcast",
+    "show_slug": "the-third-story-podcast",
+    "hosts": "Leo Sidran",
+    "genre": "Kultur",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "I The Third Story Podcast får vi här möta Jacob Collier i det som utgör poddens första längre intervju med honom. Samtalet med Leo Sidran rör sig kring Collier som sångare, multiinstrumentalist, arrangör och YouTube-sensation – främst känd för sina musikvideor.",
+    "listen_links": {
+      "web": "https://thirdstorypodcast.libsyn.com/285-jacob-colliers-first-interview",
+      "apple": "https://podcasts.apple.com/se/podcast/285-jacob-colliers-first-interview/id808401775?i=1000682453484&uo=4",
+      "spotify": "https://open.spotify.com/search/The%20Third%20Story%20Podcast%20Jacob%20Collier's%20First%20Interview"
+    },
+    "sources": [
+      {
+        "title": "285: Jacob Collier's First Interview - The Third Story Podcast",
+        "url": "https://thirdstorypodcast.libsyn.com/285-jacob-colliers-first-interview"
+      }
+    ],
+    "audio": {
+      "url": "https://dts.podtrac.com/redirect.mp3/traffic.libsyn.com/secure/thirdstorypodcast/285_-_Jacob_Colliers_First_Interview.mp3?dest-id=298361",
+      "type": "audio/mpeg",
+      "length": "118575560",
+      "durationSec": 5929
+    },
+    "created_at": "2026-08-02T04:21:41.446Z"
+  },
+  {
     "date": "2026-08-01",
     "episode_title": "Kevin Kelly",
     "show_name": "The Tim Ferriss Show",

@@ -1,5 +1,41 @@
 [
   {
+    "date": "2026-08-03",
+    "episode_title": "The La Scala Opera House",
+    "show_name": "Stuff You Missed in History Class",
+    "show_slug": "stuff-you-missed-in-history-class",
+    "hosts": "Tracy V. Wilson and Holly Frey",
+    "genre": "Historia",
+    "language": "en",
+    "year": 2014,
+    "duration_minutes": null,
+    "day_occasion": "Milanos legendariska operahus La Scala invigs",
+    "day_connection": "Avsnittet handlar om Teatro alla Scala, operan som invigdes den 3 augusti 1778.",
+    "why_great": "Ett helt avsnitt ägnat åt Teatro alla Scala, ett av världens mest ansedda operahus och en central institution i Italiens konstliv. Programmet går igenom byggnadens historia och varför den räknas som ett av operavärldens stora landmärken.",
+    "listen_links": {
+      "spotify": "https://open.spotify.com/episode/3Y5GemnaORzbObsEu2nN3V",
+      "web": "https://www.iheart.com/podcast/105-stuff-you-missed-in-histor-21124503/episode/symhc-classics-la-scala-opera-202041715/",
+      "apple": "https://podcasts.apple.com/se/podcast/symhc-classics-la-scala-opera-house/id283605519?i=1000664215895&uo=4"
+    },
+    "sources": [
+      {
+        "title": "SYMHC Classics: La Scala Opera House - Stuff You Missed in History Class",
+        "url": "https://www.iheart.com/podcast/105-stuff-you-missed-in-histor-21124503/episode/symhc-classics-la-scala-opera-202041715/"
+      },
+      {
+        "title": "The La Scala Opera House - Stuff You Missed in History Class (Spotify)",
+        "url": "https://open.spotify.com/episode/3Y5GemnaORzbObsEu2nN3V"
+      }
+    ],
+    "audio": {
+      "url": "https://podtrac.com/pts/redirect.mp3/traffic.omny.fm/d/clips/e73c998e-6e60-432f-8610-ae210140c5b1/cfb428ef-eafc-44d0-9d09-ae2701747e6f/0d23dfa2-80d4-4cdc-b3c3-b1bd015cde11/audio.mp3?utm_source=Podcast&amp;in_playlist=fb626e1f-112c-4246-a40d-ae2701747e7d",
+      "type": "audio/mpeg",
+      "length": "24253585",
+      "durationSec": 1513
+    },
+    "created_at": "2026-08-03T04:40:38.475Z"
+  },
+  {
     "date": "2026-08-02",
     "episode_title": "Jacob Collier's First Interview",
     "show_name": "The Third Story Podcast",

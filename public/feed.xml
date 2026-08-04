@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Mon, 03 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 04 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>The Daily – The Day That Shook Beirut</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-04.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-08-04</guid>
+      <pubDate>Tue, 04 Aug 2026 00:00:00 GMT</pubDate>
+      <category>Nyheter</category>
+      <description>The Daily rapporterar i detta avsnitt från den 4 augusti 2020 om den förödande explosion i Beiruts hamn, där 2 750 ton ammoniumnitrat detonerade och lade stora delar av staden i ruiner. Reportrarna var på plats och förmedlade omedelbara vittnesuppgifter från de drabbade områdena, tillsammans med tidiga analyser av hur det farliga godset kunde lagras oskyddat under flera år. Avsnittet rymmer både den mänskliga dimensionen och den strukturella bakgrunden till en av 2000-talets värsta…</description>
+    </item>
     <item>
       <title>Stuff You Missed in History Class – The La Scala Opera House</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-03.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Thu, 04 Jun 2026 00:00:00 GMT</pubDate>
       <category>Historia</category>
       <description>Kinaexperten Jeffrey Wasserstrom diskuterar i det här avsnittet av The Crack-Up den rika historien av kinesiska studentprotester. Avsnittet sträcker sig över ett sekel och visar hur studentrörelser har varit en återkommande kraft i Kinas moderna historia. Det är särskilt relevant att höra runt den 4 juni, årsdagen av massakern på Himmelska fridens torg 1989.</description>
-    </item>
-    <item>
-      <title>The Lede – In the Shadow of the Ayatollah&#39;s Death, War Comes to Iran</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-06-03.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-06-03</guid>
-      <pubDate>Wed, 03 Jun 2026 00:00:00 GMT</pubDate>
-      <category>Nyheter</category>
-      <description>Detta avsnitt lyssnades på av journalister och historiker som en viktig analys av Irans historia. Det kopplar ihop den politiska maktskiftet efter Khomeinis död med dagens geopolitiska läge och ger en djup förståelse för regionens komplexitet.</description>
     </item>
   </channel>
 </rss>

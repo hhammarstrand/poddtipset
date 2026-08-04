@@ -1,5 +1,31 @@
 [
   {
+    "date": "2026-08-04",
+    "episode_title": "The Day That Shook Beirut",
+    "show_name": "The Daily",
+    "show_slug": "the-daily",
+    "hosts": "Michael Barbaro",
+    "genre": "Nyheter",
+    "language": "en",
+    "year": 2020,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "The Daily rapporterar i detta avsnitt från den 4 augusti 2020 om den förödande explosion i Beiruts hamn, där 2 750 ton ammoniumnitrat detonerade och lade stora delar av staden i ruiner. Reportrarna var på plats och förmedlade omedelbara vittnesuppgifter från de drabbade områdena, tillsammans med tidiga analyser av hur det farliga godset kunde lagras oskyddat under flera år. Avsnittet rymmer både den mänskliga dimensionen och den strukturella bakgrunden till en av 2000-talets värsta icke-kärnvapenexplosioner, och fungerar som ett koncentrerat, fristående tidsdokument.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/the-day-that-shook-beirut/id1884114247?i=1000754536193&uo=4",
+      "spotify": "https://open.spotify.com/search/The%20Daily%20The%20Day%20That%20Shook%20Beirut"
+    },
+    "sources": [
+      {
+        "title": "The Day That Shook Beirut - The Daily on Apple Podcasts",
+        "url": "https://podcasts.apple.com/us/podcast/the-day-that-shook-beirut/id1200361736?i=1000487284892"
+      }
+    ],
+    "audio": null,
+    "created_at": "2026-08-04T04:04:05.967Z"
+  },
+  {
     "date": "2026-08-03",
     "episode_title": "The La Scala Opera House",
     "show_name": "Stuff You Missed in History Class",

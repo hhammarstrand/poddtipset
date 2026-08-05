@@ -1,5 +1,37 @@
 [
   {
+    "date": "2026-08-05",
+    "episode_title": "Neil Armstrong - The Extraordinary Ordinary Man Who Walked on the Moon",
+    "show_name": "Venerable Lives",
+    "show_slug": "venerable-lives",
+    "hosts": "",
+    "genre": "Historia",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "Neil Armstrong föds 1930",
+    "day_connection": "Avsnittet är en biografi över Neil Armstrong, den första människan att gå på månen, som föddes den 5 augusti 1930.",
+    "why_great": "Venerable Lives ägnar hela avsnittet åt Neil Armstrong – från uppväxten och karriären som testpilot vid Edwards Air Force Base till den historiska månlandningen. Avsnittet beskrivs som ett definitivt narrativa porträtt av en man formats av tystlåten beslutsamhet och nyfikenhet snarare än offentlig berömmelse. En koncentrerad ingång för den som vill förstå vem Armstrong var bortom den ikoniska meningen.",
+    "listen_links": {
+      "web": "https://www.iheart.com/podcast/1333-venerable-lives-historys-328630331/episode/neil-armstrong-the-extraordinary-ordinary-man-329510761/",
+      "apple": "https://podcasts.apple.com/se/podcast/neil-armstrong-the-extraordinary-ordinary-man-who/id1888557014?i=1000760364788&uo=4",
+      "spotify": "https://open.spotify.com/search/Venerable%20Lives%20Neil%20Armstrong%20-%20The%20Extraordinary%20Ordinary%20Man%20Who%20Walked%20on%20the%20Moon"
+    },
+    "sources": [
+      {
+        "title": "Venerable Lives - Neil Armstrong",
+        "url": "https://www.iheart.com/podcast/1333-venerable-lives-historys-328630331/episode/neil-armstrong-the-extraordinary-ordinary-man-329510761/"
+      }
+    ],
+    "audio": {
+      "url": "https://anchor.fm/s/110b02014/podcast/play/118169216/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-3-9%2F4240f03c-437a-21f2-5b54-c34554639a2d.mp3",
+      "type": "audio/mpeg",
+      "length": "20318106",
+      "durationSec": 1763
+    },
+    "created_at": "2026-08-05T03:57:41.473Z"
+  },
+  {
     "date": "2026-08-04",
     "episode_title": "The Day That Shook Beirut",
     "show_name": "The Daily",

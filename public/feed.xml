@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Tue, 04 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 05 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Venerable Lives – Neil Armstrong - The Extraordinary Ordinary Man Who Walked on the Moon</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-05.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-08-05</guid>
+      <pubDate>Wed, 05 Aug 2026 00:00:00 GMT</pubDate>
+      <category>Historia</category>
+      <description>Venerable Lives ägnar hela avsnittet åt Neil Armstrong – från uppväxten och karriären som testpilot vid Edwards Air Force Base till den historiska månlandningen. Avsnittet beskrivs som ett definitivt narrativa porträtt av en man formats av tystlåten beslutsamhet och nyfikenhet snarare än offentlig berömmelse. En koncentrerad ingång för den som vill förstå vem Armstrong var bortom den ikoniska meningen.</description>
+    </item>
     <item>
       <title>The Daily – The Day That Shook Beirut</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-04.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Fri, 05 Jun 2026 00:00:00 GMT</pubDate>
       <category>Historia</category>
       <description>Detta avsnitt ger en djupdykning i den skandal som skakade om det brittiska samhället under kalla kriget, med historikern Richard Davenport-Hines som gäst. Det belyser inte bara händelseförloppet utan också vad affären säger om samhället vid den tiden och dess långsiktiga konsekvenser.</description>
-    </item>
-    <item>
-      <title>The Crack-Up – A Hundred Years of Student Protests</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-06-04.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-06-04</guid>
-      <pubDate>Thu, 04 Jun 2026 00:00:00 GMT</pubDate>
-      <category>Historia</category>
-      <description>Kinaexperten Jeffrey Wasserstrom diskuterar i det här avsnittet av The Crack-Up den rika historien av kinesiska studentprotester. Avsnittet sträcker sig över ett sekel och visar hur studentrörelser har varit en återkommande kraft i Kinas moderna historia. Det är särskilt relevant att höra runt den 4 juni, årsdagen av massakern på Himmelska fridens torg 1989.</description>
     </item>
   </channel>
 </rss>

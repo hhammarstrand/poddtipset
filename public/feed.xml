@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Wed, 05 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 07 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Everything Everywhere Daily – Thor Heyerdahl and the Kon-Tiki Expedition</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-07.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-08-07</guid>
+      <pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+      <category>Historia</category>
+      <description>Avsnittet skildrar Thor Heyerdahls 1947-expedition med Kon-Tiki, då den norske äventyraren och hans besättning korsade Stilla havet på en balsaflotte för att testa teorin att polynesierna hade sydamerikanskt ursprung. Berättelsen täcker byggandet av flotten av balsaträ och hamprep, den omkring 4 300 mil långa resan över öppet hav och den uppmärksamhet som mötte besättningen vid ankomsten i Polynesien. Kon-Tiki-expeditionen hör till 1900-talets mest klassiska äventyr och passar väl i EED:s…</description>
+    </item>
     <item>
       <title>Venerable Lives – Neil Armstrong - The Extraordinary Ordinary Man Who Walked on the Moon</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-05.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Sat, 06 Jun 2026 00:00:00 GMT</pubDate>
       <category>Historia</category>
       <description>Detta avsnitt utforskar en av Sveriges mest omtvistade regenter och hennes chockerande beslut att lämna kungamakten samt konvertera till katolicismen. Historikern Urban Lindstedt ger en nyanserad bild av Kristinas liv och de konsekvenser hennes val fick för både henne själv och det svenska kungariket.</description>
-    </item>
-    <item>
-      <title>Dan Snow&#39;s History Hit – The Profumo Affair</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-06-05.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-06-05</guid>
-      <pubDate>Fri, 05 Jun 2026 00:00:00 GMT</pubDate>
-      <category>Historia</category>
-      <description>Detta avsnitt ger en djupdykning i den skandal som skakade om det brittiska samhället under kalla kriget, med historikern Richard Davenport-Hines som gäst. Det belyser inte bara händelseförloppet utan också vad affären säger om samhället vid den tiden och dess långsiktiga konsekvenser.</description>
     </item>
   </channel>
 </rss>

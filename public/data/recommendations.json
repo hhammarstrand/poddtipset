@@ -1,5 +1,41 @@
 [
   {
+    "date": "2026-08-07",
+    "episode_title": "Thor Heyerdahl and the Kon-Tiki Expedition",
+    "show_name": "Everything Everywhere Daily",
+    "show_slug": "everything-everywhere-daily",
+    "hosts": "",
+    "genre": "Historia",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "Thor Heyerdahls Kon-Tiki når Raroia i Polynesien",
+    "day_connection": "Avsnittet handlar om just den Kon-Tiki-expedition som den 7 augusti 1947 gick i land på Raroia efter att ha korsat Stilla havet.",
+    "why_great": "Avsnittet skildrar Thor Heyerdahls 1947-expedition med Kon-Tiki, då den norske äventyraren och hans besättning korsade Stilla havet på en balsaflotte för att testa teorin att polynesierna hade sydamerikanskt ursprung. Berättelsen täcker byggandet av flotten av balsaträ och hamprep, den omkring 4 300 mil långa resan över öppet hav och den uppmärksamhet som mötte besättningen vid ankomsten i Polynesien. Kon-Tiki-expeditionen hör till 1900-talets mest klassiska äventyr och passar väl i EED:s korta, faktafokuserade format.",
+    "listen_links": {
+      "web": "https://www.youtube.com/watch?v=OCwdY12Hlp8",
+      "apple": "https://podcasts.apple.com/se/podcast/thor-heyerdahl-and-the-kon-tiki-expedition/id1521870190?i=1000607307369&uo=4",
+      "spotify": "https://open.spotify.com/search/Everything%20Everywhere%20Daily%20Thor%20Heyerdahl%20and%20the%20Kon-Tiki%20Expedition"
+    },
+    "sources": [
+      {
+        "title": "Thor Heyerdahl and the Kon-Tiki Expedition – Everything Everywhere Daily",
+        "url": "https://everything-everywhere.com/thor-heyerdahl-and-the-kon-tiki-expedition/"
+      },
+      {
+        "title": "Thor Heyerdahl and the Kon-Tiki Expedition – YouTube",
+        "url": "https://www.youtube.com/watch?v=OCwdY12Hlp8"
+      }
+    ],
+    "audio": {
+      "url": "https://www.podtrac.com/pts/redirect.mp3/pdst.fm/e/op3.dev/e/pscrb.fm/rss/p/tracking.swap.fm/track/6bpBPtHL977KJxLX2zPs/traffic.megaphone.fm/GLSS8877661673.mp3?updated=1776057933",
+      "type": "audio/mpeg",
+      "length": "0",
+      "durationSec": 894
+    },
+    "created_at": "2026-08-07T03:47:29.041Z"
+  },
+  {
     "date": "2026-08-05",
     "episode_title": "Neil Armstrong - The Extraordinary Ordinary Man Who Walked on the Moon",
     "show_name": "Venerable Lives",

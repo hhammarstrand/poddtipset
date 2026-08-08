@@ -1,5 +1,44 @@
 [
   {
+    "date": "2026-08-08",
+    "episode_title": "FPP068 - JAS 39 Gripen",
+    "show_name": "Fighter Pilot Podcast",
+    "show_slug": "fighter-pilot-podcast",
+    "hosts": "",
+    "genre": "Dokumentär",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Ett avsnitt som går på djupet med Saab JAS 39 Gripen – ett stridsflygplan som sticker ut med sin deltavinge och canard-konfiguration. Gästen Mikael 'Duke' Grev, före detta löjtnant i svenska flygvapnet, förklarar hur planet är uppbyggt, hur det flygs och vad som gör det unikt jämfört med andra jaktplan. Avsnittet blandar tekniska fakta med första handsperspektiv, vilket gör det till en av de mer initierade genomgångarna av planet på engelska.",
+    "listen_links": {
+      "spotify": "https://open.spotify.com/episode/6zuSGsgoCCxQZAB3A5B9hO",
+      "apple": "https://podcasts.apple.com/se/podcast/fpp068-jas-39-gripen/id1330534712?i=1000461447111&uo=4"
+    },
+    "sources": [
+      {
+        "title": "FPP068 - JAS 39 Gripen - Fighter Pilot Podcast (Spotify)",
+        "url": "https://open.spotify.com/episode/6zuSGsgoCCxQZAB3A5B9hO"
+      },
+      {
+        "title": "FPP068 - JAS 39 Gripen–Fighter Pilot Podcast (Apple)",
+        "url": "https://podcasts.apple.com/ca/podcast/fpp068-jas-39-gripen/id1330534712?i=1000461447111"
+      },
+      {
+        "title": "FPP068 - JAS 39 Gripen - Fighter Pilot Podcast",
+        "url": "https://poddtoppen.se/podcast/1330534712/fighter-pilot-podcast/fpp068-jas-39-gripen"
+      }
+    ],
+    "audio": {
+      "url": "https://traffic.megaphone.fm/SAHI8878092786.mp3",
+      "type": "audio/mpeg",
+      "length": "0",
+      "durationSec": 3819
+    },
+    "created_at": "2026-08-08T02:47:10.072Z"
+  },
+  {
     "date": "2026-08-07",
     "episode_title": "Thor Heyerdahl and the Kon-Tiki Expedition",
     "show_name": "Everything Everywhere Daily",

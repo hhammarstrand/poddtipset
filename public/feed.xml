@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Sat, 08 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 09 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>The Afternoon Special – The Curious Case of Betty Boop</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-09.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-08-09</guid>
+      <pubDate>Sun, 09 Aug 2026 00:00:00 GMT</pubDate>
+      <category>Kultur</category>
+      <description>The Afternoon Special ägnar en halvtimme åt Betty Boop, en av animationens mest omdiskuterade figurer. Avsnittet tar upp de kontroverser som länge omgett karaktären och fungerar som en koncentrerad, fristående introduktion – lagom till dagen då hon faktiskt gjorde sin debut 1930.</description>
+    </item>
     <item>
       <title>Fighter Pilot Podcast – FPP068 - JAS 39 Gripen</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-08.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Mon, 08 Jun 2026 00:00:00 GMT</pubDate>
       <category>Historia</category>
       <description>Avsnittet handlar om Haakon Haakonsson, vars 46 år långa regeringstid på 1200-talet brukar räknas som höjdpunkten i medeltida norsk historia. En berättelse om hur han enade riket och satte stopp för en lång period av splittring och inbördeskrig.</description>
-    </item>
-    <item>
-      <title>Revisionist History – My Little Hundred Million</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-06-07.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-06-07</guid>
-      <pubDate>Sun, 07 Jun 2026 00:00:00 GMT</pubDate>
-      <category>Berättande</category>
-      <description>Buzzfeed placerar My Little Hundred Million på andra plats i sin lista över de bästa poddavsnitten genom tiderna, i sällskap med The Architect of Hollywood och andra moderna klassiker. Avsnittet är en fristående berättelse i Malcolm Gladwells serie Revisionist History, en podd som är byggd kring idén att etablerade historier kan se helt annorlunda ut när man tittar en gång till. Det är exakt det slags avsnitt som får en att haja till – och som gör att man gärna vill lyssna en gång till.</description>
     </item>
   </channel>
 </rss>

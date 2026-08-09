@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-08-09",
+    "episode_title": "The Curious Case of Betty Boop",
+    "show_name": "The Afternoon Special",
+    "show_slug": "the-afternoon-special",
+    "hosts": "",
+    "genre": "Kultur",
+    "language": "en",
+    "year": null,
+    "duration_minutes": 35,
+    "day_occasion": "Betty Boop debuterar i sin första animerade kortfilm, Dizzy Dishes (1930)",
+    "day_connection": "Avsnittet utforskar Betty Boop, vars debut i Dizzy Dishes ägde rum just den 9 augusti 1930.",
+    "why_great": "The Afternoon Special ägnar en halvtimme åt Betty Boop, en av animationens mest omdiskuterade figurer. Avsnittet tar upp de kontroverser som länge omgett karaktären och fungerar som en koncentrerad, fristående introduktion – lagom till dagen då hon faktiskt gjorde sin debut 1930.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/the-curious-case-of-betty-boop/id1585845960?i=1000633338006&uo=4",
+      "spotify": "https://open.spotify.com/search/The%20Afternoon%20Special%20The%20Curious%20Case%20of%20Betty%20Boop"
+    },
+    "sources": [
+      {
+        "title": "The Curious Case of Betty Boop – The Afternoon Special – Apple Podcasts",
+        "url": "https://podcasts.apple.com/us/podcast/the-curious-case-of-betty-boop/id1585845960?i=1000633338006"
+      }
+    ],
+    "audio": {
+      "url": "https://pdst.fm/e/pscrb.fm/rss/p/traffic.megaphone.fm/QCD1660874537.mp3?updated=1698832828",
+      "type": "audio/mpeg",
+      "length": "0",
+      "durationSec": 2122
+    },
+    "created_at": "2026-08-09T03:00:52.286Z"
+  },
+  {
     "date": "2026-08-08",
     "episode_title": "FPP068 - JAS 39 Gripen",
     "show_name": "Fighter Pilot Podcast",

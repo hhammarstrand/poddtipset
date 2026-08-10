@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-08-10",
+    "episode_title": "The Case of Kathleen Peterson",
+    "show_name": "Mile Higher",
+    "show_slug": "mile-higher",
+    "hosts": "",
+    "genre": "True crime",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "När The Everygirl rankade de bästa true crime-poddavsnitten toppade Mile Highters djupdykning i Kathleen Peterson-fallet listan – före etablerade poddar som Crime Junkie och RedHanded. Att podden också hade ett andra avsnitt på topplistan, om Jan Broberg, tyder på att det inte är en tillfällighet. En fristående berättelse som fungerar utmärkt som ingång för den som vill upptäcka podden.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/the-staircase-case-of-kathleen-peterson-the/id1332383970?i=1000416462260&uo=4",
+      "spotify": "https://open.spotify.com/search/Mile%20Higher%20The%20Case%20of%20Kathleen%20Peterson"
+    },
+    "sources": [
+      {
+        "title": "The 10 Best True-Crime Podcast Episodes",
+        "url": "https://theeverygirl.com/true-crime-podcast-episodes/"
+      }
+    ],
+    "audio": {
+      "url": "https://op3.dev/e/pdst.fm/e/arttrk.com/p/ABMA5/clrtpod.com/m/pscrb.fm/rss/p/prfx.byspotify.com/e/dts.podtrac.com/redirect.mp3/audioboom.com/posts/8813853.mp3?modified=1768972183&amp;sid=5011925&amp;source=rss",
+      "type": "audio/mpeg",
+      "length": "0",
+      "durationSec": 4315
+    },
+    "created_at": "2026-08-10T03:12:27.230Z"
+  },
+  {
     "date": "2026-08-09",
     "episode_title": "The Curious Case of Betty Boop",
     "show_name": "The Afternoon Special",

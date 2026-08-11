@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Mon, 10 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 11 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Great Lives – Novelist Enid Blyton</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-11.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-08-11</guid>
+      <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
+      <category>Kultur</category>
+      <description>Ett BBC Radio 4-porträtt av en av världens mest sålda barnboksförfattare, som inte nöjer sig med nostalgin. Avsnittet väver samman de älskade serierna – Famous Five, Secret Seven och de tjugofyra Noddy-böckerna – med en mer kontroversiell diskussion om rasism och kritik som följt hennes författarskap. Ett ovanligt nyanserat grepp om en författare som de flesta av oss minns från barndomshyllan.</description>
+    </item>
     <item>
       <title>Mile Higher – The Case of Kathleen Peterson</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-10.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Wed, 10 Jun 2026 00:00:00 GMT</pubDate>
       <category>Vetenskap</category>
       <description>Detta avsnitt har hyllats som ett all-time favoritavsnitt och listas ofta bland de bästa podcastavsnitten genom tiderna. Det utforskar 1960-talets amerikanska rymdprogram med en unik berättarteknik som kombinerar vetenskaplig nyfikenhet med mänsklig dramatik. Avsnittet är ett fristående verk som fungerar som en perfekt ingång till poddens stil.</description>
-    </item>
-    <item>
-      <title>Short History Of... – Emperor Nero</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-06-09.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-06-09</guid>
-      <pubDate>Tue, 09 Jun 2026 00:00:00 GMT</pubDate>
-      <category>Historia</category>
-      <description>Avsnittet undersöker vad som egentligen säkerställde Neros fall och den vanära som präglat hans eftermäle.</description>
     </item>
   </channel>
 </rss>

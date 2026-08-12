@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-08-12",
+    "episode_title": "Thomas Edison",
+    "show_name": "Founders",
+    "show_slug": "founders",
+    "hosts": "Solo host",
+    "genre": "Berättande",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "Thomas Edison får sin fonograf att fungera för första gången (1877)",
+    "day_connection": "Avsnittet handlar om samma Thomas Edison som just denna dag 1877 fick fonografen att fungera för första gången.",
+    "why_great": "Founders lägger ett helt avsnitt på Thomas Edison, utifrån Matthew Josephsons biografi Edison. Det plockar isär vad som faktiskt drev en av historiens mest produktiva uppfinnare – från de tidiga experimenten i labbet till de uppfinningar som förändrat hur vi spelar in ljud och använder elektricitet i vardagen. Ett bra val för den som vill se en klassisk uppfinnarhistoria genom ett entrepreneurperspektiv.",
+    "listen_links": {
+      "spotify": "https://open.spotify.com/episode/2YANen1r0KYseoTsZ93fkA",
+      "apple": "https://podcasts.apple.com/se/podcast/190-henry-ford-and-thomas-edison/id1141877104?i=1000528465490&uo=4"
+    },
+    "sources": [
+      {
+        "title": "267 Thomas Edison - Founders (Spotify)",
+        "url": "https://open.spotify.com/episode/2YANen1r0KYseoTsZ93fkA"
+      }
+    ],
+    "audio": {
+      "url": "https://traffic.megaphone.fm/DSLLC2268476888.mp3?updated=1748636187",
+      "type": "audio/mpeg",
+      "length": "0",
+      "durationSec": 4227
+    },
+    "created_at": "2026-08-12T03:17:31.896Z"
+  },
+  {
     "date": "2026-08-11",
     "episode_title": "Novelist Enid Blyton",
     "show_name": "Great Lives",

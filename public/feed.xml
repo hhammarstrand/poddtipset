@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Tue, 11 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 12 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Founders – Thomas Edison</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-12.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-08-12</guid>
+      <pubDate>Wed, 12 Aug 2026 00:00:00 GMT</pubDate>
+      <category>Berättande</category>
+      <description>Founders lägger ett helt avsnitt på Thomas Edison, utifrån Matthew Josephsons biografi Edison. Det plockar isär vad som faktiskt drev en av historiens mest produktiva uppfinnare – från de tidiga experimenten i labbet till de uppfinningar som förändrat hur vi spelar in ljud och använder elektricitet i vardagen. Ett bra val för den som vill se en klassisk uppfinnarhistoria genom ett entrepreneurperspektiv.</description>
+    </item>
     <item>
       <title>Great Lives – Novelist Enid Blyton</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-11.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Thu, 11 Jun 2026 00:00:00 GMT</pubDate>
       <category>True crime</category>
       <description>Detta avsnitt har belönats med en Peabody Award och beskrivs som en prisvärd ingång i en serie som tar lyssnaren på en tolv delars resa genom New York-polisens overkliga historia. Det har hyllats som en mästerverk inom genren och är ett av de främsta nominerade poddavsnitten enligt Peabody Awards.</description>
-    </item>
-    <item>
-      <title>Radiolab – Space</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-06-10.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-06-10</guid>
-      <pubDate>Wed, 10 Jun 2026 00:00:00 GMT</pubDate>
-      <category>Vetenskap</category>
-      <description>Detta avsnitt har hyllats som ett all-time favoritavsnitt och listas ofta bland de bästa podcastavsnitten genom tiderna. Det utforskar 1960-talets amerikanska rymdprogram med en unik berättarteknik som kombinerar vetenskaplig nyfikenhet med mänsklig dramatik. Avsnittet är ett fristående verk som fungerar som en perfekt ingång till poddens stil.</description>
     </item>
   </channel>
 </rss>

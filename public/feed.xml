@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Wed, 12 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 13 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Blindspot – Tulsa Burning</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-13.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-08-13</guid>
+      <pubDate>Thu, 13 Aug 2026 00:00:00 GMT</pubDate>
+      <category>Dokumentär</category>
+      <description>Den Peabody-nominerade dokumentären Tulsa Burning från Blindspot, ett samarbete mellan WNYC och The History Channel, skildrar massakern i Tulsa 1921 och det decennier långa efterspelet av tystnad och förnekelse. Avsnittet har hyllats för sin noggranna research och sitt starka narrativa grepp om ett av de mest försummade kapitlen i amerikansk historia, och var ett av elva podcast-verk som Peabody Awards lyfte fram i sin lista Best Podcasts to Listen to Right Now.</description>
+    </item>
     <item>
       <title>Founders – Thomas Edison</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-12.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Fri, 12 Jun 2026 00:00:00 GMT</pubDate>
       <category>Historia</category>
       <description>Tom och Dominic gästas av journalisten och författaren Iain MacGregor för ett samtal om Berlinmurens historia – hur en enkel barriär 1961 växte till en av det kalla krigets mest laddade symboler för den ideologiska klyftan mellan öst och väst. Avsnittet rör sig från vardagsliv bakom muren till storpolitiska beslut på högsta nivå, med en ledig ton som gör historien omedelbart levande. Det fungerar utmärkt som fristående lyssning, även för den som aldrig hört podden förut.</description>
-    </item>
-    <item>
-      <title>Empire City: The Untold Origin Story of the NYPD – The Model City</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-06-11.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-06-11</guid>
-      <pubDate>Thu, 11 Jun 2026 00:00:00 GMT</pubDate>
-      <category>True crime</category>
-      <description>Detta avsnitt har belönats med en Peabody Award och beskrivs som en prisvärd ingång i en serie som tar lyssnaren på en tolv delars resa genom New York-polisens overkliga historia. Det har hyllats som en mästerverk inom genren och är ett av de främsta nominerade poddavsnitten enligt Peabody Awards.</description>
     </item>
   </channel>
 </rss>

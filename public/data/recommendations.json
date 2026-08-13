@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-08-13",
+    "episode_title": "Tulsa Burning",
+    "show_name": "Blindspot",
+    "show_slug": "blindspot",
+    "hosts": "WNYC Studios & The History Channel",
+    "genre": "Dokumentär",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Den Peabody-nominerade dokumentären Tulsa Burning från Blindspot, ett samarbete mellan WNYC och The History Channel, skildrar massakern i Tulsa 1921 och det decennier långa efterspelet av tystnad och förnekelse. Avsnittet har hyllats för sin noggranna research och sitt starka narrativa grepp om ett av de mest försummade kapitlen i amerikansk historia, och var ett av elva podcast-verk som Peabody Awards lyfte fram i sin lista Best Podcasts to Listen to Right Now.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/introducing-blindspot-tulsa-burning/id1567282609?i=1000521500950&uo=4",
+      "spotify": "https://open.spotify.com/search/Blindspot%20Tulsa%20Burning"
+    },
+    "sources": [
+      {
+        "title": "The Best Podcasts to Listen to Right Now - The Peabody Awards",
+        "url": "https://peabodyawards.com/stories/the-best-podcasts-to-listen-to-right-now/"
+      }
+    ],
+    "audio": {
+      "url": "https://pscrb.fm/rss/p/mgln.ai/e/14/pdst.fm/e/dts.podtrac.com/pts/redirect.mp3/waaa.wnyc.org/9dad79ba-5082-4604-93d0-d796c9ded346/episodes/2493f516-df38-40fb-a9d7-10318541cc37/audio/128/default.mp3?aid=rss_feed&amp;awCollectionId=9dad79ba-5082-4604-93d0-d796c9ded346&amp;awEpisodeId=2493f516-df38-40fb-a9d7-10318541cc37&amp;feed=P9diF5IW",
+      "type": "audio/mpeg",
+      "length": "960948",
+      "durationSec": 60
+    },
+    "created_at": "2026-08-13T03:36:52.260Z"
+  },
+  {
     "date": "2026-08-12",
     "episode_title": "Thomas Edison",
     "show_name": "Founders",

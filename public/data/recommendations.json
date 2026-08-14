@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-08-14",
+    "episode_title": "Bron och förbrödringen som kom av sig",
+    "show_name": "Vetenskapspodden",
+    "show_slug": "vetenskapspodden",
+    "hosts": "",
+    "genre": "Dokumentär",
+    "language": "sv",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "1991 – Det danska Folketinget godkänner byggandet av en fast förbindelse mellan Malmö och Köpenhamn",
+    "day_connection": "Avsnittet handlar om Öresundsbron, vars byggande det danska Folketinget godkände just den 14 augusti 1991.",
+    "why_great": "Vetenskapspodden tittar tillbaka på Öresundsbron tjugo år efter invigningen och den gränslösa optimism som då rådde om att bron skulle förena folken på ömse sidor om sundet. Programmet gräver i vad som hände med drömmarna om en naturlig förbrödring över vattnet.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/bron-och-f%C3%B6rbr%C3%B6dringen-som-kom-av-sig/id1497277528?i=1000495774495&uo=4",
+      "spotify": "https://open.spotify.com/search/Vetenskapspodden%20Bron%20och%20f%C3%B6rbr%C3%B6dringen%20som%20kom%20av%20sig"
+    },
+    "sources": [
+      {
+        "title": "Bron och förbrödringen som kom av sig | Vetenskapspodden",
+        "url": "https://metacast.app/podcast/vetenskapspodden/tdyuCGc2/bron-och-forbrodringen-som-kom-av-sig/3ToQ2fbe"
+      }
+    ],
+    "audio": {
+      "url": "https://static-cdn.sr.se/laddahem/podradio/p1_vetenskapspodden/2020/10/p1_vetenskapspodden_20201023_1404_5f92be32.mp3",
+      "type": "audio/mpeg",
+      "length": "44242481",
+      "durationSec": 2762
+    },
+    "created_at": "2026-08-14T03:27:51.773Z"
+  },
+  {
     "date": "2026-08-13",
     "episode_title": "Tulsa Burning",
     "show_name": "Blindspot",

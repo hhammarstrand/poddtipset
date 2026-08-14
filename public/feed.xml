@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Thu, 13 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 14 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Vetenskapspodden – Bron och förbrödringen som kom av sig</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-14.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-08-14</guid>
+      <pubDate>Fri, 14 Aug 2026 00:00:00 GMT</pubDate>
+      <category>Dokumentär</category>
+      <description>Vetenskapspodden tittar tillbaka på Öresundsbron tjugo år efter invigningen och den gränslösa optimism som då rådde om att bron skulle förena folken på ömse sidor om sundet. Programmet gräver i vad som hände med drömmarna om en naturlig förbrödring över vattnet.</description>
+    </item>
     <item>
       <title>Blindspot – Tulsa Burning</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-13.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Sat, 13 Jun 2026 00:00:00 GMT</pubDate>
       <category>Historia</category>
       <description>I det här avsnittet av Harrisons dramatiska historia samtalar Dick Harrison, professor i historia vid Lunds universitet, med fackboksförfattaren Katarina om den brittiska imperiebyggets tidiga historia. Dick Harrison är en av Sveriges mest profilerade historiker och ger i programmet en längre, sammanhängande svensk berättelse om hur en liten önation i Europas utkant kunde bli världens mest dominerande kolonimakt. Avsnittet fungerar som en fristående historisk exposé och kräver inga förkunskaper.</description>
-    </item>
-    <item>
-      <title>The Rest Is History – The Berlin Wall</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-06-12.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-06-12</guid>
-      <pubDate>Fri, 12 Jun 2026 00:00:00 GMT</pubDate>
-      <category>Historia</category>
-      <description>Tom och Dominic gästas av journalisten och författaren Iain MacGregor för ett samtal om Berlinmurens historia – hur en enkel barriär 1961 växte till en av det kalla krigets mest laddade symboler för den ideologiska klyftan mellan öst och väst. Avsnittet rör sig från vardagsliv bakom muren till storpolitiska beslut på högsta nivå, med en ledig ton som gör historien omedelbart levande. Det fungerar utmärkt som fristående lyssning, även för den som aldrig hört podden förut.</description>
     </item>
   </channel>
 </rss>

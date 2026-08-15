@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-08-15",
+    "episode_title": "What's the deal with eels?",
+    "show_name": "An Infinite Monkey Cage",
+    "show_slug": "an-infinite-monkey-cage",
+    "hosts": "",
+    "genre": "Vetenskap",
+    "language": "sv",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "På Reddit, i tråden I just listened to the best science podcast, framhåller en användare avsnittet What's the deal with eels? som det bästa vetenskapsavsnitt hen hört. Avsnittet hör till den brittiska serien An Infinite Monkey Cage och tar upp ålar som ämne. Tipset kommer från en nyupptäckt lyssnare som ville dela med sig av sitt fynd.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/whats-the-deal-with-eels-lucy-porter-david/id343580439?i=1000737269444&uo=4",
+      "spotify": "https://open.spotify.com/search/An%20Infinite%20Monkey%20Cage%20What's%20the%20deal%20with%20eels%3F"
+    },
+    "sources": [
+      {
+        "title": "I just listened to the best science podcast",
+        "url": "https://www.reddit.com/r/podcasts/comments/1p7oo6h/i_just_listened_to_the_best_science_podcast/"
+      }
+    ],
+    "audio": {
+      "url": "http://open.live.bbc.co.uk/mediaselector/6/redir/version/2.0/mediaset/audio-nondrm-download-rss/proto/http/vpid/p0mhcfm5.mp3",
+      "type": "audio/mpeg",
+      "length": "40736000",
+      "durationSec": 2546
+    },
+    "created_at": "2026-08-15T02:13:33.661Z"
+  },
+  {
     "date": "2026-08-14",
     "episode_title": "Bron och förbrödringen som kom av sig",
     "show_name": "Vetenskapspodden",

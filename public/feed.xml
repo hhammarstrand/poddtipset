@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Fri, 14 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 15 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>An Infinite Monkey Cage – What&#39;s the deal with eels?</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-15.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-08-15</guid>
+      <pubDate>Sat, 15 Aug 2026 00:00:00 GMT</pubDate>
+      <category>Vetenskap</category>
+      <description>På Reddit, i tråden I just listened to the best science podcast, framhåller en användare avsnittet What&#39;s the deal with eels? som det bästa vetenskapsavsnitt hen hört. Avsnittet hör till den brittiska serien An Infinite Monkey Cage och tar upp ålar som ämne. Tipset kommer från en nyupptäckt lyssnare som ville dela med sig av sitt fynd.</description>
+    </item>
     <item>
       <title>Vetenskapspodden – Bron och förbrödringen som kom av sig</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-14.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Sun, 14 Jun 2026 00:00:00 GMT</pubDate>
       <category>Intervju</category>
       <description>Detta avsnitt rankas som ett av de bästa någonsin i flera listor över podcastklassiker, inklusive en Spotify-playlist med titeln Top 15 Podcast Episodes Of All Time. Det fokuserar på intervjumästaren Cal Fussman och hur han använder lyssnandet för att skapa djupa samtal, vilket har hyllats som ett unikt exempel på konsten att intervjua. Avsnittet fungerar som en fristående ingång till podcastvärlden genom att visa upp en av dess mest respekterade formattyper.</description>
-    </item>
-    <item>
-      <title>Harrisons dramatiska historia – Brittiska imperiets födelse</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-06-13.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-06-13</guid>
-      <pubDate>Sat, 13 Jun 2026 00:00:00 GMT</pubDate>
-      <category>Historia</category>
-      <description>I det här avsnittet av Harrisons dramatiska historia samtalar Dick Harrison, professor i historia vid Lunds universitet, med fackboksförfattaren Katarina om den brittiska imperiebyggets tidiga historia. Dick Harrison är en av Sveriges mest profilerade historiker och ger i programmet en längre, sammanhängande svensk berättelse om hur en liten önation i Europas utkant kunde bli världens mest dominerande kolonimakt. Avsnittet fungerar som en fristående historisk exposé och kräver inga förkunskaper.</description>
     </item>
   </channel>
 </rss>

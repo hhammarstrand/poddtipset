@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Sat, 15 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 16 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>The Women&#39;s Podcast – Best of The Women&#39;s Podcast: Evanna Lynch</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-16.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-08-16</guid>
+      <pubDate>Sun, 16 Aug 2026 00:00:00 GMT</pubDate>
+      <category>Intervju</category>
+      <description>Harry Potter-skådespelaren Evanna Lynch öppnar sig i det här avsnittet för att berätta om den ätstörning som började när hon var elva år och som hon kämpade med under flera år. I en utlämnande intervju beskriver hon hur sjukdomen präglade hennes tidiga tonår och hennes väg in i skådespelaryrket, och ger en sällsynt personlig bild av kampen mot anorexia. Det är ett samtal som sticker ut från mängden av celebritetintervjuer just för att Lynch talar om ämnet med en sådan ärlighet och avsaknad av…</description>
+    </item>
     <item>
       <title>An Infinite Monkey Cage – What&#39;s the deal with eels?</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-15.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Mon, 15 Jun 2026 00:00:00 GMT</pubDate>
       <category>Historia</category>
       <description>Detta avsnitt ger en djupdykning i de pivotala händelserna mellan 1969 och tidigt 1970-tal som lade grunden för konflikten i Nordirland. Det presenteras som en komplett introduktion till det sekel långa rötterna till konflikten, vilket gör det till en idealisk ingång för lyssnare som vill förstå bakgrunden utan att behöva lyssna på andra avsnitt först.</description>
-    </item>
-    <item>
-      <title>The Tim Ferriss Show – #145: The Interview Master: Cal Fussman and the Power of Listening</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-06-14.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-06-14</guid>
-      <pubDate>Sun, 14 Jun 2026 00:00:00 GMT</pubDate>
-      <category>Intervju</category>
-      <description>Detta avsnitt rankas som ett av de bästa någonsin i flera listor över podcastklassiker, inklusive en Spotify-playlist med titeln Top 15 Podcast Episodes Of All Time. Det fokuserar på intervjumästaren Cal Fussman och hur han använder lyssnandet för att skapa djupa samtal, vilket har hyllats som ett unikt exempel på konsten att intervjua. Avsnittet fungerar som en fristående ingång till podcastvärlden genom att visa upp en av dess mest respekterade formattyper.</description>
     </item>
   </channel>
 </rss>

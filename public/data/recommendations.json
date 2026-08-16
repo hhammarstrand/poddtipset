@@ -1,5 +1,37 @@
 [
   {
+    "date": "2026-08-16",
+    "episode_title": "Best of The Women's Podcast: Evanna Lynch",
+    "show_name": "The Women's Podcast",
+    "show_slug": "the-women-s-podcast",
+    "hosts": "Róisín Ingle",
+    "genre": "Intervju",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Harry Potter-skådespelaren Evanna Lynch öppnar sig i det här avsnittet för att berätta om den ätstörning som började när hon var elva år och som hon kämpade med under flera år. I en utlämnande intervju beskriver hon hur sjukdomen präglade hennes tidiga tonår och hennes väg in i skådespelaryrket, och ger en sällsynt personlig bild av kampen mot anorexia. Det är ett samtal som sticker ut från mängden av celebritetintervjuer just för att Lynch talar om ämnet med en sådan ärlighet och avsaknad av tillrättaläggande.",
+    "listen_links": {
+      "web": "https://shows.acast.com/the-womens-podcast/episodes/best-of-the-womens-podcast-evanna-lynch",
+      "apple": "https://podcasts.apple.com/se/podcast/best-of-the-womens-podcast-evanna-lynch/id1040117877?i=1000575759816&uo=4",
+      "spotify": "https://open.spotify.com/search/The%20Women's%20Podcast%20Best%20of%20The%20Women's%20Podcast%3A%20Evanna%20Lynch"
+    },
+    "sources": [
+      {
+        "title": "Best of The Women's Podcast: Evanna Lynch",
+        "url": "https://shows.acast.com/the-womens-podcast/episodes/best-of-the-womens-podcast-evanna-lynch"
+      }
+    ],
+    "audio": {
+      "url": "https://sphinx.acast.com/p/open/s/6155e18746dfcc0014273af1/e/6a6b2ad137bc2725029b6d79/media.mp3",
+      "type": "audio/mpeg",
+      "length": "45554438",
+      "durationSec": 1897
+    },
+    "created_at": "2026-08-16T02:15:56.709Z"
+  },
+  {
     "date": "2026-08-15",
     "episode_title": "What's the deal with eels?",
     "show_name": "An Infinite Monkey Cage",

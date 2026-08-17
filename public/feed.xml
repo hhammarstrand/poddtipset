@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Sun, 16 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 17 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Mr M History Podcast – Sukarno&#39;s Indonesia</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-17.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-08-17</guid>
+      <pubDate>Mon, 17 Aug 2026 00:00:00 GMT</pubDate>
+      <category>Historia</category>
+      <description>Ett fristående avsnitt på 56 minuter om Sukarno och Indonesien, publicerat i juli 2025. Avsnittet handlar om mannen som proklamerade Indonesiens självständighet den 17 augusti 1945 – samma datum som dagens historiska notering – och ger en samlad berättelse om just den händelsen och ledaren bakom.</description>
+    </item>
     <item>
       <title>The Women&#39;s Podcast – Best of The Women&#39;s Podcast: Evanna Lynch</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-16.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Tue, 16 Jun 2026 00:00:00 GMT</pubDate>
       <category>True crime</category>
       <description>RedHanded gräver i mordet på Labourpolitikern Jo Cox, som sköts och knivhöggs till döds utanför ett bibliotek i Birstall bara en vecka före folkomröstningen om EU. Avsnittet placerar dådet i sin politiska kontext och lyfter frågan om hur en ensam våldsverkare med högerextrem koppling kunde mörda en parlamentsledamot mitt på ljusa dagen. Suruthi Bala och Hannah Maguire gör vad serien är känd för: en researchtät berättelse som inte skyndar förbi det svåra.</description>
-    </item>
-    <item>
-      <title>Dan Snow&#39;s History Hit – The Troubles: How It Started</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-06-15.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-06-15</guid>
-      <pubDate>Mon, 15 Jun 2026 00:00:00 GMT</pubDate>
-      <category>Historia</category>
-      <description>Detta avsnitt ger en djupdykning i de pivotala händelserna mellan 1969 och tidigt 1970-tal som lade grunden för konflikten i Nordirland. Det presenteras som en komplett introduktion till det sekel långa rötterna till konflikten, vilket gör det till en idealisk ingång för lyssnare som vill förstå bakgrunden utan att behöva lyssna på andra avsnitt först.</description>
     </item>
   </channel>
 </rss>

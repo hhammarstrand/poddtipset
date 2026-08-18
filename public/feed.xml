@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Mon, 17 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 18 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Reveal – Monumental Lies</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-18.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-08-18</guid>
+      <pubDate>Tue, 18 Aug 2026 00:00:00 GMT</pubDate>
+      <category>Dokumentär</category>
+      <description>Monumental Lies från Reveal belönades med ett Peabody Award 2018, ett av USA:s mest respekterade pris inom radiojournalistik. Avsnittet utforskar kontroversiell amerikansk historia och producerades av Center for Investigative Reporting tillsammans med PRX och Type Investigations, en trio som blivit ett av de starkaste namnen inom amerikansk undersökande journalistik.</description>
+    </item>
     <item>
       <title>Mr M History Podcast – Sukarno&#39;s Indonesia</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-17.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Wed, 17 Jun 2026 00:00:00 GMT</pubDate>
       <category>Historia</category>
       <description>Ett rakt berättat avsnitt som vecklar ut konspirationen som fällde Richard Nixon, från de fem män som greps på bar gärning i Watergatekomplexet till avslöjandena som skakade den amerikanska republiken. Produktionen håller sig kort och koncis – perfekt för den som vill förstå hela kedjan av händelser utan att förvandlas till historikerättegång.</description>
-    </item>
-    <item>
-      <title>RedHanded – Nazi Rage: The Murder of MP Jo Cox</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-06-16.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-06-16</guid>
-      <pubDate>Tue, 16 Jun 2026 00:00:00 GMT</pubDate>
-      <category>True crime</category>
-      <description>RedHanded gräver i mordet på Labourpolitikern Jo Cox, som sköts och knivhöggs till döds utanför ett bibliotek i Birstall bara en vecka före folkomröstningen om EU. Avsnittet placerar dådet i sin politiska kontext och lyfter frågan om hur en ensam våldsverkare med högerextrem koppling kunde mörda en parlamentsledamot mitt på ljusa dagen. Suruthi Bala och Hannah Maguire gör vad serien är känd för: en researchtät berättelse som inte skyndar förbi det svåra.</description>
     </item>
   </channel>
 </rss>

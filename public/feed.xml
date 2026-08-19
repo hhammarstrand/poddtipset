@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Tue, 18 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 19 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Värvet – Nisse Hallberg: Comedy är mitt sätt att göra folk glada</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-19.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-08-19</guid>
+      <pubDate>Wed, 19 Aug 2026 00:00:00 GMT</pubDate>
+      <category>Intervju</category>
+      <description>I det här Värvet-avsnittet öppnar sig komikern Nisse Hallberg om sin talang för comedy, om standup som det enklaste sättet att göra folk glada, och om att bli pappa och resan genom IVF. Samtalet rör sig mellan humor och mer personliga erfarenheter i det karaktäristiska Värvet-upplägget där gästen får utrymme att gå på djupet i sina egna tankar.</description>
+    </item>
     <item>
       <title>Reveal – Monumental Lies</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-18.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Thu, 18 Jun 2026 00:00:00 GMT</pubDate>
       <category>Historia</category>
       <description>American History Hit listas bland de bästa historpoddarna 2026 och avsnittet om Harlem Renaissance presenteras som ett av de främsta episoder i programmets katalog. Det utforskar en central period i amerikansk historia med den värd som är känd för sin engagerande berättarstil.</description>
-    </item>
-    <item>
-      <title>Hot Mess History Podcast – The Watergate Scandal</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-06-17.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-06-17</guid>
-      <pubDate>Wed, 17 Jun 2026 00:00:00 GMT</pubDate>
-      <category>Historia</category>
-      <description>Ett rakt berättat avsnitt som vecklar ut konspirationen som fällde Richard Nixon, från de fem män som greps på bar gärning i Watergatekomplexet till avslöjandena som skakade den amerikanska republiken. Produktionen håller sig kort och koncis – perfekt för den som vill förstå hela kedjan av händelser utan att förvandlas till historikerättegång.</description>
     </item>
   </channel>
 </rss>

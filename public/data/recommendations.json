@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-08-19",
+    "episode_title": "Nisse Hallberg: Comedy är mitt sätt att göra folk glada",
+    "show_name": "Värvet",
+    "show_slug": "varvet",
+    "hosts": "",
+    "genre": "Intervju",
+    "language": "sv",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "I det här Värvet-avsnittet öppnar sig komikern Nisse Hallberg om sin talang för comedy, om standup som det enklaste sättet att göra folk glada, och om att bli pappa och resan genom IVF. Samtalet rör sig mellan humor och mer personliga erfarenheter i det karaktäristiska Värvet-upplägget där gästen får utrymme att gå på djupet i sina egna tankar.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/nisse-hallberg-comedy-%C3%A4r-mitt-s%C3%A4tt-att-g%C3%B6ra-folk-glada/id508310996?i=1000723368249&uo=4",
+      "spotify": "https://open.spotify.com/search/V%C3%A4rvet%20Nisse%20Hallberg%3A%20Comedy%20%C3%A4r%20mitt%20s%C3%A4tt%20att%20g%C3%B6ra%20folk%20glada"
+    },
+    "sources": [
+      {
+        "title": "Värvet: Nisse Hallberg – poddtoppen.se",
+        "url": "https://poddtoppen.se/podcast/508310996/varvet/nisse-hallberg-comedy-ar-mitt-satt-att-gora-folk-glada"
+      }
+    ],
+    "audio": {
+      "url": "https://sphinx.acast.com/p/acast/s/varvet/e/68a83044e2f63983a77fecdd/media.mp3",
+      "type": "audio/mpeg",
+      "length": "66362558",
+      "durationSec": 2762
+    },
+    "created_at": "2026-08-19T02:20:22.951Z"
+  },
+  {
     "date": "2026-08-18",
     "episode_title": "Monumental Lies",
     "show_name": "Reveal",

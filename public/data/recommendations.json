@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-08-20",
+    "episode_title": "Ponzi Supernova",
+    "show_name": "Radiolab",
+    "show_slug": "radiolab",
+    "hosts": "Radiolab",
+    "genre": "Dokumentär",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "I Radiolabs Ponzi Supernova får lyssnaren höra Bernie Madoff själv tala, något som sällan skedde under hans verksamma tid. Avsnittet kombinerar researchjournalistik med ett sällsynt personligt möte och väver samman arkivklipp, intervjuer och egna reflektioner till en tät berättelse som håller greppet hela vägen. Det har lyfts fram på listor över de mest minnesvärda poddavsnitten någonsin just för att det ger tillträde till en av 2000-talets mest gäckande figurer.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/radiolab-presents-ponzi-supernova/id152249110?i=1000381052830&uo=4",
+      "spotify": "https://open.spotify.com/search/Radiolab%20Ponzi%20Supernova"
+    },
+    "sources": [
+      {
+        "title": "30 Podcast Episodes You Need To Listen To Before You Die",
+        "url": "https://strategylab.ca/30-podcast-episodes-you-need-to-listen-to-before-you-die/"
+      }
+    ],
+    "audio": {
+      "url": "https://pscrb.fm/rss/p/mgln.ai/e/14/prfx.byspotify.com/e/dts.podtrac.com/pts/redirect.mp3/waaa.wnyc.org/758af4c0-a2c3-47ec-a2d8-05f41bfbde51/episodes/f500bd5e-03dd-4e94-b8ce-d85c5686bc86/audio/128/default.mp3?aid=rss_feed&amp;awCollectionId=758af4c0-a2c3-47ec-a2d8-05f41bfbde51&amp;awEpisodeId=f500bd5e-03dd-4e94-b8ce-d85c5686bc86&amp;feed=EmVW7VGp",
+      "type": "audio/mpeg",
+      "length": "36634125",
+      "durationSec": 2285
+    },
+    "created_at": "2026-08-20T02:10:00.289Z"
+  },
+  {
     "date": "2026-08-19",
     "episode_title": "Nisse Hallberg: Comedy är mitt sätt att göra folk glada",
     "show_name": "Värvet",

@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Wed, 19 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 20 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Radiolab – Ponzi Supernova</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-20.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-08-20</guid>
+      <pubDate>Thu, 20 Aug 2026 00:00:00 GMT</pubDate>
+      <category>Dokumentär</category>
+      <description>I Radiolabs Ponzi Supernova får lyssnaren höra Bernie Madoff själv tala, något som sällan skedde under hans verksamma tid. Avsnittet kombinerar researchjournalistik med ett sällsynt personligt möte och väver samman arkivklipp, intervjuer och egna reflektioner till en tät berättelse som håller greppet hela vägen. Det har lyfts fram på listor över de mest minnesvärda poddavsnitten någonsin just för att det ger tillträde till en av 2000-talets mest gäckande figurer.</description>
+    </item>
     <item>
       <title>Värvet – Nisse Hallberg: Comedy är mitt sätt att göra folk glada</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-19.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Fri, 19 Jun 2026 00:00:00 GMT</pubDate>
       <category>Sport</category>
       <description>Bag Game har tilldelats en Webby Award i sportkategorin, vilket placerar avsnittet i den absoluta toppen av poddformatets sportdokumentärer. Det kommer från 30 for 30 Podcasts, ljudversionen av ESPN:s hyllade dokumentärserie, och produktionen har av TIME lyfts fram som en av de hundra bästa poddarna. Avsnittet representerar den typ av noggrant berättad sportjournalistik som gjort 30 for 30 till ett av de mest respekterade varumärkena inom genren.</description>
-    </item>
-    <item>
-      <title>American History Hit – The Harlem Renaissance</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-06-18.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-06-18</guid>
-      <pubDate>Thu, 18 Jun 2026 00:00:00 GMT</pubDate>
-      <category>Historia</category>
-      <description>American History Hit listas bland de bästa historpoddarna 2026 och avsnittet om Harlem Renaissance presenteras som ett av de främsta episoder i programmets katalog. Det utforskar en central period i amerikansk historia med den värd som är känd för sin engagerande berättarstil.</description>
     </item>
   </channel>
 </rss>

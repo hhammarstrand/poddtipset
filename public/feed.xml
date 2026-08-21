@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Thu, 20 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 21 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Witness History – The Assassination of Benigno Aquino</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-21.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-08-21</guid>
+      <pubDate>Fri, 21 Aug 2026 00:00:00 GMT</pubDate>
+      <category>Historia</category>
+      <description>Ett kompakt BBC-dokumentäravsnitt från Witness History-serien som rekonstruerar skottlossningen mot Benigno Aquino på Manilas flygplats 1983. Programmet bygger på förstahandsvittnen, däribland Aquinos svåger, vilket ger ett personligt perspektiv på dagen som skakade Filippinerna. BBC:s Witness History är känd för att väva samman arkivmaterial och ögonvittnesskildringar till korta, välgjorda berättelser.</description>
+    </item>
     <item>
       <title>Radiolab – Ponzi Supernova</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-20.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Sat, 20 Jun 2026 00:00:00 GMT</pubDate>
       <category>True crime</category>
       <description>Casefile True Crime är en av de poddar som ständigt återkommer i sammanställda listor över de bästa true crime-poddarna – BuzzFeed, Podplay och Apple Podcasts topplistor räknar alla upp den. Avsnittet Case 76: Silk Road hör till dem som lyssnare på Reddit särskilt lyfter fram som oförglömligt. Varje Casefile-avsnitt är en komplett berättelse, så det här fungerar utmärkt som en ingång i sig självt utan förkunskaper.</description>
-    </item>
-    <item>
-      <title>30 for 30 Podcasts – Bag Game</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-06-19.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-06-19</guid>
-      <pubDate>Fri, 19 Jun 2026 00:00:00 GMT</pubDate>
-      <category>Sport</category>
-      <description>Bag Game har tilldelats en Webby Award i sportkategorin, vilket placerar avsnittet i den absoluta toppen av poddformatets sportdokumentärer. Det kommer från 30 for 30 Podcasts, ljudversionen av ESPN:s hyllade dokumentärserie, och produktionen har av TIME lyfts fram som en av de hundra bästa poddarna. Avsnittet representerar den typ av noggrant berättad sportjournalistik som gjort 30 for 30 till ett av de mest respekterade varumärkena inom genren.</description>
     </item>
   </channel>
 </rss>

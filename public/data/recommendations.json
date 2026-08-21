@@ -1,5 +1,37 @@
 [
   {
+    "date": "2026-08-21",
+    "episode_title": "The Assassination of Benigno Aquino",
+    "show_name": "Witness History",
+    "show_slug": "witness-history",
+    "hosts": "BBC",
+    "genre": "Historia",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "Den filippinske oppositionsledaren Benigno Aquino skjuts ihjäl på Manilas flygplats då han återvänder från exil",
+    "day_connection": "Avsnittet handlar om exakt samma händelse som inträffade den 21 augusti 1983.",
+    "why_great": "Ett kompakt BBC-dokumentäravsnitt från Witness History-serien som rekonstruerar skottlossningen mot Benigno Aquino på Manilas flygplats 1983. Programmet bygger på förstahandsvittnen, däribland Aquinos svåger, vilket ger ett personligt perspektiv på dagen som skakade Filippinerna. BBC:s Witness History är känd för att väva samman arkivmaterial och ögonvittnesskildringar till korta, välgjorda berättelser.",
+    "listen_links": {
+      "web": "https://www.bbc.co.uk/programmes/b03xl4bb",
+      "apple": "https://podcasts.apple.com/se/podcast/the-assassination-of-benigno-aquino/id1345477018?i=1000401601886&uo=4",
+      "spotify": "https://open.spotify.com/search/Witness%20History%20The%20Assassination%20of%20Benigno%20Aquino"
+    },
+    "sources": [
+      {
+        "title": "The Assassination of Benigno Aquino - Witness History",
+        "url": "https://www.bbc.co.uk/programmes/b03xl4bb"
+      }
+    ],
+    "audio": {
+      "url": "http://open.live.bbc.co.uk/mediaselector/6/redir/version/2.0/mediaset/audio-nondrm-download-rss-low/proto/http/vpid/p0nb18x1.mp3",
+      "type": "audio/mpeg",
+      "length": "4320000",
+      "durationSec": 540
+    },
+    "created_at": "2026-08-21T02:20:36.484Z"
+  },
+  {
     "date": "2026-08-20",
     "episode_title": "Ponzi Supernova",
     "show_name": "Radiolab",

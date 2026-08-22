@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Fri, 21 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 22 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Dick Harrison svarar – Varför heter det Rosornas krig?</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-22.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-08-22</guid>
+      <pubDate>Sat, 22 Aug 2026 00:00:00 GMT</pubDate>
+      <category>Historia</category>
+      <description>Historiemannen Dick Harrison reder ut varför det engelska inbördeskriget mellan Lancaster och York fick just namnet Rosornas krig, och tar också upp vad Körsbärskriget var. Avsnittet är ett fristående svar på en specifik historisk fråga i hans frågesvar-podd på Sveriges Radio Play, och knyter direkt an till dagens datum – den 22 augusti 1485 stupade Rikard III vid Bosworth Field och kriget avgjordes. Harrison hör till landets mest erfarna historiepedagoger och syns regelbundet högt på de…</description>
+    </item>
     <item>
       <title>Witness History – The Assassination of Benigno Aquino</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-21.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Sun, 21 Jun 2026 00:00:00 GMT</pubDate>
       <category>Samhälle</category>
       <description>Detta avsnitt av Pablo Torre Finds Out belönades med en Peabody Award och har hyllats för sin originella vinkling. Pablo Torre tar avstamp i hur dödsdömda fångar följer Dallas Cowboys och bygger därifrån ett avsnitt som blivit ett av poddens mest uppmärksammade. Reportaget visar styrkan i att hitta starka berättelser i oväntade krockar mellan sport och det amerikanska rättssystemet.</description>
-    </item>
-    <item>
-      <title>Casefile True Crime – Case 76: Silk Road</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-06-20.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-06-20</guid>
-      <pubDate>Sat, 20 Jun 2026 00:00:00 GMT</pubDate>
-      <category>True crime</category>
-      <description>Casefile True Crime är en av de poddar som ständigt återkommer i sammanställda listor över de bästa true crime-poddarna – BuzzFeed, Podplay och Apple Podcasts topplistor räknar alla upp den. Avsnittet Case 76: Silk Road hör till dem som lyssnare på Reddit särskilt lyfter fram som oförglömligt. Varje Casefile-avsnitt är en komplett berättelse, så det här fungerar utmärkt som en ingång i sig självt utan förkunskaper.</description>
     </item>
   </channel>
 </rss>

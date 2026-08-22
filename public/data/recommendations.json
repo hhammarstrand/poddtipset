@@ -1,5 +1,40 @@
 [
   {
+    "date": "2026-08-22",
+    "episode_title": "Varför heter det Rosornas krig?",
+    "show_name": "Dick Harrison svarar",
+    "show_slug": "dick-harrison-svarar",
+    "hosts": "Dick Harrison",
+    "genre": "Historia",
+    "language": "sv",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "Rosornas krig: Rikard III stupar i slaget vid Bosworth Field (1485)",
+    "day_connection": "Avsnittet handlar direkt om Rosornas krig – det engelska inbördeskrig som avgjordes vid Bosworth Field den 22 augusti 1485.",
+    "why_great": "Historiemannen Dick Harrison reder ut varför det engelska inbördeskriget mellan Lancaster och York fick just namnet Rosornas krig, och tar också upp vad Körsbärskriget var. Avsnittet är ett fristående svar på en specifik historisk fråga i hans frågesvar-podd på Sveriges Radio Play, och knyter direkt an till dagens datum – den 22 augusti 1485 stupade Rikard III vid Bosworth Field och kriget avgjordes. Harrison hör till landets mest erfarna historiepedagoger och syns regelbundet högt på de svenska topplistorna inom historia.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/varf%C3%B6r-heter-det-rosornas-krig/id1599083671?i=1000684239266&uo=4",
+      "spotify": "https://open.spotify.com/search/Dick%20Harrison%20svarar%20Varf%C3%B6r%20heter%20det%20Rosornas%20krig%3F"
+    },
+    "sources": [
+      {
+        "title": "De bästa poddarna inom Historia – Apple Podcasts",
+        "url": "https://podcasts.apple.com/se/charts?genre=1487"
+      },
+      {
+        "title": "Varför heter det Rosornas krig? | Dick Harrison svarar podcast",
+        "url": "https://metacast.app/podcast/dick-harrison-svarar/x3JijVaz/varfor-heter-det-rosornas-krig/C52dQnLC"
+      }
+    ],
+    "audio": {
+      "url": "https://static-cdn.sr.se/laddahem/podradio/2025/09/dick_harrison_svarar_varfor_heter_det_stormaktstide_20250925_1317148203.mp3",
+      "type": "audio/mpeg",
+      "length": "5779621",
+      "durationSec": 360
+    },
+    "created_at": "2026-08-22T02:19:42.884Z"
+  },
+  {
     "date": "2026-08-21",
     "episode_title": "The Assassination of Benigno Aquino",
     "show_name": "Witness History",

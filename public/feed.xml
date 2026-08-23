@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Sat, 22 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 23 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Short History Of... – William Wallace</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-23.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-08-23</guid>
+      <pubDate>Sun, 23 Aug 2026 00:00:00 GMT</pubDate>
+      <category>Historia</category>
+      <description>Short History Of William Wallace är ett fristående biografiavsnitt från Noiser där Paul McGann sammanfattar den skotska upprorsledarens liv i koncentrerad form. Manuset är skrivet av Jo Furniss med sakkunskap från Graeme Morton, professor i modern historia, vilket ger avsnittet historisk tyngd utan att det tappar i tillgänglighet. Avsnittet fungerar som en komplett berättelse i sig och passar lyssnare som vill ha en vederhäftig genomgång av en av Skottlands mest mytomspunna figurer utan att…</description>
+    </item>
     <item>
       <title>Dick Harrison svarar – Varför heter det Rosornas krig?</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-22.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Mon, 22 Jun 2026 00:00:00 GMT</pubDate>
       <category>Historia</category>
       <description>Avsnittet skildrar hur Tyskland, upprymda av segarna över Polen och Frankrike, den 22 juni 1941 satte igång Operation Barbarossa med över tre miljoner man mot Sovjetunionen. Det är en av de mest avgörande och blodigaste operationerna under andra världskriget, och avsnittet ger en dedikerad genomgång av hur invasionen inleddes.</description>
-    </item>
-    <item>
-      <title>Pablo Torre Finds Out – Watching the Dallas Cowboys on Death Row</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-06-21.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-06-21</guid>
-      <pubDate>Sun, 21 Jun 2026 00:00:00 GMT</pubDate>
-      <category>Samhälle</category>
-      <description>Detta avsnitt av Pablo Torre Finds Out belönades med en Peabody Award och har hyllats för sin originella vinkling. Pablo Torre tar avstamp i hur dödsdömda fångar följer Dallas Cowboys och bygger därifrån ett avsnitt som blivit ett av poddens mest uppmärksammade. Reportaget visar styrkan i att hitta starka berättelser i oväntade krockar mellan sport och det amerikanska rättssystemet.</description>
     </item>
   </channel>
 </rss>

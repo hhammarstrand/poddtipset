@@ -1,5 +1,37 @@
 [
   {
+    "date": "2026-08-24",
+    "episode_title": "St Bartholomew's Day Massacre",
+    "show_name": "In Our Time",
+    "show_slug": "in-our-time",
+    "hosts": "Melvyn Bragg",
+    "genre": "Historia",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "Bartolomeinatten 1572",
+    "day_connection": "Avsnittet handlar om massakern på franska hugenotter som inleddes i Paris natten till den 24 augusti 1572.",
+    "why_great": "I det här avsnittet av BBC Radio 4:s långkörare In Our Time diskuterar Melvyn Bragg och hans gäster massakern på franska hugenotter i Paris 1572, en händelse som enligt samtida ska ha färgat floden röd av blod. Programmet utforskar hur den unge hugenott-kungen av Navarra drogs in i de händelser som ledde till att tusentals protestanter dödades. In Our Time har under decennier varit ett av Storbritanniens mest respekterade kunskapsprogram och bjuder in ledande akademiker för att reda ut historiska skeenden på djupet.",
+    "listen_links": {
+      "web": "https://www.bbc.co.uk/programmes/p005493t",
+      "apple": "https://podcasts.apple.com/se/podcast/st-bartholomews-day-massacre/id463701224?i=1000343870852&uo=4",
+      "spotify": "https://open.spotify.com/search/In%20Our%20Time%20St%20Bartholomew's%20Day%20Massacre"
+    },
+    "sources": [
+      {
+        "title": "BBC Radio 4 - In Our Time, St Bartholomew's Day Massacre",
+        "url": "https://www.bbc.co.uk/programmes/p005493t"
+      }
+    ],
+    "audio": {
+      "url": "http://open.live.bbc.co.uk/mediaselector/6/redir/version/2.0/mediaset/audio-nondrm-download-rss/proto/http/vpid/p02q59d5.mp3",
+      "type": "audio/mpeg",
+      "length": "43504000",
+      "durationSec": 2719
+    },
+    "created_at": "2026-08-24T02:18:58.633Z"
+  },
+  {
     "date": "2026-08-23",
     "episode_title": "William Wallace",
     "show_name": "Short History Of...",

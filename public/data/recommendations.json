@@ -1,5 +1,44 @@
 [
   {
+    "date": "2026-08-25",
+    "episode_title": "Wagner: LIVE at the Royal Albert Hall",
+    "show_name": "The Rest Is History",
+    "show_slug": "the-rest-is-history",
+    "hosts": "",
+    "genre": "Historia",
+    "language": "en",
+    "year": null,
+    "duration_minutes": 73,
+    "day_occasion": "Kompositören Richard Wagner gifter sig med kompositören Franz Liszts dotter Cosima",
+    "day_connection": "Avsnittet kretsar kring Richard Wagner, samma man som 1870 denna dag vigdes med Cosima von Bülow.",
+    "why_great": "The Rest Is History bjöd in till ett live-evenemang på Royal Albert Hall och ägnade hela kvällen åt Richard Wagner. Avsnittet tar sig an kompositörens liv, musik och alla kontroverser – från operarevolutionerna till de mörkare sidorna av hans personlighet. Inspelningen är 73 minuter och finns på Apple Podcasts, där podden regelbundet återfinns på historietopplistorna.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/wagner-live-at-the-royal-albert-hall/id1537788786?i=1000742343902&uo=4",
+      "spotify": "https://open.spotify.com/search/The%20Rest%20Is%20History%20Wagner%3A%20LIVE%20at%20the%20Royal%20Albert%20Hall"
+    },
+    "sources": [
+      {
+        "title": "Wagner: LIVE at the Royal Albert Hall – The Rest Is History",
+        "url": "https://podcasts.apple.com/us/podcast/wagner-live-at-the-royal-albert-hall/id1537788786?i=1000742343902"
+      },
+      {
+        "title": "De bästa poddarna inom Historia – Apple Podcasts",
+        "url": "https://podcasts.apple.com/se/charts?genre=1487"
+      },
+      {
+        "title": "Richard Wagner – Top podcast episodes – Listen Notes",
+        "url": "https://www.listennotes.com/top-podcasts/richard-wagner/"
+      }
+    ],
+    "audio": {
+      "url": "https://pdst.fm/e/traffic.megaphone.fm/GLT7214350401.mp3?updated=1766537584",
+      "type": "audio/mpeg",
+      "length": "0",
+      "durationSec": 4380
+    },
+    "created_at": "2026-08-25T02:17:24.136Z"
+  },
+  {
     "date": "2026-08-24",
     "episode_title": "St Bartholomew's Day Massacre",
     "show_name": "In Our Time",

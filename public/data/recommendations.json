@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-08-26",
+    "episode_title": "Carolina Klüft",
+    "show_name": "Dagens människa",
+    "show_slug": "dagens-manniska",
+    "hosts": "",
+    "genre": "Intervju",
+    "language": "sv",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "Carolina Klüft satte nytt europarekord i sjukamp med 7032 poäng (den 26 augusti 2007)",
+    "day_connection": "Avsnittet är en intervju med Carolina Klüft, samma idrottare som denna dag 2007 slog europarekordet i sjukamp.",
+    "why_great": "I avsnitt 155 av Dagens människa möter vi en av Sveriges största friidrottstjärnor efter tiderna, Carolina Klüft. Hon berättar om vad hon valt att hålla fast vid genom karriären. Det är ett avslappnat och personligt samtal som fungerar utmärkt fristående, utan att man behöver ha hört tidigare avsnitt i podden.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/carolina-kl%C3%BCft/id853755184?i=1000556391071&uo=4",
+      "spotify": "https://open.spotify.com/search/Dagens%20m%C3%A4nniska%20Carolina%20Kl%C3%BCft"
+    },
+    "sources": [
+      {
+        "title": "Carolina Klüft – Dagens människa (Apple Podcasts)",
+        "url": "https://podcasts.apple.com/se/podcast/carolina-kl%C3%BCft/id853755184?i=1000556391071"
+      }
+    ],
+    "audio": {
+      "url": "https://traffic.libsyn.com/secure/dagensmanniska/DAgens_Manniska_Karolina_Kluft.mp3?dest-id=835184",
+      "type": "audio/mpeg",
+      "length": "61877098",
+      "durationSec": 2579
+    },
+    "created_at": "2026-08-26T02:28:10.659Z"
+  },
+  {
     "date": "2026-08-25",
     "episode_title": "Wagner: LIVE at the Royal Albert Hall",
     "show_name": "The Rest Is History",

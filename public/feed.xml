@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Tue, 25 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 26 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Dagens människa – Carolina Klüft</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-26.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-08-26</guid>
+      <pubDate>Wed, 26 Aug 2026 00:00:00 GMT</pubDate>
+      <category>Intervju</category>
+      <description>I avsnitt 155 av Dagens människa möter vi en av Sveriges största friidrottstjärnor efter tiderna, Carolina Klüft. Hon berättar om vad hon valt att hålla fast vid genom karriären. Det är ett avslappnat och personligt samtal som fungerar utmärkt fristående, utan att man behöver ha hört tidigare avsnitt i podden.</description>
+    </item>
     <item>
       <title>The Rest Is History – Wagner: LIVE at the Royal Albert Hall</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-25.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Thu, 25 Jun 2026 00:00:00 GMT</pubDate>
       <category>True crime</category>
       <description>Det här avsnittet av True Crime All the Time lyfts i en stor Reddit-tråd om true crime-avsnitt man aldrig glömmer. Berättelsen om läkaren Michael Swango, kallad Dr. Death, rekommenderas i samma andetag som den uppmärksammade BTK-serien, vilket placerar den i toppskiktet av verk som etsat sig fast hos lyssnare i genren.</description>
-    </item>
-    <item>
-      <title>Explorers Podcast – John Cabot and the Exploration of North America</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-06-24.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-06-24</guid>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 GMT</pubDate>
-      <category>Historia</category>
-      <description>Avsnittet skildrar den italienske sjöfararen Giovanni Caboto – John Cabot – och hans 1497-resa från England över Nordatlanten, där han enligt traditionen blev den förste européen att landsätta på Nordamerikas fastland sedan Leif Erikson. Berättelsen kretsar kring en enskild expedition och dess plats i upptäcktsfärdernas historia.</description>
     </item>
   </channel>
 </rss>

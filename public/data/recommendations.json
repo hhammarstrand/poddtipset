@@ -1,5 +1,37 @@
 [
   {
+    "date": "2026-08-27",
+    "episode_title": "Det kortaste kriget",
+    "show_name": "Nu blir det historia!",
+    "show_slug": "nu-blir-det-historia",
+    "hosts": "",
+    "genre": "Historia",
+    "language": "sv",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "Anglo-zanzibariska kriget utkämpas (1896)",
+    "day_connection": "Avsnittet handlar om det anglo-zanzibariska kriget – världens genom tiderna kortaste krig, som pågick i bara 38 minuter den 27 augusti 1896.",
+    "why_great": "Ett helt krig som hinner förklaras, utkämpas och avslutas innan en arbetsdag ens hunnit börja på riktigt. Avsnittet reder ut hur en sultan på Zanzibar försökte stå emot det brittiska imperiet och förlorade på drygt en halvtimme – ett absurt och blodigt slagskott i kolonialhistorien. Lagom lång lyssning för den som vill ha sin historia serverad i koncentrerad dos.",
+    "listen_links": {
+      "web": "https://www.podplay.com/sv-se/podcasts/nu-blir-det-historia-1165902/episodes/124-det-kortaste-kriget-682464715",
+      "apple": "https://podcasts.apple.com/se/podcast/124-det-kortaste-kriget/id1716421830?i=1000737011088&uo=4",
+      "spotify": "https://open.spotify.com/search/Nu%20blir%20det%20historia!%20Det%20kortaste%20kriget"
+    },
+    "sources": [
+      {
+        "title": "124. Det kortaste kriget | Nu blir det historia!",
+        "url": "https://www.podplay.com/sv-se/podcasts/nu-blir-det-historia-1165902/episodes/124-det-kortaste-kriget-682464715"
+      }
+    ],
+    "audio": {
+      "url": "https://sphinx.acast.com/p/open/s/65527cfa46e5c90011f1610d/e/6909dfdc5752a645e94e51c0/media.mp3",
+      "type": "audio/mpeg",
+      "length": "33495044",
+      "durationSec": 2117
+    },
+    "created_at": "2026-08-27T10:41:43.814Z"
+  },
+  {
     "date": "2026-08-26",
     "episode_title": "Carolina Klüft",
     "show_name": "Dagens människa",

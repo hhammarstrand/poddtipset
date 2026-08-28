@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-08-28",
+    "episode_title": "Mordet på Elin Krantz",
+    "show_name": "P3 Dokumentär",
+    "show_slug": "p3-dokumentar",
+    "hosts": "P3 Dokumentär",
+    "genre": "True crime",
+    "language": "sv",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Mordet på Elin Krantz är enligt Expressen det mest lyssnade avsnittet i P3 Dokumentärs historia, i toppen av en topplista med poddens tio största avsnitt genom tiderna. Att ett enskilt verkligt fall når den positionen i Sveriges största dokumentärpodd visar hur starkt det grep lyssnarna – och det är just den här typen av researchtunga brottsberättelser som format P3 Dokumentärs rykte.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/mordet-p%C3%A5-elin-krantz/id308339623?i=1000396636777&uo=4",
+      "spotify": "https://open.spotify.com/search/P3%20Dokument%C3%A4r%20Mordet%20p%C3%A5%20Elin%20Krantz"
+    },
+    "sources": [
+      {
+        "title": "10 mest lyssnade avsnitten av P3 Dokumentär – här är listan",
+        "url": "https://www.expressen.se/noje/10-mest-lyssnade-avsnitten-av-p3-dokumentar-har-ar-listan/"
+      }
+    ],
+    "audio": {
+      "url": "https://static-cdn.sr.se/laddahem/podradio/p3_dokumentar/2021/06/p3_dokumentar_20210606_1903_60b4f520.mp3",
+      "type": "audio/mpeg",
+      "length": "79531222",
+      "durationSec": 4968
+    },
+    "created_at": "2026-08-28T12:34:27.117Z"
+  },
+  {
     "date": "2026-08-27",
     "episode_title": "Det kortaste kriget",
     "show_name": "Nu blir det historia!",

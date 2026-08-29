@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Fri, 28 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 29 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Acquired – IKEA</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-29.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-08-29</guid>
+      <pubDate>Sat, 29 Aug 2026 00:00:00 GMT</pubDate>
+      <category>Dokumentär</category>
+      <description>Acquired ägnar hela detta långa avsnitt åt Ingvar Kamprads resa från den lilla småländska postorderfirman till världens största möbelkedja. Berättelsen väver samman Kamprads personliga historia, den unika kombinationen av design, logistik och restaurangkoncept, samt de strategiska val som gjorde IKEA till en global aktör. Avsnittet är ett typexempel på poddens stil: noggrant researchad, full av detaljer om allt från kataloger och leverantörsrelationer till företagskulturens säregna arv.</description>
+    </item>
     <item>
       <title>P3 Dokumentär – Mordet på Elin Krantz</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-28.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Sun, 28 Jun 2026 00:00:00 GMT</pubDate>
       <category>Historia</category>
       <description>Radio Diaries har gjort sig kända för att gräva i amerikansk historia genom förstahandsberättelser, och det här avsnittet hör till de starkaste exemplen på vad poddformatet kan som dokumentärgenre. Avsnittet har lyfts av RELEVANT magazine som ett av de sju mest gripande poddavsnitten som någonsin skapats - ett erkännande som placerar det i en mycket liten skara. För den som vill höra historien berättad inifrån, med röster som annars sällan når fram, är det ett avsnitt som stannar kvar länge…</description>
-    </item>
-    <item>
-      <title>P1 Dokumentär – Striden om maten</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-06-27.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-06-27</guid>
-      <pubDate>Sat, 27 Jun 2026 00:00:00 GMT</pubDate>
-      <category>Dokumentär</category>
-      <description>P1 Dokumentär är Sveriges Radios dokumentärpodd på P1, beskriven som en kanal för avslöjanden och unika berättelser om vår tid, och på Reddit jämförs den flitigt med P3 Dokumentär som en av landets främsta poddar i genren. Avsnittet Striden om maten är en fristående dokumentär på drygt 50 minuter, producerad av Mia Blomgren, som tar sig an en konflikt med tydlig koppling till mat och livsmedelsfrågor.</description>
     </item>
   </channel>
 </rss>

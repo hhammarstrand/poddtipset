@@ -1,5 +1,45 @@
 [
   {
+    "date": "2026-08-29",
+    "episode_title": "IKEA",
+    "show_name": "Acquired",
+    "show_slug": "acquired",
+    "hosts": "Ben Gilbert, David Rosenthal",
+    "genre": "Dokumentär",
+    "language": "en",
+    "year": 2024,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Acquired ägnar hela detta långa avsnitt åt Ingvar Kamprads resa från den lilla småländska postorderfirman till världens största möbelkedja. Berättelsen väver samman Kamprads personliga historia, den unika kombinationen av design, logistik och restaurangkoncept, samt de strategiska val som gjorde IKEA till en global aktör. Avsnittet är ett typexempel på poddens stil: noggrant researchad, full av detaljer om allt från kataloger och leverantörsrelationer till företagskulturens säregna arv.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/ikea/id1050462261?i=1000677277227&uo=4",
+      "spotify": "https://open.spotify.com/episode/6jZlOM4xxsoUzQJ4JkgpDs",
+      "web": "https://www.acquired.fm/episodes/ikea"
+    },
+    "sources": [
+      {
+        "title": "IKEA - Acquired Podcast",
+        "url": "https://www.acquired.fm/episodes/ikea"
+      },
+      {
+        "title": "IKEA - Acquired - Apple Podcasts",
+        "url": "https://podcasts.apple.com/us/podcast/ikea/id1050462261?i=1000677277227"
+      },
+      {
+        "title": "IKEA Podcast Summary with Ben Gilbert, David Rosenthal - Shortform",
+        "url": "https://www.shortform.com/podcast/episode/acquired-2024-11-17-episode-summary-ikea"
+      }
+    ],
+    "audio": {
+      "url": "https://pscrb.fm/rss/p/media.transistor.fm/51775457/5b90483f.mp3",
+      "type": "audio/mpeg",
+      "length": "185169019",
+      "durationSec": 11572
+    },
+    "created_at": "2026-08-29T07:32:26.327Z"
+  },
+  {
     "date": "2026-08-28",
     "episode_title": "Mordet på Elin Krantz",
     "show_name": "P3 Dokumentär",

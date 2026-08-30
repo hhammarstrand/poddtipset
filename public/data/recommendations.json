@@ -1,5 +1,31 @@
 [
   {
+    "date": "2026-08-30",
+    "episode_title": "Jacob Wetterling",
+    "show_name": "In the Dark",
+    "show_slug": "in-the-dark",
+    "hosts": "",
+    "genre": "Dokumentär",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "In the Dark har belönats med George Foster Peabody Award för sin rapportering om Jacob Wetterlings försvinnande och det 27 år långa utredningsarbetet. APM Reports-podden fördjupar sig i en minnesotakisk småstads kamp för svar och i hur polisen och medierna hanterade fallet. Reportaget har lyfts fram som ett av de starkaste exemplen på amerikansk undersökande ljudjournalistik och har format hur långa, segdragna brottmål berättas i poddformat.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/jacob-wetterling-twenty-seven-years-to-the-truth-40/id6788055530?i=1000780033389&uo=4",
+      "spotify": "https://open.spotify.com/search/In%20the%20Dark%20Jacob%20Wetterling"
+    },
+    "sources": [
+      {
+        "title": "APM Reports' In the Dark Podcast Wins a Peabody Award",
+        "url": "https://www.americanpublicmedia.org/blog/apm-reports-in-the-dark-podcast-wins-a-peabody-award"
+      }
+    ],
+    "audio": null,
+    "created_at": "2026-08-30T06:07:56.676Z"
+  },
+  {
     "date": "2026-08-29",
     "episode_title": "IKEA",
     "show_name": "Acquired",

@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Sat, 29 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 30 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>In the Dark – Jacob Wetterling</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-30.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-08-30</guid>
+      <pubDate>Sun, 30 Aug 2026 00:00:00 GMT</pubDate>
+      <category>Dokumentär</category>
+      <description>In the Dark har belönats med George Foster Peabody Award för sin rapportering om Jacob Wetterlings försvinnande och det 27 år långa utredningsarbetet. APM Reports-podden fördjupar sig i en minnesotakisk småstads kamp för svar och i hur polisen och medierna hanterade fallet. Reportaget har lyfts fram som ett av de starkaste exemplen på amerikansk undersökande ljudjournalistik och har format hur långa, segdragna brottmål berättas i poddformat.</description>
+    </item>
     <item>
       <title>Acquired – IKEA</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-29.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Mon, 29 Jun 2026 00:00:00 GMT</pubDate>
       <category>True crime</category>
       <description>Crime Junkie ligger etta på Apple Podcasts true crime-lista och räknas som en av de mest etablerade poddarna i genren. Det här avsnittet om Maura Murray finns med på The Everygirls lista över de tio bästa true crime-podcastavsnitten och fungerar som ett fristående avsnitt.</description>
-    </item>
-    <item>
-      <title>Radio Diaries – Voices of a Lynching</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-06-28.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-06-28</guid>
-      <pubDate>Sun, 28 Jun 2026 00:00:00 GMT</pubDate>
-      <category>Historia</category>
-      <description>Radio Diaries har gjort sig kända för att gräva i amerikansk historia genom förstahandsberättelser, och det här avsnittet hör till de starkaste exemplen på vad poddformatet kan som dokumentärgenre. Avsnittet har lyfts av RELEVANT magazine som ett av de sju mest gripande poddavsnitten som någonsin skapats - ett erkännande som placerar det i en mycket liten skara. För den som vill höra historien berättad inifrån, med röster som annars sällan når fram, är det ett avsnitt som stannar kvar länge…</description>
     </item>
   </channel>
 </rss>

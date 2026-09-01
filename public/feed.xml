@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Sun, 30 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 01 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Juridikens värld – Huru svin må i ollonskog släppas – Johan Munck om Sveriges rikes lag</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-01.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-09-01</guid>
+      <pubDate>Tue, 01 Sep 2026 00:00:00 GMT</pubDate>
+      <category>Samhälle</category>
+      <description>I Juridikens värld samtalar programledaren med Johan Munck om Sveriges rikes lag – den blå lagboken på 5000 sidor och tre kilo som beskrivs som en respektingivande symbol för det svenska rättssystemet. Titeln är en blinkning till en av lagens äldsta formuleringar, och avsnittet ger ett unikt perspektiv på ett av Sveriges mest bestående juridiska dokument.</description>
+    </item>
     <item>
       <title>In the Dark – Jacob Wetterling</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-30.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
       <category>True crime</category>
       <description>Avsnittet tar sig an en bortförandehistoria med Jan Broberg som namngiven mittpunkt. Det placerar sig på andra plats på The Everygirls lista över de bästa true crime-poddavsnitten, slaget bara av ytterligare en episod från samma podd som toppar listan. Den dubbla topp-placeringen befäster Mile Higher som ett av de mest hedrade namnen i true crime-genren just nu.</description>
-    </item>
-    <item>
-      <title>Crime Junkie – Maura Murray</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-06-29.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-06-29</guid>
-      <pubDate>Mon, 29 Jun 2026 00:00:00 GMT</pubDate>
-      <category>True crime</category>
-      <description>Crime Junkie ligger etta på Apple Podcasts true crime-lista och räknas som en av de mest etablerade poddarna i genren. Det här avsnittet om Maura Murray finns med på The Everygirls lista över de tio bästa true crime-podcastavsnitten och fungerar som ett fristående avsnitt.</description>
     </item>
   </channel>
 </rss>

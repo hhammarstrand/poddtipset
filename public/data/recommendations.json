@@ -1,5 +1,45 @@
 [
   {
+    "date": "2026-09-01",
+    "episode_title": "Huru svin må i ollonskog släppas – Johan Munck om Sveriges rikes lag",
+    "show_name": "Juridikens värld",
+    "show_slug": "juridikens-varld",
+    "hosts": "",
+    "genre": "Samhälle",
+    "language": "sv",
+    "year": 2022,
+    "duration_minutes": 41,
+    "day_occasion": "Sveriges rikes lag träder i kraft",
+    "day_connection": "Avsnittet handlar om just Sveriges rikes lag, den blå lagbok som trädde i kraft den 1 september 1736.",
+    "why_great": "I Juridikens värld samtalar programledaren med Johan Munck om Sveriges rikes lag – den blå lagboken på 5000 sidor och tre kilo som beskrivs som en respektingivande symbol för det svenska rättssystemet. Titeln är en blinkning till en av lagens äldsta formuleringar, och avsnittet ger ett unikt perspektiv på ett av Sveriges mest bestående juridiska dokument.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/huru-svin-m%C3%A5-i-ollonskog-sl%C3%A4ppas-johan-munck-om-sveriges/id1566823012?i=1000552773063&uo=4",
+      "spotify": "https://open.spotify.com/episode/1sF9uLjbLk6FRU9qjmOaLe",
+      "web": "https://podme.com/no/episode/1100156/"
+    },
+    "sources": [
+      {
+        "title": "Huru svin må i ollonskog släppas på Spotify",
+        "url": "https://open.spotify.com/episode/1sF9uLjbLk6FRU9qjmOaLe"
+      },
+      {
+        "title": "Huru svin må i ollonskog släppas på Apple Podcasts",
+        "url": "https://podcasts.apple.com/us/podcast/huru-svin-m%C3%A5-i-ollonskog-sl%C3%A4ppas-johan-munck-om-sveriges/id1566823012?i=1000552773063"
+      },
+      {
+        "title": "Huru svin må i ollonskog släppas på Podme",
+        "url": "https://podme.com/no/episode/1100156/"
+      }
+    ],
+    "audio": {
+      "url": "https://media.pod.space/juridikensvarld/jv-3-mars-mix.mp3",
+      "type": "audio/mpeg",
+      "length": "39528809",
+      "durationSec": 2470
+    },
+    "created_at": "2026-09-01T06:08:55.433Z"
+  },
+  {
     "date": "2026-08-30",
     "episode_title": "Jacob Wetterling",
     "show_name": "In the Dark",

@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Tue, 01 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 02 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Buried Bones – The Black Dahlia</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-02.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-09-02</guid>
+      <pubDate>Wed, 02 Sep 2026 00:00:00 GMT</pubDate>
+      <category>True crime</category>
+      <description>Ett avsnitt som går på djupet i Black Dahlia-fallet – mordet på Elizabeth Short i Los Angeles 1947, ett av det amerikanska 1900-talets mest gåtfulla och ouppklarade brott. Med den välkände cold case-utredaren Paul Holes som guide vävs detaljrika vittnesuppgifter och polisiärt material samman till en berättelse som hyllats på Reddit för sin grundlighet. Det är true crime när det är som bäst: tålmodig research möter erfaren analys.</description>
+    </item>
     <item>
       <title>Juridikens värld – Huru svin må i ollonskog släppas – Johan Munck om Sveriges rikes lag</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-01.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
       <category>True crime</category>
       <description>Avsnittet lyftes specifikt som ett av de mest oförglömliga true crime-avsnitten i en av Reddit-podcasttrådarnas mest rekommenderade listor, där lyssnare vittnade om att det satt kvar länge efteråt. Already Gone är Kirby Sommers podd som tar sig an ouppklarade fall - titeln Who Killed Me för in berättelsen direkt i offrets perspektiv, som en röst från den som inte längre kan tala. Ett koncentrerat avsnitt som visar hur ett enda tydligt grepp kan göra ett helt true crime-avsnitt minnesvärt.</description>
-    </item>
-    <item>
-      <title>Mile Higher – Abducted In Plain Sight: The Jan Broberg Story</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-06-30.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-06-30</guid>
-      <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
-      <category>True crime</category>
-      <description>Avsnittet tar sig an en bortförandehistoria med Jan Broberg som namngiven mittpunkt. Det placerar sig på andra plats på The Everygirls lista över de bästa true crime-poddavsnitten, slaget bara av ytterligare en episod från samma podd som toppar listan. Den dubbla topp-placeringen befäster Mile Higher som ett av de mest hedrade namnen i true crime-genren just nu.</description>
     </item>
   </channel>
 </rss>

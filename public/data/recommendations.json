@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-09-02",
+    "episode_title": "The Black Dahlia",
+    "show_name": "Buried Bones",
+    "show_slug": "buried-bones",
+    "hosts": "",
+    "genre": "True crime",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Ett avsnitt som går på djupet i Black Dahlia-fallet – mordet på Elizabeth Short i Los Angeles 1947, ett av det amerikanska 1900-talets mest gåtfulla och ouppklarade brott. Med den välkände cold case-utredaren Paul Holes som guide vävs detaljrika vittnesuppgifter och polisiärt material samman till en berättelse som hyllats på Reddit för sin grundlighet. Det är true crime när det är som bäst: tålmodig research möter erfaren analys.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/buried-bones-halloween-special-the-black-dahlia/id1455668750?i=1000734370495&uo=4",
+      "spotify": "https://open.spotify.com/search/Buried%20Bones%20The%20Black%20Dahlia"
+    },
+    "sources": [
+      {
+        "title": "The craziest most insane true crime episode you've ever...",
+        "url": "https://www.reddit.com/r/podcasts/comments/1qpq807/the_craziest_most_insane_true_crime_episode_youve/"
+      }
+    ],
+    "audio": {
+      "url": "https://podtrac.com/pts/redirect.mp3/traffic.omny.fm/d/clips/e73c998e-6e60-432f-8610-ae210140c5b1/976825e3-37d8-4387-a0cd-b24b002d91e5/2ec4680f-45d4-4b1a-963f-b385012fbfc8/audio.mp3?utm_source=Podcast&amp;in_playlist=3df02c7c-f75a-4bea-abe8-b24b002d91ff",
+      "type": "audio/mpeg",
+      "length": "94565881",
+      "durationSec": 5907
+    },
+    "created_at": "2026-09-02T05:24:56.250Z"
+  },
+  {
     "date": "2026-09-01",
     "episode_title": "Huru svin må i ollonskog släppas – Johan Munck om Sveriges rikes lag",
     "show_name": "Juridikens värld",

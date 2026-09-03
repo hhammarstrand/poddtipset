@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Wed, 02 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 03 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Outside Podcast – Shaun White&#39;s Next Twist</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-03.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-09-03</guid>
+      <pubDate>Thu, 03 Sep 2026 00:00:00 GMT</pubDate>
+      <category>Sport</category>
+      <description>I det här avsnittet, inspelat live på The Outside Festival i Denver, samtalar före detta NFL-spelaren Dhani Jones med snowboardlegenden Shaun White om livet efter den professionella karriären. Samtalet skiftar fokus från tävlande och medaljer till vad som händer när en idrottskarriär tar slut. En ovanligt ärlig inblick i en av snowboardvärldens största stjärnors nya kapitel.</description>
+    </item>
     <item>
       <title>Buried Bones – The Black Dahlia</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-02.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Thu, 02 Jul 2026 00:00:00 GMT</pubDate>
       <category>Intervju</category>
       <description>Alex Cooper bjöd in Alex Morgan för ett av Call Her Daddys mest personliga samtal. Morgan öppnar sig om den utdragna kampen för lika lön, varför hon valde att stämma det amerikanska fotbollsförbundet och hur det är att som kvinna i en idrottsvärld ständigt möta dubbla måttstockar. Hon berättar om barndomsminnet av en lapp på kylskåpet där hon skrev att hon skulle bli proffs, och om livet som mamma mitt i karriären. Avsnittet har spridits vida och genererat långa diskussionstrådar på Reddit, och…</description>
-    </item>
-    <item>
-      <title>Already Gone – Who Killed Me</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-07-01.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-07-01</guid>
-      <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
-      <category>True crime</category>
-      <description>Avsnittet lyftes specifikt som ett av de mest oförglömliga true crime-avsnitten i en av Reddit-podcasttrådarnas mest rekommenderade listor, där lyssnare vittnade om att det satt kvar länge efteråt. Already Gone är Kirby Sommers podd som tar sig an ouppklarade fall - titeln Who Killed Me för in berättelsen direkt i offrets perspektiv, som en röst från den som inte längre kan tala. Ett koncentrerat avsnitt som visar hur ett enda tydligt grepp kan göra ett helt true crime-avsnitt minnesvärt.</description>
     </item>
   </channel>
 </rss>

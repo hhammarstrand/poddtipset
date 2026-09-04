@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Thu, 03 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 04 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Historiepodden – Amaltheadådet och storstrejken 1909</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-04.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-09-04</guid>
+      <pubDate>Fri, 04 Sep 2026 00:00:00 GMT</pubDate>
+      <category>Historia</category>
+      <description>Historiepodden är etta på Feedspots lista över de bästa svenska historiepodcasterna 2026. Avsnittet binder samman Amaltheadådet med storstrejken 1909, där det första decenniet på 1900-talets arbetsmarknadskonflikter nådde sin kulmen. Ämnet får extra tyngd just idag – det är på dagen denna utdragna strejk som skakade Sverige officiellt avbröts.</description>
+    </item>
     <item>
       <title>Outside Podcast – Shaun White&#39;s Next Twist</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-03.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Fri, 03 Jul 2026 00:00:00 GMT</pubDate>
       <category>Teknik</category>
       <description>Kik är ett avsnitt ur Darknet Diaries som lyfts fram som ett av de starkaste exemplen på storytelling i podcastformatet. Serien kretsar kring den kriminella baksidan av internet och just det här avsnittet används som tydligt typexempel på hur en nischad teknikhistoria kan göras medryckande för en bred lyssnare. Det återkommer på listor som hyllar podcasts som faktiskt behärskar konsten att berätta.</description>
-    </item>
-    <item>
-      <title>Call Her Daddy – Alex Morgan: Soccer, Sexualization, &amp; Suing US Soccer</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-07-02.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-07-02</guid>
-      <pubDate>Thu, 02 Jul 2026 00:00:00 GMT</pubDate>
-      <category>Intervju</category>
-      <description>Alex Cooper bjöd in Alex Morgan för ett av Call Her Daddys mest personliga samtal. Morgan öppnar sig om den utdragna kampen för lika lön, varför hon valde att stämma det amerikanska fotbollsförbundet och hur det är att som kvinna i en idrottsvärld ständigt möta dubbla måttstockar. Hon berättar om barndomsminnet av en lapp på kylskåpet där hon skrev att hon skulle bli proffs, och om livet som mamma mitt i karriären. Avsnittet har spridits vida och genererat långa diskussionstrådar på Reddit, och…</description>
     </item>
   </channel>
 </rss>

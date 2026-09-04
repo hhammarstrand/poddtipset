@@ -1,5 +1,41 @@
 [
   {
+    "date": "2026-09-04",
+    "episode_title": "Amaltheadådet och storstrejken 1909",
+    "show_name": "Historiepodden",
+    "show_slug": "historiepodden",
+    "hosts": "",
+    "genre": "Historia",
+    "language": "sv",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "Den svenska storstrejken avbryts 1909",
+    "day_connection": "Avsnittet behandlar storstrejken 1909, som avblåstes just den 4 september när strejkkassorna sinat.",
+    "why_great": "Historiepodden är etta på Feedspots lista över de bästa svenska historiepodcasterna 2026. Avsnittet binder samman Amaltheadådet med storstrejken 1909, där det första decenniet på 1900-talets arbetsmarknadskonflikter nådde sin kulmen. Ämnet får extra tyngd just idag – det är på dagen denna utdragna strejk som skakade Sverige officiellt avbröts.",
+    "listen_links": {
+      "web": "https://shows.acast.com/historiepodden/episodes/564-amaltheadadet-och-storstrejken-1909",
+      "apple": "https://podcasts.apple.com/se/podcast/564-amalthead%C3%A5det-och-storstrejken-1909/id846032286?i=1000725327627&uo=4",
+      "spotify": "https://open.spotify.com/search/Historiepodden%20Amalthead%C3%A5det%20och%20storstrejken%201909"
+    },
+    "sources": [
+      {
+        "title": "564. Amaltheadådet och storstrejken 1909 - Historiepodden (Acast)",
+        "url": "https://shows.acast.com/historiepodden/episodes/564-amaltheadadet-och-storstrejken-1909"
+      },
+      {
+        "title": "28 Best Svenska historie Podcasts to Listen to in 2026 - Feedspot",
+        "url": "https://podcast.feedspot.com/podcasts_historia_sverige/"
+      }
+    ],
+    "audio": {
+      "url": "https://sphinx.acast.com/p/acast/s/historiepodden/e/68bb5682a4a9a4d945a00ce4/media.mp3",
+      "type": "audio/mpeg",
+      "length": "121421921",
+      "durationSec": 5056
+    },
+    "created_at": "2026-09-04T05:29:08.056Z"
+  },
+  {
     "date": "2026-09-03",
     "episode_title": "Shaun White's Next Twist",
     "show_name": "Outside Podcast",

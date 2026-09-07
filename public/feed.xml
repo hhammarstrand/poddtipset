@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Sun, 06 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 07 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Irish History Podcast – The Sinking of the Lusitania</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-07.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-09-07</guid>
+      <pubDate>Mon, 07 Sep 2026 00:00:00 GMT</pubDate>
+      <category>Historia</category>
+      <description>Den 7 maj 1915 torpederades RMS Lusitania av en tysk ubåt utanför Irlands kust – hälften av de ombordvarande kom aldrig därifrån. Irish History Podcast skildrar den dramatiska förlisningen och förklarar vad som hände ombord när den enorma oceanlinern sänktes utanför Cork.</description>
+    </item>
     <item>
       <title>Aftermath – The Hunt for the Anthrax Killer</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-06.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Sun, 05 Jul 2026 00:00:00 GMT</pubDate>
       <category>Dokumentär</category>
       <description>Ett fristående reportage från Sveriges Radio om pionjärerna som utforskade Nordsjöns djup, ett ämne som sällan behandlas i svensk dokumentär. Av en engagerad lyssnare på r/sweden utnämnd till en av SR:s starkaste dokumentärer, just för att programmet lyckas göra ett tekniskt och udda ämne till en medryckande ljudupplevelse.</description>
-    </item>
-    <item>
-      <title>HISTORY This Week – Saladin Takes Back the Holy City</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-07-04.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-07-04</guid>
-      <pubDate>Sat, 04 Jul 2026 00:00:00 GMT</pubDate>
-      <category>Historia</category>
-      <description>HISTORY This Week gör varje avsnitt ett avgränsat nedslag i en historisk händelse, och det här avsnittet fördjupar sig i den muslimske sultanen Saladin och hans fälttåg 1187. Berättelsen följer trupperna när de inringar den heliga staden och utnyttjar sitt numerära övertag mot korsfararna. Upplägget är koncentrerat och berättande, och fungerar som ett fristående smakprov på korstågens mest dramatiska maktskifte.</description>
     </item>
   </channel>
 </rss>

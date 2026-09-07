@@ -1,5 +1,37 @@
 [
   {
+    "date": "2026-09-07",
+    "episode_title": "The Sinking of the Lusitania",
+    "show_name": "Irish History Podcast",
+    "show_slug": "irish-history-podcast",
+    "hosts": "Fin Dwyer",
+    "genre": "Historia",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "RMS Lusitania avseglar på sin jungfruresa 1907",
+    "day_connection": "Avsnittet handlar om RMS Lusitania, vars jungfruresa från Liverpool till New York ägde rum just den 7 september 1907.",
+    "why_great": "Den 7 maj 1915 torpederades RMS Lusitania av en tysk ubåt utanför Irlands kust – hälften av de ombordvarande kom aldrig därifrån. Irish History Podcast skildrar den dramatiska förlisningen och förklarar vad som hände ombord när den enorma oceanlinern sänktes utanför Cork.",
+    "listen_links": {
+      "web": "https://music.amazon.com/podcasts/55c1a098-2f08-488e-9ab6-4701e211e083/episodes/ddaa4a7e-1ed2-4b9d-bd39-0cc546388084/irish-history-podcast-the-sinking-of-the-lusitania",
+      "apple": "https://podcasts.apple.com/se/podcast/the-sinking-of-the-lusitania/id363368392?i=1000784212718&uo=4",
+      "spotify": "https://open.spotify.com/search/Irish%20History%20Podcast%20The%20Sinking%20of%20the%20Lusitania"
+    },
+    "sources": [
+      {
+        "title": "The Sinking of the Lusitania – Irish History Podcast",
+        "url": "https://music.amazon.com/podcasts/55c1a098-2f08-488e-9ab6-4701e211e083/episodes/ddaa4a7e-1ed2-4b9d-bd39-0cc546388084/irish-history-podcast-the-sinking-of-the-lusitania"
+      }
+    ],
+    "audio": {
+      "url": "https://sphinx.acast.com/p/acast/s/irishhistory/e/6a843994ebac478aad54c942/media.mp3",
+      "type": "audio/mpeg",
+      "length": "60166895",
+      "durationSec": 3760
+    },
+    "created_at": "2026-09-07T05:33:02.710Z"
+  },
+  {
     "date": "2026-09-06",
     "episode_title": "The Hunt for the Anthrax Killer",
     "show_name": "Aftermath",

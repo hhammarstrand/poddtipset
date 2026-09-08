@@ -1,5 +1,40 @@
 [
   {
+    "date": "2026-09-08",
+    "episode_title": "Elizabeth II: The Making of the Queen",
+    "show_name": "Dan Snow's History Hit",
+    "show_slug": "dan-snow-s-history-hit",
+    "hosts": "Dan Snow",
+    "genre": "Historia",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "Elizabeth II, Storbritanniens regerande drottning, avlider",
+    "day_connection": "Avsnittet är en biografi över Elizabeth II, som avled den 8 september 2022.",
+    "why_great": "Dan Snow bjuder in historikern Kate Williams för att gå igenom Elizabeth II:s uppväxt och tonår under andra världskriget – den period som formade den blivande drottningen. Avsnittet är en koncentrerad biografisk lektion i regi av en prisbelönt brittisk historieproducent. För den som vill förstå hur en ung prinsessa blev Storbritanniens längst regerande monark är det här en utmärkt ingång.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/elizabeth-ii-the-making-of-the-queen/id1042631089?i=1000578866250&uo=4",
+      "spotify": "https://open.spotify.com/search/Dan%20Snow's%20History%20Hit%20Elizabeth%20II%3A%20The%20Making%20of%20the%20Queen"
+    },
+    "sources": [
+      {
+        "title": "Dan Snow's History Hit – Apple Podcasts",
+        "url": "https://podcasts.apple.com/us/podcast/dan-snows-history-hit/id1042631089"
+      },
+      {
+        "title": "Elizabeth II: The Making of the Queen – Apple Podcasts",
+        "url": "https://podcasts.apple.com/us/podcast/elizabeth-ii-the-making-of-the-queen/id1042631089?i=1000578866250"
+      }
+    ],
+    "audio": {
+      "url": "https://sphinx.acast.com/p/acast/s/dansnowshistoryhit/e/65e86072f7895700166746d8/media.mp3?tk=eyJ0ayI6ImRlZmF1bHQiLCJhZHMiOnRydWUsInNwb25zIjp0cnVlLCJzdGF0dXMiOiJwdWJsaWMifQ==&amp;sig=4whqo-MAuU-3_aTK-RwzHg-M__bp3e9ogkR7RwOGAig",
+      "type": "audio/mpeg",
+      "length": "60764395",
+      "durationSec": 2524
+    },
+    "created_at": "2026-09-08T05:24:36.632Z"
+  },
+  {
     "date": "2026-09-07",
     "episode_title": "The Sinking of the Lusitania",
     "show_name": "Irish History Podcast",

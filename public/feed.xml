@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Tue, 08 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 09 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>TuneDig – Otis Redding&#39;s &quot;Otis Blue&quot;</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-09.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-09-09</guid>
+      <pubDate>Wed, 09 Sep 2026 00:00:00 GMT</pubDate>
+      <category>Kultur</category>
+      <description>Ett avsnitt som berättar historien om hur ett enda dygn 1965 räckte för att Otis Redding skulle fånga ett av soulmusikens mest hyllade album. Det är en tät, fokuserad berättelse om en artist i absolut toppform och om hur kreativitet kan explodera under tidspress.</description>
+    </item>
     <item>
       <title>Dan Snow&#39;s History Hit – Elizabeth II: The Making of the Queen</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-08.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
       <category>Kultur</category>
       <description>99% Invisible har byggt sitt rykte kring berättelser om design och arkitektur, och avsnittet The Architect of Hollywood toppar Buzzfeeds lista över livsomvälvande poddavsnitt. Det är ett typexempel på vad podden gör bäst: att hitta de stora berättelserna bakom detaljerna i vår byggda miljö.</description>
-    </item>
-    <item>
-      <title>Warfare – The Life of Anne Frank</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-07-06.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-07-06</guid>
-      <pubDate>Mon, 06 Jul 2026 00:00:00 GMT</pubDate>
-      <category>Historia</category>
-      <description>Ett avsnitt om Anne Franks liv, som utforskar hur hon och hennes familj tvingades gå under jorden i det nazistockuperade Amsterdam. Avsnittet markerar 80 år sedan händelsen och lyfter fram Anne Frank som en av historiens mest kända judiska offer.</description>
     </item>
   </channel>
 </rss>

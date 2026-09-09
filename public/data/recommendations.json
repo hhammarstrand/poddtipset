@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-09-09",
+    "episode_title": "Otis Redding's \"Otis Blue\"",
+    "show_name": "TuneDig",
+    "show_slug": "tunedig",
+    "hosts": "",
+    "genre": "Kultur",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "Den amerikanske soulsångaren Otis Redding föds",
+    "day_connection": "Avsnittet handlar om just Otis Redding och inspelningen av hans mest hyllade album.",
+    "why_great": "Ett avsnitt som berättar historien om hur ett enda dygn 1965 räckte för att Otis Redding skulle fånga ett av soulmusikens mest hyllade album. Det är en tät, fokuserad berättelse om en artist i absolut toppform och om hur kreativitet kan explodera under tidspress.",
+    "listen_links": {
+      "spotify": "https://open.spotify.com/episode/5Fk2Xt4dklZ17ts0Db4Bje",
+      "apple": "https://podcasts.apple.com/se/podcast/episode-030-otis-reddings-otis-blue-otis-redding-sings-soul/id1369617702?i=1000499030957&uo=4"
+    },
+    "sources": [
+      {
+        "title": "Episode 030: Otis Redding's \"Otis Blue\" – TuneDig",
+        "url": "https://open.spotify.com/episode/5Fk2Xt4dklZ17ts0Db4Bje"
+      }
+    ],
+    "audio": {
+      "url": "https://api.spreaker.com/download/episode/20670523/landr_otis_1_0_1_mixdown_matched_low_balanced.mp3",
+      "type": "audio/mpeg",
+      "length": "123229040",
+      "durationSec": 3081
+    },
+    "created_at": "2026-09-09T05:28:56.186Z"
+  },
+  {
     "date": "2026-09-08",
     "episode_title": "Elizabeth II: The Making of the Queen",
     "show_name": "Dan Snow's History Hit",

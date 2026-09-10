@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Wed, 09 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 10 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Radiolab – The Buried Bodies Case</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-10.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-09-10</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
+      <category>True crime</category>
+      <description>I en Reddit-tråd där lyssnare delar sina mest extrema och minnesvärda true crime-upplevelser lyfts Radiolabs The Buried Bodies Case fram som ett av de mest oförglömliga podcastavsnitten. Det nämns tillsammans med andra hyllade berättelser när genren diskuteras som allra mest fängslande.</description>
+    </item>
     <item>
       <title>TuneDig – Otis Redding&#39;s &quot;Otis Blue&quot;</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-09.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Wed, 08 Jul 2026 00:00:00 GMT</pubDate>
       <category>Dokumentär</category>
       <description>Det här avsnittet av NPR:s Rough Translation har hyllats av lyssnare för sin starka berättelse om hopp och överlevnad med rötter i en somalisk kontext. Det är den typ av närgången dokumentärjournalistik podden är känd för. I en uppmärksammad Reddit-tråd om rörande poddavsnitt lyfts just detta avsnitt fram som det mest gripande som en enskild lyssnare har hört.</description>
-    </item>
-    <item>
-      <title>99% Invisible – The Architect of Hollywood</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-07-07.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-07-07</guid>
-      <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
-      <category>Kultur</category>
-      <description>99% Invisible har byggt sitt rykte kring berättelser om design och arkitektur, och avsnittet The Architect of Hollywood toppar Buzzfeeds lista över livsomvälvande poddavsnitt. Det är ett typexempel på vad podden gör bäst: att hitta de stora berättelserna bakom detaljerna i vår byggda miljö.</description>
     </item>
   </channel>
 </rss>

@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-09-10",
+    "episode_title": "The Buried Bodies Case",
+    "show_name": "Radiolab",
+    "show_slug": "radiolab",
+    "hosts": "",
+    "genre": "True crime",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "I en Reddit-tråd där lyssnare delar sina mest extrema och minnesvärda true crime-upplevelser lyfts Radiolabs The Buried Bodies Case fram som ett av de mest oförglömliga podcastavsnitten. Det nämns tillsammans med andra hyllade berättelser när genren diskuteras som allra mest fängslande.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/the-buried-bodies-case/id152249110?i=1000369997245&uo=4",
+      "spotify": "https://open.spotify.com/search/Radiolab%20The%20Buried%20Bodies%20Case"
+    },
+    "sources": [
+      {
+        "title": "The craziest most insane true crime episode you've ever heard - Reddit",
+        "url": "https://www.reddit.com/r/podcasts/comments/1qpq807/the_craziest_most_insane_true_crime_episode_youve/"
+      }
+    ],
+    "audio": {
+      "url": "https://pscrb.fm/rss/p/mgln.ai/e/14/prfx.byspotify.com/e/dts.podtrac.com/pts/redirect.mp3/waaa.wnyc.org/758af4c0-a2c3-47ec-a2d8-05f41bfbde51/episodes/af84f135-66cc-4b36-950f-de7e7650efbc/audio/128/default.mp3?aid=rss_feed&amp;awCollectionId=758af4c0-a2c3-47ec-a2d8-05f41bfbde51&amp;awEpisodeId=af84f135-66cc-4b36-950f-de7e7650efbc&amp;feed=EmVW7VGp",
+      "type": "audio/mpeg",
+      "length": "46205502",
+      "durationSec": 2884
+    },
+    "created_at": "2026-09-10T05:31:29.177Z"
+  },
+  {
     "date": "2026-09-09",
     "episode_title": "Otis Redding's \"Otis Blue\"",
     "show_name": "TuneDig",

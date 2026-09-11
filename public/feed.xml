@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Thu, 10 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 11 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Empire – Origins of the Israel-Palestine Conflict</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-11.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-09-11</guid>
+      <pubDate>Fri, 11 Sep 2026 00:00:00 GMT</pubDate>
+      <category>Historia</category>
+      <description>I det här avsnittet av Empire tar William Dalrymple och Anita Anand sig an en av vår tids mest infekterade konflikter och spårar dess historiska rötter. Med utgångspunkt i Balfour-deklarationen 1917, då den brittiska regeringen deklarerade sin avsikt att skapa ett judiskt hem i Palestina, visar de hur ett hundra år gammalt dokument fortfarande formar geopolitiken. Avsnittet är ett typexempel på poddens metod att lyfta blicken från enskilda händelser till de imperiella strukturer som format…</description>
+    </item>
     <item>
       <title>Radiolab – The Buried Bodies Case</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-10.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Thu, 09 Jul 2026 00:00:00 GMT</pubDate>
       <category>Historia</category>
       <description>Majrevolutionen 1810 är den händelse som inleder Argentinas långa väg bort från det spanska imperiet – ett ämne som sällan får plats på anglosaxiska historiepoddar. Här samtalar /u/EnclavedMicrostate med Seb Lewin (aquatermain) i en konversation där de går igenom förutsättningarna och förloppet kring revolutionen i Buenos Aires. AskHistorians-podden görs i samarbete med det stora r/AskHistorians-forumet och brukar bjuda in flairade ämnesspecialister som kan gå på djupet utan att tappa i nyanser.</description>
-    </item>
-    <item>
-      <title>Rough Translation – Anna in Somalia</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-07-08.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-07-08</guid>
-      <pubDate>Wed, 08 Jul 2026 00:00:00 GMT</pubDate>
-      <category>Dokumentär</category>
-      <description>Det här avsnittet av NPR:s Rough Translation har hyllats av lyssnare för sin starka berättelse om hopp och överlevnad med rötter i en somalisk kontext. Det är den typ av närgången dokumentärjournalistik podden är känd för. I en uppmärksammad Reddit-tråd om rörande poddavsnitt lyfts just detta avsnitt fram som det mest gripande som en enskild lyssnare har hört.</description>
     </item>
   </channel>
 </rss>

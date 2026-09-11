@@ -1,5 +1,40 @@
 [
   {
+    "date": "2026-09-11",
+    "episode_title": "Origins of the Israel-Palestine Conflict",
+    "show_name": "Empire",
+    "show_slug": "empire",
+    "hosts": "William Dalrymple och Anita Anand",
+    "genre": "Historia",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "I det här avsnittet av Empire tar William Dalrymple och Anita Anand sig an en av vår tids mest infekterade konflikter och spårar dess historiska rötter. Med utgångspunkt i Balfour-deklarationen 1917, då den brittiska regeringen deklarerade sin avsikt att skapa ett judiskt hem i Palestina, visar de hur ett hundra år gammalt dokument fortfarande formar geopolitiken. Avsnittet är ett typexempel på poddens metod att lyfta blicken från enskilda händelser till de imperiella strukturer som format världen vi lever i.",
+    "listen_links": {
+      "spotify": "https://open.spotify.com/episode/67Mz5XslS4pPwGtIfGoyYJ",
+      "apple": "https://podcasts.apple.com/se/podcast/40-origins-of-the-israel-palestine-conflict/id1639561921?i=1000606210302&uo=4"
+    },
+    "sources": [
+      {
+        "title": "40. Origins of the Israel-Palestine Conflict – Empire (Spotify)",
+        "url": "https://open.spotify.com/episode/67Mz5XslS4pPwGtIfGoyYJ"
+      },
+      {
+        "title": "Origins of the Israel-Palestine Conflict (YouTube)",
+        "url": "https://www.youtube.com/watch?v=5UnvVlFoPMI"
+      }
+    ],
+    "audio": {
+      "url": "https://pdst.fm/e/traffic.megaphone.fm/NSR5208594821.mp3?updated=1703675260",
+      "type": "audio/mpeg",
+      "length": "0",
+      "durationSec": 2989
+    },
+    "created_at": "2026-09-11T05:22:20.844Z"
+  },
+  {
     "date": "2026-09-10",
     "episode_title": "The Buried Bodies Case",
     "show_name": "Radiolab",

@@ -1,5 +1,40 @@
 [
   {
+    "date": "2026-09-12",
+    "episode_title": "Ostindiefararen Götheborg",
+    "show_name": "Vrakpodden",
+    "show_slug": "vrakpodden",
+    "hosts": "Vrakpodden",
+    "genre": "Historia",
+    "language": "sv",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "Ostindiefararen Götheborg går på grund utanför Göteborg och förliser (1745)",
+    "day_connection": "Avsnittet handlar om just detta skepps sista resa och förlisningen utanför Göteborg.",
+    "why_great": "Vrakpoddens avsnitt om Götheborg berättar historien om det svenska ostindiefararskeppet som gick på grund bara några hundra meter från hemmahamnen efter en flera tusen mil lång resa. Skeppsbyggmästare Joakim Severinsson bidrar med teknisk sakkunskap om hur fartyget var byggt och vad som finns kvar av vraket idag. Det blir en koncentrerad dokumentär om en av svensk sjöfartshistorias mest dramatiska förlisningar.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/ostindiefararen-g%C3%B6theborg/id1656220091?i=1000587375742&uo=4",
+      "spotify": "https://open.spotify.com/search/Vrakpodden%20Ostindiefararen%20G%C3%B6theborg"
+    },
+    "sources": [
+      {
+        "title": "Ostindiefararen Götheborg – Vrakpodden (Apple Podcasts)",
+        "url": "https://podcasts.apple.com/us/podcast/ostindiefararen-g%C3%B6theborg/id1656220091?i=1000587375742"
+      },
+      {
+        "title": "Götheborg på grund – Historisk kuriosa",
+        "url": "https://www.historiskkuriosa.se/gotheborg-pa-grund/"
+      }
+    ],
+    "audio": {
+      "url": "https://streamio.com/api/v1/podcasts/6077e3f06f8d8db805000001/episode/631f1ae16f8d8dd208000007.mp3",
+      "type": "audio/mpeg",
+      "length": "29367138",
+      "durationSec": 1468
+    },
+    "created_at": "2026-09-12T05:16:32.354Z"
+  },
+  {
     "date": "2026-09-11",
     "episode_title": "Origins of the Israel-Palestine Conflict",
     "show_name": "Empire",

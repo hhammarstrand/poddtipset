@@ -1,5 +1,40 @@
 [
   {
+    "date": "2026-09-13",
+    "episode_title": "De kallades Sveriges Bonnie & Clyde",
+    "show_name": "P1 Dokumentär",
+    "show_slug": "p1-dokumentar",
+    "hosts": "",
+    "genre": "True crime",
+    "language": "sv",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "En fristående dokumentär från Sveriges Radios P1 Dokumentär om det svenska brottspar som kallades Bonnie & Clyde. Poddens signum är avslöjanden och unika berättelser om vår tid, och avsnittet – som sänds i repris – är ett typexempel på den långa dokumentärtraditionen från Sveriges Radio, med en komplett berättelse som fungerar utan förkunskaper.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/de-kallades-sveriges-bonnie-clyde-r/id302534426?i=1000748499776&uo=4",
+      "spotify": "https://open.spotify.com/search/P1%20Dokument%C3%A4r%20De%20kallades%20Sveriges%20Bonnie%20%26%20Clyde"
+    },
+    "sources": [
+      {
+        "title": "P1 Dokumentär – Podme",
+        "url": "https://podme.com/no/podkast/p1-dokumentar/?page=5"
+      },
+      {
+        "title": "P1 Dokumentär (Podcast) – Podchaser",
+        "url": "https://www.podchaser.com/podcasts/p1-dokumentar-494434"
+      }
+    ],
+    "audio": {
+      "url": "https://static-cdn.sr.se/laddahem/podradio/2026/02/program_p1_dokumentar_20190707_1503_20_20260206_0920561995.mp3",
+      "type": "audio/mpeg",
+      "length": "49625019",
+      "durationSec": 3101
+    },
+    "created_at": "2026-09-13T05:28:19.086Z"
+  },
+  {
     "date": "2026-09-12",
     "episode_title": "Ostindiefararen Götheborg",
     "show_name": "Vrakpodden",

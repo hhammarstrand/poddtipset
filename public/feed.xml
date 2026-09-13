@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Sat, 12 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 13 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>P1 Dokumentär – De kallades Sveriges Bonnie &amp; Clyde</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-13.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-09-13</guid>
+      <pubDate>Sun, 13 Sep 2026 00:00:00 GMT</pubDate>
+      <category>True crime</category>
+      <description>En fristående dokumentär från Sveriges Radios P1 Dokumentär om det svenska brottspar som kallades Bonnie &amp; Clyde. Poddens signum är avslöjanden och unika berättelser om vår tid, och avsnittet – som sänds i repris – är ett typexempel på den långa dokumentärtraditionen från Sveriges Radio, med en komplett berättelse som fungerar utan förkunskaper.</description>
+    </item>
     <item>
       <title>Vrakpodden – Ostindiefararen Götheborg</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-12.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Sat, 11 Jul 2026 00:00:00 GMT</pubDate>
       <category>Berättande</category>
       <description>Relevant Magazine har utsett avsnittet till ett av de sju mest rörande poddavsnitt som någonsin skapats. Radiolab är känt för sin särpräglade blandning av vetenskap, personliga berättelser och experimentell ljuddesign, och det här avsnittet lyfts fram som ett tydligt exempel på vad poddformatet kan åstadkomma när det är som starkast.</description>
-    </item>
-    <item>
-      <title>Gone Medieval – King Cnut &amp; the End of the Viking Age</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-07-10.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-07-10</guid>
-      <pubDate>Fri, 10 Jul 2026 00:00:00 GMT</pubDate>
-      <category>Historia</category>
-      <description>Arkeologen Cat Jarman samtalar med medeltidshistorikern Dr Caitlin Ellis om den danske kungen Cnut – hans politiska maskineri, hans kulturella arv och den brytningstid där vikingatiden går mot sitt slut. Avsnittet fungerar som en fristående ingång i en av Nordens mest mytomspunna regenter och sätter hans styre i ett europeiskt sammanhang.</description>
     </item>
   </channel>
 </rss>

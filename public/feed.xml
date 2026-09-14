@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Sun, 13 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 14 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Crime Junkie – Missing: Maura Murray</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-14.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-09-14</guid>
+      <pubDate>Mon, 14 Sep 2026 00:00:00 GMT</pubDate>
+      <category>True crime</category>
+      <description>Crime Junkie ligger etta på Apples topplista för true crime, och avsnittet om Maura Murray finns med på The Everygirls lista över de tio bästa true crime-avsnitten någonsin. Forskningsarbetet kring det omtalade amerikanska försvinnandet hör till poddens mest delade och refererade berättelser och fungerar som en utmärkt ingång till den typ av noggranna casegenomgångar som format genren.</description>
+    </item>
     <item>
       <title>P1 Dokumentär – De kallades Sveriges Bonnie &amp; Clyde</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-13.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Sun, 12 Jul 2026 00:00:00 GMT</pubDate>
       <category>Intervju</category>
       <description>Louis Theroux samtalar med Malala Yousafzai i ett avsnitt som rör sig bortom den etablerade hjältebilden. Yousafzai, världens yngsta nobelpristagare, talar utförligt om hur islam ofta missförstås i västerländsk media, om den talibanska regimens behandling av kvinnor och om sina egna erfarenheter kring äktenskapsfrågan. Theroux är en av de skickligaste intervjuarna i brittisk dokumentärtradition, och hans respektfulla men nyfikna frågor skapar utrymme för nyanser kring religion och kvinnlig…</description>
-    </item>
-    <item>
-      <title>Radiolab – 23 Weeks 6 Days</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-07-11.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-07-11</guid>
-      <pubDate>Sat, 11 Jul 2026 00:00:00 GMT</pubDate>
-      <category>Berättande</category>
-      <description>Relevant Magazine har utsett avsnittet till ett av de sju mest rörande poddavsnitt som någonsin skapats. Radiolab är känt för sin särpräglade blandning av vetenskap, personliga berättelser och experimentell ljuddesign, och det här avsnittet lyfts fram som ett tydligt exempel på vad poddformatet kan åstadkomma när det är som starkast.</description>
     </item>
   </channel>
 </rss>

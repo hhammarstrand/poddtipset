@@ -1,5 +1,40 @@
 [
   {
+    "date": "2026-09-14",
+    "episode_title": "Missing: Maura Murray",
+    "show_name": "Crime Junkie",
+    "show_slug": "crime-junkie",
+    "hosts": "Ashley Flowers och Brit Prawat",
+    "genre": "True crime",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Crime Junkie ligger etta på Apples topplista för true crime, och avsnittet om Maura Murray finns med på The Everygirls lista över de tio bästa true crime-avsnitten någonsin. Forskningsarbetet kring det omtalade amerikanska försvinnandet hör till poddens mest delade och refererade berättelser och fungerar som en utmärkt ingång till den typ av noggranna casegenomgångar som format genren.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/missing-maura-murray-new/id1322200189?i=1000644182376&uo=4",
+      "spotify": "https://open.spotify.com/search/Crime%20Junkie%20Missing%3A%20Maura%20Murray"
+    },
+    "sources": [
+      {
+        "title": "The 10 Best True-Crime Podcast Episodes",
+        "url": "https://theeverygirl.com/true-crime-podcast-episodes/"
+      },
+      {
+        "title": "Top Podcast Charts",
+        "url": "https://podcasts.apple.com/us/charts?genre=1488"
+      }
+    ],
+    "audio": {
+      "url": "https://tracking.swap.fm/track/fxUKVg2nSMaPSHLeKNKH/pscrb.fm/rss/p/dts.podtrac.com/redirect.mp3/rsv.simplecastaudio.com/ec74d48c-cbf1-4764-923e-7d584dce50fa/episodes/8f2a337d-e599-4983-8d47-5cb577a920a1/audio/128/default.mp3?aid=rss_feed&amp;awCollectionId=ec74d48c-cbf1-4764-923e-7d584dce50fa&amp;awEpisodeId=8f2a337d-e599-4983-8d47-5cb577a920a1&amp;feed=qm_9xx0g",
+      "type": "audio/mpeg",
+      "length": "73461302",
+      "durationSec": 4586
+    },
+    "created_at": "2026-09-14T05:36:31.107Z"
+  },
+  {
     "date": "2026-09-13",
     "episode_title": "De kallades Sveriges Bonnie & Clyde",
     "show_name": "P1 Dokumentär",

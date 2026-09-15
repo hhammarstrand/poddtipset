@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Mon, 14 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 15 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>MEDVIND – Airbus A380</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-15.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-09-15</guid>
+      <pubDate>Tue, 15 Sep 2026 00:00:00 GMT</pubDate>
+      <category>Teknik</category>
+      <description>Ett helt avsnitt vigt åt Airbus A380, världens största passagerarflygplan. Avsnittet går igenom flygplanets historia och lyfter fram varför Airbus valde att satsa på att bygga ett extra stort passagerarflygplan. En koncentrerad och lättillgänglig genomgång för den som vill förstå ett av flygbranschens mest ambitiösa ingenjörsprojekt.</description>
+    </item>
     <item>
       <title>Crime Junkie – Missing: Maura Murray</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-14.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Mon, 13 Jul 2026 00:00:00 GMT</pubDate>
       <category>Historia</category>
       <description>HistoryExtra hör hemma hos BBC History Magazine och har formats till ett prisbelönt poddprojekt där erfarna historiker veckovis tar sig an centrala gestalter och händelser. Avsnittet Alexander the Great: life of the week ingår i serien som ger koncentrerade biografiska essäer – den här gången om den makedonske fältherre som på ett drygt decennium reste ett imperium som sträckte sig från Grekland till Indien, ett av antikens mest omtalade militära och politiska projekt.</description>
-    </item>
-    <item>
-      <title>The Louis Theroux Podcast – Malala Yousafzai discusses misrepresentations of Islam, the Taliban&#39;s &#39;gender apartheid&#39;, and her views on marriage</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-07-12.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-07-12</guid>
-      <pubDate>Sun, 12 Jul 2026 00:00:00 GMT</pubDate>
-      <category>Intervju</category>
-      <description>Louis Theroux samtalar med Malala Yousafzai i ett avsnitt som rör sig bortom den etablerade hjältebilden. Yousafzai, världens yngsta nobelpristagare, talar utförligt om hur islam ofta missförstås i västerländsk media, om den talibanska regimens behandling av kvinnor och om sina egna erfarenheter kring äktenskapsfrågan. Theroux är en av de skickligaste intervjuarna i brittisk dokumentärtradition, och hans respektfulla men nyfikna frågor skapar utrymme för nyanser kring religion och kvinnlig…</description>
     </item>
   </channel>
 </rss>

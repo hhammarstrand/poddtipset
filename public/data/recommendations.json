@@ -1,5 +1,40 @@
 [
   {
+    "date": "2026-09-15",
+    "episode_title": "Airbus A380",
+    "show_name": "MEDVIND",
+    "show_slug": "medvind",
+    "hosts": "",
+    "genre": "Teknik",
+    "language": "sv",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "Världens största passagerarflygplan, Airbus A380 från tyska Lufthansa, landar för första gången på svensk mark.",
+    "day_connection": "Avsnittet handlar om just Airbus A380 – flygplanet som 2010 för första gången landade på Arlanda.",
+    "why_great": "Ett helt avsnitt vigt åt Airbus A380, världens största passagerarflygplan. Avsnittet går igenom flygplanets historia och lyfter fram varför Airbus valde att satsa på att bygga ett extra stort passagerarflygplan. En koncentrerad och lättillgänglig genomgång för den som vill förstå ett av flygbranschens mest ambitiösa ingenjörsprojekt.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/airbus-a380/id1459514063?i=1000706519158&uo=4",
+      "spotify": "https://open.spotify.com/search/MEDVIND%20Airbus%20A380"
+    },
+    "sources": [
+      {
+        "title": "Airbus A380–MEDVIND",
+        "url": "https://podcasts.apple.com/gb/podcast/airbus-a380/id1459514063?i=1000706519158"
+      },
+      {
+        "title": "MEDVIND podcast",
+        "url": "https://metacast.app/podcast/medvind/aVWWcRFB"
+      }
+    ],
+    "audio": {
+      "url": "https://sphinx.acast.com/p/acast/s/travelhacks/e/681a045bf30c20bff78b5e66/media.mp3",
+      "type": "audio/mpeg",
+      "length": "30458493",
+      "durationSec": 2175
+    },
+    "created_at": "2026-09-15T05:31:21.257Z"
+  },
+  {
     "date": "2026-09-14",
     "episode_title": "Missing: Maura Murray",
     "show_name": "Crime Junkie",

@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Tue, 15 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 16 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>P3 Dokumentär – Mordet på Lisa Holm</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-16.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-09-16</guid>
+      <pubDate>Wed, 16 Sep 2026 00:00:00 GMT</pubDate>
+      <category>True crime</category>
+      <description>Avsnittet om mordet på Lisa Holm intar tredjeplatsen på Expressens lista över P3 Dokumentärs mest lyssnade avsnitt genom tiderna. Berättelsen om det uppmärksammade mordfallet hör till poddens mest omtalade och spelade episoder. Det representerar den tunga samtidshistoria som format P3 Dokumentär till Sveriges största podd för dokumentärt berättande.</description>
+    </item>
     <item>
       <title>MEDVIND – Airbus A380</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-15.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Wed, 15 Jul 2026 00:00:00 GMT</pubDate>
       <category>Intervju</category>
       <description>Avsnitt #1169 med Elon Musk ligger etta på Podchasers lista över de femtiotvå bästa JRE-avsnitten genom tiderna. Samtalet från den 7 september 2018 är drygt två och en halv timme långt och rör sig från rymdprojekt och elbilar till AI och längre ut i filosofiska resonemang om framtiden, i den avslappnade långform som blivit JRE:s signum. Det är ett tydligt exempel på hur en stor gäst kan tala ostört i timmar utan att samtalet tappar gnista. För den som bara vill höra ett enda JRE-avsnitt är det…</description>
-    </item>
-    <item>
-      <title>HistoryExtra – Alexander the Great: life of the week</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-07-13.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-07-13</guid>
-      <pubDate>Mon, 13 Jul 2026 00:00:00 GMT</pubDate>
-      <category>Historia</category>
-      <description>HistoryExtra hör hemma hos BBC History Magazine och har formats till ett prisbelönt poddprojekt där erfarna historiker veckovis tar sig an centrala gestalter och händelser. Avsnittet Alexander the Great: life of the week ingår i serien som ger koncentrerade biografiska essäer – den här gången om den makedonske fältherre som på ett drygt decennium reste ett imperium som sträckte sig från Grekland till Indien, ett av antikens mest omtalade militära och politiska projekt.</description>
     </item>
   </channel>
 </rss>

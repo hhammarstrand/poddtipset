@@ -1,5 +1,35 @@
 [
   {
+    "date": "2026-09-18",
+    "episode_title": "The Irish Vanishing Triangle",
+    "show_name": "Morbid",
+    "show_slug": "morbid",
+    "hosts": "",
+    "genre": "True crime",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Avsnittet finns med på IMDB:s lista över de tio bästa Morbid-avsnitten. Listan lyfter det som ett av programmets starkaste utforskningar av ouppklarade försvinnanden, och titeln pekar mot den så kallade Irish Vanishing Triangle, ett av de mest mytomspunna fallen i modern irländsk true crime. Morbid ligger dessutom på tredje plats på Apple Podcasts topplista för True crime i USA just nu. (Explicit content.)",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/the-irish-vanishing-triangle-part-1/id1379959217?i=1000485134918&uo=4",
+      "spotify": "https://open.spotify.com/search/Morbid%20The%20Irish%20Vanishing%20Triangle"
+    },
+    "sources": [
+      {
+        "title": "The 10 Best Morbid: A True Crime Podcast Episodes Ranked",
+        "url": "https://www.imdb.com/news/ni64573191/"
+      },
+      {
+        "title": "Top Podcast Charts – True Crime",
+        "url": "https://podcasts.apple.com/us/charts?genre=1488"
+      }
+    ],
+    "audio": null,
+    "created_at": "2026-09-18T05:20:36.233Z"
+  },
+  {
     "date": "2026-09-16",
     "episode_title": "Mordet på Lisa Holm",
     "show_name": "P3 Dokumentär",

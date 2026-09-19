@@ -1,5 +1,40 @@
 [
   {
+    "date": "2026-09-19",
+    "episode_title": "Invasion of the Vibe Snatchers",
+    "show_name": "Switched On Pop",
+    "show_slug": "switched-on-pop",
+    "hosts": "Nate Sloan och Charlie Harding",
+    "genre": "Kultur",
+    "language": "en",
+    "year": 2022,
+    "duration_minutes": 28,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Avsnittet finns med på en sammanställning av de arton bästa musikpoddavsnitten som publicerades på cantgetmuchhigher.com och diskuterades flitigt på Reddit. Switched On Pop är en musikpodd som analyserar den moderna popmusiken – det här avsnittet från 2022 lyfts fram som ett av poddens starkaste.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/invasion-of-the-vibe-snatchers/id934552872?i=1000579360582&uo=4",
+      "spotify": "https://open.spotify.com/search/Switched%20On%20Pop%20Invasion%20of%20the%20Vibe%20Snatchers"
+    },
+    "sources": [
+      {
+        "title": "The 18 Best Podcast Episodes about Music",
+        "url": "https://www.cantgetmuchhigher.com/p/the-18-best-podcast-episodes-about"
+      },
+      {
+        "title": "The 18 Best Podcast Episodes about Music - Reddit-diskussion",
+        "url": "https://www.reddit.com/r/podcasts/comments/1lljheg/the_18_best_podcast_episodes_about_music/"
+      }
+    ],
+    "audio": {
+      "url": "https://www.podtrac.com/pts/redirect.mp3/pdst.fm/e/pscrb.fm/rss/p/mgln.ai/e/257/traffic.megaphone.fm/VMP1139455565.mp3?updated=1663091649",
+      "type": "audio/mpeg",
+      "length": "0",
+      "durationSec": 1555
+    },
+    "created_at": "2026-09-19T05:17:26.368Z"
+  },
+  {
     "date": "2026-09-18",
     "episode_title": "The Irish Vanishing Triangle",
     "show_name": "Morbid",

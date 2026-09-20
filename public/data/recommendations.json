@@ -1,5 +1,37 @@
 [
   {
+    "date": "2026-09-20",
+    "episode_title": "Jean-Bédel Bokassa's coronation",
+    "show_name": "Witness History",
+    "show_slug": "witness-history",
+    "hosts": "Janet Ball",
+    "genre": "Historia",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "Centralafrikanska republikens diktator Jean-Bédel Bokassa störtas (1979)",
+    "day_connection": "Avsnittet handlar om samma ledare som störtades den 20 september 1979 – Jean-Bédel Bokassas självutnämnda kejsarkroning 1977.",
+    "why_great": "BBC:s Witness History ger ordet till Jean-Charles Bokassa, son till diktatorn, som själv skildrar den spektakulära kejsarkroningen 1977. Avsnittet blir ett koncentrerat förstahandsperspektiv på en av efterkrigstidens mest extrema maktmanifestationer, när Jean-Bédel Bokassa lät kröna sig till kejsare av Centralafrikanska republiken. Kort, vasst och med en unik källa som gör historien svår att glömma.",
+    "listen_links": {
+      "web": "https://www.bbc.co.uk/programmes/w3ct4xg1",
+      "apple": "https://podcasts.apple.com/se/podcast/jean-b%C3%A9del-bokassas-coronation/id339986758?i=1000611420742&uo=4",
+      "spotify": "https://open.spotify.com/search/Witness%20History%20Jean-B%C3%A9del%20Bokassa's%20coronation"
+    },
+    "sources": [
+      {
+        "title": "Jean-Bédel Bokassa's coronation - Witness History",
+        "url": "https://www.bbc.co.uk/programmes/w3ct4xg1"
+      }
+    ],
+    "audio": {
+      "url": "http://open.live.bbc.co.uk/mediaselector/6/redir/version/2.0/mediaset/audio-nondrm-download-rss-low/proto/http/vpid/p0fhr0xp.mp3",
+      "type": "audio/mpeg",
+      "length": "4248000",
+      "durationSec": 531
+    },
+    "created_at": "2026-09-20T05:30:34.060Z"
+  },
+  {
     "date": "2026-09-19",
     "episode_title": "Invasion of the Vibe Snatchers",
     "show_name": "Switched On Pop",

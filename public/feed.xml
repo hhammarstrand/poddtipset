@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Sat, 19 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 20 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Witness History – Jean-Bédel Bokassa&#39;s coronation</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-20.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-09-20</guid>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 GMT</pubDate>
+      <category>Historia</category>
+      <description>BBC:s Witness History ger ordet till Jean-Charles Bokassa, son till diktatorn, som själv skildrar den spektakulära kejsarkroningen 1977. Avsnittet blir ett koncentrerat förstahandsperspektiv på en av efterkrigstidens mest extrema maktmanifestationer, när Jean-Bédel Bokassa lät kröna sig till kejsare av Centralafrikanska republiken. Kort, vasst och med en unik källa som gör historien svår att glömma.</description>
+    </item>
     <item>
       <title>Switched On Pop – Invasion of the Vibe Snatchers</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-19.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Sat, 18 Jul 2026 00:00:00 GMT</pubDate>
       <category>True crime</category>
       <description>Listad som ett av de 11 oförglömliga avsnitten av P3 Dokumentär i tidningen Feminas stora genomgång. Avsnittet om black metal-morden hör till de verkliga brott-dokumentärer som gjort P3 Dokumentär till en av Sveriges mest hyllade poddproduktioner.</description>
-    </item>
-    <item>
-      <title>The Portal – Werner Herzog</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-07-17.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-07-17</guid>
-      <pubDate>Fri, 17 Jul 2026 00:00:00 GMT</pubDate>
-      <category>Intervju</category>
-      <description>Eric Zimmer samtalar med den tyske filmregissören Werner Herzog i ett avsnitt som av många utsetts till ett av de bästa poddavsnitten som gjorts. Det placerar sig etta på Ethan Maurices topplista över de tolv bästa poddavsnitt han hört och har blivit en referenspunkt för vad en lång, fördjupande poddintervju kan vara. Avsnittet lyfts ofta fram som ett typexempel på hur en gästs hela livsberättelse kan rymmas i ett enda samtal.</description>
     </item>
   </channel>
 </rss>

@@ -1,5 +1,31 @@
 [
   {
+    "date": "2026-09-21",
+    "episode_title": "Green Day - American Idiot",
+    "show_name": "The Story Behind",
+    "show_slug": "the-story-behind",
+    "hosts": "",
+    "genre": "Kultur",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Ett avsnitt om Green Days ikoniska album American Idiot – den politiska punkrockopera där trion genomförde sin stora comeback. Programmet visar hur bandet lämnade 90-talets punkrötter för att skapa ett konceptalbum med tydlig samhällskritik, och värdena vrider samtidigt på de tekniska detaljerna, som hur kompressionen präglade mid-2000-talets musikproduktion.",
+    "listen_links": {
+      "spotify": "https://open.spotify.com/episode/1ZCRPcP4oBdG2S06fiKsoM",
+      "apple": "https://podcasts.apple.com/se/podcast/american-idiot-green-day-the-story-behind-the-album/id1698885985?i=1000667232786&uo=4"
+    },
+    "sources": [
+      {
+        "title": "The Story Behind: Green Day - American Idiot, Ep 35",
+        "url": "https://open.spotify.com/episode/1ZCRPcP4oBdG2S06fiKsoM"
+      }
+    ],
+    "audio": null,
+    "created_at": "2026-09-21T05:38:28.096Z"
+  },
+  {
     "date": "2026-09-20",
     "episode_title": "Jean-Bédel Bokassa's coronation",
     "show_name": "Witness History",

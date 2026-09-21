@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Sun, 20 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 21 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>The Story Behind – Green Day - American Idiot</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-21.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-09-21</guid>
+      <pubDate>Mon, 21 Sep 2026 00:00:00 GMT</pubDate>
+      <category>Kultur</category>
+      <description>Ett avsnitt om Green Days ikoniska album American Idiot – den politiska punkrockopera där trion genomförde sin stora comeback. Programmet visar hur bandet lämnade 90-talets punkrötter för att skapa ett konceptalbum med tydlig samhällskritik, och värdena vrider samtidigt på de tekniska detaljerna, som hur kompressionen präglade mid-2000-talets musikproduktion.</description>
+    </item>
     <item>
       <title>Witness History – Jean-Bédel Bokassa&#39;s coronation</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-20.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Sun, 19 Jul 2026 00:00:00 GMT</pubDate>
       <category>Intervju</category>
       <description>Marc Marons långa samtal med Barack Obama räknas till de mest uppmärksammade poddavsnitten någonsin och placeras på tredje plats i en sammanställning över tidernas bästa poddavsnitt. Avsnittet har blivit en referenspunkt för hela formatet och har citerats i otaliga listor över banbrytande poddmoment. Det är ett samtal i Marons karaktäristiskt avslappnade stil, där gästen får utrymme att tala fritt.</description>
-    </item>
-    <item>
-      <title>P3 Dokumentär – Black metal-morden</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-07-18.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-07-18</guid>
-      <pubDate>Sat, 18 Jul 2026 00:00:00 GMT</pubDate>
-      <category>True crime</category>
-      <description>Listad som ett av de 11 oförglömliga avsnitten av P3 Dokumentär i tidningen Feminas stora genomgång. Avsnittet om black metal-morden hör till de verkliga brott-dokumentärer som gjort P3 Dokumentär till en av Sveriges mest hyllade poddproduktioner.</description>
     </item>
   </channel>
 </rss>

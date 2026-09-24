@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Mon, 21 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 24 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Ologies – Extreme Meteorology (EL NIÑO) with Dr. Marshall Shepherd</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-24.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-09-24</guid>
+      <pubDate>Thu, 24 Sep 2026 00:00:00 GMT</pubDate>
+      <category>Vetenskap</category>
+      <description>Alie Ward bjuder in meteorologen Dr. Marshall Shepherd för att reda ut extremväder och El Niño – två ämnen som sällan förklaras på en gång utan att bli överväldigande. Avsnittet är en del av Ologies, en podcastserie där varje program är en fristående fördjupning i ett ämne med en namngiven expert.</description>
+    </item>
     <item>
       <title>The Story Behind – Green Day - American Idiot</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-21.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Tue, 21 Jul 2026 00:00:00 GMT</pubDate>
       <category>Intervju</category>
       <description>Ana Marie Cox bjöd in komikern W. Kamau Bell för ett samtal med den talande titeln Can You Win Three Emmys and Still Wonder If The Check Will Clear?. Frågan rör vid något många framgångsrika personer brottas med: hur förhåller sig yrkesmässig succé till faktisk ekonomisk och personlig trygghet? Avsnittet finns med på Peabody Awards-listan över hyllade poddavsnitt.</description>
-    </item>
-    <item>
-      <title>WTF – President Barack Obama</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-07-19.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-07-19</guid>
-      <pubDate>Sun, 19 Jul 2026 00:00:00 GMT</pubDate>
-      <category>Intervju</category>
-      <description>Marc Marons långa samtal med Barack Obama räknas till de mest uppmärksammade poddavsnitten någonsin och placeras på tredje plats i en sammanställning över tidernas bästa poddavsnitt. Avsnittet har blivit en referenspunkt för hela formatet och har citerats i otaliga listor över banbrytande poddmoment. Det är ett samtal i Marons karaktäristiskt avslappnade stil, där gästen får utrymme att tala fritt.</description>
     </item>
   </channel>
 </rss>

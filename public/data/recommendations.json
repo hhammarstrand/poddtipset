@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-09-24",
+    "episode_title": "Extreme Meteorology (EL NIÑO) with Dr. Marshall Shepherd",
+    "show_name": "Ologies",
+    "show_slug": "ologies",
+    "hosts": "Alie Ward",
+    "genre": "Vetenskap",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Alie Ward bjuder in meteorologen Dr. Marshall Shepherd för att reda ut extremväder och El Niño – två ämnen som sällan förklaras på en gång utan att bli överväldigande. Avsnittet är en del av Ologies, en podcastserie där varje program är en fristående fördjupning i ett ämne med en namngiven expert.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/extreme-meteorology-el-ni%C3%B1o-with-marshall-shepherd/id1278815517?i=1000789968199&uo=4",
+      "spotify": "https://open.spotify.com/search/Ologies%20Extreme%20Meteorology%20(EL%20NI%C3%91O)%20with%20Dr.%20Marshall%20Shepherd"
+    },
+    "sources": [
+      {
+        "title": "Ologies Episodes",
+        "url": "https://www.alieward.com/ologies"
+      }
+    ],
+    "audio": {
+      "url": "https://pdst.fm/e/dts.podtrac.com/redirect.mp3/stitcher.simplecastaudio.com/89060b63-e603-4297-b6e8-5a654e50244e/episodes/560de65f-7988-45cf-ae02-4dd135eb5c91/audio/128/default.mp3?aid=rss_feed&amp;awCollectionId=89060b63-e603-4297-b6e8-5a654e50244e&amp;awEpisodeId=560de65f-7988-45cf-ae02-4dd135eb5c91&amp;feed=FO6kxYGj",
+      "type": "audio/mpeg",
+      "length": "60999096",
+      "durationSec": 3812
+    },
+    "created_at": "2026-09-24T05:35:29.619Z"
+  },
+  {
     "date": "2026-09-21",
     "episode_title": "Green Day - American Idiot",
     "show_name": "The Story Behind",

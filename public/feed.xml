@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Thu, 24 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 25 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Serial – The Retrievals</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-25.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-09-25</guid>
+      <pubDate>Fri, 25 Sep 2026 00:00:00 GMT</pubDate>
+      <category>Dokumentär</category>
+      <description>The Retrievals från Serial har tilldelats en Peabody Award, ett av de tyngsta erkännanden en podcast kan få. Satsningen hör till de poddprojekt som Peabody-juryn själva lyfter fram som exempel på toppnivå, och Serial rankas genomgående som nummer ett inom undersökande journalistik i oberoende topplistor.</description>
+    </item>
     <item>
       <title>Ologies – Extreme Meteorology (EL NIÑO) with Dr. Marshall Shepherd</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-24.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Wed, 22 Jul 2026 00:00:00 GMT</pubDate>
       <category>Historia</category>
       <description>Avsnittet återvänder till de olympiska spelen i München 1972, när elva israeliska idrottare togs som gisslan och dödades under pågående tävlan. The Conflict går igenom händelseförloppet och hur världen reagerade i realtid på den gisslandramatik som förändrade säkerhetskulturen kring OS för lång tid framöver.</description>
-    </item>
-    <item>
-      <title>Past Due with Ana Marie Cox – Can You Win Three Emmys and Still Wonder If The Check Will Clear?</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-07-21.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-07-21</guid>
-      <pubDate>Tue, 21 Jul 2026 00:00:00 GMT</pubDate>
-      <category>Intervju</category>
-      <description>Ana Marie Cox bjöd in komikern W. Kamau Bell för ett samtal med den talande titeln Can You Win Three Emmys and Still Wonder If The Check Will Clear?. Frågan rör vid något många framgångsrika personer brottas med: hur förhåller sig yrkesmässig succé till faktisk ekonomisk och personlig trygghet? Avsnittet finns med på Peabody Awards-listan över hyllade poddavsnitt.</description>
     </item>
   </channel>
 </rss>

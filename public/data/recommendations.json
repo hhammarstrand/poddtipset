@@ -1,5 +1,45 @@
 [
   {
+    "date": "2026-09-26",
+    "episode_title": "The Parthenon",
+    "show_name": "The Ancients",
+    "show_slug": "the-ancients",
+    "hosts": "Tristan Hughes",
+    "genre": "Historia",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Hela avsnittet vigs åt Akropolis mest ikoniska byggnad, Parthenontemplet, med historikern Tristan Hughes som guide. Med sig har han Dr Maeve McHugh från University of Birmingham, som tar lyssnaren genom hur templet kom till, vad det symboliserade i sin samtid och varför resterna ännu reser sig över Aten efter mer än 2 000 år. Avsnittet blandar arkitektur, mytologi och politisk kontext på det sätt som gjort The Ancients till en av de mest hyllade historiepoddarna.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/the-parthenon-wonder-of-athens/id1520403988?i=1000665167130&uo=4",
+      "spotify": "https://open.spotify.com/episode/7cdYCgUmSNAICccthUk7kV",
+      "web": "https://shows.acast.com/the-ancients/episodes/the-parthenon"
+    },
+    "sources": [
+      {
+        "title": "The Parthenon - The Ancients",
+        "url": "https://shows.acast.com/the-ancients/episodes/the-parthenon"
+      },
+      {
+        "title": "The Parthenon - The Ancients | Podcast on Spotify",
+        "url": "https://open.spotify.com/episode/7cdYCgUmSNAICccthUk7kV"
+      },
+      {
+        "title": "The Parthenon: Wonder of Athens",
+        "url": "https://podcasts.apple.com/us/podcast/the-parthenon-wonder-of-athens/id1520403988?i=1000665167130"
+      }
+    ],
+    "audio": {
+      "url": "https://sphinx.acast.com/p/acast/s/the-ancients/e/66bb95548681753490d1ded6/media.mp3?tk=eyJ0ayI6ImRlZmF1bHQiLCJhZHMiOnRydWUsInNwb25zIjp0cnVlLCJzdGF0dXMiOiJwdWJsaWMifQ==&amp;sig=M0GVJznvhkU5LrEiwFCp7pb5jgUWkUOhXa8ve8YY9U4",
+      "type": "audio/mpeg",
+      "length": "141013800",
+      "durationSec": 3524
+    },
+    "created_at": "2026-09-26T05:52:09.415Z"
+  },
+  {
     "date": "2026-09-25",
     "episode_title": "The Retrievals",
     "show_name": "Serial",

@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Fri, 25 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 26 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>The Ancients – The Parthenon</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-26.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-09-26</guid>
+      <pubDate>Sat, 26 Sep 2026 00:00:00 GMT</pubDate>
+      <category>Historia</category>
+      <description>Hela avsnittet vigs åt Akropolis mest ikoniska byggnad, Parthenontemplet, med historikern Tristan Hughes som guide. Med sig har han Dr Maeve McHugh från University of Birmingham, som tar lyssnaren genom hur templet kom till, vad det symboliserade i sin samtid och varför resterna ännu reser sig över Aten efter mer än 2 000 år. Avsnittet blandar arkitektur, mytologi och politisk kontext på det sätt som gjort The Ancients till en av de mest hyllade historiepoddarna.</description>
+    </item>
     <item>
       <title>Serial – The Retrievals</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-25.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Thu, 23 Jul 2026 00:00:00 GMT</pubDate>
       <category>Historia</category>
       <description>BBC:s Witness History berättar i detta korta avsnitt om den 9 november 1993, när kroatiska styrkor sköt sönder Stari Most, bron som sedan 1500-talet varit ett av Bosniens mest kända landmärken. Händelsen blev en av de mest symboliska under Bosnienkriget och avsnittet ger en koncentrerad, tydlig redogörelse för ögonblicket bron föll och vad det betydde för Mostars befolkning.</description>
-    </item>
-    <item>
-      <title>The Conflict – The 1972 Munich Massacre</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-07-22.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-07-22</guid>
-      <pubDate>Wed, 22 Jul 2026 00:00:00 GMT</pubDate>
-      <category>Historia</category>
-      <description>Avsnittet återvänder till de olympiska spelen i München 1972, när elva israeliska idrottare togs som gisslan och dödades under pågående tävlan. The Conflict går igenom händelseförloppet och hur världen reagerade i realtid på den gisslandramatik som förändrade säkerhetskulturen kring OS för lång tid framöver.</description>
     </item>
   </channel>
 </rss>

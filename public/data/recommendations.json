@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-09-27",
+    "episode_title": "Barack Obama",
+    "show_name": "Conan O'Brien Needs A Friend",
+    "show_slug": "conan-o-brien-needs-a-friend",
+    "hosts": "Conan O'Brien, Sona O'Connor, Matt Gourley",
+    "genre": "Komedi",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Conan O'Brien Needs A Friend toppar Feedspots lista över komedipoddar 2026, utsedd till nummer ett i kategorin. I avsnittet med Barack Obama blir samtalet en oväntad mix av Conans absurdistiska humor och en före detta presidents reflektioner, där samtalet rör sig mellan politik, kultur och mer personliga ämnen.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/president-barack-obama/id1438054347?i=1000523604578&uo=4",
+      "spotify": "https://open.spotify.com/search/Conan%20O'Brien%20Needs%20A%20Friend%20Barack%20Obama"
+    },
+    "sources": [
+      {
+        "title": "75 Best Funny Podcasts to Listen to in 2026",
+        "url": "https://podcast.feedspot.com/funny_podcasts/"
+      }
+    ],
+    "audio": {
+      "url": "https://pdrl.fm/f3efd0/dts.podtrac.com/redirect.mp3/arttrk.com/p/ST44R/claritaspod.com/measure/stitcher.simplecastaudio.com/c945bd13-c7f3-4f22-95b5-4bf98e12b21f/episodes/e8fa429b-3cc9-445e-afba-76e1dd1bc7e0/audio/128/default.mp3?aid=rss_feed&amp;awCollectionId=c945bd13-c7f3-4f22-95b5-4bf98e12b21f&amp;awEpisodeId=e8fa429b-3cc9-445e-afba-76e1dd1bc7e0&amp;feed=dHoohVNH",
+      "type": "audio/mpeg",
+      "length": "61899754",
+      "durationSec": 3843
+    },
+    "created_at": "2026-09-27T06:04:35.930Z"
+  },
+  {
     "date": "2026-09-26",
     "episode_title": "The Parthenon",
     "show_name": "The Ancients",

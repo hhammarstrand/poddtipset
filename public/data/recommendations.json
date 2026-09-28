@@ -1,5 +1,37 @@
 [
   {
+    "date": "2026-09-28",
+    "episode_title": "William the Conqueror",
+    "show_name": "Gone Medieval",
+    "show_slug": "gone-medieval",
+    "hosts": "Matt Lewis",
+    "genre": "Historia",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "Under ledning av Vilhelm Erövraren inleder normanderna sin erövring av England då de landstiger vid Sussex kust (1066)",
+    "day_connection": "Avsnittet handlar om Vilhelm av Normandie och hans anspråk på den engelska tronen – den händelsekedja som ledde fram till den normandiska erövringen som inleddes den 28 september 1066.",
+    "why_great": "Matt Lewis reder ut hur Vilhelm av Normandie gjorde anspråk på den engelska kronan när hans kusin kung Edvard Bekännaren dog utan arvinge, och han placerar maktspelet i sitt bredare europeiska sammanhang. Avsnittet är en fristående, koncentrerad berättelse som fungerar som en utmärkt ingång till en av medeltidens mest omskakande tronföljdskriser.",
+    "listen_links": {
+      "web": "https://shows.acast.com/gone-medieval/episodes/william-the-conqueror",
+      "apple": "https://podcasts.apple.com/se/podcast/the-queer-court-of-william-rufus/id1564113746?i=1000771136161&uo=4",
+      "spotify": "https://open.spotify.com/search/Gone%20Medieval%20William%20the%20Conqueror"
+    },
+    "sources": [
+      {
+        "title": "William the Conqueror – Gone Medieval",
+        "url": "https://shows.acast.com/gone-medieval/episodes/william-the-conqueror"
+      }
+    ],
+    "audio": {
+      "url": "https://sphinx.acast.com/p/acast/s/gone-medieval/e/6a21515be25fe33c7c3bac6e/media.mp3?tk=eyJ0ayI6ImRlZmF1bHQiLCJhZHMiOnRydWUsInNwb25zIjp0cnVlLCJzdGF0dXMiOiJwdWJsaWMifQ==&amp;sig=Mo5O-jLVNI_OMZi7QChZ0vQlnlzg-xDpdtHi_oOkmLk",
+      "type": "audio/mpeg",
+      "length": "63354472",
+      "durationSec": 2920
+    },
+    "created_at": "2026-09-28T06:01:39.790Z"
+  },
+  {
     "date": "2026-09-27",
     "episode_title": "Barack Obama",
     "show_name": "Conan O'Brien Needs A Friend",

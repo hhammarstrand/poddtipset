@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Mon, 28 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 29 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>A Flatpack History of Sweden – Gustav Vasa Becomes King</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-29.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-09-29</guid>
+      <pubDate>Tue, 29 Sep 2026 00:00:00 GMT</pubDate>
+      <category>Historia</category>
+      <description>I sitt hundrade avsnitt tar A Flatpack History of Sweden oss med till Gustav Vasas kamp mot kung Kristian och danskarna. Avsnittet skildrar hur Gustav Vasa och hans grupp av svenska rebeller tar sig an danskarna i ett krig där lojaliteter hela tiden skiftar. En fristående historisk berättelse om en av svensk histories mest centrala gestalter, perfekt som ingång till den tidiga vasatiden.</description>
+    </item>
     <item>
       <title>Gone Medieval – William the Conqueror</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-28.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Sun, 26 Jul 2026 00:00:00 GMT</pubDate>
       <category>Berättande</category>
       <description>Avsnittet finns med på Podchasers lista över de bästa poddavsnitten genom tiderna och har där betyget 4,6. Det är ett fristående avsnitt i kategorin Teknik som kan lyssnas på utan förkunskaper om podden. Reply All ligger som Idle i databasen, vilket gör att äldre avsnitt nu fungerar som ett fristående arkiv av internetkulturella småundersökningar.</description>
-    </item>
-    <item>
-      <title>Historia.nu med Urban Lindstedt – Konstantin den store – Roms första kristna kejsare</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-07-25.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-07-25</guid>
-      <pubDate>Sat, 25 Jul 2026 00:00:00 GMT</pubDate>
-      <category>Historia</category>
-      <description>Urban Lindstedt binder ihop Konstantin den stores personliga omvändelse med de politiska maktspelen i Rom och de långtgående följderna för hela Västerlandet. Berättelsen sträcker sig från kejsarens tidiga maktkamp till den dag hans tro förändrade en hel kontinent. Ett sammanhängande porträtt av en av antikens mest ödesdigra gestalter, kompakt nog att fungera som fristående lyssning.</description>
     </item>
   </channel>
 </rss>

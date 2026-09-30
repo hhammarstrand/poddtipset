@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Tue, 29 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 30 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>99% Invisible – The Gruen Effect</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-30.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-09-30</guid>
+      <pubDate>Wed, 30 Sep 2026 00:00:00 GMT</pubDate>
+      <category>Dokumentär</category>
+      <description>Roman Mars tar i 99% Invisible ett grepp om den så kallade Gruen-effekten – idén att butiksdesign kan styra vad konsumenter faktiskt gör. Avsnittet lyfts av James Clear som ett av de mest framstående podcastavsnitten och hör till de 99% Invisible-avsnitt som ständigt dyker upp på listor när poddens bästa stunder ska räknas upp.</description>
+    </item>
     <item>
       <title>A Flatpack History of Sweden – Gustav Vasa Becomes King</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-09-29.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Mon, 27 Jul 2026 00:00:00 GMT</pubDate>
       <category>Historia</category>
       <description>Avsnittet om Disco Demolition Night lyfts fram i en Reddit-tråd om de mest intressanta poddavsnitten, där en lyssnare beskriver det som ett lättare avsnitt och en utmärkt ingång för den som är ny till podden. Det är en fristående berättelse om en specifik händelse i amerikansk kulturhistoria som fungerar utan förkunskaper. You&#39;re Wrong About är dessutom en av de mest hyllade kultur- och historiepoddarna, känd för att gräva i myter och missuppfattningar kring välkända ämnen.</description>
-    </item>
-    <item>
-      <title>Reply All – #102 Long</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-07-26.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-07-26</guid>
-      <pubDate>Sun, 26 Jul 2026 00:00:00 GMT</pubDate>
-      <category>Berättande</category>
-      <description>Avsnittet finns med på Podchasers lista över de bästa poddavsnitten genom tiderna och har där betyget 4,6. Det är ett fristående avsnitt i kategorin Teknik som kan lyssnas på utan förkunskaper om podden. Reply All ligger som Idle i databasen, vilket gör att äldre avsnitt nu fungerar som ett fristående arkiv av internetkulturella småundersökningar.</description>
     </item>
   </channel>
 </rss>

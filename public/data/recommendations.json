@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-09-30",
+    "episode_title": "The Gruen Effect",
+    "show_name": "99% Invisible",
+    "show_slug": "99-invisible",
+    "hosts": "Roman Mars",
+    "genre": "Dokumentär",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Roman Mars tar i 99% Invisible ett grepp om den så kallade Gruen-effekten – idén att butiksdesign kan styra vad konsumenter faktiskt gör. Avsnittet lyfts av James Clear som ett av de mest framstående podcastavsnitten och hör till de 99% Invisible-avsnitt som ständigt dyker upp på listor när poddens bästa stunder ska räknas upp.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/the-gruen-effect/id394775318?i=1000519252782&uo=4",
+      "spotify": "https://open.spotify.com/search/99%25%20Invisible%20The%20Gruen%20Effect"
+    },
+    "sources": [
+      {
+        "title": "The Best Interview Podcasts Right Now",
+        "url": "https://jamesclear.com/podcasts/interview"
+      }
+    ],
+    "audio": {
+      "url": "https://mgln.ai/e/2/dts.podtrac.com/redirect.mp3/stitcher.simplecastaudio.com/3bb687b0-04af-4257-90f1-39eef4e631b6/episodes/9e1a05aa-64c0-4677-9099-5f737a1ada11/audio/128/default.mp3?aid=rss_feed&amp;awCollectionId=3bb687b0-04af-4257-90f1-39eef4e631b6&amp;awEpisodeId=9e1a05aa-64c0-4677-9099-5f737a1ada11&amp;feed=BqbsxVfO",
+      "type": "audio/mpeg",
+      "length": "55737907",
+      "durationSec": 3442
+    },
+    "created_at": "2026-09-30T06:06:40.880Z"
+  },
+  {
     "date": "2026-09-29",
     "episode_title": "Gustav Vasa Becomes King",
     "show_name": "A Flatpack History of Sweden",

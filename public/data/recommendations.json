@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-10-02",
+    "episode_title": "Deadliest Day",
+    "show_name": "Beyond Today",
+    "show_slug": "beyond-today",
+    "hosts": "",
+    "genre": "Dokumentär",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Avsnittet finns med på BBC:s egen lista över sju utvalda grävande journalistik-poddar. Att BBC lyfter fram ett avsnitt i sin egen programöversikt är ett tydligt erkännande av dess kvalitet.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/deadliest-day-1-thrill-of-war/id1440314309?i=1000443899719&uo=4",
+      "spotify": "https://open.spotify.com/search/Beyond%20Today%20Deadliest%20Day"
+    },
+    "sources": [
+      {
+        "title": "Seven incredible investigative journalism podcasts",
+        "url": "https://www.bbc.co.uk/programmes/articles/5y5MNcBljfMG3v74TDPNDjH/seven-incredible-investigative-journalism-podcasts"
+      }
+    ],
+    "audio": {
+      "url": "http://open.live.bbc.co.uk/mediaselector/6/redir/version/2.0/mediaset/audio-nondrm-download-rss/proto/http/vpid/p07g4fg3.mp3",
+      "type": "audio/mpeg",
+      "length": "27040000",
+      "durationSec": 1690
+    },
+    "created_at": "2026-10-02T06:24:17.855Z"
+  },
+  {
     "date": "2026-09-30",
     "episode_title": "The Gruen Effect",
     "show_name": "99% Invisible",

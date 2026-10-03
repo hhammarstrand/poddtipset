@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Fri, 02 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 03 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Modern War Institute Podcast – The Battle of Mogadishu—Thirty Years On</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-03.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-10-03</guid>
+      <pubDate>Sat, 03 Oct 2026 00:00:00 GMT</pubDate>
+      <category>Historia</category>
+      <description>Modern War Institute Podcast vid West Point samlar veteraner från slaget om Mogadishu, däribland pensionerade överstarna Larry Perino och Lee VanArsdale, för att gå igenom operationen tre decennier efteråt. Det ger en sällsynt inifrånblick i en av 1990-talets mest omskrivna militära insatser, med förstahandskällor som sätter händelserna i ett bredare strategiskt och taktiskt sammanhang. Ett gedignare historiskt samtal om Black Hawk Down-incidenten får man leta efter.</description>
+    </item>
     <item>
       <title>Beyond Today – Deadliest Day</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-02.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
       <category>Historia</category>
       <description>Steven Edginton från History Defended intervjuar scouthistorikern Tony Ransley om Baden-Powells liv och arv. Avsnittet ställer frågan om han främst bör hyllas som scoutrörelsens grundare eller om det finns mörkare sidor i hans historia. Genom samtalet tecknas en nyanserad bild av en gestalt som ofta framställs ensidigt i populärkulturen.</description>
-    </item>
-    <item>
-      <title>Not Just the Tudors – Thomas Cromwell&#39;s Private Life</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-07-28.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-07-28</guid>
-      <pubDate>Tue, 28 Jul 2026 00:00:00 GMT</pubDate>
-      <category>Historia</category>
-      <description>Tracy Borman skildrar Thomas Cromwell som en av Henrik VIII:s mest anmärkningsvärda figurer – juristen, politikern, ministern och peer of the realm som reste sig från enkla förhållanden till maktens absoluta topp. Avsnittet vrider blicken mot hans privatliv, bortom de politiska intrigerna och rubrikerna kring hans fall, och visar människan bakom en av Tudorerans mest omtalade karriärer.</description>
     </item>
   </channel>
 </rss>

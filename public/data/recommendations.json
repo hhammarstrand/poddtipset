@@ -1,5 +1,37 @@
 [
   {
+    "date": "2026-10-03",
+    "episode_title": "The Battle of Mogadishu—Thirty Years On",
+    "show_name": "Modern War Institute Podcast",
+    "show_slug": "modern-war-institute-podcast",
+    "hosts": "",
+    "genre": "Historia",
+    "language": "en",
+    "year": 2023,
+    "duration_minutes": null,
+    "day_occasion": "Slaget om Mogadishu inleds 1993",
+    "day_connection": "Avsnittet handlar om trettioårsdagen av slaget om Mogadishu som startade den 3 oktober 1993",
+    "why_great": "Modern War Institute Podcast vid West Point samlar veteraner från slaget om Mogadishu, däribland pensionerade överstarna Larry Perino och Lee VanArsdale, för att gå igenom operationen tre decennier efteråt. Det ger en sällsynt inifrånblick i en av 1990-talets mest omskrivna militära insatser, med förstahandskällor som sätter händelserna i ett bredare strategiskt och taktiskt sammanhang. Ett gedignare historiskt samtal om Black Hawk Down-incidenten får man leta efter.",
+    "listen_links": {
+      "web": "https://mwi.westpoint.edu/mwi-podcast-the-battle-of-mogadishu-thirty-years-on/",
+      "apple": "https://podcasts.apple.com/se/podcast/the-battle-of-mogadishu-thirty-years-on/id1079958510?i=1000630142014&uo=4",
+      "spotify": "https://open.spotify.com/search/Modern%20War%20Institute%20Podcast%20The%20Battle%20of%20Mogadishu%E2%80%94Thirty%20Years%20On"
+    },
+    "sources": [
+      {
+        "title": "MWI Podcast: The Battle of Mogadishu—Thirty Years On",
+        "url": "https://mwi.westpoint.edu/mwi-podcast-the-battle-of-mogadishu-thirty-years-on/"
+      }
+    ],
+    "audio": {
+      "url": "https://episodes.castos.com/5de8282033baf4-72953531/1909416/c1e-d19ou6d70wipzn95-6zwxrop5tddd-mh8bio.mp3",
+      "type": "audio/mpeg",
+      "length": "22745290",
+      "durationSec": 1764
+    },
+    "created_at": "2026-10-03T06:07:55.808Z"
+  },
+  {
     "date": "2026-10-02",
     "episode_title": "Deadliest Day",
     "show_name": "Beyond Today",

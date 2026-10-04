@@ -1,5 +1,31 @@
 [
   {
+    "date": "2026-10-04",
+    "episode_title": "Cal Fussman: The Art of Listening",
+    "show_name": "The Tim Ferriss Show",
+    "show_slug": "the-tim-ferriss-show",
+    "hosts": "Tim Ferriss",
+    "genre": "Intervju",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Cal Fussman gästar Tim Ferriss i ett avsnitt som lyfts fram som ett av de mest minnesvärda poddavsnitten genom tiderna. Enligt en sammanställning över podcastavsnitt man bör höra innan man dör är det just en av de där intervjuerna man kan lyssna på om och om igen, tack vare Fussmans sällsynta förmåga att berätta. Avsnittet fungerar utmärkt som fristående porträtt – ingen förkunskap krävs.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/145-the-interview-master-cal-fussman-and/id863897795?i=1000364636354&uo=4",
+      "spotify": "https://open.spotify.com/search/The%20Tim%20Ferriss%20Show%20Cal%20Fussman%3A%20The%20Art%20of%20Listening"
+    },
+    "sources": [
+      {
+        "title": "30 Podcast Episodes You Need To Listen To Before You Die",
+        "url": "https://strategylab.ca/30-podcast-episodes-you-need-to-listen-to-before-you-die/"
+      }
+    ],
+    "audio": null,
+    "created_at": "2026-10-04T06:29:32.620Z"
+  },
+  {
     "date": "2026-10-03",
     "episode_title": "The Battle of Mogadishu—Thirty Years On",
     "show_name": "Modern War Institute Podcast",

@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Sun, 04 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 05 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Dying to Race Podcast – Jules Bianchi</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-05.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-10-05</guid>
+      <pubDate>Mon, 05 Oct 2026 00:00:00 GMT</pubDate>
+      <category>Sport</category>
+      <description>Dying to Race Podcast ägnar sitt första avsnitt åt Jules Bianchi, den siste Formel 1-föraren att omkomma till följd av en olycka på banan. Avsnittet följer hans liv och reder ut vad som faktiskt hände den ödesdigra dagen i Suzuka 2014. Det är en tät berättelse som sätter människan Bianchi i centrum och låter lyssnaren förstå både hans karriär och den händelse som skakade Formel 1-världen.</description>
+    </item>
     <item>
       <title>The Tim Ferriss Show – Cal Fussman: The Art of Listening</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-04.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Fri, 31 Jul 2026 00:00:00 GMT</pubDate>
       <category>Samhälle</category>
       <description>Food Fight är ett av de tydligaste exemplen på vad som gör Revisionist History så uppskattad: en till synes enkel vardagsfråga som visar sig ha oväntat stora konsekvenser för hela samhället. Avsnittet intar andra platsen på BuzzFeeds lista över de mest livsomvälvande poddavsnitten genom tiderna, där det hamnar i sällskap med några av poddvärldens mest hyllade verk.</description>
-    </item>
-    <item>
-      <title>History Daily – The Disappearance of Labor Leader Jimmy Hoffa</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-07-30.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-07-30</guid>
-      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
-      <category>Historia</category>
-      <description>History Daily berättar om den dag då den mäktige och notoriske fackföreningsledaren James Riddle Hoffa förklarades saknad, ett försvinnande som än i dag saknar lösning. Avsnittet är ett tydligt exempel på poddens format: en avgränsad historisk händelse, berättad koncist och med fokus på dramatiken i stunden. För den som vill ha en snabb, fokuserad ingång till en av USA:s mest segdragna gåtor fungerar avsnittet utmärkt som fristående lyssning.</description>
     </item>
   </channel>
 </rss>

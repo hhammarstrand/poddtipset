@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-10-05",
+    "episode_title": "Jules Bianchi",
+    "show_name": "Dying to Race Podcast",
+    "show_slug": "dying-to-race-podcast",
+    "hosts": "",
+    "genre": "Sport",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Dying to Race Podcast ägnar sitt första avsnitt åt Jules Bianchi, den siste Formel 1-föraren att omkomma till följd av en olycka på banan. Avsnittet följer hans liv och reder ut vad som faktiskt hände den ödesdigra dagen i Suzuka 2014. Det är en tät berättelse som sätter människan Bianchi i centrum och låter lyssnaren förstå både hans karriär och den händelse som skakade Formel 1-världen.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/jules-bianchi-f1s-last-tragedy-part-2/id1651090942?i=1000587287022&uo=4",
+      "spotify": "https://open.spotify.com/search/Dying%20to%20Race%20Podcast%20Jules%20Bianchi"
+    },
+    "sources": [
+      {
+        "title": "Dying to Race Podcast – Apple Podcasts",
+        "url": "https://podcasts.apple.com/us/podcast/dying-to-race-podcast/id1651090942"
+      }
+    ],
+    "audio": {
+      "url": "https://anchor.fm/s/c3bde728/podcast/play/61095935/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2022-10-23%2F1f712d20-6742-0ffe-0bfe-350d7237e429.mp3",
+      "type": "audio/mpeg",
+      "length": "35531411",
+      "durationSec": 1480
+    },
+    "created_at": "2026-10-05T06:26:20.968Z"
+  },
+  {
     "date": "2026-10-04",
     "episode_title": "Cal Fussman: The Art of Listening",
     "show_name": "The Tim Ferriss Show",

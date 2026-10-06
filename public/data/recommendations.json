@@ -1,5 +1,44 @@
 [
   {
+    "date": "2026-10-06",
+    "episode_title": "Mikael Dorsin",
+    "show_name": "Lundh",
+    "show_slug": "lundh",
+    "hosts": "Lundh",
+    "genre": "Sport",
+    "language": "sv",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "Mikael Dorsin föddes den 6 oktober 1981",
+    "day_connection": "Avsnittet är en lång intervju med Mikael Dorsin, som är född denna dag.",
+    "why_great": "I Lundh – som beskrivs som Sveriges nyfiknaste fotbollspodd – gästas avsnitt 425 av Mikael Dorsin, Rosenborgs sportchef och före detta Djurgårdens-back. Samtalet kretsar kring trycket att leda klubben och Dorsins långa erfarenhet från både svensk och norsk fotboll. Den förre Dif-spelaren har blivit en institution i norsk fotboll, och ger här sin egen bild av karriären och rollen som ledare.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/425-mikael-dorsin/id857275128?i=1000644985999&uo=4",
+      "spotify": "https://open.spotify.com/episode/3bvCb7uhyXMuNnxmiF1FeO"
+    },
+    "sources": [
+      {
+        "title": "Mikael Dorsin – Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Mikael_Dorsin"
+      },
+      {
+        "title": "425 - Mikael Dorsin - Lundh på Spotify",
+        "url": "https://open.spotify.com/episode/3bvCb7uhyXMuNnxmiF1FeO"
+      },
+      {
+        "title": "425 - Mikael Dorsin - Lundh på Podplay",
+        "url": "https://www.podplay.com/podcasts/lundh-28314/episodes/425-mikael-dorsin-268522264"
+      }
+    ],
+    "audio": {
+      "url": "https://sphinx.acast.com/p/acast/s/lundh/e/65c96db66a17ef00170a9053/media.mp3",
+      "type": "audio/mpeg",
+      "length": "160137649",
+      "durationSec": 4002
+    },
+    "created_at": "2026-10-06T06:59:40.458Z"
+  },
+  {
     "date": "2026-10-05",
     "episode_title": "Jules Bianchi",
     "show_name": "Dying to Race Podcast",

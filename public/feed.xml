@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Mon, 05 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 06 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Lundh – Mikael Dorsin</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-06.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-10-06</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <category>Sport</category>
+      <description>I Lundh – som beskrivs som Sveriges nyfiknaste fotbollspodd – gästas avsnitt 425 av Mikael Dorsin, Rosenborgs sportchef och före detta Djurgårdens-back. Samtalet kretsar kring trycket att leda klubben och Dorsins långa erfarenhet från både svensk och norsk fotboll. Den förre Dif-spelaren har blivit en institution i norsk fotboll, och ger här sin egen bild av karriären och rollen som ledare.</description>
+    </item>
     <item>
       <title>Dying to Race Podcast – Jules Bianchi</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-05.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Sat, 01 Aug 2026 00:00:00 GMT</pubDate>
       <category>Intervju</category>
       <description>Kevin Kelly hamnar på tredje plats när Ethan Maurice listar de tolv bästa poddavsnitt han hört, och Tim Ferriss Show är samma podd som finns representerad på Spotifys användarcurerade Top 15-lista via ett annat avsnitt. Ferriss har gjort sig känd för sina långa, noggrant förberedda samtal, och just Kevin Kelly-avsnittet lyfts specifikt fram som ett avsnitt värt att prioritera.</description>
-    </item>
-    <item>
-      <title>Revisionist History – Food Fight</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-07-31.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-07-31</guid>
-      <pubDate>Fri, 31 Jul 2026 00:00:00 GMT</pubDate>
-      <category>Samhälle</category>
-      <description>Food Fight är ett av de tydligaste exemplen på vad som gör Revisionist History så uppskattad: en till synes enkel vardagsfråga som visar sig ha oväntat stora konsekvenser för hela samhället. Avsnittet intar andra platsen på BuzzFeeds lista över de mest livsomvälvande poddavsnitten genom tiderna, där det hamnar i sällskap med några av poddvärldens mest hyllade verk.</description>
     </item>
   </channel>
 </rss>

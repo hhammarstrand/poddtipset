@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Tue, 06 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 07 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Urban Warfare Project Podcast – Studying the October 7 Terrorist Attacks</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-07.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-10-07</guid>
+      <pubDate>Wed, 07 Oct 2026 00:00:00 GMT</pubDate>
+      <category>Samhälle</category>
+      <description>Avsnittet från Modern War Institutes Urban Warfare Project Podcast bryter ner händelserna den 7 oktober 2023 ur ett rent operativt perspektiv. Med utgångspunkt i West Points expertis diskuteras hur omkring fyra tusen terrorister kunde ta sig över och anfalla över tjugo platser i södra Israel – den dödligaste attacken i landets historia. För den som vill förstå de taktiska och organisatoriska dimensionerna av dådet, snarare än den politiska eftterköpingsrapporten, är det här ett faktaspäckat och…</description>
+    </item>
     <item>
       <title>Lundh – Mikael Dorsin</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-06.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Sun, 02 Aug 2026 00:00:00 GMT</pubDate>
       <category>Kultur</category>
       <description>I The Third Story Podcast får vi här möta Jacob Collier i det som utgör poddens första längre intervju med honom. Samtalet med Leo Sidran rör sig kring Collier som sångare, multiinstrumentalist, arrangör och YouTube-sensation – främst känd för sina musikvideor.</description>
-    </item>
-    <item>
-      <title>The Tim Ferriss Show – Kevin Kelly</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-01.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-08-01</guid>
-      <pubDate>Sat, 01 Aug 2026 00:00:00 GMT</pubDate>
-      <category>Intervju</category>
-      <description>Kevin Kelly hamnar på tredje plats när Ethan Maurice listar de tolv bästa poddavsnitt han hört, och Tim Ferriss Show är samma podd som finns representerad på Spotifys användarcurerade Top 15-lista via ett annat avsnitt. Ferriss har gjort sig känd för sina långa, noggrant förberedda samtal, och just Kevin Kelly-avsnittet lyfts specifikt fram som ett avsnitt värt att prioritera.</description>
     </item>
   </channel>
 </rss>

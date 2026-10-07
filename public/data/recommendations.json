@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-10-07",
+    "episode_title": "Studying the October 7 Terrorist Attacks",
+    "show_name": "Urban Warfare Project Podcast",
+    "show_slug": "urban-warfare-project-podcast",
+    "hosts": "Modern War Institute",
+    "genre": "Samhälle",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "Den 7 oktober 2023 genomförde Hamas en omfattande attack mot södra Israel med omkring 1 200 döda och 250 gisslan, vilket inledde kriget mellan Hamas och Israel.",
+    "day_connection": "Avsnittet är just en militäranalytisk genomgång av terrorattackerna den 7 oktober 2023.",
+    "why_great": "Avsnittet från Modern War Institutes Urban Warfare Project Podcast bryter ner händelserna den 7 oktober 2023 ur ett rent operativt perspektiv. Med utgångspunkt i West Points expertis diskuteras hur omkring fyra tusen terrorister kunde ta sig över och anfalla över tjugo platser i södra Israel – den dödligaste attacken i landets historia. För den som vill förstå de taktiska och organisatoriska dimensionerna av dådet, snarare än den politiska eftterköpingsrapporten, är det här ett faktaspäckat och analytiskt tungt avsnitt.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/studying-the-october-7-terrorist-attacks/id1490714950?i=1000649339995&uo=4",
+      "spotify": "https://open.spotify.com/search/Urban%20Warfare%20Project%20Podcast%20Studying%20the%20October%207%20Terrorist%20Attacks"
+    },
+    "sources": [
+      {
+        "title": "Urban Warfare Project Podcast: Studying the October 7 Terrorist Attacks",
+        "url": "https://mwi.westpoint.edu/urban-warfare-project-podcast-studying-the-october-7-terrorist-attacks/"
+      }
+    ],
+    "audio": {
+      "url": "https://episodes.castos.com/5de8282033baf4-72953531/1689293/c1e-pw7pu58925svq4x0-v08xojq7u8ow-bmurex.mp3",
+      "type": "audio/mpeg",
+      "length": "60588624",
+      "durationSec": 3721
+    },
+    "created_at": "2026-10-07T06:43:39.375Z"
+  },
+  {
     "date": "2026-10-06",
     "episode_title": "Mikael Dorsin",
     "show_name": "Lundh",

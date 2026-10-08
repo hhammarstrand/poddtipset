@@ -1,5 +1,37 @@
 [
   {
+    "date": "2026-10-08",
+    "episode_title": "Yemen's Forgotten War",
+    "show_name": "The Documentary Podcast",
+    "show_slug": "the-documentary-podcast",
+    "hosts": "Gabriel Gatehouse",
+    "genre": "Dokumentär",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Gabriel Gatehouse undersöker den humanitära krisen i Jemen och anklagelser om krigsbrott i detta avsnitt av BBC:s Documentary Podcast. Programmet ger en fördjupad bild av en konflikt som ofta hamnar i skuggan av andra nyheter, med Gatehouse som vägleder lyssnaren genom vittnesmål och dokumenterade övergrepp. BBC:s långformade dokumentärtradition gör att avsnittet får utrymme att verkligen förklara sammanhangen kring blockad, civilbefolkning och folkrätt.",
+    "listen_links": {
+      "web": "https://www.bbc.co.uk/programmes/p032nmyt",
+      "apple": "https://podcasts.apple.com/se/podcast/yemens-forgotten-war/id1130966576?i=1000371898767&uo=4",
+      "spotify": "https://open.spotify.com/search/The%20Documentary%20Podcast%20Yemen's%20Forgotten%20War"
+    },
+    "sources": [
+      {
+        "title": "Yemen's Forgotten War - The Documentary Podcast",
+        "url": "https://www.bbc.co.uk/programmes/p032nmyt"
+      }
+    ],
+    "audio": {
+      "url": "http://open.live.bbc.co.uk/mediaselector/6/redir/version/2.0/mediaset/audio-nondrm-download-rss-low/proto/http/vpid/p0gr10q6.mp3",
+      "type": "audio/mpeg",
+      "length": "13528000",
+      "durationSec": 1691
+    },
+    "created_at": "2026-10-08T06:46:24.227Z"
+  },
+  {
     "date": "2026-10-07",
     "episode_title": "Studying the October 7 Terrorist Attacks",
     "show_name": "Urban Warfare Project Podcast",

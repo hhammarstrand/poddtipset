@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Wed, 07 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 08 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>The Documentary Podcast – Yemen&#39;s Forgotten War</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-08.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-10-08</guid>
+      <pubDate>Thu, 08 Oct 2026 00:00:00 GMT</pubDate>
+      <category>Dokumentär</category>
+      <description>Gabriel Gatehouse undersöker den humanitära krisen i Jemen och anklagelser om krigsbrott i detta avsnitt av BBC:s Documentary Podcast. Programmet ger en fördjupad bild av en konflikt som ofta hamnar i skuggan av andra nyheter, med Gatehouse som vägleder lyssnaren genom vittnesmål och dokumenterade övergrepp. BBC:s långformade dokumentärtradition gör att avsnittet får utrymme att verkligen förklara sammanhangen kring blockad, civilbefolkning och folkrätt.</description>
+    </item>
     <item>
       <title>Urban Warfare Project Podcast – Studying the October 7 Terrorist Attacks</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-07.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Mon, 03 Aug 2026 00:00:00 GMT</pubDate>
       <category>Historia</category>
       <description>Ett helt avsnitt ägnat åt Teatro alla Scala, ett av världens mest ansedda operahus och en central institution i Italiens konstliv. Programmet går igenom byggnadens historia och varför den räknas som ett av operavärldens stora landmärken.</description>
-    </item>
-    <item>
-      <title>The Third Story Podcast – Jacob Collier&#39;s First Interview</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-02.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-08-02</guid>
-      <pubDate>Sun, 02 Aug 2026 00:00:00 GMT</pubDate>
-      <category>Kultur</category>
-      <description>I The Third Story Podcast får vi här möta Jacob Collier i det som utgör poddens första längre intervju med honom. Samtalet med Leo Sidran rör sig kring Collier som sångare, multiinstrumentalist, arrangör och YouTube-sensation – främst känd för sina musikvideor.</description>
     </item>
   </channel>
 </rss>

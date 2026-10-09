@@ -1,5 +1,40 @@
 [
   {
+    "date": "2026-10-09",
+    "episode_title": "The Takeover",
+    "show_name": "Reply All",
+    "show_slug": "reply-all",
+    "hosts": "",
+    "genre": "Berättande",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Avsnittet finns med på topplistor över poddhistoriens mest hyllade avsnitt och har rankats med 4,2 av 5 i betyg.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/29-the-takeover/id941907967?i=1000369443341&uo=4",
+      "spotify": "https://open.spotify.com/search/Reply%20All%20The%20Takeover"
+    },
+    "sources": [
+      {
+        "title": "Top 10 Most Viewed Podcast Episodes of All Time [2026 List]",
+        "url": "https://www.demandsage.com/best-podcast-episodes-of-all-time/"
+      },
+      {
+        "title": "Best Podcast Episodes of All-Time",
+        "url": "https://www.podchaser.com/lists/best-podcast-episodes-of-all-time-107aDpOfPk"
+      }
+    ],
+    "audio": {
+      "url": "https://chrt.fm/track/15E3G4/traffic.megaphone.fm/GLT1792300915.mp3?updated=1660678954",
+      "type": "audio/mpeg",
+      "length": "0",
+      "durationSec": 1422
+    },
+    "created_at": "2026-10-09T06:56:43.634Z"
+  },
+  {
     "date": "2026-10-08",
     "episode_title": "Yemen's Forgotten War",
     "show_name": "The Documentary Podcast",

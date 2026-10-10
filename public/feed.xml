@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Fri, 09 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 10 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>In Our Time – The Battle of Tours</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-10.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-10-10</guid>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 GMT</pubDate>
+      <category>Historia</category>
+      <description>BBC:s långkörare In Our Time har formats kring Melvyn Bragds samtal med ledande historiker, och det här avsnittet är ett tydligt typexempel. Gästerna dissekerar hur frankerkungen Karl Martell mötte den umayyadiska armén i Gallien 732 och vad slaget kom att betyda för den politiska och religiösa framtiden i Västeuropa. Programmet visar sin styrga: substantiell, jämn diskussion där experterna vrider och vänder på olika tolkningar i stället för att servera ett enda narrativ.</description>
+    </item>
     <item>
       <title>Reply All – The Takeover</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-09.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Wed, 05 Aug 2026 00:00:00 GMT</pubDate>
       <category>Historia</category>
       <description>Venerable Lives ägnar hela avsnittet åt Neil Armstrong – från uppväxten och karriären som testpilot vid Edwards Air Force Base till den historiska månlandningen. Avsnittet beskrivs som ett definitivt narrativa porträtt av en man formats av tystlåten beslutsamhet och nyfikenhet snarare än offentlig berömmelse. En koncentrerad ingång för den som vill förstå vem Armstrong var bortom den ikoniska meningen.</description>
-    </item>
-    <item>
-      <title>The Daily – The Day That Shook Beirut</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-04.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-08-04</guid>
-      <pubDate>Tue, 04 Aug 2026 00:00:00 GMT</pubDate>
-      <category>Nyheter</category>
-      <description>The Daily rapporterar i detta avsnitt från den 4 augusti 2020 om den förödande explosion i Beiruts hamn, där 2 750 ton ammoniumnitrat detonerade och lade stora delar av staden i ruiner. Reportrarna var på plats och förmedlade omedelbara vittnesuppgifter från de drabbade områdena, tillsammans med tidiga analyser av hur det farliga godset kunde lagras oskyddat under flera år. Avsnittet rymmer både den mänskliga dimensionen och den strukturella bakgrunden till en av 2000-talets värsta…</description>
     </item>
   </channel>
 </rss>

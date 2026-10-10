@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-10-10",
+    "episode_title": "The Battle of Tours",
+    "show_name": "In Our Time",
+    "show_slug": "in-our-time",
+    "hosts": "Melvyn Bragg",
+    "genre": "Historia",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "Slaget vid Tours 732 – frankerna under Karl Martell stoppar det moriska kalifatets expansion norrut",
+    "day_connection": "Avsnittet behandlar direkt slaget vid Tours 732, samma händelse som listas i dagens kalendarium.",
+    "why_great": "BBC:s långkörare In Our Time har formats kring Melvyn Bragds samtal med ledande historiker, och det här avsnittet är ett tydligt typexempel. Gästerna dissekerar hur frankerkungen Karl Martell mötte den umayyadiska armén i Gallien 732 och vad slaget kom att betyda för den politiska och religiösa framtiden i Västeuropa. Programmet visar sin styrga: substantiell, jämn diskussion där experterna vrider och vänder på olika tolkningar i stället för att servera ett enda narrativ.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/the-battle-of-tours/id463700741?i=1000358221998&uo=4",
+      "spotify": "https://open.spotify.com/search/In%20Our%20Time%20The%20Battle%20of%20Tours"
+    },
+    "sources": [
+      {
+        "title": "The Battle of Tours – In Our Time: History",
+        "url": "https://podcasts.apple.com/mt/podcast/the-battle-of-tours/id463700741?i=1000358221998"
+      }
+    ],
+    "audio": {
+      "url": "http://open.live.bbc.co.uk/mediaselector/6/redir/version/2.0/mediaset/audio-nondrm-download-rss/proto/http/vpid/p0l35n1c.mp3",
+      "type": "audio/mpeg",
+      "length": "49600000",
+      "durationSec": 3100
+    },
+    "created_at": "2026-10-10T06:36:19.715Z"
+  },
+  {
     "date": "2026-10-09",
     "episode_title": "The Takeover",
     "show_name": "Reply All",

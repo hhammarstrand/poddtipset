@@ -1,5 +1,40 @@
 [
   {
+    "date": "2026-10-11",
+    "episode_title": "Bikram",
+    "show_name": "30 for 30 Podcasts",
+    "show_slug": "30-for-30-podcasts",
+    "hosts": "ESPN",
+    "genre": "Sport",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "30 for 30 är ESPN:s kritikerrosade dokumentär­serie, utökad till en podcast med 65 fristående avsnitt om enskilda idrotts­berättelser. Tidningen Time har utsett hela serien till en av de 100 bästa poddarna och FeedSpot rankar den som nummer ett i sin lista över sport­historiska poddar. Avsnittet Bikram är en av dessa fristående dokumentärer – en avgränsad berättelse i samma undersökande tradition som TV-serien, där varje episod gräver i en enda historia.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/bikram-part-5-reckoning/id1244784611?i=1000412045882&uo=4",
+      "spotify": "https://open.spotify.com/search/30%20for%2030%20Podcasts%20Bikram"
+    },
+    "sources": [
+      {
+        "title": "30 for 30: 100 Best Podcasts",
+        "url": "https://time.com/collections/100-best-podcasts/7303041/30-for-30/"
+      },
+      {
+        "title": "100 Best Sports History Podcasts to Listen to in 2026",
+        "url": "https://podcast.feedspot.com/sports_history_podcasts/"
+      }
+    ],
+    "audio": {
+      "url": "https://www.podtrac.com/pts/redirect.mp3/traffic.megaphone.fm/ESP6924075747.mp3?updated=1592410441",
+      "type": "audio/mpeg",
+      "length": "0",
+      "durationSec": 1906
+    },
+    "created_at": "2026-10-11T06:40:32.233Z"
+  },
+  {
     "date": "2026-10-10",
     "episode_title": "The Battle of Tours",
     "show_name": "In Our Time",

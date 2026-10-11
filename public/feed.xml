@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Sat, 10 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 11 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>30 for 30 Podcasts – Bikram</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-11.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-10-11</guid>
+      <pubDate>Sun, 11 Oct 2026 00:00:00 GMT</pubDate>
+      <category>Sport</category>
+      <description>30 for 30 är ESPN:s kritikerrosade dokumentär­serie, utökad till en podcast med 65 fristående avsnitt om enskilda idrotts­berättelser. Tidningen Time har utsett hela serien till en av de 100 bästa poddarna och FeedSpot rankar den som nummer ett i sin lista över sport­historiska poddar. Avsnittet Bikram är en av dessa fristående dokumentärer – en avgränsad berättelse i samma undersökande tradition som TV-serien, där varje episod gräver i en enda historia.</description>
+    </item>
     <item>
       <title>In Our Time – The Battle of Tours</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-10.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
       <category>Historia</category>
       <description>Avsnittet skildrar Thor Heyerdahls 1947-expedition med Kon-Tiki, då den norske äventyraren och hans besättning korsade Stilla havet på en balsaflotte för att testa teorin att polynesierna hade sydamerikanskt ursprung. Berättelsen täcker byggandet av flotten av balsaträ och hamprep, den omkring 4 300 mil långa resan över öppet hav och den uppmärksamhet som mötte besättningen vid ankomsten i Polynesien. Kon-Tiki-expeditionen hör till 1900-talets mest klassiska äventyr och passar väl i EED:s…</description>
-    </item>
-    <item>
-      <title>Venerable Lives – Neil Armstrong - The Extraordinary Ordinary Man Who Walked on the Moon</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-05.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-08-05</guid>
-      <pubDate>Wed, 05 Aug 2026 00:00:00 GMT</pubDate>
-      <category>Historia</category>
-      <description>Venerable Lives ägnar hela avsnittet åt Neil Armstrong – från uppväxten och karriären som testpilot vid Edwards Air Force Base till den historiska månlandningen. Avsnittet beskrivs som ett definitivt narrativa porträtt av en man formats av tystlåten beslutsamhet och nyfikenhet snarare än offentlig berömmelse. En koncentrerad ingång för den som vill förstå vem Armstrong var bortom den ikoniska meningen.</description>
     </item>
   </channel>
 </rss>

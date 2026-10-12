@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Sun, 11 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 12 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>The Feast – Oktoberfest, 1896</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-12.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-10-12</guid>
+      <pubDate>Mon, 12 Oct 2026 00:00:00 GMT</pubDate>
+      <category>Historia</category>
+      <description>The Feast gör en historisk tidsresa till München 1896 för att utforska Oktoberfestens tidiga rötter. Avsnittet besöker de allra tidigaste ölhallorna och skildrar de traditioner som kom att forma festivalen under dess första decennier.</description>
+    </item>
     <item>
       <title>30 for 30 Podcasts – Bikram</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-11.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Sat, 08 Aug 2026 00:00:00 GMT</pubDate>
       <category>Dokumentär</category>
       <description>Ett avsnitt som går på djupet med Saab JAS 39 Gripen – ett stridsflygplan som sticker ut med sin deltavinge och canard-konfiguration. Gästen Mikael &#39;Duke&#39; Grev, före detta löjtnant i svenska flygvapnet, förklarar hur planet är uppbyggt, hur det flygs och vad som gör det unikt jämfört med andra jaktplan. Avsnittet blandar tekniska fakta med första handsperspektiv, vilket gör det till en av de mer initierade genomgångarna av planet på engelska.</description>
-    </item>
-    <item>
-      <title>Everything Everywhere Daily – Thor Heyerdahl and the Kon-Tiki Expedition</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-07.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-08-07</guid>
-      <pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
-      <category>Historia</category>
-      <description>Avsnittet skildrar Thor Heyerdahls 1947-expedition med Kon-Tiki, då den norske äventyraren och hans besättning korsade Stilla havet på en balsaflotte för att testa teorin att polynesierna hade sydamerikanskt ursprung. Berättelsen täcker byggandet av flotten av balsaträ och hamprep, den omkring 4 300 mil långa resan över öppet hav och den uppmärksamhet som mötte besättningen vid ankomsten i Polynesien. Kon-Tiki-expeditionen hör till 1900-talets mest klassiska äventyr och passar väl i EED:s…</description>
     </item>
   </channel>
 </rss>

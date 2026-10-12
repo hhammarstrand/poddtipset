@@ -1,5 +1,37 @@
 [
   {
+    "date": "2026-10-12",
+    "episode_title": "Oktoberfest, 1896",
+    "show_name": "The Feast",
+    "show_slug": "the-feast",
+    "hosts": "",
+    "genre": "Historia",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "Den första Oktoberfesten firas i München i Bayern (1810)",
+    "day_connection": "Avsnittet utforskar Oktoberfestens historia i München – samma festival som hölls första gången den 12 oktober 1810.",
+    "why_great": "The Feast gör en historisk tidsresa till München 1896 för att utforska Oktoberfestens tidiga rötter. Avsnittet besöker de allra tidigaste ölhallorna och skildrar de traditioner som kom att forma festivalen under dess första decennier.",
+    "listen_links": {
+      "web": "http://www.thefeastpodcast.org/episode-1-oktoberfest-1896",
+      "apple": "https://podcasts.apple.com/se/podcast/episode-1-oktoberfest-1896/id1113191228?i=1000368489928&uo=4",
+      "spotify": "https://open.spotify.com/search/The%20Feast%20Oktoberfest%2C%201896"
+    },
+    "sources": [
+      {
+        "title": "The Feast – Episode 1: Oktoberfest, 1896",
+        "url": "http://www.thefeastpodcast.org/episode-1-oktoberfest-1896"
+      }
+    ],
+    "audio": {
+      "url": "https://traffic.megaphone.fm/TPG9659520198.mp3",
+      "type": "audio/mpeg",
+      "length": "0",
+      "durationSec": 1490
+    },
+    "created_at": "2026-10-12T06:46:07.907Z"
+  },
+  {
     "date": "2026-10-11",
     "episode_title": "Bikram",
     "show_name": "30 for 30 Podcasts",

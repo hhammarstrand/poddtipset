@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-10-13",
+    "episode_title": "The White House",
+    "show_name": "Short History Of...",
+    "show_slug": "short-history-of",
+    "hosts": "John Hopkins",
+    "genre": "Historia",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "Vita huset i Washington DC invigs (1792)",
+    "day_connection": "Avsnittet handlar om Vita huset – samma byggnad som invigdes den 13 oktober 1792.",
+    "why_great": "Short History Of... är en Noiser-produktion som levererar korta, fristående historiska avsnitt. I det här avsnittet om Vita huset leder John Hopkins berättelsen, med stöd av Kate Andersen Brower, författare till The Residence, en bok om presidentresidensets inre värld. Avsnittet erbjuder en kompakt, välgjord introduktion till en av USA:s mest centrala symboler och dess plats i amerikansk historia – ett ämne som ligger snyggt i linje med dagens datum.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/the-white-house/id1579040306?i=1000725883207&uo=4",
+      "spotify": "https://open.spotify.com/search/Short%20History%20Of...%20The%20White%20House"
+    },
+    "sources": [
+      {
+        "title": "The White House | Short History Of...",
+        "url": "https://www.noiser.com/short-history-of/the-white-house"
+      }
+    ],
+    "audio": {
+      "url": "https://pdst.fm/e/pscrb.fm/rss/p/traffic.megaphone.fm/NSR1590719606.mp3?updated=1757506115",
+      "type": "audio/mpeg",
+      "length": "0",
+      "durationSec": 3285
+    },
+    "created_at": "2026-10-13T07:11:26.700Z"
+  },
+  {
     "date": "2026-10-12",
     "episode_title": "Oktoberfest, 1896",
     "show_name": "The Feast",

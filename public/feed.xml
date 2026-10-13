@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Mon, 12 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 13 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Short History Of... – The White House</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-13.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-10-13</guid>
+      <pubDate>Tue, 13 Oct 2026 00:00:00 GMT</pubDate>
+      <category>Historia</category>
+      <description>Short History Of... är en Noiser-produktion som levererar korta, fristående historiska avsnitt. I det här avsnittet om Vita huset leder John Hopkins berättelsen, med stöd av Kate Andersen Brower, författare till The Residence, en bok om presidentresidensets inre värld. Avsnittet erbjuder en kompakt, välgjord introduktion till en av USA:s mest centrala symboler och dess plats i amerikansk historia – ett ämne som ligger snyggt i linje med dagens datum.</description>
+    </item>
     <item>
       <title>The Feast – Oktoberfest, 1896</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-12.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Sun, 09 Aug 2026 00:00:00 GMT</pubDate>
       <category>Kultur</category>
       <description>The Afternoon Special ägnar en halvtimme åt Betty Boop, en av animationens mest omdiskuterade figurer. Avsnittet tar upp de kontroverser som länge omgett karaktären och fungerar som en koncentrerad, fristående introduktion – lagom till dagen då hon faktiskt gjorde sin debut 1930.</description>
-    </item>
-    <item>
-      <title>Fighter Pilot Podcast – FPP068 - JAS 39 Gripen</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-08.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-08-08</guid>
-      <pubDate>Sat, 08 Aug 2026 00:00:00 GMT</pubDate>
-      <category>Dokumentär</category>
-      <description>Ett avsnitt som går på djupet med Saab JAS 39 Gripen – ett stridsflygplan som sticker ut med sin deltavinge och canard-konfiguration. Gästen Mikael &#39;Duke&#39; Grev, före detta löjtnant i svenska flygvapnet, förklarar hur planet är uppbyggt, hur det flygs och vad som gör det unikt jämfört med andra jaktplan. Avsnittet blandar tekniska fakta med första handsperspektiv, vilket gör det till en av de mer initierade genomgångarna av planet på engelska.</description>
     </item>
   </channel>
 </rss>

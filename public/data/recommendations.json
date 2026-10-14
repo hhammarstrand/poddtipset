@@ -1,5 +1,44 @@
 [
   {
+    "date": "2026-10-14",
+    "episode_title": "Maria Borelius",
+    "show_name": "Sommar & Vinter i P1",
+    "show_slug": "sommar-vinter-i-p1",
+    "hosts": "Maria Borelius",
+    "genre": "Samhälle",
+    "language": "sv",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "Maria Borelius avgår som handelsminister (2006)",
+    "day_connection": "Avsnittet är hennes egen berättelse om att vara handelsminister i bara två dagar innan hon tvingades lämna posten.",
+    "why_great": "Maria Borelius berättar själv i det här Sommar & Vinter i P1-avsnittet om sin korta tid som handelsminister – bara två dagar – och om hur det kändes att tvingas avgå efter den massiva kritiken mot hennes privatekonomi. Hon reflekterar också över sitt yrkesliv som vetenskapsjournalist och hur sökandet efter svar format henne. Programmet är en sällsynt inifrånblick i en av 2000-talets mest omtalade politiska skandaler, berättad av kvinnan som hamnade i centrum. För den som vill förstå den svenska politiska krisen 2006 är det här ett unikt förstahandsdokument.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/maria-borelius/id284610981?i=1000445421080&uo=4",
+      "spotify": "https://open.spotify.com/search/Sommar%20%26%20Vinter%20i%20P1%20Maria%20Borelius"
+    },
+    "sources": [
+      {
+        "title": "Maria Borelius – Sommar & Vinter i P1",
+        "url": "https://podcasts.apple.com/se/podcast/maria-borelius/id284610981?i=1000445421080"
+      },
+      {
+        "title": "Maria Borelius avgår som handelsminister",
+        "url": "https://www.di.se/artiklar/2006/10/14/maria-borelius-avgar-som-handelsminister/"
+      },
+      {
+        "title": "Fredrik Reinfeldt: Borelius avgår som handelsminister",
+        "url": "https://www.sverigesradio.se/avsnitt/94076"
+      }
+    ],
+    "audio": {
+      "url": "https://static-cdn.sr.se/laddahem/podradio/mp/sommar_i_p1/2019/07/sommar_i_p1_20190727_1300_5d39d8da.mp3",
+      "type": "audio/mpeg",
+      "length": "61668093",
+      "durationSec": 3852
+    },
+    "created_at": "2026-10-14T05:42:00.615Z"
+  },
+  {
     "date": "2026-10-13",
     "episode_title": "The White House",
     "show_name": "Short History Of...",

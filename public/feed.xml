@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Tue, 13 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 14 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Sommar &amp; Vinter i P1 – Maria Borelius</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-14.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-10-14</guid>
+      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
+      <category>Samhälle</category>
+      <description>Maria Borelius berättar själv i det här Sommar &amp; Vinter i P1-avsnittet om sin korta tid som handelsminister – bara två dagar – och om hur det kändes att tvingas avgå efter den massiva kritiken mot hennes privatekonomi. Hon reflekterar också över sitt yrkesliv som vetenskapsjournalist och hur sökandet efter svar format henne. Programmet är en sällsynt inifrånblick i en av 2000-talets mest omtalade politiska skandaler, berättad av kvinnan som hamnade i centrum. För den som vill förstå den svenska…</description>
+    </item>
     <item>
       <title>Short History Of... – The White House</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-13.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Mon, 10 Aug 2026 00:00:00 GMT</pubDate>
       <category>True crime</category>
       <description>När The Everygirl rankade de bästa true crime-poddavsnitten toppade Mile Highters djupdykning i Kathleen Peterson-fallet listan – före etablerade poddar som Crime Junkie och RedHanded. Att podden också hade ett andra avsnitt på topplistan, om Jan Broberg, tyder på att det inte är en tillfällighet. En fristående berättelse som fungerar utmärkt som ingång för den som vill upptäcka podden.</description>
-    </item>
-    <item>
-      <title>The Afternoon Special – The Curious Case of Betty Boop</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-09.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-08-09</guid>
-      <pubDate>Sun, 09 Aug 2026 00:00:00 GMT</pubDate>
-      <category>Kultur</category>
-      <description>The Afternoon Special ägnar en halvtimme åt Betty Boop, en av animationens mest omdiskuterade figurer. Avsnittet tar upp de kontroverser som länge omgett karaktären och fungerar som en koncentrerad, fristående introduktion – lagom till dagen då hon faktiskt gjorde sin debut 1930.</description>
     </item>
   </channel>
 </rss>

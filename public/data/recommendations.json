@@ -1,5 +1,41 @@
 [
   {
+    "date": "2026-10-15",
+    "episode_title": "Det var en gång en familj",
+    "show_name": "P1 Dokumentär",
+    "show_slug": "p1-dokumentar",
+    "hosts": "",
+    "genre": "Dokumentär",
+    "language": "sv",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "P1 Dokumentär har i årtionen varit Sveriges Radios dokumentära hörna för reportragen som inte hastas förbi. Avsnittet skildrar en kvinna som lämnade sitt föräldrahem som sjuttonåring, trött på slag och förnedring, och som tjugo år senare söker tillbaka för att förstå vad hon egentligen lämnade efter sig. Berättelsen rör sig i den långsamma, noggranna researchens takt som gör podden fortsatt relevant vecka efter vecka.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/det-var-en-g%C3%A5ng-en-familj/id302534426?i=1000598977682&uo=4",
+      "web": "https://www.sverigesradio.se/poddar/p1-dokumentar",
+      "spotify": "https://open.spotify.com/search/P1%20Dokument%C3%A4r%20Det%20var%20en%20g%C3%A5ng%20en%20familj"
+    },
+    "sources": [
+      {
+        "title": "P1 Dokumentär – Sveriges Radio",
+        "url": "https://www.sverigesradio.se/poddar/p1-dokumentar"
+      },
+      {
+        "title": "Det var en gång en familj – P1 Dokumentär (Facebook-video)",
+        "url": "https://www.facebook.com/sverigesradiop1/videos/det-var-en-g%C3%A5ng-en-familj-p1-dokument%C3%A4r/2280808788868666/"
+      }
+    ],
+    "audio": {
+      "url": "https://static-cdn.sr.se/laddahem/podradio/2023/02/program_p1_dokumentar_20190120_1503_p1_20230209_1449299179.mp3",
+      "type": "audio/mpeg",
+      "length": "50747809",
+      "durationSec": 3171
+    },
+    "created_at": "2026-10-15T05:23:45.448Z"
+  },
+  {
     "date": "2026-10-14",
     "episode_title": "Maria Borelius",
     "show_name": "Sommar & Vinter i P1",

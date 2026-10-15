@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Wed, 14 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 15 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>P1 Dokumentär – Det var en gång en familj</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-15.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-10-15</guid>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
+      <category>Dokumentär</category>
+      <description>P1 Dokumentär har i årtionen varit Sveriges Radios dokumentära hörna för reportragen som inte hastas förbi. Avsnittet skildrar en kvinna som lämnade sitt föräldrahem som sjuttonåring, trött på slag och förnedring, och som tjugo år senare söker tillbaka för att förstå vad hon egentligen lämnade efter sig. Berättelsen rör sig i den långsamma, noggranna researchens takt som gör podden fortsatt relevant vecka efter vecka.</description>
+    </item>
     <item>
       <title>Sommar &amp; Vinter i P1 – Maria Borelius</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-14.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
       <category>Kultur</category>
       <description>Ett BBC Radio 4-porträtt av en av världens mest sålda barnboksförfattare, som inte nöjer sig med nostalgin. Avsnittet väver samman de älskade serierna – Famous Five, Secret Seven och de tjugofyra Noddy-böckerna – med en mer kontroversiell diskussion om rasism och kritik som följt hennes författarskap. Ett ovanligt nyanserat grepp om en författare som de flesta av oss minns från barndomshyllan.</description>
-    </item>
-    <item>
-      <title>Mile Higher – The Case of Kathleen Peterson</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-10.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-08-10</guid>
-      <pubDate>Mon, 10 Aug 2026 00:00:00 GMT</pubDate>
-      <category>True crime</category>
-      <description>När The Everygirl rankade de bästa true crime-poddavsnitten toppade Mile Highters djupdykning i Kathleen Peterson-fallet listan – före etablerade poddar som Crime Junkie och RedHanded. Att podden också hade ett andra avsnitt på topplistan, om Jan Broberg, tyder på att det inte är en tillfällighet. En fristående berättelse som fungerar utmärkt som ingång för den som vill upptäcka podden.</description>
     </item>
   </channel>
 </rss>

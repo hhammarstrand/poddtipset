@@ -1,5 +1,41 @@
 [
   {
+    "date": "2026-10-18",
+    "episode_title": "The Purchase of Alaska",
+    "show_name": "Everything Everywhere Daily",
+    "show_slug": "everything-everywhere-daily",
+    "hosts": "",
+    "genre": "Historia",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "USA köper Alaska av Ryssland",
+    "day_connection": "Avsnittet handlar om själva Alaskaköpet 1867 – den händelse som ägde rum 18 oktober 1867.",
+    "why_great": "Ett koncentrerat avsnitt som går rakt på Alaskaköpet – den transaktion där USA förvärvade Alaska från Ryssland 1867 för 7,2 miljoner dollar. Ämnet sammanfaller exakt med vad som skedde denna dag i historien, vilket gör avsnittet till en direkt tidskapsel för den 18 oktober. Upplägget är en fristående djupdykning i en enskild händelse, utan behov av förkunskaper, och podden är känd för att snabbt sätta sig in i enskilda historiska skeenden.",
+    "listen_links": {
+      "web": "https://everything-everywhere.com/the-purchase-of-alaska/",
+      "apple": "https://podcasts.apple.com/se/podcast/the-purchase-of-alaska-encore/id1521870190?i=1000596707652&uo=4",
+      "spotify": "https://open.spotify.com/search/Everything%20Everywhere%20Daily%20The%20Purchase%20of%20Alaska"
+    },
+    "sources": [
+      {
+        "title": "The Purchase of Alaska – Everything Everywhere Daily",
+        "url": "https://everything-everywhere.com/the-purchase-of-alaska/"
+      },
+      {
+        "title": "Alaskaköpet",
+        "url": "https://sv.wikipedia.org/wiki/Alaskak%C3%B6pet"
+      }
+    ],
+    "audio": {
+      "url": "https://www.podtrac.com/pts/redirect.mp3/pdst.fm/e/op3.dev/e/pscrb.fm/rss/p/tracking.swap.fm/track/6bpBPtHL977KJxLX2zPs/prefix.up.audio/s/traffic.megaphone.fm/GLSS8061086684.mp3",
+      "type": "audio/mpeg",
+      "length": "0",
+      "durationSec": 891
+    },
+    "created_at": "2026-10-18T05:26:17.172Z"
+  },
+  {
     "date": "2026-10-16",
     "episode_title": "Werner Herzog on The Portal",
     "show_name": "The Portal",

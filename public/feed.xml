@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Fri, 16 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 18 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Everything Everywhere Daily – The Purchase of Alaska</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-18.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-10-18</guid>
+      <pubDate>Sun, 18 Oct 2026 00:00:00 GMT</pubDate>
+      <category>Historia</category>
+      <description>Ett koncentrerat avsnitt som går rakt på Alaskaköpet – den transaktion där USA förvärvade Alaska från Ryssland 1867 för 7,2 miljoner dollar. Ämnet sammanfaller exakt med vad som skedde denna dag i historien, vilket gör avsnittet till en direkt tidskapsel för den 18 oktober. Upplägget är en fristående djupdykning i en enskild händelse, utan behov av förkunskaper, och podden är känd för att snabbt sätta sig in i enskilda historiska skeenden.</description>
+    </item>
     <item>
       <title>The Portal – Werner Herzog on The Portal</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-16.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Thu, 13 Aug 2026 00:00:00 GMT</pubDate>
       <category>Dokumentär</category>
       <description>Den Peabody-nominerade dokumentären Tulsa Burning från Blindspot, ett samarbete mellan WNYC och The History Channel, skildrar massakern i Tulsa 1921 och det decennier långa efterspelet av tystnad och förnekelse. Avsnittet har hyllats för sin noggranna research och sitt starka narrativa grepp om ett av de mest försummade kapitlen i amerikansk historia, och var ett av elva podcast-verk som Peabody Awards lyfte fram i sin lista Best Podcasts to Listen to Right Now.</description>
-    </item>
-    <item>
-      <title>Founders – Thomas Edison</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-12.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-08-12</guid>
-      <pubDate>Wed, 12 Aug 2026 00:00:00 GMT</pubDate>
-      <category>Berättande</category>
-      <description>Founders lägger ett helt avsnitt på Thomas Edison, utifrån Matthew Josephsons biografi Edison. Det plockar isär vad som faktiskt drev en av historiens mest produktiva uppfinnare – från de tidiga experimenten i labbet till de uppfinningar som förändrat hur vi spelar in ljud och använder elektricitet i vardagen. Ett bra val för den som vill se en klassisk uppfinnarhistoria genom ett entrepreneurperspektiv.</description>
     </item>
   </channel>
 </rss>

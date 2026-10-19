@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-10-19",
+    "episode_title": "#1169 - Elon Musk",
+    "show_name": "The Joe Rogan Experience",
+    "show_slug": "the-joe-rogan-experience",
+    "hosts": "Joe Rogan",
+    "genre": "Intervju",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Ethan Maurice listar den här konversationen mellan Joe Rogan och Elon Musk som nummer två på sin lista över de tolv bästa poddepisoderna han hört. Det över två timmar långa samtalet hör till de mest omtalade och delade avsnitten i hela poddvärlden och har blivit ett vattenmärke för den lediga, långa intervjuformen när den fungerar som allra bäst.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/2404-elon-musk/id360084272?i=1000734471135&uo=4",
+      "spotify": "https://open.spotify.com/search/The%20Joe%20Rogan%20Experience%20%231169%20-%20Elon%20Musk"
+    },
+    "sources": [
+      {
+        "title": "The 12 Best Podcast Episodes I've Ever Heard",
+        "url": "https://ethanmaurice.com/blog/the-12-best-podcast-episodes-ever"
+      }
+    ],
+    "audio": {
+      "url": "https://traffic.megaphone.fm/GLT8982688516.mp3?updated=1761931168",
+      "type": "audio/mpeg",
+      "length": "0",
+      "durationSec": 12205
+    },
+    "created_at": "2026-10-19T05:29:48.763Z"
+  },
+  {
     "date": "2026-10-18",
     "episode_title": "The Purchase of Alaska",
     "show_name": "Everything Everywhere Daily",

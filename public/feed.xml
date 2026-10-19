@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Sun, 18 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 19 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>The Joe Rogan Experience – #1169 - Elon Musk</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-19.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-10-19</guid>
+      <pubDate>Mon, 19 Oct 2026 00:00:00 GMT</pubDate>
+      <category>Intervju</category>
+      <description>Ethan Maurice listar den här konversationen mellan Joe Rogan och Elon Musk som nummer två på sin lista över de tolv bästa poddepisoderna han hört. Det över två timmar långa samtalet hör till de mest omtalade och delade avsnitten i hela poddvärlden och har blivit ett vattenmärke för den lediga, långa intervjuformen när den fungerar som allra bäst.</description>
+    </item>
     <item>
       <title>Everything Everywhere Daily – The Purchase of Alaska</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-18.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Fri, 14 Aug 2026 00:00:00 GMT</pubDate>
       <category>Dokumentär</category>
       <description>Vetenskapspodden tittar tillbaka på Öresundsbron tjugo år efter invigningen och den gränslösa optimism som då rådde om att bron skulle förena folken på ömse sidor om sundet. Programmet gräver i vad som hände med drömmarna om en naturlig förbrödring över vattnet.</description>
-    </item>
-    <item>
-      <title>Blindspot – Tulsa Burning</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-13.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-08-13</guid>
-      <pubDate>Thu, 13 Aug 2026 00:00:00 GMT</pubDate>
-      <category>Dokumentär</category>
-      <description>Den Peabody-nominerade dokumentären Tulsa Burning från Blindspot, ett samarbete mellan WNYC och The History Channel, skildrar massakern i Tulsa 1921 och det decennier långa efterspelet av tystnad och förnekelse. Avsnittet har hyllats för sin noggranna research och sitt starka narrativa grepp om ett av de mest försummade kapitlen i amerikansk historia, och var ett av elva podcast-verk som Peabody Awards lyfte fram i sin lista Best Podcasts to Listen to Right Now.</description>
     </item>
   </channel>
 </rss>

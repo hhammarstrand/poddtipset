@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Mon, 19 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 20 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Radiolab – Unraveling Bolero</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-20.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-10-20</guid>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 GMT</pubDate>
+      <category>Kultur</category>
+      <description>Radiolab gräver i historien kring ett av 1900-talets mest spelade musikstycken i detta 26 minuter långa avsnitt. Listat som ett av de arton bästa musikpoddavsnitten genom tiderna visar programmet hur en enda melodi kan rymma ett helt sekel av kulturhistoria – en perfekt påminnelse om varför musik och podcast hör ihop.</description>
+    </item>
     <item>
       <title>The Joe Rogan Experience – #1169 - Elon Musk</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-19.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Sat, 15 Aug 2026 00:00:00 GMT</pubDate>
       <category>Vetenskap</category>
       <description>På Reddit, i tråden I just listened to the best science podcast, framhåller en användare avsnittet What&#39;s the deal with eels? som det bästa vetenskapsavsnitt hen hört. Avsnittet hör till den brittiska serien An Infinite Monkey Cage och tar upp ålar som ämne. Tipset kommer från en nyupptäckt lyssnare som ville dela med sig av sitt fynd.</description>
-    </item>
-    <item>
-      <title>Vetenskapspodden – Bron och förbrödringen som kom av sig</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-14.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-08-14</guid>
-      <pubDate>Fri, 14 Aug 2026 00:00:00 GMT</pubDate>
-      <category>Dokumentär</category>
-      <description>Vetenskapspodden tittar tillbaka på Öresundsbron tjugo år efter invigningen och den gränslösa optimism som då rådde om att bron skulle förena folken på ömse sidor om sundet. Programmet gräver i vad som hände med drömmarna om en naturlig förbrödring över vattnet.</description>
     </item>
   </channel>
 </rss>

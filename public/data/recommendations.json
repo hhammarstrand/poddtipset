@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-10-20",
+    "episode_title": "Unraveling Bolero",
+    "show_name": "Radiolab",
+    "show_slug": "radiolab",
+    "hosts": "Jad Abumrad, Robert Krulwich",
+    "genre": "Kultur",
+    "language": "en",
+    "year": 2015,
+    "duration_minutes": 26,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Radiolab gräver i historien kring ett av 1900-talets mest spelade musikstycken i detta 26 minuter långa avsnitt. Listat som ett av de arton bästa musikpoddavsnitten genom tiderna visar programmet hur en enda melodi kan rymma ett helt sekel av kulturhistoria – en perfekt påminnelse om varför musik och podcast hör ihop.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/unraveling-bolero/id152249110?i=1000412091372&uo=4",
+      "spotify": "https://open.spotify.com/search/Radiolab%20Unraveling%20Bolero"
+    },
+    "sources": [
+      {
+        "title": "The 18 Best Podcast Episodes about Music",
+        "url": "https://www.cantgetmuchhigher.com/p/the-18-best-podcast-episodes-about"
+      }
+    ],
+    "audio": {
+      "url": "https://pscrb.fm/rss/p/mgln.ai/e/14/prfx.byspotify.com/e/dts.podtrac.com/pts/redirect.mp3/waaa.wnyc.org/758af4c0-a2c3-47ec-a2d8-05f41bfbde51/episodes/79e95b1a-f386-43f1-a9f5-1015aac41978/audio/128/default.mp3?aid=rss_feed&amp;awCollectionId=758af4c0-a2c3-47ec-a2d8-05f41bfbde51&amp;awEpisodeId=79e95b1a-f386-43f1-a9f5-1015aac41978&amp;feed=EmVW7VGp",
+      "type": "audio/mpeg",
+      "length": "26249140",
+      "durationSec": 1633
+    },
+    "created_at": "2026-10-20T05:27:58.518Z"
+  },
+  {
     "date": "2026-10-19",
     "episode_title": "#1169 - Elon Musk",
     "show_name": "The Joe Rogan Experience",

@@ -1,5 +1,41 @@
 [
   {
+    "date": "2026-10-21",
+    "episode_title": "Drottning Kristina – kung utan krona",
+    "show_name": "P3 Historia",
+    "show_slug": "p3-historia",
+    "hosts": "",
+    "genre": "Historia",
+    "language": "sv",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Listan över tio dokumentärer lyfter fram P3 Historias avsnitt om Drottning Kristina som det allra bästa bland seriens egna avsnitt. Avsnittet handlar om Kristina som kung utan krona, vilket ger det en tydlig historisk ingång. Omdömet är mer specifikt än att bara placera ett avsnitt i en generell topplista.",
+    "listen_links": {
+      "web": "https://www.sverigesradio.se/poddar/p3-historia",
+      "apple": "https://podcasts.apple.com/se/podcast/drottning-kristina-kung-utan-krona/id1219271980?i=1000678247796&uo=4",
+      "spotify": "https://open.spotify.com/search/P3%20Historia%20Drottning%20Kristina%20%E2%80%93%20kung%20utan%20krona"
+    },
+    "sources": [
+      {
+        "title": "Bästa dokumentärerna att lyssna på i sommar – 10 tips",
+        "url": "https://www.elle.se/noje/redaktoren-har-ar-10-dokumentarer-jag-tycker-du-ska-lyssna-pa-i-sommar/10924197"
+      },
+      {
+        "title": "P3 Historia",
+        "url": "https://www.sverigesradio.se/poddar/p3-historia"
+      }
+    ],
+    "audio": {
+      "url": "https://static-cdn.sr.se/laddahem/podradio/2024/11/p3_historia_drottning_kristina__kung_utan_20241205_1002566673.mp3",
+      "type": "audio/mpeg",
+      "length": "54541115",
+      "durationSec": 3407
+    },
+    "created_at": "2026-10-21T05:39:34.084Z"
+  },
+  {
     "date": "2026-10-20",
     "episode_title": "Unraveling Bolero",
     "show_name": "Radiolab",

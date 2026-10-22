@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Wed, 21 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 22 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>You Made It – Ryan Holiday on You Made It</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-22.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-10-22</guid>
+      <pubDate>Thu, 22 Oct 2026 00:00:00 GMT</pubDate>
+      <category>Intervju</category>
+      <description>Listan The 12 Best Podcast Episodes I&#39;ve Ever Heard placerar Ryan Holiday på You Made It som nummer fyra av tolv. Avsnittet är ett självständigt gästavsnitt med Ryan Holiday och fungerar som en direkt ingång utan att lyssnaren behöver gå via tidigare delar.</description>
+    </item>
     <item>
       <title>P3 Historia – Drottning Kristina – kung utan krona</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-21.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Mon, 17 Aug 2026 00:00:00 GMT</pubDate>
       <category>Historia</category>
       <description>Ett fristående avsnitt på 56 minuter om Sukarno och Indonesien, publicerat i juli 2025. Avsnittet handlar om mannen som proklamerade Indonesiens självständighet den 17 augusti 1945 – samma datum som dagens historiska notering – och ger en samlad berättelse om just den händelsen och ledaren bakom.</description>
-    </item>
-    <item>
-      <title>The Women&#39;s Podcast – Best of The Women&#39;s Podcast: Evanna Lynch</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-16.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-08-16</guid>
-      <pubDate>Sun, 16 Aug 2026 00:00:00 GMT</pubDate>
-      <category>Intervju</category>
-      <description>Harry Potter-skådespelaren Evanna Lynch öppnar sig i det här avsnittet för att berätta om den ätstörning som började när hon var elva år och som hon kämpade med under flera år. I en utlämnande intervju beskriver hon hur sjukdomen präglade hennes tidiga tonår och hennes väg in i skådespelaryrket, och ger en sällsynt personlig bild av kampen mot anorexia. Det är ett samtal som sticker ut från mängden av celebritetintervjuer just för att Lynch talar om ämnet med en sådan ärlighet och avsaknad av…</description>
     </item>
   </channel>
 </rss>

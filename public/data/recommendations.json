@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-10-22",
+    "episode_title": "Ryan Holiday on You Made It",
+    "show_name": "You Made It",
+    "show_slug": "you-made-it",
+    "hosts": "",
+    "genre": "Intervju",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Listan The 12 Best Podcast Episodes I've Ever Heard placerar Ryan Holiday på You Made It som nummer fyra av tolv. Avsnittet är ett självständigt gästavsnitt med Ryan Holiday och fungerar som en direkt ingång utan att lyssnaren behöver gå via tidigare delar.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/ryan-holiday-returns/id475878118?i=1000453702374&uo=4",
+      "spotify": "https://open.spotify.com/search/You%20Made%20It%20Ryan%20Holiday%20on%20You%20Made%20It"
+    },
+    "sources": [
+      {
+        "title": "The 12 Best Podcast Episodes I've Ever Heard",
+        "url": "https://ethanmaurice.com/blog/the-12-best-podcast-episodes-ever"
+      }
+    ],
+    "audio": {
+      "url": "https://www.podtrac.com/pts/redirect.mp3/pdst.fm/e/claritaspod.com/measure/pscrb.fm/rss/p/mgln.ai/e/491/traffic.megaphone.fm/LEME1026663297.mp3?updated=1776091211",
+      "type": "audio/mpeg",
+      "length": "0",
+      "durationSec": 7184
+    },
+    "created_at": "2026-10-22T05:32:43.217Z"
+  },
+  {
     "date": "2026-10-21",
     "episode_title": "Drottning Kristina – kung utan krona",
     "show_name": "P3 Historia",

@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Thu, 22 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 24 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>The Big Dig – Mitt &amp; Ted, a healthcare story</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-24.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-10-24</guid>
+      <pubDate>Sat, 24 Oct 2026 00:00:00 GMT</pubDate>
+      <category>Samhälle</category>
+      <description>Avsnittet behandlar sjukvårdsdebatten mellan Mitt och Ted och gör frågan om deras respektive förslag till avsnittets kärna. Det är ett fristående och specifikt stycke valpolitik om en central fråga i amerikansk politik. Apple listar The Big Dig bland Peabodys prisbelönare, vilket ger ett tydligt dokumenterat kvalitetsbevis.</description>
+    </item>
     <item>
       <title>You Made It – Ryan Holiday on You Made It</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-22.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Tue, 18 Aug 2026 00:00:00 GMT</pubDate>
       <category>Dokumentär</category>
       <description>Monumental Lies från Reveal belönades med ett Peabody Award 2018, ett av USA:s mest respekterade pris inom radiojournalistik. Avsnittet utforskar kontroversiell amerikansk historia och producerades av Center for Investigative Reporting tillsammans med PRX och Type Investigations, en trio som blivit ett av de starkaste namnen inom amerikansk undersökande journalistik.</description>
-    </item>
-    <item>
-      <title>Mr M History Podcast – Sukarno&#39;s Indonesia</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-17.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-08-17</guid>
-      <pubDate>Mon, 17 Aug 2026 00:00:00 GMT</pubDate>
-      <category>Historia</category>
-      <description>Ett fristående avsnitt på 56 minuter om Sukarno och Indonesien, publicerat i juli 2025. Avsnittet handlar om mannen som proklamerade Indonesiens självständighet den 17 augusti 1945 – samma datum som dagens historiska notering – och ger en samlad berättelse om just den händelsen och ledaren bakom.</description>
     </item>
   </channel>
 </rss>

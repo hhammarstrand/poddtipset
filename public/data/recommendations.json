@@ -1,5 +1,40 @@
 [
   {
+    "date": "2026-10-24",
+    "episode_title": "Mitt & Ted, a healthcare story",
+    "show_name": "The Big Dig",
+    "show_slug": "the-big-dig",
+    "hosts": "",
+    "genre": "Samhälle",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Avsnittet behandlar sjukvårdsdebatten mellan Mitt och Ted och gör frågan om deras respektive förslag till avsnittets kärna. Det är ett fristående och specifikt stycke valpolitik om en central fråga i amerikansk politik. Apple listar The Big Dig bland Peabodys prisbelönare, vilket ger ett tydligt dokumenterat kvalitetsbevis.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/mitt-ted-5-a-thousand-fathers/id1705087719?i=1000797425240&uo=4",
+      "spotify": "https://open.spotify.com/search/The%20Big%20Dig%20Mitt%20%26%20Ted%2C%20a%20healthcare%20story"
+    },
+    "sources": [
+      {
+        "title": "Peabody Award Winners",
+        "url": "https://podcasts.apple.com/us/multi-room/1513056736"
+      },
+      {
+        "title": "Podcast & Radio",
+        "url": "https://peabodyawards.com/categories/podcast-radio/"
+      }
+    ],
+    "audio": {
+      "url": "https://dts.podtrac.com/redirect.mp3/tracking.swap.fm/track/sblTq32fyWAjsHzze2LG/dovetail.prxu.org/4614/a9f669fc-eecb-4fc6-b3ac-e49a795c4f0c/Part_5_-_A_Thousand_Fathers_FINAL_100526.mp3",
+      "type": "audio/mpeg",
+      "length": "57602898",
+      "durationSec": 3600
+    },
+    "created_at": "2026-10-24T05:16:53.490Z"
+  },
+  {
     "date": "2026-10-22",
     "episode_title": "Ryan Holiday on You Made It",
     "show_name": "You Made It",

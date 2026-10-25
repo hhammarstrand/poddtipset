@@ -1,5 +1,45 @@
 [
   {
+    "date": "2026-10-25",
+    "episode_title": "Hitler and Mussolini",
+    "show_name": "Dan Snow's History Hit",
+    "show_slug": "dan-snow-s-history-hit",
+    "hosts": "Dan Snow (med gästen Christian Goeschel)",
+    "genre": "Historia",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "Adolf Hitler och Benito Mussolini inleder samarbete då Berlin-Rom-axeln skapas.",
+    "day_connection": "Avsnittet handlar om Hitlers och Mussolinis samarbete och hur den fascistiska alliansen formades.",
+    "why_great": "Dan Snow gästas av Christian Goeschel, som öppnar upp verkligheten i Mussolinis Italien. Samtalets fokus ligger på hur Hitlers och Mussolinis samarbete tog form och hur den fascistiska alliansen byggdes upp. Goeschel ger en konkret bild av hur de två ländernas ledare och regimer samverkade under 1930-talet.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/hitler-and-mussolini/id1042631089?i=1000594804114&uo=4",
+      "web": "https://shows.acast.com/dansnowshistoryhit/episodes/hitler-and-mussolini",
+      "spotify": "https://open.spotify.com/search/Dan%20Snow's%20History%20Hit%20Hitler%20and%20Mussolini"
+    },
+    "sources": [
+      {
+        "title": "Hitler and Mussolini - Dan Snow's History Hit",
+        "url": "https://shows.acast.com/dansnowshistoryhit/episodes/hitler-and-mussolini"
+      },
+      {
+        "title": "Hitler and Mussolini - Dan Snow's History Hit",
+        "url": "https://podcasts.apple.com/us/podcast/hitler-and-mussolini/id1042631089?i=1000594804114"
+      },
+      {
+        "title": "Podcasts",
+        "url": "https://www.historyhit.com/podcasts/"
+      }
+    ],
+    "audio": {
+      "url": "https://sphinx.acast.com/p/acast/s/dansnowshistoryhit/e/64d2609baf9a6f001113d4d4/media.mp3?tk=eyJ0ayI6ImRlZmF1bHQiLCJhZHMiOnRydWUsInNwb25zIjp0cnVlLCJzdGF0dXMiOiJwdWJsaWMifQ==&amp;sig=sBfXr4_CTlZdt_r9ypWX5Hw7nlxyTgBJK2JjvHkSl54",
+      "type": "audio/mpeg",
+      "length": "54573465",
+      "durationSec": 2265
+    },
+    "created_at": "2026-10-25T05:29:19.681Z"
+  },
+  {
     "date": "2026-10-24",
     "episode_title": "Mitt & Ted, a healthcare story",
     "show_name": "The Big Dig",

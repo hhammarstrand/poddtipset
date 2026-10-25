@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Sat, 24 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 25 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Dan Snow&#39;s History Hit – Hitler and Mussolini</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-25.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-10-25</guid>
+      <pubDate>Sun, 25 Oct 2026 00:00:00 GMT</pubDate>
+      <category>Historia</category>
+      <description>Dan Snow gästas av Christian Goeschel, som öppnar upp verkligheten i Mussolinis Italien. Samtalets fokus ligger på hur Hitlers och Mussolinis samarbete tog form och hur den fascistiska alliansen byggdes upp. Goeschel ger en konkret bild av hur de två ländernas ledare och regimer samverkade under 1930-talet.</description>
+    </item>
     <item>
       <title>The Big Dig – Mitt &amp; Ted, a healthcare story</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-24.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Wed, 19 Aug 2026 00:00:00 GMT</pubDate>
       <category>Intervju</category>
       <description>I det här Värvet-avsnittet öppnar sig komikern Nisse Hallberg om sin talang för comedy, om standup som det enklaste sättet att göra folk glada, och om att bli pappa och resan genom IVF. Samtalet rör sig mellan humor och mer personliga erfarenheter i det karaktäristiska Värvet-upplägget där gästen får utrymme att gå på djupet i sina egna tankar.</description>
-    </item>
-    <item>
-      <title>Reveal – Monumental Lies</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-18.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-08-18</guid>
-      <pubDate>Tue, 18 Aug 2026 00:00:00 GMT</pubDate>
-      <category>Dokumentär</category>
-      <description>Monumental Lies från Reveal belönades med ett Peabody Award 2018, ett av USA:s mest respekterade pris inom radiojournalistik. Avsnittet utforskar kontroversiell amerikansk historia och producerades av Center for Investigative Reporting tillsammans med PRX och Type Investigations, en trio som blivit ett av de starkaste namnen inom amerikansk undersökande journalistik.</description>
     </item>
   </channel>
 </rss>

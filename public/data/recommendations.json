@@ -1,5 +1,40 @@
 [
   {
+    "date": "2026-10-26",
+    "episode_title": "The Patriot Act Twenty Years Later",
+    "show_name": "The Cato Weekly Podcast",
+    "show_slug": "the-cato-weekly-podcast",
+    "hosts": "Christopher J. Coyne",
+    "genre": "Samhälle",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "USA:s Patriot Act antogs som lag den 26 oktober 2001.",
+    "day_connection": "Avsnittet handlar om den lag som antogs den 26 oktober 2001 och granskar dess ökade federala befogenheter.",
+    "why_great": "Avsnittet går igenom hur Patriot Act kraftigt ökade den federala brottsbekämpningens befogenheter, med Christopher J. Coynes kommentar. Tillbakablicket två decennier efter lagen ger lyssnaren ett tydligt underlag för att förstå den fortsatta diskussionen om säkerhet, integritet och medborgerliga rättigheter. Det är ett fokuserat samhällsavsnitt om en lag vars konsekvenser har gett upphov till omfattande kritik.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/the-patriot-act-twenty-years-later/id158961219?i=1000537539814&uo=4",
+      "spotify": "https://open.spotify.com/search/The%20Cato%20Weekly%20Podcast%20The%20Patriot%20Act%20Twenty%20Years%20Later"
+    },
+    "sources": [
+      {
+        "title": "The Patriot Act Twenty Years Later - The Cato Weekly Podcast",
+        "url": "https://podcasts.apple.com/us/podcast/the-patriot-act-twenty-years-later/id158961219?i=1000537539814"
+      },
+      {
+        "title": "The Patriot Act",
+        "url": "https://www.npr.org/series/4759727/the-patriot-act"
+      }
+    ],
+    "audio": {
+      "url": "https://sphinx.acast.com/p/open/s/5e28e0d8963f166217546493/e/615b6be812b1b20014ea94d9/media.mp3",
+      "type": "audio/mpeg",
+      "length": "19476429",
+      "durationSec": 830
+    },
+    "created_at": "2026-10-26T05:30:25.722Z"
+  },
+  {
     "date": "2026-10-25",
     "episode_title": "Hitler and Mussolini",
     "show_name": "Dan Snow's History Hit",

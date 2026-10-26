@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Sun, 25 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 26 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>The Cato Weekly Podcast – The Patriot Act Twenty Years Later</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-26.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-10-26</guid>
+      <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
+      <category>Samhälle</category>
+      <description>Avsnittet går igenom hur Patriot Act kraftigt ökade den federala brottsbekämpningens befogenheter, med Christopher J. Coynes kommentar. Tillbakablicket två decennier efter lagen ger lyssnaren ett tydligt underlag för att förstå den fortsatta diskussionen om säkerhet, integritet och medborgerliga rättigheter. Det är ett fokuserat samhällsavsnitt om en lag vars konsekvenser har gett upphov till omfattande kritik.</description>
+    </item>
     <item>
       <title>Dan Snow&#39;s History Hit – Hitler and Mussolini</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-25.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Thu, 20 Aug 2026 00:00:00 GMT</pubDate>
       <category>Dokumentär</category>
       <description>I Radiolabs Ponzi Supernova får lyssnaren höra Bernie Madoff själv tala, något som sällan skedde under hans verksamma tid. Avsnittet kombinerar researchjournalistik med ett sällsynt personligt möte och väver samman arkivklipp, intervjuer och egna reflektioner till en tät berättelse som håller greppet hela vägen. Det har lyfts fram på listor över de mest minnesvärda poddavsnitten någonsin just för att det ger tillträde till en av 2000-talets mest gäckande figurer.</description>
-    </item>
-    <item>
-      <title>Värvet – Nisse Hallberg: Comedy är mitt sätt att göra folk glada</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-19.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-08-19</guid>
-      <pubDate>Wed, 19 Aug 2026 00:00:00 GMT</pubDate>
-      <category>Intervju</category>
-      <description>I det här Värvet-avsnittet öppnar sig komikern Nisse Hallberg om sin talang för comedy, om standup som det enklaste sättet att göra folk glada, och om att bli pappa och resan genom IVF. Samtalet rör sig mellan humor och mer personliga erfarenheter i det karaktäristiska Värvet-upplägget där gästen får utrymme att gå på djupet i sina egna tankar.</description>
     </item>
   </channel>
 </rss>

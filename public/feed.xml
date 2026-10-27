@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Mon, 26 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 27 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>P3 Dokumentär – Knarkkungarna på Darknet</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-27.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-10-27</guid>
+      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+      <category>True crime</category>
+      <description>Expressen placerar Knarkkungarna på Darknet som nummer två i listan över P3 Dokumentärs tio mest lyssnade avsnitt. Det gör det till ett av poddens mest framgångsrika dokumentärval, med ett tydligt fokus på knarkkungar på darknet.</description>
+    </item>
     <item>
       <title>The Cato Weekly Podcast – The Patriot Act Twenty Years Later</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-26.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Fri, 21 Aug 2026 00:00:00 GMT</pubDate>
       <category>Historia</category>
       <description>Ett kompakt BBC-dokumentäravsnitt från Witness History-serien som rekonstruerar skottlossningen mot Benigno Aquino på Manilas flygplats 1983. Programmet bygger på förstahandsvittnen, däribland Aquinos svåger, vilket ger ett personligt perspektiv på dagen som skakade Filippinerna. BBC:s Witness History är känd för att väva samman arkivmaterial och ögonvittnesskildringar till korta, välgjorda berättelser.</description>
-    </item>
-    <item>
-      <title>Radiolab – Ponzi Supernova</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-20.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-08-20</guid>
-      <pubDate>Thu, 20 Aug 2026 00:00:00 GMT</pubDate>
-      <category>Dokumentär</category>
-      <description>I Radiolabs Ponzi Supernova får lyssnaren höra Bernie Madoff själv tala, något som sällan skedde under hans verksamma tid. Avsnittet kombinerar researchjournalistik med ett sällsynt personligt möte och väver samman arkivklipp, intervjuer och egna reflektioner till en tät berättelse som håller greppet hela vägen. Det har lyfts fram på listor över de mest minnesvärda poddavsnitten någonsin just för att det ger tillträde till en av 2000-talets mest gäckande figurer.</description>
     </item>
   </channel>
 </rss>

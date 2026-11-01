@@ -936,8 +936,8 @@
       <itunes:episodeType>full</itunes:episodeType>
       <itunes:explicit>false</itunes:explicit>
       <itunes:image href="https://hhammarstrand.github.io/poddtipset/podcast-cover.jpg" />
-      <itunes:duration>46:02</itunes:duration>
-      <enclosure url="https://sphinx.acast.com/p/acast/s/varvet/e/68a83044e2f63983a77fecdd/media.mp3" type="audio/mpeg" length="66362558" />
+      <itunes:duration>46:05</itunes:duration>
+      <enclosure url="https://media.pod.space/varvet/nisse_hallberg_comedy_ar_mitt_satt_att_gora_folk_glada_250825.mp3" type="audio/mpeg" length="44246413" />
     </item>
     <item>
       <title>Reveal – Monumental Lies</title>
@@ -1898,22 +1898,6 @@
       <itunes:image href="https://hhammarstrand.github.io/poddtipset/podcast-cover.jpg" />
       <itunes:duration>1:05:04</itunes:duration>
       <enclosure url="https://pdst.fm/e/traffic.megaphone.fm/GLT1824879961.mp3?updated=1777395052" type="audio/mpeg" length="0" />
-    </item>
-    <item>
-      <title>Empire City: The Untold Origin Story of the NYPD – The Model City</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-06-11.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-06-11</guid>
-      <pubDate>Thu, 11 Jun 2026 00:00:00 GMT</pubDate>
-      <description><![CDATA[<p><strong>Empire City: The Untold Origin Story of the NYPD – The Model City</strong></p><p>Detta avsnitt har belönats med en Peabody Award och beskrivs som en prisvärd ingång i en serie som tar lyssnaren på en tolv delars resa genom New York-polisens overkliga historia. Det har hyllats som en mästerverk inom genren och är ett av de främsta nominerade poddavsnitten enligt Peabody Awards.</p><p>Dagens tips 2026-06-11 fran Dagens Podd. Las mer och se kallor: <a href="https://hhammarstrand.github.io/poddtipset/avsnitt/2026-06-11.html">https://hhammarstrand.github.io/poddtipset/avsnitt/2026-06-11.html</a></p>]]></description>
-      <content:encoded><![CDATA[<p><strong>Empire City: The Untold Origin Story of the NYPD – The Model City</strong></p><p>Detta avsnitt har belönats med en Peabody Award och beskrivs som en prisvärd ingång i en serie som tar lyssnaren på en tolv delars resa genom New York-polisens overkliga historia. Det har hyllats som en mästerverk inom genren och är ett av de främsta nominerade poddavsnitten enligt Peabody Awards.</p><p>Dagens tips 2026-06-11 fran Dagens Podd. Las mer och se kallor: <a href="https://hhammarstrand.github.io/poddtipset/avsnitt/2026-06-11.html">https://hhammarstrand.github.io/poddtipset/avsnitt/2026-06-11.html</a></p>]]></content:encoded>
-      <itunes:title>The Model City</itunes:title>
-      <itunes:author>Empire City: The Untold Origin Story of the NYPD</itunes:author>
-      <itunes:summary>Detta avsnitt har belönats med en Peabody Award och beskrivs som en prisvärd ingång i en serie som tar lyssnaren på en tolv delars resa genom New York-polisens overkliga historia. Det har hyllats som en mästerverk inom genren och är ett av de främsta nominerade poddavsnitten enligt Peabody Awards.</itunes:summary>
-      <itunes:episodeType>full</itunes:episodeType>
-      <itunes:explicit>false</itunes:explicit>
-      <itunes:image href="https://hhammarstrand.github.io/poddtipset/podcast-cover.jpg" />
-      <itunes:duration>2:58</itunes:duration>
-      <enclosure url="https://pscrb.fm/rss/p/rss.art19.com/episodes/7f6ccb83-2ec8-4e23-8b0e-9102cf4a86f8.mp3?rss_browser=BAhJIg5EYWdlbnNQb2QGOgZFVA%3D%3D--b98dcc407372089752a32c42e142af13a8d79da2" type="audio/mpeg" length="2859676" />
     </item>
     <item>
       <title>Radiolab – Space</title>

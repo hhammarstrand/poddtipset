@@ -1,5 +1,31 @@
 [
   {
+    "date": "2026-11-01",
+    "episode_title": "Dr. Rhonda Patrick",
+    "show_name": "The Knowledge Project",
+    "show_slug": "the-knowledge-project",
+    "hosts": "",
+    "genre": "Intervju",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Det här är ett gästintervju med Rhonda Patrick i The Knowledge Project. Avsnittet hamnade först i en lista över 24 enstaka poddavsnitt som sammanställts efter mer än 300 lyssningar, vilket ger det en tydlig och konkret hyllning i just detta urval.",
+    "listen_links": {
+      "apple": "https://podcasts.apple.com/se/podcast/dr-rhonda-patrick-diet-essentials-for-healthy-living/id990149481?i=1000651146292&uo=4",
+      "spotify": "https://open.spotify.com/search/The%20Knowledge%20Project%20Dr.%20Rhonda%20Patrick"
+    },
+    "sources": [
+      {
+        "title": "My Top 24 Podcast Episodes & Interviews from my 300+ Listens",
+        "url": "https://www.linkedin.com/pulse/my-top-24-podcast-episodes-interviews-from-300-listens-thiago-ghisi-nnaxe"
+      }
+    ],
+    "audio": null,
+    "created_at": "2026-11-01T06:59:22.086Z"
+  },
+  {
     "date": "2026-10-27",
     "episode_title": "Knarkkungarna på Darknet",
     "show_name": "P3 Dokumentär",

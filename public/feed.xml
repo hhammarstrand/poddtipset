@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Tue, 27 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 01 Nov 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>The Knowledge Project – Dr. Rhonda Patrick</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-11-01.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-11-01</guid>
+      <pubDate>Sun, 01 Nov 2026 00:00:00 GMT</pubDate>
+      <category>Intervju</category>
+      <description>Det här är ett gästintervju med Rhonda Patrick i The Knowledge Project. Avsnittet hamnade först i en lista över 24 enstaka poddavsnitt som sammanställts efter mer än 300 lyssningar, vilket ger det en tydlig och konkret hyllning i just detta urval.</description>
+    </item>
     <item>
       <title>P3 Dokumentär – Knarkkungarna på Darknet</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-10-27.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Sat, 22 Aug 2026 00:00:00 GMT</pubDate>
       <category>Historia</category>
       <description>Historiemannen Dick Harrison reder ut varför det engelska inbördeskriget mellan Lancaster och York fick just namnet Rosornas krig, och tar också upp vad Körsbärskriget var. Avsnittet är ett fristående svar på en specifik historisk fråga i hans frågesvar-podd på Sveriges Radio Play, och knyter direkt an till dagens datum – den 22 augusti 1485 stupade Rikard III vid Bosworth Field och kriget avgjordes. Harrison hör till landets mest erfarna historiepedagoger och syns regelbundet högt på de…</description>
-    </item>
-    <item>
-      <title>Witness History – The Assassination of Benigno Aquino</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-21.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-08-21</guid>
-      <pubDate>Fri, 21 Aug 2026 00:00:00 GMT</pubDate>
-      <category>Historia</category>
-      <description>Ett kompakt BBC-dokumentäravsnitt från Witness History-serien som rekonstruerar skottlossningen mot Benigno Aquino på Manilas flygplats 1983. Programmet bygger på förstahandsvittnen, däribland Aquinos svåger, vilket ger ett personligt perspektiv på dagen som skakade Filippinerna. BBC:s Witness History är känd för att väva samman arkivmaterial och ögonvittnesskildringar till korta, välgjorda berättelser.</description>
     </item>
   </channel>
 </rss>

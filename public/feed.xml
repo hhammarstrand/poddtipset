@@ -6,7 +6,15 @@
     <atom:link href="https://hhammarstrand.github.io/poddtipset/feed.xml" rel="self" type="application/rss+xml" />
     <description>Varje dygn ett dokumenterat hyllat poddavsnitt – handplockat och kallbelagt. Se dagens tips, bladdra i historiken och utforska statistiken.</description>
     <language>sv-se</language>
-    <lastBuildDate>Sun, 01 Nov 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 02 Nov 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>The Joe Rogan Experience – #1832 - Charlie Walker</title>
+      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-11-02.html</link>
+      <guid isPermaLink="false">dagens-pod-2026-11-02</guid>
+      <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
+      <category>Intervju</category>
+      <description>Joe Rogan och Charlie Walker möts i ett gästintervju som lyfts fram i Spotify-listan Top 15 Podcast Episodes Of All Time. Det är den enskilda episoden, inte bara JRE som ett populärt program, som har fått en plats i det utvalda topputvalet. Avsnittet fungerar som en fristående lyssning utan att bygga vidare på ett tidigare kapitel eller en följdserie.</description>
+    </item>
     <item>
       <title>The Knowledge Project – Dr. Rhonda Patrick</title>
       <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-11-01.html</link>
@@ -478,14 +486,6 @@
       <pubDate>Sun, 23 Aug 2026 00:00:00 GMT</pubDate>
       <category>Historia</category>
       <description>Short History Of William Wallace är ett fristående biografiavsnitt från Noiser där Paul McGann sammanfattar den skotska upprorsledarens liv i koncentrerad form. Manuset är skrivet av Jo Furniss med sakkunskap från Graeme Morton, professor i modern historia, vilket ger avsnittet historisk tyngd utan att det tappar i tillgänglighet. Avsnittet fungerar som en komplett berättelse i sig och passar lyssnare som vill ha en vederhäftig genomgång av en av Skottlands mest mytomspunna figurer utan att…</description>
-    </item>
-    <item>
-      <title>Dick Harrison svarar – Varför heter det Rosornas krig?</title>
-      <link>https://hhammarstrand.github.io/poddtipset/avsnitt/2026-08-22.html</link>
-      <guid isPermaLink="false">dagens-pod-2026-08-22</guid>
-      <pubDate>Sat, 22 Aug 2026 00:00:00 GMT</pubDate>
-      <category>Historia</category>
-      <description>Historiemannen Dick Harrison reder ut varför det engelska inbördeskriget mellan Lancaster och York fick just namnet Rosornas krig, och tar också upp vad Körsbärskriget var. Avsnittet är ett fristående svar på en specifik historisk fråga i hans frågesvar-podd på Sveriges Radio Play, och knyter direkt an till dagens datum – den 22 augusti 1485 stupade Rikard III vid Bosworth Field och kriget avgjordes. Harrison hör till landets mest erfarna historiepedagoger och syns regelbundet högt på de…</description>
     </item>
   </channel>
 </rss>

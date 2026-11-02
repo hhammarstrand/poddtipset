@@ -1,5 +1,36 @@
 [
   {
+    "date": "2026-11-02",
+    "episode_title": "#1832 - Charlie Walker",
+    "show_name": "The Joe Rogan Experience",
+    "show_slug": "the-joe-rogan-experience",
+    "hosts": "Joe Rogan",
+    "genre": "Intervju",
+    "language": "en",
+    "year": null,
+    "duration_minutes": null,
+    "day_occasion": "",
+    "day_connection": "",
+    "why_great": "Joe Rogan och Charlie Walker möts i ett gästintervju som lyfts fram i Spotify-listan Top 15 Podcast Episodes Of All Time. Det är den enskilda episoden, inte bara JRE som ett populärt program, som har fått en plats i det utvalda topputvalet. Avsnittet fungerar som en fristående lyssning utan att bygga vidare på ett tidigare kapitel eller en följdserie.",
+    "listen_links": {
+      "spotify": "https://open.spotify.com/playlist/6zWPJJDGey5kuKV1bskWX4",
+      "apple": "https://podcasts.apple.com/se/podcast/1832-charlie-walker/id360084272?i=1000644539072&uo=4"
+    },
+    "sources": [
+      {
+        "title": "Top 15 Podcast Episodes Of All Time",
+        "url": "https://open.spotify.com/playlist/6zWPJJDGey5kuKV1bskWX4"
+      }
+    ],
+    "audio": {
+      "url": "https://traffic.megaphone.fm/GLT7085184459.mp3?updated=1707794700",
+      "type": "audio/mpeg",
+      "length": "0",
+      "durationSec": 10829
+    },
+    "created_at": "2026-11-02T07:03:31.660Z"
+  },
+  {
     "date": "2026-11-01",
     "episode_title": "Dr. Rhonda Patrick",
     "show_name": "The Knowledge Project",
